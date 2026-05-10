@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/lib/language-context';
+import { useSiteConfig } from '@/lib/site-config-context';
 
 const PROJECTS: Record<string, {
   name_fr: string; name_ar: string;
@@ -110,9 +111,11 @@ const ALL = [
 
 export default function ProjectDetailPage() {
   const { lang } = useLanguage();
+  const { config } = useSiteConfig();
   const params = useParams();
   const slug = params?.slug as string;
   const project = PROJECTS[slug];
+  const mapEmbed = config.residences[slug]?.mapEmbed || '';
 
   const [activeImg, setActiveImg] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -274,6 +277,28 @@ export default function ProjectDetailPage() {
           </div>
         </div>
 
+        {/* ── MAP SECTION ── */}
+        {mapEmbed && (
+          <div style={{ marginTop: '80px', borderTop: '1px solid var(--border)', paddingTop: '64px' }}>
+            <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--teal)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '8px' }}>
+              {lang === 'ar' ? 'الموقع الجغرافي' : 'Localisation'}
+            </p>
+            <h3 style={{ fontSize: '22px', fontWeight: '300', color: 'var(--text-1)', letterSpacing: '-0.3px', marginBottom: '28px' }}>
+              {lang === 'ar' ? project.name_ar : project.name_fr} — {project.location}
+            </h3>
+            <div className="map-frame" style={{ position: 'relative', width: '100%', height: '440px', borderRadius: '8px', overflow: 'hidden', background: 'var(--border)' }}>
+              <iframe
+                src={mapEmbed}
+                title={`Localisation — ${project.name_fr}`}
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        )}
+
         {/* Other projects */}
         <div style={{ marginTop: '100px', borderTop: '1px solid var(--border)', paddingTop: '60px' }}>
           <h3 style={{ fontSize: '11px', fontWeight: '700', color: 'var(--teal)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '32px' }}>
@@ -304,6 +329,7 @@ export default function ProjectDetailPage() {
           .detail-content { padding: 40px 24px 80px !important; }
           .detail-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
           .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .map-frame { height: 280px !important; }
         }
       `}</style>
 

@@ -1,9 +1,9 @@
 'use client';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const CONFIG_VERSION = 6; // bump whenever DEFAULTS shape changes to clear stale localStorage
+const CONFIG_VERSION = 7; // bump whenever DEFAULTS shape changes to clear stale localStorage
 
-interface ResidenceCfg { thumbnail: string; gridSize: 2|3|4|5|6 }
+interface ResidenceCfg { thumbnail: string; gridSize: 2|3|4|5|6; mapEmbed?: string }
 interface BlogCfg      { coverImage: string }
 export interface HomeMedia  { id: string; type: 'image'|'video'; src: string; label: string; order: number }
 export interface VideoEntry { id: string; url: string; label: string; order: number }
