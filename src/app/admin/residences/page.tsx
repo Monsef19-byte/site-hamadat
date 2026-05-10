@@ -1,7 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useSiteConfig } from '@/lib/site-config-context';
+
+const RESIDENCE_SLUGS: { slug: string; name: string }[] = [
+  { slug: 'elysia',          name: 'Elysia' },
+  { slug: 'les-3-princes',   name: 'Les 3 Princes' },
+  { slug: 'orea',            name: 'Orea' },
+  { slug: 'lumalac',         name: 'Lumalac' },
+  { slug: 'marmo',           name: 'Marmo' },
+  { slug: 'vertdalya',       name: 'Vert Dalya' },
+];
 
 const INITIAL = [
   { id: '1', name_fr: 'Elysia',        name_ar: 'إليسيا',         location: 'Jijel',            units: 56,  status: 'ongoing' },
@@ -12,8 +22,36 @@ const INITIAL = [
   { id: '6', name_fr: 'Vert Dalya',    name_ar: 'فيرت داليا',      location: 'Dely Brahim, Alger', units: 10, status: 'completed' },
 ];
 
+const fieldBase: React.CSSProperties = {
+  padding: '10px 14px',
+  border: '1px solid #e8e8e6',
+  borderRadius: '4px',
+  fontSize: '13px',
+  color: '#2a2826',
+  background: '#fff',
+  fontFamily: 'inherit',
+  outline: 'none',
+};
+
 export default function AdminResidencesPage() {
+  const { config, updateConfig } = useSiteConfig();
   const [residences, setResidences] = useState(INITIAL);
+
+  // ── Maps ──
+  const [mapInputs, setMapInputs] = useState<Record<string, string>>(
+    Object.fromEntries(RESIDENCE_SLUGS.map(({ slug }) => [slug, config.residences[slug]?.mapEmbed || '']))
+  );
+  const [mapSaved, setMapSaved] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    setMapInputs(Object.fromEntries(RESIDENCE_SLUGS.map(({ slug }) => [slug, config.residences[slug]?.mapEmbed || ''])));
+  }, [config.residences]);
+
+  const saveMap = (slug: string) => {
+    updateConfig({ residences: { ...config.residences, [slug]: { ...config.residences[slug], mapEmbed: mapInputs[slug].trim() } } });
+    setMapSaved(prev => ({ ...prev, [slug]: true }));
+    setTimeout(() => setMapSaved(prev => ({ ...prev, [slug]: false })), 2000);
+  };
 
   const handleDelete = (id: string) => {
     if (confirm('Supprimer cette résidence ?')) {
@@ -48,8 +86,8 @@ export default function AdminResidencesPage() {
         </div>
       </div>
 
-      {/* Table */}
-      <div style={{ background: '#fff', borderRadius: '4px', overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+      {/* ── Table ── */}
+      <div style={{ background: '#fff', borderRadius: '4px', overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', marginBottom: '32px' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ background: '#f9f9f8', borderBottom: '1px solid #e8e8e6' }}>
@@ -109,6 +147,68 @@ export default function AdminResidencesPage() {
           </tbody>
         </table>
       </div>
+
+      {/* ── Section: Cartes de localisation ── */}
+      <div style={{ background: '#fff', borderRadius: '4px', padding: '28px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+        <h2 style={{ fontSize: '11px', fontWeight: '700', color: '#b8b0a8', letterSpacing: '2px', textTransform: 'uppercase', margin: '0 0 6px', paddingBottom: '12px', borderBottom: '1px solid #e8e8e6' }}>
+          Cartes de localisation
+        </h2>
+        <p style={{ fontSize: '12px', color: '#9a9590', marginBottom: '24px', marginTop: '4px' }}>
+          Collez l'URL d'intégration Google Maps pour chaque résidence.{' '}
+          <span style={{ color: '#b8b0a8' }}>
+            (Google Maps → Partager → Intégrer une carte → copier l'attribut <code style={{ fontFamily: 'monospace', fontSize: '11px' }}>src</code> de l'iframe)
+          </span>
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {RESIDENCE_SLUGS.map(({ slug, name }) => {
+            const saved = mapSaved[slug];
+            const val   = mapInputs[slug] ?? '';
+            return (
+              <div key={slug}>
+                <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr auto', gap: '12px', alignItems: 'end' }}>
+                  <span style={{ fontSize: '14px', fontWeight: '500', color: '#2a2826', paddingBottom: '10px' }}>{name}</span>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '10px', fontWeight: '700', color: '#9a9590', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '6px' }}>
+                      URL d'intégration
+                    </label>
+                    <input
+                      type="text"
+                      value={val}
+                      onChange={e => { setMapInputs(prev => ({ ...prev, [slug]: e.target.value })); setMapSaved(prev => ({ ...prev, [slug]: false })); }}
+                      onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); saveMap(slug); } }}
+                      style={{ ...fieldBase, width: '100%' }}
+                      placeholder="https://www.google.com/maps/embed?pb=..."
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => saveMap(slug)}
+                    style={{ padding: '10px 18px', background: saved ? '#16a34a' : '#0e7470', color: '#fff', border: 'none', borderRadius: '4px', fontSize: '13px', fontWeight: '600', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'background 0.2s' }}
+                    onMouseEnter={e => { if (!saved) (e.currentTarget as HTMLElement).style.background = '#0a5450'; }}
+                    onMouseLeave={e => { if (!saved) (e.currentTarget as HTMLElement).style.background = '#0e7470'; }}
+                  >
+                    {saved ? '✓ OK' : 'Enregistrer'}
+                  </button>
+                </div>
+                {/* Mini map preview */}
+                {val && val.startsWith('https://') && (
+                  <div style={{ marginTop: '10px', height: '160px', borderRadius: '4px', overflow: 'hidden', background: '#e8e8e6' }}>
+                    <iframe
+                      src={val}
+                      title={`Map preview — ${name}`}
+                      style={{ width: '100%', height: '100%', border: 'none' }}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
     </div>
   );
 }

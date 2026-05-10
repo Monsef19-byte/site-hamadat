@@ -84,22 +84,6 @@ export default function AdminHomepagePage() {
     updateConfig({ residences: { ...config.residences, [slug]: { ...config.residences[slug], gridSize: size } } });
   };
 
-  // ── Maps ──
-  const [mapInputs, setMapInputs] = useState<Record<string, string>>(
-    Object.fromEntries(RESIDENCE_SLUGS.map(({ slug }) => [slug, config.residences[slug]?.mapEmbed || '']))
-  );
-  const [mapSaved, setMapSaved] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    setMapInputs(Object.fromEntries(RESIDENCE_SLUGS.map(({ slug }) => [slug, config.residences[slug]?.mapEmbed || ''])));
-  }, [config.residences]);
-
-  const saveMap = (slug: string) => {
-    updateConfig({ residences: { ...config.residences, [slug]: { ...config.residences[slug], mapEmbed: mapInputs[slug].trim() } } });
-    setMapSaved(prev => ({ ...prev, [slug]: true }));
-    setTimeout(() => setMapSaved(prev => ({ ...prev, [slug]: false })), 2000);
-  };
-
   const BtnRow = ({ style, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
     <button style={{ background:'none', border:'1px solid var(--border)', borderRadius:'3px', padding:'2px 6px', cursor:'pointer', fontSize:'12px', color:'var(--text-2)', ...style }} {...props} />
   );
@@ -305,66 +289,6 @@ export default function AdminHomepagePage() {
         </div>
       </div>
 
-      {/* ── Section E: Cartes Google Maps ── */}
-      <div style={{ background: 'var(--bg-card)', borderRadius: '4px', padding: '28px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', marginTop: '28px' }}>
-        <h2 style={{ fontSize: '11px', fontWeight: '700', color: 'var(--text-4)', letterSpacing: '2px', textTransform: 'uppercase', margin: '0 0 6px', paddingBottom: '12px', borderBottom: '1px solid var(--border)' }}>
-          Cartes Google Maps
-        </h2>
-        <p style={{ fontSize: '12px', color: 'var(--text-3)', marginBottom: '24px', marginTop: '4px' }}>
-          Collez l'URL d'intégration Google Maps pour chaque résidence.{' '}
-          <span style={{ color: 'var(--text-4)' }}>
-            (Google Maps → Partager → Intégrer une carte → copier l'attribut <code style={{ fontFamily: 'monospace', fontSize: '11px' }}>src</code> de l'iframe)
-          </span>
-        </p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {RESIDENCE_SLUGS.map(({ slug, name }) => {
-            const saved = mapSaved[slug];
-            const val   = mapInputs[slug] ?? '';
-            return (
-              <div key={slug}>
-                <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr auto', gap: '12px', alignItems: 'end' }}>
-                  <span style={{ fontSize: '14px', fontWeight: '500', color: 'var(--text-1)', paddingBottom: '10px' }}>{name}</span>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '6px' }}>
-                      URL d'intégration
-                    </label>
-                    <input
-                      type="text"
-                      value={val}
-                      onChange={e => { setMapInputs(prev => ({ ...prev, [slug]: e.target.value })); setMapSaved(prev => ({ ...prev, [slug]: false })); }}
-                      onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); saveMap(slug); } }}
-                      style={{ ...fieldBase, width: '100%' }}
-                      placeholder="https://www.google.com/maps/embed?pb=..."
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => saveMap(slug)}
-                    style={{ padding: '10px 18px', background: saved ? '#16a34a' : 'var(--teal)', color: '#fff', border: 'none', borderRadius: '4px', fontSize: '13px', fontWeight: '600', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'background 0.2s' }}
-                    onMouseEnter={e => { if (!saved) (e.currentTarget as HTMLElement).style.background = 'var(--teal-dk)'; }}
-                    onMouseLeave={e => { if (!saved) (e.currentTarget as HTMLElement).style.background = 'var(--teal)'; }}
-                  >
-                    {saved ? '✓ OK' : 'Enregistrer'}
-                  </button>
-                </div>
-                {/* Mini map preview */}
-                {val && val.startsWith('https://') && (
-                  <div style={{ marginTop: '10px', height: '160px', borderRadius: '4px', overflow: 'hidden', background: 'var(--border)' }}>
-                    <iframe
-                      src={val}
-                      title={`Map preview — ${name}`}
-                      style={{ width: '100%', height: '100%', border: 'none' }}
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                    />
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
 
     </div>
   );
