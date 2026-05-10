@@ -121,7 +121,7 @@ export default function HomePage() {
       <Navbar />
 
       {/* Scroll nav dots */}
-      <div style={{
+      <div className="scroll-dots" style={{
         position: 'fixed', right: '28px', top: '50%', transform: 'translateY(-50%)',
         zIndex: 500, display: 'flex', flexDirection: 'column', gap: '10px',
       }}>
@@ -154,7 +154,7 @@ export default function HomePage() {
           background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%)',
         }} />
 
-        <div style={{
+        <div className="hero-content" style={{
           position: 'absolute', bottom: '72px', left: '60px',
           maxWidth: '640px', zIndex: 10,
           animation: 'fadeUp 1s ease-out 0.2s both',
@@ -191,7 +191,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div style={{
+        <div className="hero-scroll-ind" style={{
           position: 'absolute', bottom: '32px', right: '60px',
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
           animation: 'bounce 2s infinite',
@@ -202,7 +202,7 @@ export default function HomePage() {
       </section>
 
       {/* ── STATS ── */}
-      <section id="stats" style={{ background: 'var(--bg-page)', padding: '100px 60px' }}>
+      <section id="stats" className="page-section" style={{ background: 'var(--bg-page)', padding: '100px 60px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <p style={{
             fontSize: '11px', fontWeight: '700', color: 'var(--teal)',
@@ -210,9 +210,9 @@ export default function HomePage() {
           }}>
             {lang === 'ar' ? 'أرقامنا' : 'En Chiffres'}
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0' }}>
+          <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0' }}>
             {STATS.map((s, i) => (
-              <div key={i} style={{
+              <div key={i} className={i > 0 ? 'stat-item stat-item-border' : 'stat-item'} style={{
                 borderLeft: i > 0 ? '1px solid var(--border)' : 'none',
                 paddingLeft: i > 0 ? '48px' : '0',
                 paddingRight: '48px',
@@ -235,9 +235,9 @@ export default function HomePage() {
       </section>
 
       {/* ── PROJECTS GRID ── */}
-      <section id="projects" style={{ background: 'var(--bg-card)', padding: '100px 60px' }}>
+      <section id="projects" className="page-section projects-section" style={{ background: 'var(--bg-card)', padding: '100px 60px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '56px' }}>
+          <div className="projects-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '56px' }}>
             <div>
               <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--teal)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '14px' }}>
                 {lang === 'ar' ? 'مشاريعنا' : 'Nos Projets'}
@@ -257,7 +257,7 @@ export default function HomePage() {
           </div>
 
           {/* Dynamic 6-col grid — dense packing, uniform height */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gridAutoFlow: 'row dense', gap: '12px' }}>
+          <div className="projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gridAutoFlow: 'row dense', gap: '12px' }}>
             {ALL_PROJECTS.map((p) => {
               const gs = config.residences[p.slug]?.gridSize ?? 3;
               const thumb = config.residences[p.slug]?.thumbnail || `/residences/${p.slug}.jpg`;
@@ -266,6 +266,7 @@ export default function HomePage() {
                 <Link
                   key={p.slug}
                   href={`/projets/${p.slug}`}
+                  className="project-card"
                   style={{
                     gridColumn: `span ${gs}`,
                     textDecoration: 'none', color: 'inherit', display: 'block',
@@ -309,7 +310,7 @@ export default function HomePage() {
 
       {/* ── VIDEOS ── */}
       {videos.length > 0 && (
-        <section id="videos" style={{ background: 'var(--bg-page)', padding: '100px 60px' }}>
+        <section id="videos" className="page-section" style={{ background: 'var(--bg-page)', padding: '100px 60px' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
             {/* Header */}
@@ -418,8 +419,8 @@ export default function HomePage() {
       )}
 
       {/* ── ABOUT STRIP ── */}
-      <section id="about" style={{ background: 'var(--bg-page)', padding: '100px 60px' }}>
-        <div style={{
+      <section id="about" className="page-section" style={{ background: 'var(--bg-page)', padding: '100px 60px' }}>
+        <div className="about-grid" style={{
           maxWidth: '1200px', margin: '0 auto',
           display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center',
         }}>
@@ -444,14 +445,14 @@ export default function HomePage() {
               {lang === 'ar' ? 'اقرأ المزيد ←' : 'En savoir plus →'}
             </Link>
           </div>
-          <div style={{ position: 'relative', height: '460px', borderRadius: '6px', overflow: 'hidden', background: 'var(--border)' }}>
+          <div className="about-img" style={{ position: 'relative', height: '460px', borderRadius: '6px', overflow: 'hidden', background: 'var(--border)' }}>
             <img src={config.aboutImage || '/residences/les-3-princes/vue-2.jpg'} alt="À Propos" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </div>
         </div>
       </section>
 
       {/* ── SOCIAL CTA ── */}
-      <section id="social" style={{
+      <section id="social" className="social-section" style={{
         background: 'var(--bg-footer)',
         padding: '80px 60px',
         textAlign: 'center',
@@ -501,6 +502,24 @@ export default function HomePage() {
         @media (max-width: 860px) {
           .video-grid { grid-template-columns: 1fr !important; }
           .video-sidebar { flex-direction: row !important; overflow-x: auto; gap: 10px !important; }
+        }
+        @media (max-width: 600px) {
+          .scroll-dots { display: none !important; }
+          .hero-content { left: 24px !important; right: 24px !important; bottom: 48px !important; max-width: 100% !important; }
+          .hero-scroll-ind { display: none !important; }
+          .page-section { padding-left: 24px !important; padding-right: 24px !important; padding-top: 60px !important; padding-bottom: 60px !important; }
+          .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+          .stat-item-border { border-left: none !important; padding-left: 0 !important; }
+          .stat-item { padding-right: 0 !important; }
+          .projects-section { padding-top: 60px !important; padding-bottom: 60px !important; }
+          .projects-header { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+          .projects-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .project-card { grid-column: span 1 !important; }
+          .video-grid { grid-template-columns: 1fr !important; }
+          .video-sidebar { flex-direction: row !important; overflow-x: auto !important; gap: 10px !important; }
+          .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .about-img { height: 280px !important; }
+          .social-section { padding-left: 24px !important; padding-right: 24px !important; padding-top: 60px !important; padding-bottom: 60px !important; }
         }
       `}</style>
     </div>

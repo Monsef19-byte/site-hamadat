@@ -9,7 +9,7 @@ export default function Footer() {
 
   return (
     <footer style={{ background: 'var(--bg-footer)', color: 'var(--text-3)', fontFamily: 'inherit' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 60px 48px' }}>
+      <div className="footer-inner" style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 60px 48px' }}>
 
         {/* Top grid */}
         <div style={{
@@ -129,6 +129,11 @@ export default function Footer() {
           </Link>
         </div>
       </div>
+      <style>{`
+        @media (max-width: 600px) {
+          .footer-inner { padding: 48px 24px 36px !important; }
+        }
+      `}</style>
     </footer>
   );
 }

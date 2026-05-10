@@ -173,7 +173,7 @@ export default function ProjectDetailPage() {
 
       {/* Thumbnail strip */}
       {gallery.length > 1 && (
-        <div style={{ background: 'var(--bg-dark)', padding: '12px 60px', overflowX: 'auto' }}>
+        <div className="thumb-strip" style={{ background: 'var(--bg-dark)', padding: '12px 60px', overflowX: 'auto' }}>
           <div style={{ display: 'flex', gap: '6px', maxWidth: '1280px', margin: '0 auto' }}>
             {gallery.map((src, idx) => (
               <button key={idx} onClick={() => setActiveImg(idx)} style={{
@@ -192,8 +192,8 @@ export default function ProjectDetailPage() {
       )}
 
       {/* Body */}
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '72px 60px 120px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr minmax(300px, 360px)', gap: '80px', alignItems: 'start' }}>
+      <div className="detail-content" style={{ maxWidth: '1280px', margin: '0 auto', padding: '72px 60px 120px' }}>
+        <div className="detail-grid" style={{ display: 'grid', gridTemplateColumns: '1fr minmax(300px, 360px)', gap: '80px', alignItems: 'start' }}>
 
           {/* Left: description + gallery grid */}
           <div>
@@ -221,7 +221,7 @@ export default function ProjectDetailPage() {
                 <h3 style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-1)', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '20px' }}>
                   {lang === 'ar' ? 'معرض الصور' : 'Galerie'} <span style={{ color: 'var(--text-4)', fontWeight: '400', fontSize: '13px', textTransform: 'none', letterSpacing: '0' }}>({gallery.length})</span>
                 </h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '10px' }}>
+                <div className="gallery-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '10px' }}>
                   {gallery.map((src, idx) => (
                     <button key={idx} onClick={() => { setActiveImg(idx); setLightboxOpen(true); }}
                       style={{
@@ -297,6 +297,15 @@ export default function ProjectDetailPage() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 600px) {
+          .thumb-strip { padding-left: 16px !important; padding-right: 16px !important; }
+          .detail-content { padding: 40px 24px 80px !important; }
+          .detail-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+      `}</style>
 
       {/* Lightbox */}
       {lightboxOpen && (

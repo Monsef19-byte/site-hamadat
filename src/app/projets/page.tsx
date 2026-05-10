@@ -99,7 +99,7 @@ export default function ProjectsPage() {
       <Navbar />
 
       {/* Header */}
-      <section style={{ paddingTop: '160px', paddingBottom: '64px', paddingLeft: '60px', paddingRight: '60px', maxWidth: '1280px', margin: '0 auto' }}>
+      <section className="page-header" style={{ paddingTop: '160px', paddingBottom: '64px', paddingLeft: '60px', paddingRight: '60px', maxWidth: '1280px', margin: '0 auto' }}>
         <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--teal)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px', animation: 'fadeUp 0.7s ease-out both' }}>
           {lang === 'ar' ? 'مجمعاتنا السكنية' : 'Portfolio'}
         </p>
@@ -123,10 +123,10 @@ export default function ProjectsPage() {
       </section>
 
       {/* Grid */}
-      <section style={{ background: 'var(--bg-card)', padding: '60px 60px 120px' }}>
+      <section className="page-content" style={{ background: 'var(--bg-card)', padding: '60px 60px 120px' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           {filtered.length > 0 ? (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '32px' }}>
+            <div className="cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '32px' }}>
               {filtered.map((r, idx) => <ProjectCard key={r.slug} r={r} lang={lang} idx={idx} />)}
             </div>
           ) : (
@@ -138,7 +138,14 @@ export default function ProjectsPage() {
       </section>
 
       <Footer />
-      <style>{`@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }`}</style>
+      <style>{`
+        @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+        @media (max-width: 600px) {
+          .page-header { padding-left: 24px !important; padding-right: 24px !important; padding-top: 100px !important; }
+          .page-content { padding-left: 24px !important; padding-right: 24px !important; padding-bottom: 60px !important; }
+          .cards-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </div>
   );
 }

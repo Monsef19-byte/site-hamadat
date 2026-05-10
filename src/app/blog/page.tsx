@@ -33,7 +33,7 @@ export default function BlogPage() {
       <Navbar />
 
       {/* Hero */}
-      <section style={{ paddingTop: '160px', paddingBottom: '80px', paddingLeft: '60px', paddingRight: '60px', maxWidth: '1280px', margin: '0 auto' }}>
+      <section className="page-header" style={{ paddingTop: '160px', paddingBottom: '80px', paddingLeft: '60px', paddingRight: '60px', maxWidth: '1280px', margin: '0 auto' }}>
         <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--teal)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px', animation: 'fadeUp 0.7s ease-out both' }}>
           {lang === 'ar' ? 'المدونة' : 'Actualités'}
         </p>
@@ -43,7 +43,7 @@ export default function BlogPage() {
       </section>
 
       {/* Articles */}
-      <section style={{ background: 'var(--bg-card)', padding: '80px 60px 120px' }}>
+      <section className="page-content" style={{ background: 'var(--bg-card)', padding: '80px 60px 120px' }}>
         <div style={{ maxWidth: '860px', margin: '0 auto' }}>
           {ARTICLES.map((article, idx) => (
             <article key={article.id} style={{
@@ -80,7 +80,13 @@ export default function BlogPage() {
       </section>
 
       <Footer />
-      <style>{`@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }`}</style>
+      <style>{`
+        @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+        @media (max-width: 600px) {
+          .page-header { padding-left: 24px !important; padding-right: 24px !important; padding-top: 100px !important; padding-bottom: 40px !important; }
+          .page-content { padding-left: 24px !important; padding-right: 24px !important; padding-top: 48px !important; padding-bottom: 60px !important; }
+        }
+      `}</style>
     </div>
   );
 }

@@ -39,7 +39,7 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Hero */}
-      <section style={{ paddingTop: '160px', paddingBottom: '80px', paddingLeft: '60px', paddingRight: '60px', maxWidth: '1280px', margin: '0 auto' }}>
+      <section className="page-header" style={{ paddingTop: '160px', paddingBottom: '80px', paddingLeft: '60px', paddingRight: '60px', maxWidth: '1280px', margin: '0 auto' }}>
         <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--teal)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px', animation: 'fadeUp 0.7s ease-out both' }}>
           {lang === 'ar' ? 'تواصل معنا' : 'Contact'}
         </p>
@@ -49,8 +49,8 @@ export default function ContactPage() {
       </section>
 
       {/* Content */}
-      <section style={{ background: 'var(--bg-card)', padding: '80px 60px 120px' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '100px', alignItems: 'start' }}>
+      <section className="page-section" style={{ background: 'var(--bg-card)', padding: '80px 60px 120px' }}>
+        <div className="contact-grid" style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '100px', alignItems: 'start' }}>
 
           {/* Form */}
           <div style={{ animation: 'fadeUp 0.7s ease-out 0.1s both' }}>
@@ -78,7 +78,7 @@ export default function ContactPage() {
                   onFocus={() => setFocused('name')} onBlur={() => setFocused(null)}
                   style={input('name')} />
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '11px', fontWeight: '700', color: 'var(--text-3)', marginBottom: '8px', letterSpacing: '1px', textTransform: 'uppercase' }}>Email</label>
                   <input type="email" value={form.email} required
@@ -152,7 +152,15 @@ export default function ContactPage() {
       </section>
 
       <Footer />
-      <style>{`@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }`}</style>
+      <style>{`
+        @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+        @media (max-width: 600px) {
+          .page-header { padding-left: 24px !important; padding-right: 24px !important; padding-top: 100px !important; padding-bottom: 40px !important; }
+          .page-section { padding-left: 24px !important; padding-right: 24px !important; padding-top: 60px !important; padding-bottom: 60px !important; }
+          .contact-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .form-row { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </div>
   );
 }

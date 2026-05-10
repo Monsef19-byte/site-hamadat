@@ -33,7 +33,7 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Hero */}
-      <section style={{ paddingTop: '160px', paddingBottom: '80px', paddingLeft: '60px', paddingRight: '60px', maxWidth: '1280px', margin: '0 auto' }}>
+      <section className="page-header" style={{ paddingTop: '160px', paddingBottom: '80px', paddingLeft: '60px', paddingRight: '60px', maxWidth: '1280px', margin: '0 auto' }}>
         <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--teal)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px', animation: 'fadeUp 0.7s ease-out both' }}>
           {lang === 'ar' ? 'من نحن' : 'Notre Histoire'}
         </p>
@@ -43,8 +43,8 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      <section style={{ background: 'var(--bg-card)', padding: '80px 60px' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
+      <section className="page-section" style={{ background: 'var(--bg-card)', padding: '80px 60px' }}>
+        <div className="two-col-grid" style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
           <div>
             <h2 style={{ fontSize: 'clamp(26px, 3vw, 40px)', fontWeight: '300', color: 'var(--text-1)', letterSpacing: '-0.5px', marginBottom: '28px' }}>
               {lang === 'ar' ? 'قصتنا' : 'Notre Histoire'}
@@ -60,7 +60,7 @@ export default function AboutPage() {
           </div>
 
           {/* Stats column */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
+          <div className="stats-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
             {STATS.map((s, i) => (
               <div key={i} style={{
                 padding: '32px',
@@ -80,7 +80,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section style={{ padding: '100px 60px', background: 'var(--bg-page)' }}>
+      <section className="page-section" style={{ padding: '100px 60px', background: 'var(--bg-page)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--teal)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px' }}>
             {lang === 'ar' ? 'قيمنا' : 'Nos Valeurs'}
@@ -116,7 +116,15 @@ export default function AboutPage() {
       </section>
 
       <Footer />
-      <style>{`@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }`}</style>
+      <style>{`
+        @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+        @media (max-width: 600px) {
+          .page-header { padding-left: 24px !important; padding-right: 24px !important; padding-top: 100px !important; padding-bottom: 40px !important; }
+          .page-section { padding-left: 24px !important; padding-right: 24px !important; padding-top: 60px !important; padding-bottom: 60px !important; }
+          .two-col-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .stats-2col { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </div>
   );
 }

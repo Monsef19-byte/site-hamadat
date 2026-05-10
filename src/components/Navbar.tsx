@@ -58,7 +58,7 @@ export default function Navbar() {
         padding: '0 40px',
         height: '72px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      }}>
+      }} className="nav-inner">
 
         {/* Logo */}
         <Link href="/" style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
@@ -145,6 +145,7 @@ export default function Navbar() {
           {/* CTA */}
           <Link
             href="/contact"
+            className="nav-cta"
             style={{
               background: 'var(--teal)', color: '#fff',
               padding: '9px 22px', borderRadius: '4px',
@@ -212,6 +213,10 @@ export default function Navbar() {
         @media (max-width: 860px) {
           .ham-btn { display: flex !important; }
           nav { display: none !important; }
+        }
+        @media (max-width: 600px) {
+          .nav-inner { padding: 0 16px !important; }
+          .nav-cta { display: none !important; }
         }
       `}</style>
     </header>
