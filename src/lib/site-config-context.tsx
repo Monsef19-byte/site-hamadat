@@ -22,12 +22,12 @@ export interface SiteConfig {
 
 const DEFAULTS: SiteConfig = {
   residences: {
-    elysia:          { thumbnail: '/residences/elysia/vue-001-1.jpg',        gridSize: 4 },
-    'les-3-princes': { thumbnail: '/residences/les-3-princes/vue-2.jpg',     gridSize: 3 },
-    orea:            { thumbnail: '/residences/orea/b1.jpg',                 gridSize: 3 },
-    lumalac:         { thumbnail: '/residences/lumalac/lumalac-1.png',       gridSize: 2 },
-    marmo:           { thumbnail: '/residences/marmo/1.jpg',                 gridSize: 2 },
-    vertdalya:       { thumbnail: '/residences/vertdalya/vrtdalya.png',      gridSize: 4 },
+    elysia:          { thumbnail: '/residences/elysia/vue-001-1.jpg',        gridSize: 4, mapEmbed: 'https://maps.google.com/maps?q=Jijel,Algeria&output=embed&z=13' },
+    'les-3-princes': { thumbnail: '/residences/les-3-princes/vue-2.jpg',     gridSize: 3, mapEmbed: 'https://maps.google.com/maps?q=Dely+Brahim,Alger,Algeria&output=embed&z=14' },
+    orea:            { thumbnail: '/residences/orea/b1.jpg',                 gridSize: 3, mapEmbed: 'https://maps.google.com/maps?q=Dely+Brahim,Alger,Algeria&output=embed&z=14' },
+    lumalac:         { thumbnail: '/residences/lumalac/lumalac-1.png',       gridSize: 2, mapEmbed: 'https://maps.google.com/maps?q=Dely+Brahim,Alger,Algeria&output=embed&z=14' },
+    marmo:           { thumbnail: '/residences/marmo/1.jpg',                 gridSize: 2, mapEmbed: 'https://maps.google.com/maps?q=Dely+Brahim,Alger,Algeria&output=embed&z=14' },
+    vertdalya:       { thumbnail: '/residences/vertdalya/vrtdalya.png',      gridSize: 4, mapEmbed: 'https://maps.google.com/maps?q=Dely+Brahim,Alger,Algeria&output=embed&z=14' },
   },
   blog: {},
   apropos: { story_fr: '', story_ar: '' },
