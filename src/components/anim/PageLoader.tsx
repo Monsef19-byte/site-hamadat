@@ -84,12 +84,6 @@ export default function PageLoader() {
         </div>
       </div>
 
-      <style>{`
-        @keyframes loaderTitle {
-          from { opacity:0; transform: translateY(30px) letterSpacing:0.5em; }
-          to   { opacity:1; transform: translateY(0); }
-        }
-      `}</style>
     </div>
   );
 }

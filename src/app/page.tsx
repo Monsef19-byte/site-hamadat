@@ -76,11 +76,14 @@ export default function HomePage() {
 
   // ── GSAP setup ───────────────────────────────────────────────
   useEffect(() => {
+    if (residences.length === 0) return;   // wait for config to load
+
     let gsap: typeof import('gsap').gsap;
     let ScrollTrigger: typeof import('gsap/ScrollTrigger').ScrollTrigger;
     let cleanupFns: (() => void)[] = [];
 
-    (async () => {
+    // rAF ensures the DOM is fully painted before GSAP runs
+    const raf = requestAnimationFrame(async () => {
       const g = await import('gsap');
       const { ScrollTrigger: ST } = await import('gsap/ScrollTrigger');
       gsap  = g.gsap;
@@ -196,9 +199,12 @@ export default function HomePage() {
       });
 
       cleanupFns.push(() => ScrollTrigger.getAll().forEach(t => t.kill()));
-    })();
+    });
 
-    return () => { cleanupFns.forEach(fn => fn()); };
+    return () => {
+      cancelAnimationFrame(raf);
+      cleanupFns.forEach(fn => fn());
+    };
   }, [residences.length]);
 
   // ── Mouse parallax on hero ────────────────────────────────────

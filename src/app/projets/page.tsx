@@ -159,7 +159,10 @@ export default function ProjectsPage() {
 
   // ── GSAP flying cards ───────────────────────────────────────
   useEffect(() => {
+    if (filtered.length === 0) return;   // wait for config
+
     let ctx: { revert?: () => void } = {};
+    let raf = 0;
 
     const init = async () => {
       const g = await import('gsap');
@@ -254,8 +257,11 @@ export default function ProjectsPage() {
       });
     };
 
-    init();
-    return () => ctx.revert?.();
+    raf = requestAnimationFrame(() => init());
+    return () => {
+      cancelAnimationFrame(raf);
+      ctx.revert?.();
+    };
   }, [filtered.length]);
 
   // re-init when filter changes — reset card refs
