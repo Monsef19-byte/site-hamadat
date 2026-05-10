@@ -61,7 +61,7 @@ export default function Navbar() {
       }} className="nav-inner">
 
         {/* Logo */}
-        <Link href="/" style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
+        <Link href="/" className="nav-logo" style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
           <Image
             src={isDark ? '/images/logo/logo-horizontal-white.png' : '/images/logo/logo-horizontal-color.png'}
             alt="Hamadat"
@@ -74,12 +74,13 @@ export default function Navbar() {
 
         {/* Nav links */}
         <nav style={{ display: 'flex', gap: '36px', alignItems: 'center' }}>
-          {NAV.map((item) => {
+          {NAV.map((item, idx) => {
             const active = pathname === item.path || (item.path !== '/' && pathname?.startsWith(item.path));
             return (
               <Link
                 key={item.path}
                 href={item.path}
+                className={`nav-item-${idx}`}
                 style={{
                   fontSize: '13px',
                   fontWeight: active ? '600' : '500',
@@ -106,7 +107,7 @@ export default function Navbar() {
         </nav>
 
         {/* Right side */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+        <div className="nav-right" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
 
           {/* Language toggle */}
           <button

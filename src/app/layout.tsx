@@ -3,6 +3,9 @@ import { LanguageProvider } from '@/lib/language-context';
 import { ThemeProvider } from '@/lib/theme-context';
 import { SiteConfigProvider } from '@/lib/site-config-context';
 import LayoutContent from '@/components/LayoutContent';
+import PageLoader from '@/components/anim/PageLoader';
+import CustomCursor from '@/components/anim/CustomCursor';
+import SmoothScroll from '@/components/anim/SmoothScroll';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -25,6 +28,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
+        <PageLoader />
+        <CustomCursor />
+        <SmoothScroll />
         <ThemeProvider>
           <SiteConfigProvider>
             <LanguageProvider>

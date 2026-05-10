@@ -1,49 +1,59 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import RevealBlock from '@/components/anim/RevealBlock';
 import { useLanguage } from '@/lib/language-context';
 import { useSiteConfig } from '@/lib/site-config-context';
 
-const ALL_PROJECTS = [
-  { slug: 'elysia',        name: 'Elysia',        location: 'Jijel',                status: 'ongoing' },
-  { slug: 'les-3-princes', name: 'Les 3 Princes',  location: 'Dely Brahim, Alger',   status: 'completed' },
-  { slug: 'orea',          name: 'Orea',           location: 'Dely Brahim, Alger',   status: 'ongoing' },
-  { slug: 'lumalac',       name: 'Lumalac',        location: 'Dely Brahim, Alger',   status: 'ongoing' },
-  { slug: 'marmo',         name: 'Marmo',          location: 'Dely Brahim, Alger',   status: 'completed' },
-  { slug: 'vertdalya',     name: 'Vert Dalya',     location: 'Dely Brahim, Alger',   status: 'completed' },
-];
-
 const STATS = [
-  { value: '6',    fr: 'Projets',            ar: 'مشاريع' },
-  { value: '163',  fr: 'Unités résidentielles', ar: 'وحدة سكنية' },
-  { value: '4',    fr: 'Projets en cours',   ar: 'مشاريع جارية' },
-  { value: '2024', fr: 'Année de création',  ar: 'سنة التأسيس' },
+  { value: 6,    label_fr: 'Projets',               label_ar: 'مشاريع' },
+  { value: 163,  label_fr: 'Unités résidentielles',  label_ar: 'وحدة سكنية' },
+  { value: 4,    label_fr: 'Projets en cours',       label_ar: 'مشاريع جارية' },
+  { value: 2024, label_fr: 'Année de création',      label_ar: 'سنة التأسيس' },
 ];
 
-const SECTIONS = [
-  { id: 'hero',     label: 'Accueil' },
-  { id: 'stats',    label: 'Chiffres' },
-  { id: 'projects', label: 'Projets' },
-  { id: 'videos',   label: 'Vidéos' },
-  { id: 'about',    label: 'À Propos' },
-  { id: 'social',   label: 'Social' },
-];
-
-// ── YouTube helpers ──────────────────────────────────────────
-function ytId(url: string): string {
+function ytId(url: string) {
   const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^?&\s#]+)/);
   return m ? m[1] : '';
 }
 function ytEmbed(url: string) { const id = ytId(url); return id ? `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&color=white` : ''; }
 function ytThumb(url: string) { const id = ytId(url); return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : ''; }
 
-// Uniform card height — width only is determined by gridSize span
-const GRID_CARD_HEIGHT = 260;
+// Animated counter — counts up when visible
+function AnimCounter({ target }: { target: number }) {
+  const [val, setVal] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const started = useRef(false);
 
-// ── Social SVG pictograms — clean geometric outlines ──────────
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !started.current) {
+        started.current = true;
+        const duration = 1800;
+        const step = 16;
+        const steps = duration / step;
+        let i = 0;
+        const t = setInterval(() => {
+          i++;
+          const progress = 1 - Math.pow(1 - i / steps, 3); // easeOutCubic
+          setVal(Math.round(progress * target));
+          if (i >= steps) clearInterval(t);
+        }, step);
+      }
+    }, { threshold: 0.3 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [target]);
+
+  return <span ref={ref}>{val}</span>;
+}
+
+// Social icons
 const InstagramIcon = () => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5"/>
@@ -51,13 +61,11 @@ const InstagramIcon = () => (
     <circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/>
   </svg>
 );
-
 const FacebookIcon = () => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
   </svg>
 );
-
 const LinkedInIcon = () => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
@@ -65,7 +73,6 @@ const LinkedInIcon = () => (
     <circle cx="4" cy="4" r="2"/>
   </svg>
 );
-
 const YouTubeIcon = () => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
     <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
@@ -76,38 +83,55 @@ const YouTubeIcon = () => (
 export default function HomePage() {
   const { lang } = useLanguage();
   const { config } = useSiteConfig();
-  const [activeSection, setActiveSection] = useState('hero');
   const [activeVideoIdx, setActiveVideoIdx] = useState(0);
-  const heroSrc = config.homeMedia[0]?.src || '/residences/elysia.jpg';
 
-  const videos = [...(config.videos ?? [])].sort((a, b) => a.order - b.order);
+  const heroRef   = useRef<HTMLDivElement>(null);
+  const heroImgRef = useRef<HTMLImageElement>(null);
+
+  const heroSrc = config.homeMedia[0]?.src || '/residences/elysia.jpg';
+  const videos  = [...(config.videos ?? [])].sort((a, b) => a.order - b.order);
   const activeVideo = videos[activeVideoIdx] ?? videos[0];
 
-  // Scroll spy
+  const residences = config.residenceList ?? [];
+
+  // Hero parallax on scroll
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
-    );
-
-    SECTIONS.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
+    const onScroll = () => {
+      if (!heroImgRef.current) return;
+      const y = window.scrollY;
+      heroImgRef.current.style.transform = `translateY(${y * 0.35}px)`;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
+  // Line reveal helper (observes elements with class .lines-observe)
+  useEffect(() => {
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll<HTMLElement>('.line-inner').forEach((el, i) => {
+          setTimeout(() => el.classList.add('lv'), i * 90);
+        });
+        obs.unobserve(entry.target);
+      }
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.lines-observe').forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
+  // Image mask reveal
+  useEffect(() => {
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).classList.add('iv');
+        obs.unobserve(entry.target);
+      }
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.img-mask, .label-reveal, .hr-reveal').forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
 
   const socialLinks = [
     { icon: <InstagramIcon />, url: config.social.instagram, label: 'Instagram' },
@@ -117,221 +141,313 @@ export default function HomePage() {
   ].filter(s => s.url);
 
   return (
-    <div style={{ background: 'var(--bg-page)' }}>
+    <div style={{ background: 'var(--bg-page)', overflowX: 'hidden' }}>
       <Navbar />
 
-      {/* Scroll nav dots */}
-      <div className="scroll-dots" style={{
-        position: 'fixed', right: '28px', top: '50%', transform: 'translateY(-50%)',
-        zIndex: 500, display: 'flex', flexDirection: 'column', gap: '10px',
-      }}>
-        {SECTIONS.map(({ id, label }) => (
-          <button
-            key={id}
-            onClick={() => scrollTo(id)}
-            title={label}
-            aria-label={label}
-            style={{
-              width: '10px', height: '10px', borderRadius: '50%',
-              background: activeSection === id ? 'var(--teal)' : 'var(--border)',
-              border: activeSection === id ? '2px solid var(--teal)' : '2px solid transparent',
-              cursor: 'pointer', padding: 0, transition: 'all 0.25s ease',
-              outline: 'none',
-            }}
-          />
-        ))}
-      </div>
+      {/* ══════════════════════════════════════
+          HERO — full screen with parallax
+      ══════════════════════════════════════ */}
+      <section ref={heroRef} style={{ position: 'relative', height: '100vh', minHeight: '600px', overflow: 'hidden' }}>
 
-      {/* ── HERO ── */}
-      <section id="hero" style={{ position: 'relative', height: '100vh', minHeight: '600px', overflow: 'hidden' }}>
+        {/* Parallax image */}
         <img
+          ref={heroImgRef}
           src={heroSrc}
-          alt="Hamadat — Hero"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+          alt="Hamadat Hero"
+          className="parallax-img"
+          style={{
+            position: 'absolute', inset: 0, width: '100%', height: '115%',
+            objectFit: 'cover', objectPosition: 'center',
+            top: '-7.5%',
+            display: 'block',
+          }}
         />
+
+        {/* Gradient veil */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%)',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.62) 100%)',
         }} />
 
-        <div className="hero-content" style={{
-          position: 'absolute', bottom: '72px', left: '60px',
-          maxWidth: '640px', zIndex: 10,
-          animation: 'fadeUp 1s ease-out 0.2s both',
-        }}>
-          <p style={{
-            fontSize: '12px', fontWeight: '700', color: 'rgba(255,255,255,0.7)',
-            letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px',
+        {/* Text — fades in after loader */}
+        <div style={{ position: 'absolute', bottom: '80px', left: '60px', maxWidth: '680px', zIndex: 10 }}>
+          <p className="hero-sub" style={{
+            fontSize: '11px', fontWeight: '700', color: 'rgba(255,255,255,0.65)',
+            letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '28px',
           }}>
             {lang === 'ar' ? 'حمادة للترقية العقارية' : 'Hamadat Promotion Immobilière'}
           </p>
-          <h1 style={{
-            fontSize: 'clamp(42px, 6vw, 80px)',
-            fontWeight: '300', color: '#fff',
-            lineHeight: '1.1', letterSpacing: '-1px',
-            marginBottom: '28px',
-          }}>
-            {lang === 'ar'
-              ? <><span>حيث يتحقق</span><br /><span>حلمك السكني</span></>
-              : <><span>La où le rêve</span><br /><span>prend toit.</span></>}
-          </h1>
-          <Link href="/projets" style={{
-            display: 'inline-flex', alignItems: 'center', gap: '10px',
-            background: '#0e7470', color: '#fff',
-            padding: '14px 32px', borderRadius: '4px',
-            fontSize: '13px', fontWeight: '600', letterSpacing: '0.5px',
-            textDecoration: 'none', textTransform: 'uppercase',
-            transition: 'background 0.25s ease',
-          }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#0a5450'; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#0e7470'; }}
-          >
-            {lang === 'ar' ? 'استكشف مشاريعنا' : 'Découvrir nos projets'}
-            <span style={{ fontSize: '16px' }}>→</span>
-          </Link>
+
+          <div style={{ overflow: 'hidden', marginBottom: '4px' }}>
+            <h1 className="hero-line-1" style={{
+              fontSize: 'clamp(44px, 6.5vw, 88px)',
+              fontWeight: '300', color: '#fff',
+              lineHeight: '1.05', letterSpacing: '-1.5px', margin: 0,
+            }}>
+              {lang === 'ar' ? 'حيث يتحقق' : 'La où le rêve'}
+            </h1>
+          </div>
+          <div style={{ overflow: 'hidden', marginBottom: '36px' }}>
+            <h1 className="hero-line-2" style={{
+              fontSize: 'clamp(44px, 6.5vw, 88px)',
+              fontWeight: '300', color: 'rgba(255,255,255,0.65)',
+              fontStyle: 'italic',
+              lineHeight: '1.05', letterSpacing: '-1.5px', margin: 0,
+            }}>
+              {lang === 'ar' ? 'حلمك السكني.' : 'prend toit.'}
+            </h1>
+          </div>
+
+          <div className="hero-cta" style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+            <Link href="/projets" data-cursor style={{
+              display: 'inline-flex', alignItems: 'center', gap: '10px',
+              background: '#0e7470', color: '#fff',
+              padding: '15px 36px', borderRadius: '4px',
+              fontSize: '12px', fontWeight: '600', letterSpacing: '1.5px',
+              textDecoration: 'none', textTransform: 'uppercase',
+              transition: 'background 0.3s ease, transform 0.3s ease',
+            }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.background = '#0a5450';
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.background = '#0e7470';
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+              }}
+            >
+              {lang === 'ar' ? 'استكشف مشاريعنا' : 'Découvrir nos projets'}
+              <span style={{ fontSize: '18px', fontWeight: '300' }}>→</span>
+            </Link>
+          </div>
         </div>
 
-        <div className="hero-scroll-ind" style={{
-          position: 'absolute', bottom: '32px', right: '60px',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
-          animation: 'bounce 2s infinite',
+        {/* Scroll indicator */}
+        <div className="hero-scroll" style={{
+          position: 'absolute', bottom: '36px', right: '60px',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',
         }}>
-          <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', letterSpacing: '2px', textTransform: 'uppercase', writingMode: 'vertical-lr' }}>Scroll</span>
-          <div style={{ width: '1px', height: '48px', background: 'rgba(255,255,255,0.3)' }} />
+          <span style={{
+            fontSize: '9px', color: 'rgba(255,255,255,0.45)',
+            letterSpacing: '3px', textTransform: 'uppercase',
+            writingMode: 'vertical-lr',
+          }}>Scroll</span>
+          <div style={{
+            width: '1px', height: '56px',
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0.4), transparent)',
+            animation: 'scrollBounce 2.2s ease-in-out infinite',
+          }} />
+        </div>
+
+        {/* Project count — bottom left corner line */}
+        <div style={{
+          position: 'absolute', bottom: '36px', left: '60px',
+          display: 'flex', alignItems: 'center', gap: '16px',
+        }}>
+          <div style={{ width: '32px', height: '1px', background: 'rgba(255,255,255,0.3)' }} />
+          <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', letterSpacing: '2px' }}>
+            {residences.length || 6} {lang === 'ar' ? 'مشاريع' : 'projets'}
+          </span>
         </div>
       </section>
 
-      {/* ── STATS ── */}
-      <section id="stats" className="page-section" style={{ background: 'var(--bg-page)', padding: '100px 60px' }}>
+      {/* ══════════════════════════════════════
+          STATS — animated counters
+      ══════════════════════════════════════ */}
+      <section style={{ background: 'var(--bg-page)', padding: '120px 60px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <p style={{
-            fontSize: '11px', fontWeight: '700', color: 'var(--teal)',
-            letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '64px',
-          }}>
-            {lang === 'ar' ? 'أرقامنا' : 'En Chiffres'}
-          </p>
-          <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0' }}>
+
+          <RevealBlock delay={0}>
+            <span className="label-reveal" style={{
+              display: 'block',
+              fontSize: '10px', fontWeight: '700', color: 'var(--teal)',
+              letterSpacing: '6px', textTransform: 'uppercase', marginBottom: '72px',
+            }}>
+              {lang === 'ar' ? 'أرقامنا' : 'En Chiffres'}
+            </span>
+          </RevealBlock>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }} className="stats-grid">
             {STATS.map((s, i) => (
-              <div key={i} className={i > 0 ? 'stat-item stat-item-border' : 'stat-item'} style={{
-                borderLeft: i > 0 ? '1px solid var(--border)' : 'none',
-                paddingLeft: i > 0 ? '48px' : '0',
-                paddingRight: '48px',
-              }}>
+              <RevealBlock key={i} delay={i * 0.12} y={32}>
                 <div style={{
-                  fontSize: 'clamp(56px, 6vw, 88px)',
-                  fontWeight: '200', color: 'var(--text-3)',
-                  lineHeight: '1', letterSpacing: '-3px',
-                  marginBottom: '12px',
+                  borderLeft: i > 0 ? '1px solid var(--border)' : 'none',
+                  paddingLeft: i > 0 ? '52px' : '0',
+                  paddingRight: '52px',
                 }}>
-                  {s.value}
+                  <div style={{
+                    fontSize: 'clamp(52px, 5.5vw, 84px)',
+                    fontWeight: '200', color: 'var(--text-1)',
+                    lineHeight: '1', letterSpacing: '-3px',
+                    marginBottom: '14px',
+                  }}>
+                    <AnimCounter target={s.value} />
+                  </div>
+                  <p style={{
+                    fontSize: '13px', color: 'var(--text-3)',
+                    fontWeight: '500', margin: 0, letterSpacing: '0.3px',
+                  }}>
+                    {lang === 'ar' ? s.label_ar : s.label_fr}
+                  </p>
                 </div>
-                <p style={{ fontSize: '13px', color: 'var(--text-2)', fontWeight: '500', margin: 0, letterSpacing: '0.3px' }}>
-                  {lang === 'ar' ? s.ar : s.fr}
-                </p>
-              </div>
+              </RevealBlock>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── PROJECTS GRID ── */}
-      <section id="projects" className="page-section projects-section" style={{ background: 'var(--bg-card)', padding: '100px 60px' }}>
+      {/* ══════════════════════════════════════
+          PROJECTS GRID
+      ══════════════════════════════════════ */}
+      <section style={{ background: 'var(--bg-card)', padding: '120px 60px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div className="projects-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '56px' }}>
-            <div>
-              <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--teal)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '14px' }}>
-                {lang === 'ar' ? 'مشاريعنا' : 'Nos Projets'}
-              </p>
-              <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: '300', color: 'var(--text-1)', letterSpacing: '-0.5px', margin: 0 }}>
-                {lang === 'ar' ? 'مجمعات سكنية فاخرة' : 'Résidences de prestige'}
-              </h2>
+
+          {/* Header */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '64px' }}>
+            <div className="lines-observe">
+              <div style={{ overflow: 'hidden', marginBottom: '16px' }}>
+                <span className="line-inner label-reveal" style={{
+                  display: 'block',
+                  fontSize: '10px', fontWeight: '700', color: 'var(--teal)',
+                  letterSpacing: '6px', textTransform: 'uppercase',
+                }}>
+                  {lang === 'ar' ? 'مشاريعنا' : 'Nos Projets'}
+                </span>
+              </div>
+              <div style={{ overflow: 'hidden' }}>
+                <h2 className="line-inner" style={{
+                  fontSize: 'clamp(28px, 3.5vw, 52px)',
+                  fontWeight: '300', color: 'var(--text-1)',
+                  letterSpacing: '-1px', margin: 0, lineHeight: '1.1',
+                }}>
+                  {lang === 'ar' ? 'مجمعات سكنية فاخرة' : 'Résidences de prestige'}
+                </h2>
+              </div>
             </div>
-            <Link href="/projets" style={{
-              fontSize: '13px', fontWeight: '600', color: 'var(--teal)',
-              textDecoration: 'none', letterSpacing: '0.3px',
-              display: 'flex', alignItems: 'center', gap: '6px',
-              whiteSpace: 'nowrap',
-            }}>
-              {lang === 'ar' ? 'عرض الكل ←' : 'Voir tous →'}
-            </Link>
+
+            <RevealBlock delay={0.3} y={20}>
+              <Link href="/projets" data-cursor style={{
+                fontSize: '12px', fontWeight: '600', color: 'var(--teal)',
+                textDecoration: 'none', letterSpacing: '1px',
+                display: 'flex', alignItems: 'center', gap: '8px',
+                whiteSpace: 'nowrap', textTransform: 'uppercase',
+                borderBottom: '1px solid var(--teal)', paddingBottom: '2px',
+                transition: 'opacity 0.3s',
+              }}>
+                {lang === 'ar' ? 'عرض الكل' : 'Voir tous'} →
+              </Link>
+            </RevealBlock>
           </div>
 
-          {/* Dynamic 6-col grid — dense packing, uniform height */}
-          <div className="projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gridAutoFlow: 'row dense', gap: '12px' }}>
-            {ALL_PROJECTS.map((p) => {
-              const gs = config.residences[p.slug]?.gridSize ?? 3;
-              const thumb = config.residences[p.slug]?.thumbnail || `/residences/${p.slug}.jpg`;
-              const h = GRID_CARD_HEIGHT;
+          {/* Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '14px' }}>
+            {residences.map((r, i) => {
+              const gs = config.residences[r.slug]?.gridSize ?? 3;
+              const thumb = config.residences[r.slug]?.thumbnail || `/residences/${r.slug}.jpg`;
+
               return (
-                <Link
-                  key={p.slug}
-                  href={`/projets/${p.slug}`}
-                  className="project-card"
-                  style={{
-                    gridColumn: `span ${gs}`,
-                    textDecoration: 'none', color: 'inherit', display: 'block',
-                  }}
-                  onMouseEnter={(e) => {
-                    const img = (e.currentTarget as HTMLElement).querySelector('img') as HTMLElement;
-                    if (img) img.style.transform = 'scale(1.04)';
-                  }}
-                  onMouseLeave={(e) => {
-                    const img = (e.currentTarget as HTMLElement).querySelector('img') as HTMLElement;
-                    if (img) img.style.transform = 'scale(1)';
-                  }}
+                <RevealBlock
+                  key={r.id}
+                  delay={i * 0.08}
+                  y={40}
+                  style={{ gridColumn: `span ${gs}` }}
                 >
-                  <div style={{ position: 'relative', height: `${h}px`, overflow: 'hidden', borderRadius: '6px', background: 'var(--border)' }}>
-                    <img
-                      src={thumb}
-                      alt={p.name}
-                      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.7s cubic-bezier(0.16,1,0.3,1)', display: 'block' }}
-                    />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 55%)' }} />
-                    <div style={{ position: 'absolute', bottom: '16px', left: '16px' }}>
-                      <h3 style={{ fontSize: gs >= 4 ? '20px' : '15px', fontWeight: '500', color: '#fff', margin: '0 0 3px' }}>{p.name}</h3>
-                      <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.65)', margin: 0 }}>{p.location}</p>
+                  <Link
+                    href={`/projets/${r.slug}`}
+                    data-cursor
+                    style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+                  >
+                    <div
+                      className="card-hover"
+                      style={{
+                        position: 'relative', height: '280px',
+                        overflow: 'hidden', borderRadius: '4px',
+                        background: 'var(--border)',
+                      }}
+                    >
+                      {/* Image with zoom on hover */}
+                      <img
+                        src={thumb}
+                        alt={r.name_fr}
+                        style={{
+                          position: 'absolute', inset: 0,
+                          width: '100%', height: '100%', objectFit: 'cover',
+                          transition: 'transform 0.9s cubic-bezier(0.16,1,0.3,1)',
+                          display: 'block',
+                        }}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.07)'; }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; }}
+                      />
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)' }} />
+
+                      {/* Hover overlay */}
+                      <div style={{
+                        position: 'absolute', inset: 0,
+                        background: 'rgba(14,116,112,0.12)',
+                        opacity: 0, transition: 'opacity 0.4s ease',
+                      }}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = '1'; }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = '0'; }}
+                      />
+
+                      <div style={{ position: 'absolute', bottom: '20px', left: '20px', right: '20px' }}>
+                        <h3 style={{ fontSize: gs >= 4 ? '22px' : '16px', fontWeight: '400', color: '#fff', margin: '0 0 4px', letterSpacing: '-0.3px' }}>
+                          {lang === 'ar' ? r.name_ar : r.name_fr}
+                        </h3>
+                        <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.6)', margin: 0 }}>{r.location}</p>
+                      </div>
+
+                      <div style={{
+                        position: 'absolute', top: '14px', left: '14px',
+                        background: r.status === 'completed' ? 'rgba(16,185,129,0.9)' : r.status === 'sold' ? 'rgba(99,102,241,0.9)' : 'rgba(14,116,112,0.9)',
+                        color: '#fff', padding: '4px 10px',
+                        fontSize: '9px', fontWeight: '700', letterSpacing: '1.5px', textTransform: 'uppercase', borderRadius: '2px',
+                      }}>
+                        {r.status === 'completed' ? (lang === 'ar' ? 'منجز' : 'Livré') : r.status === 'sold' ? (lang === 'ar' ? 'مباع' : 'Vendu') : (lang === 'ar' ? 'جارٍ' : 'En cours')}
+                      </div>
                     </div>
-                    <div style={{
-                      position: 'absolute', top: '12px', right: '12px',
-                      background: p.status === 'completed' ? 'rgba(16,185,129,0.9)' : 'rgba(14,116,112,0.9)',
-                      color: '#fff', padding: '3px 8px',
-                      fontSize: '9px', fontWeight: '700', letterSpacing: '1px', textTransform: 'uppercase',
-                      borderRadius: '2px',
-                    }}>
-                      {p.status === 'completed' ? (lang === 'ar' ? 'منجز' : 'Livré') : (lang === 'ar' ? 'جارٍ' : 'En cours')}
-                    </div>
-                  </div>
-                </Link>
+                  </Link>
+                </RevealBlock>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* ── VIDEOS ── */}
+      {/* ══════════════════════════════════════
+          VIDEOS
+      ══════════════════════════════════════ */}
       {videos.length > 0 && (
-        <section id="videos" className="page-section" style={{ background: 'var(--bg-page)', padding: '100px 60px' }}>
+        <section style={{ background: 'var(--bg-page)', padding: '120px 60px' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
-            {/* Header */}
-            <div style={{ marginBottom: '48px' }}>
-              <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--teal)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '14px' }}>
-                {lang === 'ar' ? 'إنجازاتنا' : 'Nos Réalisations'}
-              </p>
-              <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: '300', color: 'var(--text-1)', letterSpacing: '-0.5px', margin: 0 }}>
-                {lang === 'ar' ? 'مشاريعنا بالفيديو' : 'Projets en Vidéo'}
-              </h2>
+            <div className="lines-observe" style={{ marginBottom: '56px' }}>
+              <div style={{ overflow: 'hidden', marginBottom: '12px' }}>
+                <span className="line-inner" style={{
+                  display: 'block', fontSize: '10px', fontWeight: '700', color: 'var(--teal)',
+                  letterSpacing: '4px', textTransform: 'uppercase',
+                }}>
+                  {lang === 'ar' ? 'إنجازاتنا' : 'Nos Réalisations'}
+                </span>
+              </div>
+              <div style={{ overflow: 'hidden' }}>
+                <h2 className="line-inner" style={{
+                  fontSize: 'clamp(28px, 3.5vw, 52px)',
+                  fontWeight: '300', color: 'var(--text-1)',
+                  letterSpacing: '-1px', margin: 0,
+                }}>
+                  {lang === 'ar' ? 'مشاريعنا بالفيديو' : 'Projets en Vidéo'}
+                </h2>
+              </div>
             </div>
 
-            {/* Layout: big player + sidebar thumbnails */}
-            <div className="video-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '20px', alignItems: 'start' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '24px', alignItems: 'start' }} className="video-layout">
 
-              {/* Active player */}
-              <div>
+              <RevealBlock delay={0.1} y={48}>
                 <div style={{
                   position: 'relative', width: '100%', paddingTop: '56.25%',
-                  borderRadius: '8px', overflow: 'hidden', background: '#000',
-                  boxShadow: '0 24px 64px rgba(0,0,0,0.18)',
+                  borderRadius: '6px', overflow: 'hidden', background: '#000',
+                  boxShadow: '0 32px 80px rgba(0,0,0,0.2)',
                 }}>
                   {activeVideo && (
                     <iframe
@@ -339,7 +455,7 @@ export default function HomePage() {
                       src={ytEmbed(activeVideo.url)}
                       title={activeVideo.label}
                       style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
                   )}
@@ -349,67 +465,37 @@ export default function HomePage() {
                     {activeVideo.label}
                   </p>
                 )}
-              </div>
+              </RevealBlock>
 
-              {/* Thumbnail sidebar */}
-              <div className="video-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {videos.map((v, idx) => {
-                  const isActive = idx === activeVideoIdx;
+                  const active = idx === activeVideoIdx;
                   return (
-                    <button
-                      key={v.id}
-                      onClick={() => setActiveVideoIdx(idx)}
-                      style={{
+                    <RevealBlock key={v.id} delay={0.15 + idx * 0.07} y={24}>
+                      <button onClick={() => setActiveVideoIdx(idx)} data-cursor style={{
                         display: 'flex', alignItems: 'center', gap: '12px',
-                        background: isActive ? 'var(--bg-card)' : 'transparent',
+                        background: active ? 'var(--bg-card)' : 'transparent',
                         border: 'none',
-                        borderLeft: isActive ? '3px solid var(--teal)' : '3px solid transparent',
+                        borderLeft: active ? '3px solid var(--teal)' : '3px solid transparent',
                         borderRadius: '0 6px 6px 0',
                         padding: '10px 12px 10px 14px',
                         cursor: 'pointer', textAlign: 'left', width: '100%',
-                        transition: 'all 0.2s ease',
-                        boxShadow: isActive ? '0 4px 16px rgba(0,0,0,0.08)' : 'none',
-                      }}
-                      onMouseEnter={(e) => { if (!isActive) (e.currentTarget as HTMLElement).style.background = 'var(--bg-card)'; }}
-                      onMouseLeave={(e) => { if (!isActive) (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
-                    >
-                      {/* Thumbnail */}
-                      <div style={{
-                        position: 'relative', width: '90px', height: '56px',
-                        borderRadius: '4px', overflow: 'hidden', flexShrink: 0,
-                        background: 'var(--border)',
+                        transition: 'all 0.25s ease',
+                        boxShadow: active ? '0 4px 20px rgba(0,0,0,0.08)' : 'none',
                       }}>
-                        <img
-                          src={ytThumb(v.url)}
-                          alt={v.label}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                        />
-                        {/* Play icon overlay */}
-                        <div style={{
-                          position: 'absolute', inset: 0,
-                          background: isActive ? 'rgba(14,116,112,0.45)' : 'rgba(0,0,0,0.25)',
-                          display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          transition: 'background 0.2s',
-                        }}>
-                          <div style={{
-                            width: '22px', height: '22px', borderRadius: '50%',
-                            background: 'rgba(255,255,255,0.9)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          }}>
-                            <div style={{ width: 0, height: 0, borderTop: '5px solid transparent', borderBottom: '5px solid transparent', borderLeft: '8px solid #0e7470', marginLeft: '2px' }} />
+                        <div style={{ position: 'relative', width: '90px', height: '58px', borderRadius: '4px', overflow: 'hidden', flexShrink: 0, background: 'var(--border)' }}>
+                          <img src={ytThumb(v.url)} alt={v.label} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                          <div style={{ position: 'absolute', inset: 0, background: active ? 'rgba(14,116,112,0.45)' : 'rgba(0,0,0,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}>
+                            <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <div style={{ width: 0, height: 0, borderTop: '5px solid transparent', borderBottom: '5px solid transparent', borderLeft: '8px solid #0e7470', marginLeft: '2px' }} />
+                            </div>
                           </div>
                         </div>
-                      </div>
-
-                      {/* Label */}
-                      <span style={{
-                        fontSize: '13px', fontWeight: isActive ? '600' : '400',
-                        color: isActive ? 'var(--teal)' : 'var(--text-2)',
-                        lineHeight: '1.4', transition: 'color 0.2s',
-                      }}>
-                        {v.label}
-                      </span>
-                    </button>
+                        <span style={{ fontSize: '13px', fontWeight: active ? '600' : '400', color: active ? 'var(--teal)' : 'var(--text-2)', lineHeight: '1.4', transition: 'color 0.2s' }}>
+                          {v.label}
+                        </span>
+                      </button>
+                    </RevealBlock>
                   );
                 })}
               </div>
@@ -418,108 +504,173 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* ── ABOUT STRIP ── */}
-      <section id="about" className="page-section" style={{ background: 'var(--bg-page)', padding: '100px 60px' }}>
-        <div className="about-grid" style={{
-          maxWidth: '1200px', margin: '0 auto',
-          display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center',
-        }}>
+      {/* ══════════════════════════════════════
+          ABOUT — image + text side by side
+      ══════════════════════════════════════ */}
+      <section style={{ background: 'var(--bg-page)', padding: '140px 60px', overflow: 'hidden' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '96px', alignItems: 'center' }} className="about-grid">
+
+          {/* Text */}
           <div>
-            <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--teal)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '24px' }}>
-              {lang === 'ar' ? 'من نحن' : 'À Propos'}
-            </p>
-            <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: '300', color: 'var(--text-1)', letterSpacing: '-0.5px', marginBottom: '24px', lineHeight: '1.25' }}>
-              {lang === 'ar' ? 'رؤية واضحة، جودة لا تُضاهى' : 'Une vision claire, une qualité irréprochable'}
-            </h2>
-            <p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.85', fontWeight: '300', marginBottom: '36px' }}>
-              {lang === 'ar'
-                ? (config.apropos.story_ar || 'تأسست حمادة برؤية واضحة: تقديم مشاريع سكنية فاخرة تجمع بين الجودة العالية والتصاميم المعاصرة في أفضل مواقع الجزائر.')
-                : (config.apropos.story_fr || "Hamadat a été fondée avec une vision précise : offrir des résidences de prestige alliant qualité exceptionnelle et architecture contemporaine dans les meilleurs emplacements d'Algérie.")}
-            </p>
-            <Link href="/apropos" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '8px',
-              fontSize: '13px', fontWeight: '600', color: 'var(--teal)',
-              textDecoration: 'none', letterSpacing: '0.3px',
-              borderBottom: '1px solid var(--teal)', paddingBottom: '2px',
+            <RevealBlock delay={0} y={32}>
+              <span style={{
+                display: 'block',
+                fontSize: '10px', fontWeight: '700', color: 'var(--teal)',
+                letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '28px',
+              }}>
+                {lang === 'ar' ? 'من نحن' : 'À Propos'}
+              </span>
+            </RevealBlock>
+
+            <div className="lines-observe" style={{ marginBottom: '28px' }}>
+              <div style={{ overflow: 'hidden' }}>
+                <h2 className="line-inner" style={{
+                  fontSize: 'clamp(28px, 3vw, 46px)',
+                  fontWeight: '300', color: 'var(--text-1)',
+                  letterSpacing: '-0.8px', margin: 0, lineHeight: '1.2',
+                }}>
+                  {lang === 'ar' ? 'رؤية واضحة،' : 'Une vision claire,'}
+                </h2>
+              </div>
+              <div style={{ overflow: 'hidden' }}>
+                <h2 className="line-inner" style={{
+                  fontSize: 'clamp(28px, 3vw, 46px)',
+                  fontWeight: '300', color: 'var(--text-3)',
+                  fontStyle: 'italic',
+                  letterSpacing: '-0.8px', margin: 0, lineHeight: '1.2',
+                }}>
+                  {lang === 'ar' ? 'جودة لا تُضاهى' : 'une qualité irréprochable'}
+                </h2>
+              </div>
+            </div>
+
+            <RevealBlock delay={0.2} y={24}>
+              <p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.9', fontWeight: '300', marginBottom: '40px' }}>
+                {lang === 'ar'
+                  ? (config.apropos.story_ar || 'تأسست حمادة برؤية واضحة: تقديم مشاريع سكنية فاخرة تجمع بين الجودة العالية والتصاميم المعاصرة في أفضل مواقع الجزائر.')
+                  : (config.apropos.story_fr || "Hamadat a été fondée avec une vision précise : offrir des résidences de prestige alliant qualité exceptionnelle et architecture contemporaine dans les meilleurs emplacements d'Algérie.")}
+              </p>
+              <Link href="/apropos" data-cursor style={{
+                display: 'inline-flex', alignItems: 'center', gap: '10px',
+                fontSize: '12px', fontWeight: '600', color: 'var(--teal)',
+                textDecoration: 'none', letterSpacing: '1.5px', textTransform: 'uppercase',
+                borderBottom: '1px solid var(--teal)', paddingBottom: '3px',
+                transition: 'opacity 0.3s, letter-spacing 0.5s',
+              }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.letterSpacing = '2.5px'; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.letterSpacing = '1.5px'; }}
+              >
+                {lang === 'ar' ? 'اقرأ المزيد' : 'En savoir plus'} →
+              </Link>
+            </RevealBlock>
+          </div>
+
+          {/* Image with mask reveal */}
+          <RevealBlock delay={0.15} y={0}>
+            <div style={{
+              position: 'relative', height: '500px',
+              borderRadius: '4px', overflow: 'hidden', background: 'var(--border)',
             }}>
-              {lang === 'ar' ? 'اقرأ المزيد ←' : 'En savoir plus →'}
-            </Link>
-          </div>
-          <div className="about-img" style={{ position: 'relative', height: '460px', borderRadius: '6px', overflow: 'hidden', background: 'var(--border)' }}>
-            <img src={config.aboutImage || '/residences/les-3-princes/vue-2.jpg'} alt="À Propos" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-          </div>
+              <img
+                src={config.aboutImage || '/residences/les-3-princes/vue-2.jpg'}
+                alt="À Propos Hamadat"
+                className="img-mask"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+              {/* Decorative line */}
+              <div style={{
+                position: 'absolute', bottom: '-20px', left: '24px',
+                width: '1px', height: '64px',
+                background: 'var(--teal)',
+              }} />
+            </div>
+          </RevealBlock>
         </div>
       </section>
 
-      {/* ── SOCIAL CTA ── */}
-      <section id="social" className="social-section" style={{
+      {/* ══════════════════════════════════════
+          SOCIAL CTA — dark footer strip
+      ══════════════════════════════════════ */}
+      <section style={{
         background: 'var(--bg-footer)',
-        padding: '80px 60px',
+        padding: '100px 60px',
         textAlign: 'center',
+        position: 'relative', overflow: 'hidden',
       }}>
-        <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--teal)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px' }}>
-          {lang === 'ar' ? 'تابعونا' : 'Suivez-nous'}
-        </p>
-        <h2 style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: '300', color: '#fff', letterSpacing: '-0.5px', marginBottom: '48px' }}>
-          {lang === 'ar' ? 'ابقوا على تواصل' : 'Restez connectés'}
-        </h2>
+        {/* Background subtle lines */}
+        <div style={{
+          position: 'absolute', inset: 0, opacity: 0.04,
+          backgroundImage: 'repeating-linear-gradient(90deg, #fff 0, #fff 1px, transparent 1px, transparent 80px)',
+        }} />
+
+        <RevealBlock delay={0} y={32}>
+          <span style={{
+            display: 'block',
+            fontSize: '10px', fontWeight: '700', color: 'var(--teal)',
+            letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '24px',
+          }}>
+            {lang === 'ar' ? 'تابعونا' : 'Suivez-nous'}
+          </span>
+        </RevealBlock>
+
+        <div className="lines-observe" style={{ marginBottom: '56px' }}>
+          <div style={{ overflow: 'hidden' }}>
+            <h2 className="line-inner" style={{
+              fontSize: 'clamp(32px, 5vw, 64px)',
+              fontWeight: '300', color: '#fff',
+              letterSpacing: '-1.5px', margin: 0,
+            }}>
+              {lang === 'ar' ? 'ابقوا على تواصل' : 'Restez connectés'}
+            </h2>
+          </div>
+        </div>
 
         {socialLinks.length > 0 ? (
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-            {socialLinks.map(({ icon, url, label }) => (
-              <a
-                key={label}
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                style={{
-                  width: '52px', height: '52px', borderRadius: '50%',
-                  background: 'rgba(255,255,255,0.1)',
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap', position: 'relative' }}>
+            {socialLinks.map(({ icon, url, label }, i) => (
+              <RevealBlock key={label} delay={i * 0.07} y={20}>
+                <a href={url} target="_blank" rel="noopener noreferrer" aria-label={label} data-cursor style={{
+                  width: '54px', height: '54px', borderRadius: '50%',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  background: 'rgba(255,255,255,0.06)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   color: '#fff', textDecoration: 'none',
-                  transition: 'background 0.2s ease',
+                  transition: 'background 0.3s ease, border-color 0.3s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1)',
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.2)'; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.1)'; }}
-              >
-                {icon}
-              </a>
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = 'rgba(14,116,112,0.3)';
+                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(14,116,112,0.6)';
+                    (e.currentTarget as HTMLElement).style.transform = 'translateY(-6px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.06)';
+                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.15)';
+                    (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+                  }}
+                >
+                  {icon}
+                </a>
+              </RevealBlock>
             ))}
           </div>
         ) : (
-          <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.35)', fontStyle: 'italic' }}>
-            {lang === 'ar' ? 'الروابط قابلة للضبط في لوحة الإدارة' : 'Liens configurables dans l\'administration'}
-          </p>
+          <RevealBlock delay={0.2} y={20}>
+            <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.3)', fontStyle: 'italic' }}>
+              {lang === 'ar' ? 'الروابط قابلة للضبط في لوحة الإدارة' : "Liens configurables dans l'administration"}
+            </p>
+          </RevealBlock>
         )}
       </section>
 
       <Footer />
 
       <style>{`
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
         @media (max-width: 860px) {
-          .video-grid { grid-template-columns: 1fr !important; }
-          .video-sidebar { flex-direction: row !important; overflow-x: auto; gap: 10px !important; }
+          .video-layout { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 600px) {
-          .scroll-dots { display: none !important; }
-          .hero-content { left: 24px !important; right: 24px !important; bottom: 48px !important; max-width: 100% !important; }
-          .hero-scroll-ind { display: none !important; }
-          .page-section { padding-left: 24px !important; padding-right: 24px !important; padding-top: 60px !important; padding-bottom: 60px !important; }
-          .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
-          .stat-item-border { border-left: none !important; padding-left: 0 !important; }
-          .stat-item { padding-right: 0 !important; }
-          .projects-section { padding-top: 60px !important; padding-bottom: 60px !important; }
-          .projects-header { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
-          .projects-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .project-card { grid-column: span 1 !important; }
-          .video-grid { grid-template-columns: 1fr !important; }
-          .video-sidebar { flex-direction: row !important; overflow-x: auto !important; gap: 10px !important; }
-          .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-          .about-img { height: 280px !important; }
-          .social-section { padding-left: 24px !important; padding-right: 24px !important; padding-top: 60px !important; padding-bottom: 60px !important; }
+          .stats-grid { grid-template-columns: 1fr 1fr !important; }
+          .about-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
         }
       `}</style>
     </div>

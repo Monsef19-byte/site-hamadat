@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import RevealBlock from '@/components/anim/RevealBlock';
 import { useLanguage } from '@/lib/language-context';
 import { useSiteConfig } from '@/lib/site-config-context';
 
@@ -125,10 +126,47 @@ export default function ProjectDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const project = PROJECTS[slug];
-  const mapEmbed = config.residences[slug]?.mapEmbed || project.defaultMap;
+  const mapEmbed = config.residences[slug]?.mapEmbed || project?.defaultMap;
 
   const [activeImg, setActiveImg] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const heroImgRef = useRef<HTMLImageElement>(null);
+
+  // Hero parallax
+  useEffect(() => {
+    const onScroll = () => {
+      if (!heroImgRef.current) return;
+      heroImgRef.current.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Lines reveal
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll<HTMLElement>('.line-inner').forEach((el, i) => {
+          setTimeout(() => el.classList.add('lv'), i * 80);
+        });
+        obs.unobserve(e.target);
+      }
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.lines-observe').forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
+  // Image mask reveal
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        (e.target as HTMLElement).classList.add('iv');
+        obs.unobserve(e.target);
+      }
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.img-mask').forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
 
   if (!project) {
     return (
@@ -158,27 +196,53 @@ export default function ProjectDetailPage() {
     <div style={{ background: 'var(--bg-page)' }}>
       <Navbar />
 
-      {/* Hero — full bleed */}
-      <section style={{ position: 'relative', height: '70vh', minHeight: '480px', marginTop: '72px', overflow: 'hidden' }}>
-        <img src={heroSrc} alt={project.name_fr} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 35%, rgba(0,0,0,0.65) 100%)' }} />
+      {/* Hero — full bleed with parallax */}
+      <section style={{ position: 'relative', height: '75vh', minHeight: '500px', marginTop: '72px', overflow: 'hidden' }}>
+        <img
+          ref={heroImgRef}
+          src={heroSrc}
+          alt={project.name_fr}
+          className="parallax-img"
+          style={{
+            position: 'absolute', inset: 0,
+            width: '100%', height: '120%',
+            objectFit: 'cover', objectPosition: 'center',
+            top: '-10%',
+          }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.7) 100%)' }} />
 
-        {/* Title bottom-left */}
-        <div style={{ position: 'absolute', bottom: '48px', left: '60px', zIndex: 10 }}>
-          <span style={{ display: 'block', fontSize: '10px', color: 'rgba(255,255,255,0.6)', fontWeight: '700', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '10px' }}>
-            {project.location}
-          </span>
-          <h1 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: '300', color: '#fff', letterSpacing: '-1px', margin: 0 }}>
-            {lang === 'ar' ? project.name_ar : project.name_fr}
-          </h1>
+        {/* Title */}
+        <div style={{ position: 'absolute', bottom: '56px', left: '60px', zIndex: 10 }}>
+          <div style={{ overflow: 'hidden', marginBottom: '12px' }}>
+            <span style={{
+              display: 'block',
+              fontSize: '10px', color: 'rgba(255,255,255,0.55)', fontWeight: '700',
+              letterSpacing: '3px', textTransform: 'uppercase',
+              animation: 'heroFade 0.8s ease-out 0.3s both',
+            }}>
+              {project.location}
+            </span>
+          </div>
+          <div style={{ overflow: 'hidden' }}>
+            <h1 style={{
+              fontSize: 'clamp(40px, 5.5vw, 72px)',
+              fontWeight: '300', color: '#fff',
+              letterSpacing: '-1.5px', margin: 0,
+              animation: 'heroLine 1s cubic-bezier(0.22,1,0.36,1) 0.15s both',
+            }}>
+              {lang === 'ar' ? project.name_ar : project.name_fr}
+            </h1>
+          </div>
         </div>
 
-        {/* Status badge top-right */}
+        {/* Status */}
         <div style={{
           position: 'absolute', top: '28px', right: '36px',
           background: project.status === 'completed' ? 'rgba(16,185,129,0.9)' : 'rgba(14,116,112,0.9)',
           color: '#fff', padding: '6px 18px',
           fontSize: '9px', fontWeight: '700', letterSpacing: '1.5px', textTransform: 'uppercase', borderRadius: '2px',
+          animation: 'heroFade 0.7s ease-out 0.6s both',
         }}>
           {project.status === 'completed' ? (lang === 'ar' ? 'منجز' : 'Livré') : (lang === 'ar' ? 'جارٍ' : 'En Cours')}
         </div>
@@ -210,47 +274,60 @@ export default function ProjectDetailPage() {
 
           {/* Left: description + gallery grid */}
           <div>
-            <Link href="/projets" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '6px',
-              fontSize: '12px', color: 'var(--text-3)', textDecoration: 'none', marginBottom: '36px',
-              letterSpacing: '0.3px', transition: 'color 0.2s',
-            }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--teal)'; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--text-3)'; }}
-            >
-              ← {lang === 'ar' ? 'جميع المشاريع' : 'Tous les projets'}
-            </Link>
+            <RevealBlock delay={0} y={20}>
+              <Link href="/projets" data-cursor style={{
+                display: 'inline-flex', alignItems: 'center', gap: '6px',
+                fontSize: '12px', color: 'var(--text-3)', textDecoration: 'none', marginBottom: '40px',
+                letterSpacing: '1.5px', textTransform: 'uppercase', transition: 'color 0.2s',
+              }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--teal)'; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--text-3)'; }}
+              >
+                ← {lang === 'ar' ? 'جميع المشاريع' : 'Tous les projets'}
+              </Link>
+            </RevealBlock>
 
-            <h2 style={{ fontSize: '26px', fontWeight: '300', color: 'var(--text-1)', marginBottom: '20px', letterSpacing: '-0.3px' }}>
-              {lang === 'ar' ? 'عن المشروع' : 'À Propos du Projet'}
-            </h2>
-            <p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.9', fontWeight: '300', marginBottom: '64px' }}>
-              {lang === 'ar' ? project.description_ar : project.description_fr}
-            </p>
+            <div className="lines-observe" style={{ marginBottom: '28px' }}>
+              <div style={{ overflow: 'hidden' }}>
+                <h2 className="line-inner" style={{ fontSize: '30px', fontWeight: '300', color: 'var(--text-1)', letterSpacing: '-0.5px', margin: 0 }}>
+                  {lang === 'ar' ? 'عن المشروع' : 'À Propos du Projet'}
+                </h2>
+              </div>
+            </div>
+
+            <RevealBlock delay={0.1} y={24}>
+              <p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.95', fontWeight: '300', marginBottom: '64px' }}>
+                {lang === 'ar' ? project.description_ar : project.description_fr}
+              </p>
+            </RevealBlock>
 
             {/* Gallery grid */}
             {gallery.length > 1 && (
-              <>
-                <h3 style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-1)', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '20px' }}>
-                  {lang === 'ar' ? 'معرض الصور' : 'Galerie'} <span style={{ color: 'var(--text-4)', fontWeight: '400', fontSize: '13px', textTransform: 'none', letterSpacing: '0' }}>({gallery.length})</span>
+              <RevealBlock delay={0.2} y={36}>
+                <h3 style={{ fontSize: '11px', fontWeight: '700', color: 'var(--text-3)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px' }}>
+                  {lang === 'ar' ? 'معرض الصور' : 'Galerie'}{' '}
+                  <span style={{ color: 'var(--text-4)', fontWeight: '400', letterSpacing: '0', textTransform: 'none' }}>({gallery.length})</span>
                 </h3>
                 <div className="gallery-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '10px' }}>
                   {gallery.map((src, idx) => (
-                    <button key={idx} onClick={() => { setActiveImg(idx); setLightboxOpen(true); }}
+                    <button key={idx} onClick={() => { setActiveImg(idx); setLightboxOpen(true); }} data-cursor
                       style={{
                         display: 'block', width: '100%', aspectRatio: '4/3',
                         border: 'none', padding: 0, cursor: 'zoom-in',
                         overflow: 'hidden', borderRadius: '4px', background: 'var(--border)',
+                        transition: 'transform 0.4s cubic-bezier(0.22,1,0.36,1)',
                       }}
+                      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.03)'; }}
+                      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; }}
                     >
-                      <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
-                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.06)'; }}
+                      <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.7s cubic-bezier(0.16,1,0.3,1)' }}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)'; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; }}
                       />
                     </button>
                   ))}
                 </div>
-              </>
+              </RevealBlock>
             )}
           </div>
 
