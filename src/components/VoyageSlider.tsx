@@ -140,18 +140,6 @@ export default function VoyageSlider({ slides, onSlideChange }: Props) {
   return (
     <section ref={sectionRef} className="voy-slider">
 
-      {/* ── Full-screen blurred backgrounds ── */}
-      {slides.map((slide, i) => {
-        const pos = getVoy(i);
-        return (
-          <div
-            key={`bg-${i}`}
-            className={`voy-bg voy-bg--${pos}`}
-            style={{ backgroundImage: `url(${slide.image})` } as React.CSSProperties}
-          />
-        );
-      })}
-
       {/* ── Slide wrapper (grid, all on same cell) ── */}
       <div className="voy-slides-wrapper">
 

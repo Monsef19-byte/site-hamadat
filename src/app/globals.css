@@ -433,31 +433,6 @@ body {
   overflow: hidden;
 }
 
-/* ── Full-screen blurred background layers ── */
-.voy-bg {
-  position: fixed;
-  inset: -20%;
-  background-size: cover;
-  background-position: center center;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition:
-    opacity  700ms ease,
-    transform 700ms ease;
-}
-.voy-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
-}
-.voy-bg--current  { opacity: 1; transform: none; }
-.voy-bg--previous { opacity: 0; transform: translateX(-10%); }
-.voy-bg--next     { opacity: 0; transform: translateX(10%); }
-.voy-bg--hidden   { opacity: 0; }
-
 /* ── Wrapper — stacks all slides in same grid cell ── */
 .voy-slides-wrapper {
   position: relative;
