@@ -349,7 +349,7 @@ export default function AdminHomepagePage() {
                   </button>
                 </div>
                 {/* Mini map preview */}
-                {val && val.includes('google.com') && (
+                {val && val.startsWith('https://') && (
                   <div style={{ marginTop: '10px', height: '160px', borderRadius: '4px', overflow: 'hidden', background: 'var(--border)' }}>
                     <iframe
                       src={val}

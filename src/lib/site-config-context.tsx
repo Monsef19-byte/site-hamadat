@@ -22,12 +22,14 @@ export interface SiteConfig {
 
 const DEFAULTS: SiteConfig = {
   residences: {
-    elysia:          { thumbnail: '/residences/elysia/vue-001-1.jpg',        gridSize: 4, mapEmbed: 'https://maps.google.com/maps?q=Jijel,Algeria&output=embed&z=13' },
-    'les-3-princes': { thumbnail: '/residences/les-3-princes/vue-2.jpg',     gridSize: 3, mapEmbed: 'https://maps.google.com/maps?q=Dely+Brahim,Alger,Algeria&output=embed&z=14' },
-    orea:            { thumbnail: '/residences/orea/b1.jpg',                 gridSize: 3, mapEmbed: 'https://maps.google.com/maps?q=Dely+Brahim,Alger,Algeria&output=embed&z=14' },
-    lumalac:         { thumbnail: '/residences/lumalac/lumalac-1.png',       gridSize: 2, mapEmbed: 'https://maps.google.com/maps?q=Dely+Brahim,Alger,Algeria&output=embed&z=14' },
-    marmo:           { thumbnail: '/residences/marmo/1.jpg',                 gridSize: 2, mapEmbed: 'https://maps.google.com/maps?q=Dely+Brahim,Alger,Algeria&output=embed&z=14' },
-    vertdalya:       { thumbnail: '/residences/vertdalya/vrtdalya.png',      gridSize: 4, mapEmbed: 'https://maps.google.com/maps?q=Dely+Brahim,Alger,Algeria&output=embed&z=14' },
+    // Jijel: 36.8206°N 5.7667°E — city-level zoom
+    elysia:          { thumbnail: '/residences/elysia/vue-001-1.jpg',        gridSize: 4, mapEmbed: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d50000!2d5.7667!3d36.8206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sdz!4v1715000000000' },
+    // Dely Brahim, Alger: 36.7397°N 2.9943°E — neighbourhood zoom
+    'les-3-princes': { thumbnail: '/residences/les-3-princes/vue-2.jpg',     gridSize: 3, mapEmbed: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15000!2d2.9943!3d36.7397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sdz!4v1715000000000' },
+    orea:            { thumbnail: '/residences/orea/b1.jpg',                 gridSize: 3, mapEmbed: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15000!2d2.9943!3d36.7397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sdz!4v1715000000000' },
+    lumalac:         { thumbnail: '/residences/lumalac/lumalac-1.png',       gridSize: 2, mapEmbed: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15000!2d2.9943!3d36.7397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sdz!4v1715000000000' },
+    marmo:           { thumbnail: '/residences/marmo/1.jpg',                 gridSize: 2, mapEmbed: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15000!2d2.9943!3d36.7397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sdz!4v1715000000000' },
+    vertdalya:       { thumbnail: '/residences/vertdalya/vrtdalya.png',      gridSize: 4, mapEmbed: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15000!2d2.9943!3d36.7397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sdz!4v1715000000000' },
   },
   blog: {},
   apropos: { story_fr: '', story_ar: '' },
