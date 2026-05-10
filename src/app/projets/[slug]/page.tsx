@@ -8,6 +8,9 @@ import Footer from '@/components/Footer';
 import { useLanguage } from '@/lib/language-context';
 import { useSiteConfig } from '@/lib/site-config-context';
 
+const OSM_JIJEL      = 'https://www.openstreetmap.org/export/embed.html?bbox=5.5%2C36.65%2C6.05%2C37.0&layer=mapnik&marker=36.8206%2C5.7667';
+const OSM_DELY       = 'https://www.openstreetmap.org/export/embed.html?bbox=2.88%2C36.69%2C3.11%2C36.80&layer=mapnik&marker=36.7397%2C2.9943';
+
 const PROJECTS: Record<string, {
   name_fr: string; name_ar: string;
   location: string; status: 'ongoing' | 'completed';
@@ -15,6 +18,7 @@ const PROJECTS: Record<string, {
   description_fr: string; description_ar: string;
   thumbnail: string; gallery: string[];
   available?: string; delivery?: string;
+  defaultMap: string;
 }> = {
   elysia: {
     name_fr: 'Elysia', name_ar: 'إليسيا',
@@ -23,6 +27,7 @@ const PROJECTS: Record<string, {
     description_fr: "Implantée à Jijel, la résidence Elysia est un projet en cours développé par Hamadat Promotion Immobilière, proposant 56 logements de type F3 aux surfaces optimisées (96 m² et 110 m²). Pensée pour offrir un équilibre entre espace, luminosité et confort, Elysia s'inscrit dans une dynamique urbaine attractive.",
     description_ar: "في جيجل، تقدم إليسيا 56 وحدة سكنية من نوع F3 بمساحات 96 و110 م²، توازن بين الفضاء والإضاءة والراحة.",
     thumbnail: '/residences/elysia/vue-001-1.jpg',
+    defaultMap: OSM_JIJEL,
     gallery: [
       '/residences/elysia/vue-001-1.jpg',
       '/residences/elysia/vue-001-n-1.jpg',
@@ -47,6 +52,7 @@ const PROJECTS: Record<string, {
     description_fr: "La résidence Les 3 Princes, réalisée par Hamadat Promotion Immobilière, est un projet achevé comprenant 43 appartements allant du F3 au F6, en configurations simplex et duplex. Située à Dely Brahim, cette promotion se distingue par la diversité de ses logements et la qualité de son aménagement.",
     description_ar: "مجمع مكتمل في دالي إبراهيم يضم 43 شقة من F3 إلى F6 بتصاميم سيمبلكس ودوبلكس.",
     thumbnail: '/residences/les-3-princes/vue-2.jpg',
+    defaultMap: OSM_DELY,
     gallery: [
       '/residences/les-3-princes/vue-2.jpg',
       '/residences/les-3-princes/vue-3.jpg',
@@ -63,6 +69,7 @@ const PROJECTS: Record<string, {
     description_fr: "Orea est un projet en cours signé Hamadat Promotion Immobilière, proposant 38 appartements allant du F3 au F6. Avec une livraison prévue dans les 24 mois, cette résidence offre des opportunités d'acquisition avec des unités encore disponibles.",
     description_ar: "أوريا مشروع جارٍ يضم 38 شقة من F3 إلى F6، مع تسليم متوقع خلال 24 شهراً.",
     thumbnail: '/residences/orea/b1.jpg',
+    defaultMap: OSM_DELY,
     available: '2 F3, 1 F4', delivery: '24 mois',
     gallery: [
       '/residences/orea/b1.jpg', '/residences/orea/B3.jpg', '/residences/orea/b4.jpg',
@@ -77,6 +84,7 @@ const PROJECTS: Record<string, {
     description_fr: "Située à Dely Brahim, la résidence Lumalac est un projet en cours de réalisation qui promet un cadre de vie contemporain et raffiné. Composée de 8 logements, dont des F3 et des triplex F7, cette promotion allie espaces généreux et conception moderne.",
     description_ar: "لوملاك مشروع حديث في دالي إبراهيم يضم 8 وحدات بين F3 وتريبلكس F7.",
     thumbnail: '/residences/lumalac/lumalac-1.png',
+    defaultMap: OSM_DELY,
     gallery: ['/residences/lumalac/lumalac-1.png', '/residences/lumalac/lumalac-02.png'],
   },
   marmo: {
@@ -86,6 +94,7 @@ const PROJECTS: Record<string, {
     description_fr: "Le projet Marmo est une résidence livrée offrant un cadre de vie moderne et fonctionnel à Dely Brahim. Composée de 8 logements incluant des F3 et des duplex F6, cette promotion se distingue par son architecture équilibrée et son confort au quotidien.",
     description_ar: "مارمو مجمع سكني مسلم في دالي إبراهيم يضم 8 وحدات بين F3 ودوبلكس F6.",
     thumbnail: '/residences/marmo/1.jpg',
+    defaultMap: OSM_DELY,
     gallery: ['/residences/marmo/1.jpg', '/residences/marmo/2.jpg', '/residences/marmo/3.jpg'],
   },
   vertdalya: {
@@ -95,6 +104,7 @@ const PROJECTS: Record<string, {
     description_fr: "Vertdalya, réalisée par Hamadat Promotion Immobilière, est une résidence finalisée composée de 10 lofts spacieux de 270 m². Située à Dely Brahim, cette promotion se distingue par ses volumes généreux et son concept architectural moderne.",
     description_ar: "فيرت داليا مجمع مكتمل في دالي إبراهيم يضم 10 شقق من نوع لوفت بمساحة 270 م².",
     thumbnail: '/residences/vertdalya/vrtdalya.png',
+    defaultMap: OSM_DELY,
     available: 'Disponible',
     gallery: ['/residences/vertdalya/vrtdalya.png', '/residences/vertdalya/Remove_the_rectengle_in_the_top_right__2k_delpmaspu.png'],
   },
@@ -115,7 +125,7 @@ export default function ProjectDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const project = PROJECTS[slug];
-  const mapEmbed = config.residences[slug]?.mapEmbed || '';
+  const mapEmbed = config.residences[slug]?.mapEmbed || project.defaultMap;
 
   const [activeImg, setActiveImg] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
