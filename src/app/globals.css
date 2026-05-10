@@ -826,3 +826,82 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Mesh base (theme-aware) ── */
+.mesh-base {
+  position: absolute;
+  inset: 0;
+  background: #f7f7f5;
+  transition: background 0.4s ease;
+}
+html.dark .mesh-base {
+  background: #06080a;
+}
+
+/* ── Light mode blob overrides — subtle warm teal ── */
+.mesh-b1 {
+  background: radial-gradient(circle, rgba(14,116,112,0.07) 0%, transparent 70%);
+}
+.mesh-b2 {
+  background: radial-gradient(circle, rgba(14,116,112,0.05) 0%, transparent 70%);
+}
+.mesh-b3 {
+  background: radial-gradient(circle, rgba(10,84,80,0.06) 0%, transparent 70%);
+}
+.mesh-b4 {
+  background: radial-gradient(circle, rgba(180,145,80,0.04) 0%, transparent 70%);
+}
+.mesh-b5 {
+  background: radial-gradient(circle, rgba(20,140,135,0.05) 0%, transparent 70%);
+}
+
+/* Dark mode blob overrides — vivid */
+html.dark .mesh-b1 {
+  background: radial-gradient(circle, rgba(14,116,112,0.28) 0%, transparent 70%);
+}
+html.dark .mesh-b2 {
+  background: radial-gradient(circle, rgba(14,116,112,0.22) 0%, transparent 70%);
+}
+html.dark .mesh-b3 {
+  background: radial-gradient(circle, rgba(10,84,80,0.30) 0%, transparent 70%);
+}
+html.dark .mesh-b4 {
+  background: radial-gradient(circle, rgba(180,145,80,0.10) 0%, transparent 70%);
+}
+html.dark .mesh-b5 {
+  background: radial-gradient(circle, rgba(20,140,135,0.18) 0%, transparent 70%);
+}
+
+/* ── Vignette (theme-aware) ── */
+.mesh-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(247,247,245,0.6) 100%);
+  pointer-events: none;
+}
+html.dark .mesh-vignette {
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(6,8,10,0.85) 100%);
+}
+
+/* Grain — more subtle in light mode */
+html:not(.dark) .mesh-grain {
+  opacity: 0.12;
+  mix-blend-mode: multiply;
+}
+
+/* ── Hero Ken Burns zoom ── */
+@keyframes heroBgZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+.hero-bg-zoom {
+  animation: heroBgZoom 20s ease-in-out infinite alternate;
+}
+
+/* ── Project detail page responsive ── */
+@media (max-width: 600px) {
+  .detail-content { padding: 40px 24px 80px !important; }
+  .detail-grid    { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .gallery-grid   { grid-template-columns: repeat(2, 1fr) !important; }
+  .map-frame      { height: 280px !important; }
+}

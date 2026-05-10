@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import VoyageSlider from '@/components/VoyageSlider';
 import { useLanguage } from '@/lib/language-context';
 import { useSiteConfig } from '@/lib/site-config-context';
 
@@ -73,12 +72,16 @@ export default function HomePage() {
   const { lang } = useLanguage();
   const { config } = useSiteConfig();
 
-  const heroRef    = useRef<HTMLElement>(null);
-  const heroImgRef = useRef<HTMLImageElement>(null);
-  const titleRef   = useRef<HTMLDivElement>(null);
-  const cardsRef   = useRef<HTMLDivElement[]>([]);
-  const pinRef     = useRef<HTMLDivElement>(null);
-  const statsRef   = useRef<HTMLElement>(null);
+  const heroRef      = useRef<HTMLElement>(null);
+  const heroImgRef   = useRef<HTMLImageElement>(null);
+  const heroTiltRef  = useRef<HTMLDivElement>(null);
+  const titleRef     = useRef<HTMLDivElement>(null);
+  const cardsRef     = useRef<HTMLDivElement[]>([]);
+  const pinRef       = useRef<HTMLDivElement>(null);
+  const statsRef     = useRef<HTMLElement>(null);
+
+  // Tilt state for hero (no React state — pure RAF)
+  const heroTilt = useRef({ rotX: 0, rotY: 0, tgtX: 0, tgtY: 0, raf: 0 });
 
   const [videoIdx, setVideoIdx] = useState(0);
 
@@ -86,22 +89,6 @@ export default function HomePage() {
   const videos    = [...(config.videos ?? [])].sort((a, b) => a.order - b.order);
   const residences = config.residenceList ?? [];
 
-  // ── Build VoyageSlider slides ────────────────────────────────
-  // If videos exist → use video thumbnails; otherwise → top 3 residences
-  const voyageSlides = videos.length > 0
-    ? videos.slice(0, 6).map(v => ({
-        image:       ytThumb(v.url),
-        title:       v.label,
-        subtitle:    lang === 'ar' ? 'مشروعنا' : 'Notre Projet',
-        description: lang === 'ar' ? 'اكتشف مشروعنا بالفيديو' : 'Découvrez notre projet en vidéo',
-      }))
-    : residences.slice(0, Math.min(residences.length, 6)).map(r => ({
-        image:       config.residences[r.slug]?.thumbnail || `/residences/${r.slug}/vue-001-1.jpg`,
-        title:       lang === 'ar' ? r.name_ar : r.name_fr,
-        subtitle:    r.location,
-        description: lang === 'ar' ? r.description_ar : r.description_fr,
-        href:        `/projets/${r.slug}`,
-      }));
 
   // ── GSAP setup ───────────────────────────────────────────────
   useEffect(() => {
@@ -231,6 +218,30 @@ export default function HomePage() {
     };
   }, [residences.length]);
 
+  // ── Hero 3D tilt ──────────────────────────────────────────────
+  useEffect(() => {
+    const el = heroTiltRef.current;
+    if (!el) return;
+    const s = heroTilt.current;
+    const tick = () => {
+      s.rotX += (s.tgtX - s.rotX) * 0.05;
+      s.rotY += (s.tgtY - s.rotY) * 0.05;
+      el.style.transform = `rotateX(${s.rotX.toFixed(3)}deg) rotateY(${s.rotY.toFixed(3)}deg)`;
+      s.raf = requestAnimationFrame(tick);
+    };
+    s.raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(s.raf);
+  }, []);
+
+  const onHeroMove = (e: React.MouseEvent<HTMLElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const ox = (e.clientX - r.left - r.width  / 2) / r.width;
+    const oy = (e.clientY - r.top  - r.height / 2) / r.height;
+    heroTilt.current.tgtY =  ox * 6;
+    heroTilt.current.tgtX = -oy * 4;
+  };
+  const onHeroLeave = () => { heroTilt.current.tgtX = 0; heroTilt.current.tgtY = 0; };
+
   // ── Mouse parallax on hero ────────────────────────────────────
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
@@ -277,15 +288,23 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           1. HERO — 55vh
       ═══════════════════════════════════════════════════════ */}
-      <section ref={heroRef} style={{ position: 'relative', height: '55vh', minHeight: '480px', overflow: 'hidden' }}>
+      <section ref={heroRef} onMouseMove={onHeroMove} onMouseLeave={onHeroLeave}
+        style={{ position: 'relative', height: '100vh', minHeight: '560px', overflow: 'hidden', perspective: '1200px' }}>
 
-        <img
-          ref={heroImgRef}
-          src={heroSrc}
-          alt="Hamadat"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '120%', objectFit: 'cover', top: '-10%', willChange: 'transform' }}
-        />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(6,8,10,0.3) 0%, rgba(6,8,10,0.78) 100%)' }} />
+        {/* Tilt wrapper */}
+        <div ref={heroTiltRef} style={{
+          position: 'absolute', inset: '-4%',
+          transformStyle: 'preserve-3d', willChange: 'transform',
+        }}>
+          <img
+            ref={heroImgRef}
+            src={heroSrc}
+            alt="Hamadat"
+            className="hero-bg-zoom"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', willChange: 'transform' }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(6,8,10,0.2) 0%, rgba(6,8,10,0.82) 100%)' }} />
+        </div>
 
         {/* Floating blur cards */}
         {displayResidences.slice(0, 3).map((r, i) => {
@@ -388,13 +407,6 @@ export default function HomePage() {
           </span>
         </div>
       </section>
-
-      {/* ═══════════════════════════════════════════════════════
-          2. VOYAGE SLIDER — 100vh
-      ═══════════════════════════════════════════════════════ */}
-      {voyageSlides.length > 0 && (
-        <VoyageSlider slides={voyageSlides} />
-      )}
 
       {/* ═══════════════════════════════════════════════════════
           3. BENTO CARDS — pinned snap scroll

@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import RevealBlock from '@/components/anim/RevealBlock';
+import VoyageSlider from '@/components/VoyageSlider';
 import { useLanguage } from '@/lib/language-context';
 import { useSiteConfig } from '@/lib/site-config-context';
 
@@ -130,17 +131,6 @@ export default function ProjectDetailPage() {
 
   const [activeImg, setActiveImg] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const heroImgRef = useRef<HTMLImageElement>(null);
-
-  // Hero parallax
-  useEffect(() => {
-    const onScroll = () => {
-      if (!heroImgRef.current) return;
-      heroImgRef.current.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   // Lines reveal
   useEffect(() => {
@@ -180,7 +170,6 @@ export default function ProjectDetailPage() {
   }
 
   const gallery = project.gallery;
-  const heroSrc = gallery[activeImg] || project.thumbnail;
 
   const specs = [
     { label: lang === 'ar' ? 'المشروع'     : 'Projet',       value: lang === 'ar' ? project.name_ar : project.name_fr },
@@ -192,81 +181,24 @@ export default function ProjectDetailPage() {
     ...(project.delivery  ? [{ label: lang === 'ar' ? 'التسليم' : 'Livraison', value: project.delivery }] : []),
   ];
 
+  // Build voyage slides from gallery
+  const voyageSlides = gallery.map((img, i) => ({
+    image:       img,
+    title:       lang === 'ar' ? project.name_ar : project.name_fr,
+    subtitle:    project.location,
+    description: i === 0
+      ? project.typology
+      : `${i + 1} / ${gallery.length}`,
+  }));
+
   return (
     <div style={{ background: 'var(--bg-page)' }}>
       <Navbar />
 
-      {/* Hero — full bleed with parallax */}
-      <section style={{ position: 'relative', height: '75vh', minHeight: '500px', marginTop: '72px', overflow: 'hidden' }}>
-        <img
-          ref={heroImgRef}
-          src={heroSrc}
-          alt={project.name_fr}
-          className="parallax-img"
-          style={{
-            position: 'absolute', inset: 0,
-            width: '100%', height: '120%',
-            objectFit: 'cover', objectPosition: 'center',
-            top: '-10%',
-          }}
-        />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.7) 100%)' }} />
-
-        {/* Title */}
-        <div style={{ position: 'absolute', bottom: '56px', left: '60px', zIndex: 10 }}>
-          <div style={{ overflow: 'hidden', marginBottom: '12px' }}>
-            <span style={{
-              display: 'block',
-              fontSize: '10px', color: 'rgba(255,255,255,0.55)', fontWeight: '700',
-              letterSpacing: '3px', textTransform: 'uppercase',
-              animation: 'heroFade 0.8s ease-out 0.3s both',
-            }}>
-              {project.location}
-            </span>
-          </div>
-          <div style={{ overflow: 'hidden' }}>
-            <h1 style={{
-              fontSize: 'clamp(40px, 5.5vw, 72px)',
-              fontWeight: '300', color: '#fff',
-              letterSpacing: '-1.5px', margin: 0,
-              animation: 'heroLine 1s cubic-bezier(0.22,1,0.36,1) 0.15s both',
-            }}>
-              {lang === 'ar' ? project.name_ar : project.name_fr}
-            </h1>
-          </div>
-        </div>
-
-        {/* Status */}
-        <div style={{
-          position: 'absolute', top: '28px', right: '36px',
-          background: project.status === 'completed' ? 'rgba(16,185,129,0.9)' : 'rgba(14,116,112,0.9)',
-          color: '#fff', padding: '6px 18px',
-          fontSize: '9px', fontWeight: '700', letterSpacing: '1.5px', textTransform: 'uppercase', borderRadius: '2px',
-          animation: 'heroFade 0.7s ease-out 0.6s both',
-        }}>
-          {project.status === 'completed' ? (lang === 'ar' ? 'منجز' : 'Livré') : (lang === 'ar' ? 'جارٍ' : 'En Cours')}
-        </div>
-      </section>
-
-      {/* Thumbnail strip */}
-      {gallery.length > 1 && (
-        <div className="thumb-strip" style={{ background: 'var(--bg-dark)', padding: '12px 60px', overflowX: 'auto' }}>
-          <div style={{ display: 'flex', gap: '6px', maxWidth: '1280px', margin: '0 auto' }}>
-            {gallery.map((src, idx) => (
-              <button key={idx} onClick={() => setActiveImg(idx)} style={{
-                flexShrink: 0, width: '88px', height: '60px',
-                border: activeImg === idx ? '2px solid var(--teal)' : '2px solid transparent',
-                borderRadius: '3px', overflow: 'hidden',
-                background: '#333', padding: 0, cursor: 'pointer',
-                transition: 'border-color 0.2s',
-                opacity: activeImg === idx ? 1 : 0.5,
-              }}>
-                <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* VoyageSlider — full screen gallery */}
+      <div style={{ paddingTop: '72px' }}>
+        <VoyageSlider slides={voyageSlides} onSlideChange={setActiveImg} />
+      </div>
 
       {/* Body */}
       <div className="detail-content" style={{ maxWidth: '1280px', margin: '0 auto', padding: '72px 60px 120px' }}>
@@ -409,16 +341,6 @@ export default function ProjectDetailPage() {
           </div>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 600px) {
-          .thumb-strip { padding-left: 16px !important; padding-right: 16px !important; }
-          .detail-content { padding: 40px 24px 80px !important; }
-          .detail-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-          .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .map-frame { height: 280px !important; }
-        }
-      `}</style>
 
       {/* Lightbox */}
       {lightboxOpen && (

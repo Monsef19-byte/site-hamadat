@@ -14,6 +14,7 @@ export interface VoyageSlide {
 
 interface Props {
   slides: VoyageSlide[];
+  onSlideChange?: (index: number) => void;
 }
 
 // ── Math helpers ─────────────────────────────────────────────────────────────
@@ -40,7 +41,7 @@ function makeTilt(): TiltState {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-export default function VoyageSlider({ slides }: Props) {
+export default function VoyageSlider({ slides, onSlideChange }: Props) {
   const count = slides.length;
   const [current, setCurrent] = useState(0);
 
@@ -94,7 +95,7 @@ export default function VoyageSlider({ slides }: Props) {
       if (!inView) return;
 
       const dir = e.deltaY > 0 ? 1 : -1;
-      setCurrent(c => wrap(c + dir, count));
+      setCurrent(c => { const next = wrap(c + dir, count); onSlideChange?.(next); return next; });
       wheelCooldown.current = true;
       setTimeout(() => { wheelCooldown.current = false; }, 750);
     };
@@ -124,7 +125,7 @@ export default function VoyageSlider({ slides }: Props) {
     t.bgPosY.tgt = 0;
   }, []);
 
-  const advance = (dir: 1 | -1) => setCurrent(c => wrap(c + dir, count));
+  const advance = (dir: 1 | -1) => setCurrent(c => { const next = wrap(c + dir, count); onSlideChange?.(next); return next; });
 
   // ── Data attribute per card ──────────────────────────────────────────────
   const getVoy = (i: number): 'current' | 'previous' | 'next' | 'hidden' => {
