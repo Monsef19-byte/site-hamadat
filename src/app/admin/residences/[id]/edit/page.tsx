@@ -55,7 +55,8 @@ export default function EditResidencePage() {
   const [saved, setSaved] = useState(false);
 
   const [thumbnail, setThumbnail] = useState(cfgRes?.thumbnail ?? '');
-  const [gridSize, setGridSize] = useState<number>(cfgRes?.gridSize ?? 3);
+  const [gridSize, setGridSize]   = useState<number>(cfgRes?.gridSize ?? 3);
+  const [mapEmbed, setMapEmbed]   = useState(cfgRes?.mapEmbed ?? '');
 
   // Re-sync form when config loads from localStorage after mount
   useEffect(() => {
@@ -72,6 +73,7 @@ export default function EditResidencePage() {
     const cr = config.residences[e.slug];
     if (cr?.thumbnail) setThumbnail(cr.thumbnail);
     if (cr?.gridSize)  setGridSize(cr.gridSize);
+    setMapEmbed(cr?.mapEmbed ?? '');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, config.residenceList]);
 
@@ -104,7 +106,7 @@ export default function EditResidencePage() {
     };
     updateConfig({
       residenceList: (config.residenceList ?? []).map(r => r.id === id ? updatedEntry : r),
-      residences: { ...config.residences, [slug]: { ...cfgRes, thumbnail, gridSize: gridSize as 2|3|4|5|6 } },
+      residences: { ...config.residences, [slug]: { ...cfgRes, thumbnail, gridSize: gridSize as 2|3|4|5|6, mapEmbed: mapEmbed.trim() } },
     });
     setSaved(true);
     setTimeout(() => router.push('/admin/residences'), 1200);
@@ -211,6 +213,42 @@ export default function EditResidencePage() {
                   onFocus={() => setFocused('description_ar')} onBlur={() => setFocused(null)}
                   style={{ ...f('description_ar'), minHeight: '120px', resize: 'vertical', textAlign: 'right' }} />
               </div>
+            </div>
+
+            {/* Carte de localisation */}
+            <div style={{ background: 'var(--bg-card)', borderRadius: '4px', padding: '28px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+              <SectionTitle>Carte de localisation</SectionTitle>
+              <p style={{ fontSize: '12px', color: 'var(--text-3)', marginBottom: '16px', marginTop: '-8px' }}>
+                Google Maps → Partager → Intégrer une carte → copier l'attribut{' '}
+                <code style={{ fontFamily: 'monospace', fontSize: '11px', background: 'var(--border)', padding: '1px 5px', borderRadius: '3px' }}>src</code> de l'iframe.
+              </p>
+              <Label>URL d'intégration</Label>
+              <input
+                type="text"
+                value={mapEmbed}
+                onChange={e => setMapEmbed(e.target.value)}
+                onFocus={() => setFocused('mapEmbed')}
+                onBlur={() => setFocused(null)}
+                style={f('mapEmbed')}
+                placeholder="https://www.google.com/maps/embed?pb=..."
+              />
+              {/* Live preview */}
+              {mapEmbed.startsWith('https://') && (
+                <div style={{ marginTop: '16px', height: '240px', borderRadius: '4px', overflow: 'hidden', background: 'var(--border)' }}>
+                  <iframe
+                    src={mapEmbed}
+                    title="Aperçu carte"
+                    style={{ width: '100%', height: '100%', border: 'none' }}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+              )}
+              {!mapEmbed && (
+                <div style={{ marginTop: '16px', height: '100px', borderRadius: '4px', background: 'var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontSize: '12px', color: 'var(--text-4)' }}>Aucune carte configurée — coller une URL ci-dessus</span>
+                </div>
+              )}
             </div>
 
           </div>
