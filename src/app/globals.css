@@ -417,3 +417,412 @@ body {
   from { opacity: 0; transform: translateY(30px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   VOYAGE SLIDER  (all classes prefixed `voy-`)
+═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Container ── */
+.voy-slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Full-screen blurred background layers ── */
+.voy-bg {
+  position: fixed;
+  inset: -20%;
+  background-size: cover;
+  background-position: center center;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity  700ms ease,
+    transform 700ms ease;
+}
+.voy-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+}
+.voy-bg--current  { opacity: 1; transform: none; }
+.voy-bg--previous { opacity: 0; transform: translateX(-10%); }
+.voy-bg--next     { opacity: 0; transform: translateX(10%); }
+.voy-bg--hidden   { opacity: 0; }
+
+/* ── Wrapper — stacks all slides in same grid cell ── */
+.voy-slides-wrapper {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+.voy-slides-wrapper > * {
+  grid-area: 1 / -1;
+}
+
+/* ── Card slot (the outer positioning element) ── */
+.voy-card-slot {
+  display: contents;
+}
+
+/* ── Card ── */
+.voy-card {
+  --voy-width: min(28vw, 320px);
+  --rotX: 0deg;
+  --rotY: 0deg;
+  --bgPosX: 0%;
+  --bgPosY: 0%;
+  --slide-scale: 1;
+  --slide-tx: 0px;
+  --slide-rotY: 0deg;
+
+  width: var(--voy-width);
+  aspect-ratio: 2 / 3;
+  user-select: none;
+  perspective: 800px;
+  pointer-events: none;
+  cursor: default;
+
+  transform:
+    perspective(1000px)
+    translate3d(var(--slide-tx), 0, 0)
+    rotateY(var(--slide-rotY))
+    scale(var(--slide-scale));
+
+  transition: transform 700ms ease, opacity 700ms ease;
+}
+
+.voy-card[data-voy="current"] {
+  --slide-scale: 1.2;
+  --slide-tx: 0px;
+  --slide-rotY: 0deg;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 20;
+  opacity: 1;
+}
+.voy-card[data-voy="next"] {
+  --slide-scale: 1;
+  --slide-tx: calc(1 * var(--voy-width) * 1.07);
+  --slide-rotY: -45deg;
+  z-index: 10;
+  opacity: 1;
+}
+.voy-card[data-voy="previous"] {
+  --slide-scale: 1;
+  --slide-tx: calc(-1 * var(--voy-width) * 1.07);
+  --slide-rotY: 45deg;
+  z-index: 10;
+  opacity: 1;
+}
+.voy-card[data-voy="hidden"] {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Card inner (3D tilt target) ── */
+.voy-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rotX, 0deg)) rotateY(var(--rotY, 0deg));
+}
+
+/* ── Image wrapper ── */
+.voy-card__img-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+/* ── Image with parallax translate ── */
+.voy-card__img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  object-fit: cover;
+  transform: translate(-50%, -50%) scale(1.25) translate3d(var(--bgPosX, 0%), var(--bgPosY, 0%), 0);
+  transition: filter 700ms ease;
+  pointer-events: none;
+  draggable: false;
+}
+.voy-card[data-voy="current"] .voy-card__img {
+  filter: brightness(0.8);
+}
+.voy-card:not([data-voy="current"]) .voy-card__img {
+  filter: brightness(0.5);
+}
+
+/* ── Info overlay (same grid cell as card, for 3D) ── */
+.voy-info {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  perspective: 800px;
+  z-index: 100;
+  pointer-events: none;
+}
+.voy-info__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rotX, 0deg)) rotateY(var(--rotY, 0deg));
+}
+.voy-info__text-wrap {
+  --z-offset: 45px;
+  position: absolute;
+  height: fit-content;
+  left: -15%;
+  bottom: 15%;
+  transform: translateZ(var(--z-offset));
+  z-index: 2;
+  pointer-events: none;
+}
+.voy-info__text {
+  color: #fff;
+  overflow: hidden;
+}
+.voy-info__text span {
+  display: block;
+  white-space: nowrap;
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+.voy-info__text[data-title] {
+  font-size: min(3cqw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: 0.2cqw;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.voy-info__text[data-subtitle] {
+  margin-left: 2cqw;
+  font-size: min(2.2cqw, 1.8rem);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.voy-info__text[data-description] {
+  margin-left: 1cqw;
+  font-size: min(1.5cqw, 0.95rem);
+  font-weight: 300;
+}
+
+/* Text reveal — current: slide up into view */
+.voy-info[data-voy="current"] .voy-info__text span {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 250ms;
+}
+/* Not current: hide below */
+.voy-info:not([data-voy="current"]) .voy-info__text span {
+  opacity: 0;
+  transform: translate3d(0, 100%, 0);
+  transition-delay: 0ms;
+}
+
+/* ── Prev / Next buttons ── */
+.voy-btn {
+  --size: 48px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.7;
+  transition: opacity 250ms ease, background 250ms ease, transform 250ms ease;
+}
+.voy-btn:hover {
+  opacity: 1;
+  background: rgba(14, 116, 112, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+.voy-btn:focus {
+  outline: none;
+}
+.voy-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke: #fff;
+}
+.voy-btn--prev { left: 24px; }
+.voy-btn--next { right: 24px; }
+
+/* ── Dots indicator ── */
+.voy-dots {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.voy-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  padding: 0;
+  transition: background 300ms ease, transform 300ms ease, width 300ms ease;
+}
+.voy-dot--active {
+  background: #0e7470;
+  width: 20px;
+  border-radius: 3px;
+  transform: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .voy-card {
+    --voy-width: min(56vw, 280px);
+  }
+  .voy-info__text-wrap {
+    left: -5%;
+  }
+}
+@media (max-width: 600px) {
+  .voy-card {
+    --voy-width: 70vw;
+  }
+  .voy-card[data-voy="next"],
+  .voy-card[data-voy="previous"] {
+    opacity: 0.4;
+  }
+  .voy-btn--prev { left: 8px; }
+  .voy-btn--next { right: 8px; }
+}
+
+/* ── Bento grid section ── */
+.bento-section {
+  background: transparent;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 500px 420px;
+  gap: 16px;
+  padding: 100px 32px 80px;
+  width: 100%;
+}
+.bento-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  will-change: transform, opacity;
+  transition:
+    box-shadow 0.5s ease,
+    transform  0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bento-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 32px 80px rgba(14, 116, 112, 0.22);
+}
+.bento-card:hover img {
+  transform: scale(1.07);
+}
+.bento-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.bento-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6, 8, 10, 0.88) 0%, transparent 55%);
+  pointer-events: none;
+}
+.bento-card__info {
+  position: absolute;
+  bottom: 20px;
+  left: 22px;
+  right: 22px;
+}
+.bento-card__arrow {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bento-card:hover .bento-card__arrow {
+  background: rgba(14, 116, 112, 0.3);
+  border-color: rgba(14, 116, 112, 0.6);
+  color: #fff;
+}
+.bento-status {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 3px;
+}
+.bento-status--ongoing   { background: rgba(14,116,112,0.25); border: 1px solid rgba(14,116,112,0.4);  color: #2dd4bf; }
+.bento-status--completed { background: rgba(16,185,129,0.2);  border: 1px solid rgba(16,185,129,0.4); color: #4ade80; }
+.bento-status--sold      { background: rgba(99,102,241,0.2);  border: 1px solid rgba(99,102,241,0.4); color: #a5b4fc; }
+
+@media (max-width: 900px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    padding: 80px 20px 60px;
+  }
+  .bento-col-span-2 {
+    grid-column: span 1 !important;
+  }
+}
+@media (max-width: 600px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
