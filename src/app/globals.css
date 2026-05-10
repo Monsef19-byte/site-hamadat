@@ -419,150 +419,216 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   VOYAGE SLIDER  (all classes prefixed `voy-`)
+   VOYAGE SLIDER  (exact original class names from voyage-slider asset)
 ═══════════════════════════════════════════════════════════════════════ */
 
-/* ── Container ── */
-.voy-slider {
+/* ── Section wrapper — centers the slider vertically ── */
+.voyage-section {
   position: relative;
+  z-index: 2;
   width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
   overflow: hidden;
 }
 
-/* ── Wrapper — stacks all slides in same grid cell ── */
-.voy-slides-wrapper {
-  position: relative;
-  z-index: 10;
-  display: grid;
-  place-items: center;
+/* ── Slider ── */
+.slider {
+  --slide-width: min(33vw, 400px);
+  --slide-height: calc(var(--slide-width) * 3 / 2);
+  --slide-aspect: 2 / 3;
+  --slide-transition-duration: 800ms;
+  --slide-transition-easing: ease;
+
+  container-type: inline-size;
+  width: calc(3 * var(--slide-width));
+  height: calc(2 * var(--slide-height));
+  display: flex;
+  align-items: center;
+}
+
+/* ── Buttons ── */
+.slider--btn {
+  --size: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  z-index: 999;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.slider--btn:focus {
+  outline: none;
+  border: none;
+}
+.slider--btn svg {
+  width: var(--size);
+  height: var(--size);
+  stroke: white;
+}
+.slider--btn:hover {
+  opacity: 1;
+}
+
+/* ── Slides wrapper — stacks .slides and .slides--infos on same cell ── */
+.slides__wrapper {
   width: 100%;
   height: 100%;
+  display: grid;
+  place-items: center;
 }
-.voy-slides-wrapper > * {
+.slides__wrapper > * {
   grid-area: 1 / -1;
 }
 
-/* ── Card slot (the outer positioning element) ── */
-.voy-card-slot {
-  display: contents;
-}
-
-/* ── Card ── */
-.voy-card {
-  --voy-width: min(28vw, 320px);
-  --rotX: 0deg;
-  --rotY: 0deg;
-  --bgPosX: 0%;
-  --bgPosY: 0%;
-  --slide-scale: 1;
-  --slide-tx: 0px;
-  --slide-rotY: 0deg;
-
-  width: var(--voy-width);
-  aspect-ratio: 2 / 3;
-  user-select: none;
-  perspective: 800px;
-  pointer-events: none;
-  cursor: default;
-
-  transform:
-    perspective(1000px)
-    translate3d(var(--slide-tx), 0, 0)
-    rotateY(var(--slide-rotY))
-    scale(var(--slide-scale));
-
-  transition: transform 700ms ease, opacity 700ms ease;
-}
-
-.voy-card[data-voy="current"] {
-  --slide-scale: 1.2;
-  --slide-tx: 0px;
-  --slide-rotY: 0deg;
-  pointer-events: auto;
-  cursor: pointer;
-  z-index: 20;
-  opacity: 1;
-}
-.voy-card[data-voy="next"] {
-  --slide-scale: 1;
-  --slide-tx: calc(1 * var(--voy-width) * 1.07);
-  --slide-rotY: -45deg;
-  z-index: 10;
-  opacity: 1;
-}
-.voy-card[data-voy="previous"] {
-  --slide-scale: 1;
-  --slide-tx: calc(-1 * var(--voy-width) * 1.07);
-  --slide-rotY: 45deg;
-  z-index: 10;
-  opacity: 1;
-}
-.voy-card[data-voy="hidden"] {
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* ── Card inner (3D tilt target) ── */
-.voy-card__inner {
-  position: relative;
+/* ── Cards layer + info layer ── */
+.slides,
+.slides--infos {
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
-  transform: rotateX(var(--rotX, 0deg)) rotateY(var(--rotY, 0deg));
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+}
+.slides > *,
+.slides--infos > * {
+  grid-area: 1 / -1;
 }
 
-/* ── Image wrapper ── */
-.voy-card__img-wrap {
+/* ── Slide card ── */
+.slide {
+  --slide-tx: 0px;
+  --slide-ty: 0vh;
+  --padding: 0px;
+
+  width: var(--slide-width);
+  height: auto;
+  aspect-ratio: var(--slide-aspect);
+  user-select: none;
+  perspective: 800px;
+
+  transform: perspective(1000px)
+    translate3d(var(--slide-tx), var(--slide-ty), var(--slide-tz, 0))
+    rotateY(var(--slide-rotY, 0))
+    scale(var(--slide-scale, 1));
+  transition: transform var(--slide-transition-duration) var(--slide-transition-easing);
+}
+
+.slide[data-current] {
+  --slide-scale: 1.2;
+  --slide-tz: 0px;
+  --slide-tx: 0px;
+  --slide-rotY: 0;
+  pointer-events: auto;
+  z-index: 20;
+}
+.slide[data-next] {
+  --slide-tx: calc(1 * var(--slide-width) * 1.07);
+  --slide-rotY: -45deg;
+  z-index: 10;
+}
+.slide[data-previous] {
+  --slide-tx: calc(-1 * var(--slide-width) * 1.07);
+  --slide-rotY: 45deg;
+  z-index: 10;
+}
+.slide:not([data-current]) {
+  --slide-scale: 1;
+  --slide-tz: 0;
+  pointer-events: none;
+}
+
+/* slides with no position attribute are hidden */
+.slide:not([data-current]):not([data-next]):not([data-previous]) {
+  opacity: 0;
+}
+
+.slide[data-current] .slide--image {
+  filter: brightness(0.8);
+}
+.slide:not([data-current]) .slide--image {
+  filter: brightness(0.5);
+}
+
+/* ── Slide inner (3D tilt target) ── */
+.slide__inner {
+  --rotX: 0;
+  --rotY: 0;
+  --bgPosX: 0%;
+  --bgPosY: 0%;
+
+  position: relative;
+  left: calc(var(--padding) / 2);
+  top: calc(var(--padding) / 2);
+  width: calc(100% - var(--padding));
+  height: calc(100% - var(--padding));
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rotX)) rotateY(var(--rotY));
+}
+
+/* ── Image ── */
+.slide--image__wrapper {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 14px;
 }
-
-/* ── Image with parallax translate ── */
-.voy-card__img {
+.slide--image {
   width: 100%;
   height: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
   object-fit: cover;
-  transform: translate(-50%, -50%) scale(1.25) translate3d(var(--bgPosX, 0%), var(--bgPosY, 0%), 0);
-  transition: filter 700ms ease;
-  pointer-events: none;
-  draggable: false;
-}
-.voy-card[data-voy="current"] .voy-card__img {
-  filter: brightness(0.8);
-}
-.voy-card:not([data-voy="current"]) .voy-card__img {
-  filter: brightness(0.5);
+  transform: translate(-50%, -50%) scale(1.25) translate3d(var(--bgPosX), var(--bgPosY), 0);
+  transition: filter var(--slide-transition-duration) var(--slide-transition-easing);
 }
 
-/* ── Info overlay (same grid cell as card, for 3D) ── */
-.voy-info {
-  position: absolute;
-  inset: 0;
-  width: 100%;
+/* ── Slide info (text overlay layer) ── */
+.slide-info {
+  --padding: 0px;
+
+  position: relative;
+  width: var(--slide-width);
   height: 100%;
+  aspect-ratio: var(--slide-aspect);
+  user-select: none;
   perspective: 800px;
   z-index: 100;
-  pointer-events: none;
 }
-.voy-info__inner {
+
+/* hidden slide-infos */
+.slide-info:not([data-current]):not([data-next]):not([data-previous]) {
+  opacity: 0;
+}
+
+.slide-info[data-current] .slide-info--text span {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 250ms;
+}
+.slide-info:not([data-current]) .slide-info--text span {
+  opacity: 0;
+  transform: translate3d(0, 100%, 0);
+  transition-delay: 0ms;
+}
+
+.slide-info__inner {
   position: relative;
-  width: 100%;
-  height: 100%;
+  left: calc(var(--padding) / 2);
+  top: calc(var(--padding) / 2);
+  width: calc(100% - var(--padding));
+  height: calc(100% - var(--padding));
   transform-style: preserve-3d;
-  transform: rotateX(var(--rotX, 0deg)) rotateY(var(--rotY, 0deg));
+  transform: rotateX(var(--rotX, 0)) rotateY(var(--rotY, 0));
 }
-.voy-info__text-wrap {
+
+.slide-info--text__wrapper {
   --z-offset: 45px;
   position: absolute;
   height: fit-content;
@@ -572,131 +638,55 @@ body {
   z-index: 2;
   pointer-events: none;
 }
-.voy-info__text {
+
+.slide-info--text {
+  font-family: var(--font-clash-display, "Clash Display", sans-serif);
   color: #fff;
   overflow: hidden;
 }
-.voy-info__text span {
+.slide-info--text span {
   display: block;
   white-space: nowrap;
-  transition: opacity 700ms ease, transform 700ms ease;
+  transition: var(--slide-transition-duration) var(--slide-transition-easing);
+  transition-property: opacity, transform;
 }
-.voy-info__text[data-title] {
+.slide-info--text[data-title],
+.slide-info--text[data-subtitle] {
   font-size: min(3cqw, 2.4rem);
   font-weight: 800;
   letter-spacing: 0.2cqw;
   white-space: nowrap;
   text-transform: uppercase;
 }
-.voy-info__text[data-subtitle] {
+.slide-info--text[data-subtitle] {
   margin-left: 2cqw;
   font-size: min(2.2cqw, 1.8rem);
   font-weight: 600;
-  text-transform: uppercase;
 }
-.voy-info__text[data-description] {
+.slide-info--text[data-description] {
   margin-left: 1cqw;
   font-size: min(1.5cqw, 0.95rem);
+  font-family: var(--font-archivo, "Archivo", sans-serif);
   font-weight: 300;
-}
-
-/* Text reveal — current: slide up into view */
-.voy-info[data-voy="current"] .voy-info__text span {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-  transition-delay: 250ms;
-}
-/* Not current: hide below */
-.voy-info:not([data-voy="current"]) .voy-info__text span {
-  opacity: 0;
-  transform: translate3d(0, 100%, 0);
-  transition-delay: 0ms;
-}
-
-/* ── Prev / Next buttons ── */
-.voy-btn {
-  --size: 48px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 100;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(6px);
-  cursor: pointer;
-  color: #fff;
-  opacity: 0.7;
-  transition: opacity 250ms ease, background 250ms ease, transform 250ms ease;
-}
-.voy-btn:hover {
-  opacity: 1;
-  background: rgba(14, 116, 112, 0.4);
-  transform: translateY(-50%) scale(1.1);
-}
-.voy-btn:focus {
-  outline: none;
-}
-.voy-btn svg {
-  width: 22px;
-  height: 22px;
-  stroke: #fff;
-}
-.voy-btn--prev { left: 24px; }
-.voy-btn--next { right: 24px; }
-
-/* ── Dots indicator ── */
-.voy-dots {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.voy-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-  padding: 0;
-  transition: background 300ms ease, transform 300ms ease, width 300ms ease;
-}
-.voy-dot--active {
-  background: #0e7470;
-  width: 20px;
-  border-radius: 3px;
-  transform: none;
 }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .voy-card {
-    --voy-width: min(56vw, 280px);
+  .slider {
+    --slide-width: min(60vw, 340px);
   }
-  .voy-info__text-wrap {
+  .slide-info--text__wrapper {
     left: -5%;
   }
 }
 @media (max-width: 600px) {
-  .voy-card {
-    --voy-width: 70vw;
+  .slider {
+    --slide-width: 70vw;
   }
-  .voy-card[data-voy="next"],
-  .voy-card[data-voy="previous"] {
+  .slide[data-next],
+  .slide[data-previous] {
     opacity: 0.4;
   }
-  .voy-btn--prev { left: 8px; }
-  .voy-btn--next { right: 8px; }
 }
 
 /* ── Bento grid section ── */
@@ -871,6 +861,20 @@ html:not(.dark) .mesh-grain {
 }
 .hero-bg-zoom {
   animation: heroBgZoom 20s ease-in-out infinite alternate;
+}
+
+/* ── Hero card expand animation ── */
+.hero-card {
+  position: absolute;
+  inset: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  animation: heroCardExpand 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+@keyframes heroCardExpand {
+  from { inset: 72px; border-radius: 40px; }
+  to   { inset: 20px; border-radius: 20px; }
 }
 
 /* ── Project detail page responsive ── */
