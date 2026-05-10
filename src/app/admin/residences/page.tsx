@@ -13,31 +13,21 @@ const RESIDENCE_SLUGS: { slug: string; name: string }[] = [
   { slug: 'vertdalya',       name: 'Vert Dalya' },
 ];
 
-const INITIAL = [
-  { id: '1', name_fr: 'Elysia',        name_ar: 'إليسيا',         location: 'Jijel',            units: 56,  status: 'ongoing' },
-  { id: '2', name_fr: 'Les 3 Princes', name_ar: 'الثلاث أمراء',   location: 'Dely Brahim, Alger', units: 43, status: 'completed' },
-  { id: '3', name_fr: 'Orea',          name_ar: 'أوريا',           location: 'Dely Brahim, Alger', units: 38, status: 'ongoing' },
-  { id: '4', name_fr: 'Lumalac',       name_ar: 'لوملاك',          location: 'Dely Brahim, Alger', units: 8,  status: 'ongoing' },
-  { id: '5', name_fr: 'Marmo',         name_ar: 'مارمو',           location: 'Dely Brahim, Alger', units: 8,  status: 'completed' },
-  { id: '6', name_fr: 'Vert Dalya',    name_ar: 'فيرت داليا',      location: 'Dely Brahim, Alger', units: 10, status: 'completed' },
-];
-
-const fieldBase: React.CSSProperties = {
-  padding: '10px 14px',
-  border: '1px solid #e8e8e6',
-  borderRadius: '4px',
-  fontSize: '13px',
-  color: '#2a2826',
-  background: '#fff',
-  fontFamily: 'inherit',
-  outline: 'none',
-};
-
 export default function AdminResidencesPage() {
   const { config, updateConfig } = useSiteConfig();
-  const [residences, setResidences] = useState(INITIAL);
 
-  // ── Maps — read directly from config, sync after localStorage loads ──
+  // Read directly from config — always in sync with localStorage
+  const residences = config.residenceList ?? [];
+
+  const handleDelete = (id: string) => {
+    const r = residences.find(r => r.id === id);
+    if (!r) return;
+    if (confirm(`Supprimer "${r.name_fr}" définitivement ?`)) {
+      updateConfig({ residenceList: residences.filter(r => r.id !== id) });
+    }
+  };
+
+  // ── Maps ──
   const [mapInputs, setMapInputs] = useState<Record<string, string>>(
     Object.fromEntries(RESIDENCE_SLUGS.map(({ slug }) => [slug, config.residences[slug]?.mapEmbed || '']))
   );
@@ -49,7 +39,6 @@ export default function AdminResidencesPage() {
       const next = Object.fromEntries(
         RESIDENCE_SLUGS.map(({ slug }) => [slug, config.residences[slug]?.mapEmbed || ''])
       );
-      // Only update fields the user hasn't manually changed
       return Object.fromEntries(
         RESIDENCE_SLUGS.map(({ slug }) => [slug, mapSaved[slug] ? prev[slug] : next[slug]])
       );
@@ -63,10 +52,15 @@ export default function AdminResidencesPage() {
     setTimeout(() => setMapSaved(prev => ({ ...prev, [slug]: false })), 2000);
   };
 
-  const handleDelete = (id: string) => {
-    if (confirm('Supprimer cette résidence ?')) {
-      setResidences(prev => prev.filter(r => r.id !== id));
-    }
+  const fieldBase: React.CSSProperties = {
+    padding: '10px 14px',
+    border: '1px solid #e8e8e6',
+    borderRadius: '4px',
+    fontSize: '13px',
+    color: '#2a2826',
+    background: '#fff',
+    fontFamily: 'inherit',
+    outline: 'none',
   };
 
   return (
@@ -86,7 +80,6 @@ export default function AdminResidencesPage() {
             padding: '12px 28px', borderRadius: '4px',
             fontSize: '13px', fontWeight: '600', textDecoration: 'none',
             letterSpacing: '0.5px', textTransform: 'uppercase',
-            transition: 'background 0.2s',
           }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#0a5450'; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#0e7470'; }}
@@ -136,10 +129,10 @@ export default function AdminResidencesPage() {
                   <span style={{
                     display: 'inline-block', padding: '3px 10px', borderRadius: '2px',
                     fontSize: '10px', fontWeight: '700', letterSpacing: '1px', textTransform: 'uppercase',
-                    background: r.status === 'completed' ? 'rgba(16,185,129,0.1)' : 'rgba(14,116,112,0.1)',
-                    color: r.status === 'completed' ? '#059669' : '#0e7470',
+                    background: r.status === 'completed' ? 'rgba(16,185,129,0.1)' : r.status === 'sold' ? 'rgba(99,102,241,0.1)' : 'rgba(14,116,112,0.1)',
+                    color: r.status === 'completed' ? '#059669' : r.status === 'sold' ? '#6366f1' : '#0e7470',
                   }}>
-                    {r.status === 'completed' ? 'Livré' : 'En cours'}
+                    {r.status === 'completed' ? 'Livré' : r.status === 'sold' ? 'Vendu' : 'En cours'}
                   </span>
                 </td>
                 <td style={{ padding: '18px 24px' }}>
@@ -201,7 +194,6 @@ export default function AdminResidencesPage() {
                     {saved ? '✓ OK' : 'Enregistrer'}
                   </button>
                 </div>
-                {/* Mini map preview */}
                 {val && val.startsWith('https://') && (
                   <div style={{ marginTop: '10px', height: '160px', borderRadius: '4px', overflow: 'hidden', background: '#e8e8e6' }}>
                     <iframe

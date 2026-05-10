@@ -1,16 +1,27 @@
 'use client';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const CONFIG_VERSION = 8; // bump whenever DEFAULTS shape changes to clear stale localStorage
+const CONFIG_VERSION = 9; // bump whenever DEFAULTS shape changes to clear stale localStorage
 
 interface ResidenceCfg { thumbnail: string; gridSize: 2|3|4|5|6; mapEmbed?: string }
 interface BlogCfg      { coverImage: string }
 export interface HomeMedia  { id: string; type: 'image'|'video'; src: string; label: string; order: number }
 export interface VideoEntry { id: string; url: string; label: string; order: number }
+export interface ResidenceEntry {
+  id: string; slug: string;
+  name_fr: string; name_ar: string;
+  location: string;
+  status: 'ongoing' | 'completed' | 'sold';
+  units: number; typology: string;
+  description_fr: string; description_ar: string;
+  available?: string; delivery?: string;
+  featuredOnHome?: boolean;
+}
 
 export interface SiteConfig {
-  residences:  Record<string, ResidenceCfg>;
-  blog:        Record<string, BlogCfg>;
+  residences:    Record<string, ResidenceCfg>;
+  residenceList: ResidenceEntry[];
+  blog:          Record<string, BlogCfg>;
   apropos:     { story_fr: string; story_ar: string };
   contact:     { email: string; phone: string; address: string };
   social:      { facebook: string; instagram: string; linkedin: string; youtube: string };
@@ -21,6 +32,14 @@ export interface SiteConfig {
 }
 
 const DEFAULTS: SiteConfig = {
+  residenceList: [
+    { id: '1', slug: 'elysia',        name_fr: 'Elysia',        name_ar: 'إليسيا',       location: 'Jijel',              status: 'ongoing',   units: 56, typology: 'F3 (96 m² — 110 m²)',   description_fr: "Implantée à Jijel, la résidence Elysia est un projet en cours développé par Hamadat Promotion Immobilière, proposant 56 logements de type F3 aux surfaces optimisées (96 m² et 110 m²). Pensée pour offrir un équilibre entre espace, luminosité et confort, Elysia s'inscrit dans une dynamique urbaine attractive.", description_ar: 'في جيجل، تقدم إليسيا 56 وحدة سكنية من نوع F3 بمساحات 96 و110 م².', available: '', delivery: '24 mois', featuredOnHome: true },
+    { id: '2', slug: 'les-3-princes', name_fr: 'Les 3 Princes', name_ar: 'الثلاث أمراء', location: 'Dely Brahim, Alger', status: 'completed', units: 43, typology: 'F3 à F6 — Simplex & Duplex', description_fr: 'La résidence Les 3 Princes est un projet achevé comprenant 43 appartements allant du F3 au F6, répartis en simplex et duplex.',                                                                                                                                                                              description_ar: 'مجمع مكتمل في دالي إبراهيم يضم 43 شقة من F3 إلى F6.', available: '', delivery: '', featuredOnHome: false },
+    { id: '3', slug: 'orea',          name_fr: 'Orea',          name_ar: 'أوريا',         location: 'Dely Brahim, Alger', status: 'ongoing',   units: 38, typology: 'F3 à F6',               description_fr: 'Orea est un projet en cours proposant 38 appartements allant du F3 au F6, situé à Dely Brahim.',                                                                                                                                                                                               description_ar: 'أوريا مشروع جارٍ يضم 38 شقة من F3 إلى F6.', available: '2 F3, 1 F4', delivery: '24 mois', featuredOnHome: true },
+    { id: '4', slug: 'lumalac',       name_fr: 'Lumalac',       name_ar: 'لوملاك',        location: 'Dely Brahim, Alger', status: 'ongoing',   units: 8,  typology: '6 × F3 — 2 × Triplex F7', description_fr: 'La résidence Lumalac est un projet en cours composé de 8 logements, dont 6 appartements F3 et 2 triplex F7, à Dely Brahim.',                                                                                                                                                                   description_ar: 'لوملاك مشروع حديث في دالي إبراهيم يضم 8 وحدات.', available: '', delivery: '', featuredOnHome: false },
+    { id: '5', slug: 'marmo',         name_fr: 'Marmo',         name_ar: 'مارمو',         location: 'Dely Brahim, Alger', status: 'completed', units: 8,  typology: '6 × F3 — 2 × Duplex F6', description_fr: 'Le projet Marmo est une résidence livrée de 8 logements, dont 6 appartements F3 et 2 duplex F6, à Dely Brahim.',                                                                                                                                                                              description_ar: 'مارمو مجمع سكني مسلم في دالي إبراهيم يضم 8 وحدات.', available: '', delivery: '', featuredOnHome: false },
+    { id: '6', slug: 'vertdalya',     name_fr: 'Vert Dalya',    name_ar: 'فيرت داليا',    location: 'Dely Brahim, Alger', status: 'completed', units: 10, typology: 'Loft 270 m²',            description_fr: 'Vertdalya est une résidence finalisée composée de 10 lofts spacieux de 270 m², alliant confort et design contemporain.',                                                                                                                                                                        description_ar: 'فيرت داليا مجمع مكتمل في دالي إبراهيم يضم 10 شقق من نوع لوفت.', available: 'Disponible', delivery: '', featuredOnHome: false },
+  ],
   residences: {
     // Elysia — Jijel (36.82°N 5.77°E)
     elysia:          { thumbnail: '/residences/elysia/vue-001-1.jpg',        gridSize: 4, mapEmbed: 'https://www.openstreetmap.org/export/embed.html?bbox=5.5%2C36.65%2C6.05%2C37.0&layer=mapnik&marker=36.8206%2C5.7667' },
@@ -99,6 +118,7 @@ export function SiteConfigProvider({ children }: { children: React.ReactNode }) 
     setConfig(prev => {
       const next = deepMerge(prev, patch) as SiteConfig;
       const merged: SiteConfig = { ...next };
+      if (patch.residenceList !== undefined) merged.residenceList = patch.residenceList;
       if (patch.homeMedia   !== undefined) merged.homeMedia   = patch.homeMedia;
       if (patch.videos      !== undefined) merged.videos      = patch.videos;
       if (patch.residences  !== undefined) merged.residences  = { ...next.residences, ...patch.residences };

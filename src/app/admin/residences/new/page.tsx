@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useSiteConfig } from '@/lib/site-config-context';
 
 const STATUTS = ['En cours', 'Livré', 'Vendu'];
 
@@ -28,6 +29,7 @@ const SectionTitle = ({ children }: { children: React.ReactNode }) => (
 
 export default function NewResidencePage() {
   const router = useRouter();
+  const { config, updateConfig } = useSiteConfig();
   const [focused, setFocused] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
   const [images, setImages] = useState<File[]>([]);
@@ -53,6 +55,25 @@ export default function NewResidencePage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const slug = form.name_fr.toLowerCase().trim()
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const newEntry = {
+      id: `r-${Date.now()}`,
+      slug,
+      name_fr: form.name_fr.trim(),
+      name_ar: form.name_ar.trim(),
+      location: form.location.trim(),
+      status: (form.status === 'Livré' ? 'completed' : form.status === 'Vendu' ? 'sold' : 'ongoing') as 'ongoing' | 'completed' | 'sold',
+      units: parseInt(form.total_units) || 0,
+      typology: form.typology.trim(),
+      description_fr: form.description_fr.trim(),
+      description_ar: form.description_ar.trim(),
+      available: form.available.trim(),
+      delivery: form.delivery.trim(),
+      featuredOnHome: form.featuredOnHome,
+    };
+    updateConfig({ residenceList: [...(config.residenceList ?? []), newEntry] });
     setSaved(true);
     setTimeout(() => router.push('/admin/residences'), 1200);
   };

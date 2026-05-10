@@ -1,28 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useSiteConfig } from '@/lib/site-config-context';
-
-const MOCK: Record<string, {
-  name_fr: string; name_ar: string; location: string; status: string;
-  total_units: string; typology: string; description_fr: string; description_ar: string;
-  available: string; delivery: string; featuredOnHome: boolean;
-}> = {
-  '1': { name_fr: 'Elysia', name_ar: 'إليسيا', location: 'Jijel', status: 'En cours', total_units: '56', typology: 'F3 (96 m² — 110 m²)', description_fr: "Implantée à Jijel, la résidence Elysia est un projet en cours développé par Hamadat Promotion Immobilière, proposant 56 logements de type F3 aux surfaces optimisées (96 m² et 110 m²).", description_ar: "في جيجل، تقدم إليسيا 56 وحدة سكنية من نوع F3 بمساحات 96 و110 م².", available: '', delivery: '24 mois', featuredOnHome: true },
-  '2': { name_fr: 'Les 3 Princes', name_ar: 'الثلاث أمراء', location: 'Dely Brahim, Alger', status: 'Livré', total_units: '43', typology: 'F3 à F6 — Simplex & Duplex', description_fr: "La résidence Les 3 Princes est un projet achevé comprenant 43 appartements allant du F3 au F6.", description_ar: "مجمع مكتمل في دالي إبراهيم يضم 43 شقة من F3 إلى F6.", available: '', delivery: '', featuredOnHome: false },
-  '3': { name_fr: 'Orea', name_ar: 'أوريا', location: 'Dely Brahim, Alger', status: 'En cours', total_units: '38', typology: 'F3 à F6', description_fr: "Orea est un projet en cours proposant 38 appartements allant du F3 au F6.", description_ar: "أوريا مشروع جارٍ يضم 38 شقة من F3 إلى F6.", available: '2 F3, 1 F4', delivery: '24 mois', featuredOnHome: true },
-  '4': { name_fr: 'Lumalac', name_ar: 'لوملاك', location: 'Dely Brahim, Alger', status: 'En cours', total_units: '8', typology: '6 × F3 — 2 × Triplex F7', description_fr: "La résidence Lumalac est un projet en cours composé de 8 logements.", description_ar: "لوملاك مشروع حديث في دالي إبراهيم يضم 8 وحدات.", available: '', delivery: '', featuredOnHome: false },
-  '5': { name_fr: 'Marmo', name_ar: 'مارمو', location: 'Dely Brahim, Alger', status: 'Livré', total_units: '8', typology: '6 × F3 — 2 × Duplex F6', description_fr: "Le projet Marmo est une résidence livrée de 8 logements à Dely Brahim.", description_ar: "مارمو مجمع سكني مسلم في دالي إبراهيم يضم 8 وحدات.", available: '', delivery: '', featuredOnHome: false },
-  '6': { name_fr: 'Vert Dalya', name_ar: 'فيرت داليا', location: 'Dely Brahim, Alger', status: 'Livré', total_units: '10', typology: 'Loft 270 m²', description_fr: "Vertdalya est une résidence finalisée composée de 10 lofts spacieux de 270 m².", description_ar: "فيرت داليا مجمع مكتمل في دالي إبراهيم يضم 10 شقق من نوع لوفت.", available: 'Disponible', delivery: '', featuredOnHome: false },
-};
-
-// Map numeric ID to slug
-const ID_TO_SLUG: Record<string, string> = {
-  '1': 'elysia', '2': 'les-3-princes', '3': 'orea',
-  '4': 'lumalac', '5': 'marmo', '6': 'vertdalya',
-};
 
 const STATUTS = ['En cours', 'Livré', 'Vendu'];
 
@@ -51,16 +32,48 @@ export default function EditResidencePage() {
   const router = useRouter();
   const { config, updateConfig } = useSiteConfig();
 
-  const slug = ID_TO_SLUG[id] ?? id;
+  const entry = (config.residenceList ?? []).find(r => r.id === id);
+  const slug   = entry?.slug ?? id;
   const cfgRes = config.residences[slug];
 
-  const base = MOCK[id] ?? MOCK['1'];
-  const [form, setForm] = useState(base);
+  const statusLabel = entry?.status === 'completed' ? 'Livré' : entry?.status === 'sold' ? 'Vendu' : 'En cours';
+
+  const [form, setForm] = useState({
+    name_fr: entry?.name_fr ?? '',
+    name_ar: entry?.name_ar ?? '',
+    location: entry?.location ?? '',
+    status: statusLabel,
+    total_units: String(entry?.units ?? ''),
+    typology: entry?.typology ?? '',
+    description_fr: entry?.description_fr ?? '',
+    description_ar: entry?.description_ar ?? '',
+    available: entry?.available ?? '',
+    delivery: entry?.delivery ?? '',
+    featuredOnHome: entry?.featuredOnHome ?? false,
+  });
   const [focused, setFocused] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
 
-  const [thumbnail, setThumbnail] = useState(cfgRes?.thumbnail ?? `/residences/${slug}.jpg`);
+  const [thumbnail, setThumbnail] = useState(cfgRes?.thumbnail ?? '');
   const [gridSize, setGridSize] = useState<number>(cfgRes?.gridSize ?? 3);
+
+  // Re-sync form when config loads from localStorage after mount
+  useEffect(() => {
+    const e = (config.residenceList ?? []).find(r => r.id === id);
+    if (!e) return;
+    const label = e.status === 'completed' ? 'Livré' : e.status === 'sold' ? 'Vendu' : 'En cours';
+    setForm({
+      name_fr: e.name_fr, name_ar: e.name_ar, location: e.location,
+      status: label, total_units: String(e.units), typology: e.typology,
+      description_fr: e.description_fr, description_ar: e.description_ar,
+      available: e.available ?? '', delivery: e.delivery ?? '',
+      featuredOnHome: e.featuredOnHome ?? false,
+    });
+    const cr = config.residences[e.slug];
+    if (cr?.thumbnail) setThumbnail(cr.thumbnail);
+    if (cr?.gridSize)  setGridSize(cr.gridSize);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, config.residenceList]);
 
   const f = (name: string): React.CSSProperties => ({
     ...fieldBase,
@@ -75,11 +88,23 @@ export default function EditResidencePage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const updatedEntry: import('@/lib/site-config-context').ResidenceEntry = {
+      id, slug,
+      name_fr: form.name_fr.trim(),
+      name_ar: form.name_ar.trim(),
+      location: form.location.trim(),
+      status: (form.status === 'Livré' ? 'completed' : form.status === 'Vendu' ? 'sold' : 'ongoing') as 'ongoing' | 'completed' | 'sold',
+      units: parseInt(form.total_units) || 0,
+      typology: form.typology.trim(),
+      description_fr: form.description_fr.trim(),
+      description_ar: form.description_ar.trim(),
+      available: form.available.trim(),
+      delivery: form.delivery.trim(),
+      featuredOnHome: form.featuredOnHome,
+    };
     updateConfig({
-      residences: {
-        ...config.residences,
-        [slug]: { thumbnail, gridSize: gridSize as 2|3|4|5|6 },
-      },
+      residenceList: (config.residenceList ?? []).map(r => r.id === id ? updatedEntry : r),
+      residences: { ...config.residences, [slug]: { ...cfgRes, thumbnail, gridSize: gridSize as 2|3|4|5|6 } },
     });
     setSaved(true);
     setTimeout(() => router.push('/admin/residences'), 1200);
@@ -87,6 +112,7 @@ export default function EditResidencePage() {
 
   const handleDelete = () => {
     if (confirm(`Supprimer "${form.name_fr}" définitivement ?`)) {
+      updateConfig({ residenceList: (config.residenceList ?? []).filter(r => r.id !== id) });
       router.push('/admin/residences');
     }
   };
@@ -103,7 +129,7 @@ export default function EditResidencePage() {
           Administration · Résidences
         </p>
         <h1 style={{ fontSize: '32px', fontWeight: '300', color: 'var(--text-1)', letterSpacing: '-0.5px', margin: 0 }}>
-          {form.name_fr}
+          {form.name_fr || 'Modifier la résidence'}
         </h1>
       </div>
 
