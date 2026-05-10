@@ -8,7 +8,7 @@ export default function PageLoader() {
   useEffect(() => {
     // Count to 100 over 1.8s
     const start = performance.now();
-    const dur   = 1800;
+    const dur   = 700;
 
     const tick = (now: number) => {
       const t = Math.min((now - start) / dur, 1);
@@ -16,8 +16,8 @@ export default function PageLoader() {
       setCount(Math.round(eased * 100));
       if (t < 1) requestAnimationFrame(tick);
       else {
-        setTimeout(() => setPhase('lift'), 200);
-        setTimeout(() => setPhase('done'), 1500);
+        setTimeout(() => setPhase('lift'), 80);
+        setTimeout(() => setPhase('done'), 720);
       }
     };
     requestAnimationFrame(tick);
@@ -30,7 +30,7 @@ export default function PageLoader() {
       position: 'fixed', inset: 0, zIndex: 99999,
       background: '#06080a',
       transform: phase === 'lift' ? 'translateY(-100%)' : 'translateY(0)',
-      transition: phase === 'lift' ? 'transform 1.2s cubic-bezier(0.76,0,0.24,1)' : 'none',
+      transition: phase === 'lift' ? 'transform 0.55s cubic-bezier(0.76,0,0.24,1)' : 'none',
       display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center',
       gap: 0,

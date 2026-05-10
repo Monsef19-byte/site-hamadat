@@ -51,23 +51,12 @@ export default function AdminLoginPage() {
         boxShadow: '0 10px 40px rgba(0,0,0,0.2)'
       }}>
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <div style={{
-            width: '64px',
-            height: '64px',
-            background: 'linear-gradient(135deg, #8b7a62 0%, #6e6250 100%)',
-            borderRadius: '8px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 16px',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-          }}>
-            <span style={{ color: 'white', fontWeight: 'bold', fontSize: '32px' }}>H</span>
-          </div>
-          <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1f2937', margin: 0 }}>
-            Hamadat
-          </h1>
-          <p style={{ fontSize: '14px', color: '#6b7280', margin: '4px 0 0 0' }}>
+          <img
+            src="/images/logo/logo-vertical-color.png"
+            alt="Hamadat"
+            style={{ height: '80px', width: 'auto', margin: '0 auto 20px', display: 'block', objectFit: 'contain' }}
+          />
+          <p style={{ fontSize: '14px', color: '#6b7280', margin: 0 }}>
             Tableau de Bord Admin
           </p>
         </div>

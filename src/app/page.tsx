@@ -96,10 +96,10 @@ export default function HomePage() {
           y: 80, opacity: 0, skewY: 6, rotateX: -40,
         }, {
           y: 0, opacity: 1, skewY: 0, rotateX: 0,
-          duration: 1.2,
+          duration: 0.7,
           ease: 'power4.out',
-          stagger: 0.055,
-          delay: 2.1,
+          stagger: 0.022,
+          delay: 1.0,
         });
       }
 
@@ -131,8 +131,8 @@ export default function HomePage() {
             trigger: pinRef.current,
             pin: true,
             start: 'top top',
-            end: `+=${cards.length * 280}`,
-            scrub: 1.5,
+            end: `+=${cards.length * 400}`,
+            scrub: 0.8,
             anticipatePin: 1,
           },
         });
@@ -140,12 +140,11 @@ export default function HomePage() {
         cards.forEach((card, i) => {
           tl.to(card, {
             x: 0, y: 0, rotation: 0, scale: 1, opacity: 1,
-            duration: 0.7,
+            duration: 0.8,
             ease: 'power3.out',
-          }, i * 0.15);
-          // Slight settle bounce
-          tl.to(card, { y: -6, duration: 0.15, ease: 'power2.out' }, i * 0.15 + 0.65);
-          tl.to(card, { y: 0, duration: 0.25, ease: 'power2.inOut' }, i * 0.15 + 0.8);
+          }, i * 0.2);
+          tl.to(card, { y: -8, duration: 0.12, ease: 'power2.out' }, i * 0.2 + 0.72);
+          tl.to(card, { y: 0, duration: 0.2, ease: 'power2.inOut' }, i * 0.2 + 0.84);
         });
 
         cleanupFns.push(() => tl.kill());
@@ -169,14 +168,14 @@ export default function HomePage() {
       // ── 5. Section reveal for all .gsap-reveal elements ──────
       gsap.utils.toArray<HTMLElement>('.gsap-reveal').forEach((el) => {
         gsap.fromTo(el, {
-          y: 56, opacity: 0,
+          y: 40, opacity: 0,
         }, {
           y: 0, opacity: 1,
-          duration: 1.1,
+          duration: 0.6,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: el,
-            start: 'top 82%',
+            start: 'top 88%',
           },
         });
       });
@@ -184,8 +183,8 @@ export default function HomePage() {
       // ── 6. Horizontal line draws ──────────────────────────────
       gsap.utils.toArray<HTMLElement>('.line-draw').forEach((el) => {
         gsap.fromTo(el, { scaleX: 0, transformOrigin: 'left' },
-          { scaleX: 1, duration: 1.4, ease: 'power3.inOut',
-            scrollTrigger: { trigger: el, start: 'top 88%' } });
+          { scaleX: 1, duration: 0.8, ease: 'power3.inOut',
+            scrollTrigger: { trigger: el, start: 'top 92%' } });
       });
 
       // ── 7. Big text parallax ──────────────────────────────────
@@ -242,7 +241,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           HERO — full screen
       ═══════════════════════════════════════════════════════ */}
-      <section ref={heroRef} style={{ position: 'relative', height: '100vh', minHeight: '640px', overflow: 'hidden' }}>
+      <section ref={heroRef} style={{ position: 'relative', height: '65vh', minHeight: '520px', overflow: 'hidden' }}>
 
         {/* Parallax image */}
         <img ref={heroImgRef} src={heroSrc} alt="Hamadat"
@@ -360,7 +359,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           FLYING CARDS — pinned scroll section
       ═══════════════════════════════════════════════════════ */}
-      <div ref={pinRef} style={{ background:'transparent', minHeight:'100vh', position:'relative', overflow:'hidden' }}>
+      <div ref={pinRef} style={{ background:'transparent', minHeight:'100vh', position:'relative', overflow:'hidden', zIndex:2 }}>
 
         {/* Section label */}
         <div style={{ position:'absolute', top:'60px', left:'60px', zIndex:20 }}>
@@ -385,10 +384,9 @@ export default function HomePage() {
         <div style={{
           display:'grid',
           gridTemplateColumns:'repeat(3, 1fr)',
-          gap:'16px',
-          padding:'120px 60px 80px',
-          maxWidth:'1320px',
-          margin:'0 auto',
+          gap:'20px',
+          padding:'120px 40px 80px',
+          maxWidth:'100%',
           minHeight:'100vh',
           alignContent:'center',
         }}>
@@ -414,7 +412,7 @@ export default function HomePage() {
                 <Link href={`/projets/${r.slug}`} data-cursor style={{ textDecoration:'none', color:'inherit', display:'block' }}>
                   <div style={{
                     position:'relative',
-                    height: isLarge ? '400px' : '280px',
+                    height: isLarge ? '560px' : '380px',
                     borderRadius:'12px',
                     overflow:'hidden',
                     background:'#111',
@@ -449,7 +447,7 @@ export default function HomePage() {
                     <div style={{ position:'absolute', bottom:'20px', left:'22px', right:'22px' }}>
                       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end' }}>
                         <div>
-                          <h3 style={{ fontSize: isLarge ? '28px' : '20px', fontWeight:'300', color:'#fff', margin:'0 0 4px', letterSpacing:'-0.5px' }}>
+                          <h3 style={{ fontSize: isLarge ? '36px' : '24px', fontWeight:'300', color:'#fff', margin:'0 0 4px', letterSpacing:'-0.5px' }}>
                             {lang === 'ar' ? r.name_ar : r.name_fr}
                           </h3>
                           <p style={{ fontSize:'11px', color:'rgba(255,255,255,0.5)', margin:0, letterSpacing:'1px' }}>{r.location}</p>
@@ -720,23 +718,6 @@ export default function HomePage() {
 
       <Footer />
 
-      <style>{`
-        @keyframes fadeSlideUp {
-          from { opacity:0; transform:translateY(28px); }
-          to   { opacity:1; transform:translateY(0); }
-        }
-        @keyframes scrollPulse {
-          0%,100% { opacity:1; transform:scaleY(1); }
-          50%      { opacity:0.4; transform:scaleY(0.7); }
-        }
-        @media (max-width: 900px) {
-          .about-grid { grid-template-columns:1fr !important; }
-          .video-layout { grid-template-columns:1fr !important; }
-        }
-        @media (max-width: 600px) {
-          .about-grid { gap:40px !important; }
-        }
-      `}</style>
     </div>
   );
 }

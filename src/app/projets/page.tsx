@@ -177,13 +177,13 @@ export default function ProjectsPage() {
           const chars = titleEl.querySelectorAll<HTMLElement>('.proj-char');
           if (chars.length) {
             gsap.fromTo(chars, {
-              y: 100, opacity: 0, skewY: 8, rotateX: -50,
+              y: 80, opacity: 0, skewY: 6, rotateX: -40,
             }, {
               y: 0, opacity: 1, skewY: 0, rotateX: 0,
-              duration: 1.2,
+              duration: 0.65,
               ease: 'expo.out',
-              stagger: 0.05,
-              delay: 0.2,
+              stagger: 0.022,
+              delay: 0.1,
             });
           }
         }
@@ -210,8 +210,8 @@ export default function ProjectsPage() {
             trigger: pinRef.current,
             pin: true,
             start: 'top top',
-            end: `+=${cards.length * 320}`,
-            scrub: 1.8,
+            end: `+=${cards.length * 400}`,
+            scrub: 0.8,
             anticipatePin: 1,
           },
         });
@@ -222,9 +222,9 @@ export default function ProjectsPage() {
             rotation: 0,
             scale: 1,
             opacity: 1,
-            duration: 1,
+            duration: 0.8,
             ease: 'expo.out',
-          }, '>-0.55');
+          }, '>-0.5');
         });
 
         // 3. General gsap-reveals
@@ -276,7 +276,7 @@ export default function ProjectsPage() {
       <Navbar />
 
       {/* ── Hero header ──────────────────────────────────── */}
-      <section style={{
+      <section className="proj-page-section" style={{
         paddingTop: '160px', paddingBottom: '80px',
         paddingLeft: '60px', paddingRight: '60px',
         maxWidth: '1400px', margin: '0 auto',
@@ -393,14 +393,6 @@ export default function ProjectsPage() {
 
       <Footer />
 
-      <style>{`
-        @media (max-width: 768px) {
-          .proj-cards-grid { grid-template-columns: 1fr !important; padding: 0 24px 60px !important; }
-        }
-        @media (max-width: 600px) {
-          section[style] { padding-left: 24px !important; padding-right: 24px !important; }
-        }
-      `}</style>
     </div>
   );
 }
