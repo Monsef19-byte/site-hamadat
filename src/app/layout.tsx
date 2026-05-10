@@ -6,6 +6,7 @@ import LayoutContent from '@/components/LayoutContent';
 import PageLoader from '@/components/anim/PageLoader';
 import CustomCursor from '@/components/anim/CustomCursor';
 import SmoothScroll from '@/components/anim/SmoothScroll';
+import MeshBackground from '@/components/anim/MeshBackground';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PageLoader />
         <CustomCursor />
         <SmoothScroll />
+        <MeshBackground />
         <ThemeProvider>
           <SiteConfigProvider>
             <LanguageProvider>

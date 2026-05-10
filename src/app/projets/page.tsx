@@ -1,26 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import RevealBlock from '@/components/anim/RevealBlock';
 import { useLanguage } from '@/lib/language-context';
-
-interface Residence {
-  slug: string; name_fr: string; name_ar: string;
-  location: string; status: string; total_units: number;
-  typology: string; thumb: string; available?: string;
-}
-
-const RESIDENCES: Residence[] = [
-  { slug: 'elysia',        name_fr: 'Elysia',        name_ar: 'إليسيا',        location: 'Jijel',              status: 'ongoing',   total_units: 56,  typology: 'F3 — 96 m² à 110 m²',       thumb: '/residences/elysia/vue-001-1.jpg' },
-  { slug: 'les-3-princes', name_fr: 'Les 3 Princes',  name_ar: 'الثلاث أمراء', location: 'Dely Brahim, Alger', status: 'completed', total_units: 43,  typology: 'F3 à F6 — Simplex & Duplex', thumb: '/residences/les-3-princes/vue-2.jpg' },
-  { slug: 'orea',          name_fr: 'Orea',           name_ar: 'أوريا',         location: 'Dely Brahim, Alger', status: 'ongoing',   total_units: 38,  typology: 'F3 à F6',                    thumb: '/residences/orea/b1.jpg', available: '2 F3, 1 F4' },
-  { slug: 'lumalac',       name_fr: 'Lumalac',        name_ar: 'لوملاك',        location: 'Dely Brahim, Alger', status: 'ongoing',   total_units: 8,   typology: '6 × F3 — 2 × Triplex F7',   thumb: '/residences/lumalac/lumalac-1.png' },
-  { slug: 'marmo',         name_fr: 'Marmo',          name_ar: 'مارمو',         location: 'Dely Brahim, Alger', status: 'completed', total_units: 8,   typology: '6 × F3 — 2 × Duplex F6',    thumb: '/residences/marmo/1.jpg' },
-  { slug: 'vertdalya',     name_fr: 'Vert Dalya',     name_ar: 'فيرت داليا',    location: 'Dely Brahim, Alger', status: 'completed', total_units: 10,  typology: 'Loft 270 m²',                thumb: '/residences/vertdalya/vrtdalya.png', available: 'Disponible' },
-];
+import { useSiteConfig } from '@/lib/site-config-context';
 
 const FILTERS = [
   { value: '',          fr: 'Tous',     ar: 'الكل' },
@@ -28,11 +14,26 @@ const FILTERS = [
   { value: 'completed', fr: 'Livrés',   ar: 'منجزة' },
 ];
 
-function ProjectCard({ r, lang, idx }: { r: Residence; lang: string; idx: number }) {
+// Each card flies from a unique off-screen position
+const FLY_FROM = [
+  { x: -900, y: -200, r: -18, s: 0.35 },
+  { x:  800, y: -350, r:  20, s: 0.40 },
+  { x: -600, y:  450, r:  22, s: 0.45 },
+  { x:  750, y:  300, r: -25, s: 0.38 },
+  { x: -400, y: -500, r:  14, s: 0.42 },
+  { x:  500, y:  550, r: -30, s: 0.40 },
+];
+
+function ProjectCard({ r, thumb, lang, cardRef }: {
+  r: { slug: string; name_fr: string; name_ar: string; location: string; status: string; units: number; typology?: string; available?: string };
+  thumb: string;
+  lang: string;
+  cardRef?: (el: HTMLDivElement | null) => void;
+}) {
   const [hov, setHov] = useState(false);
 
   return (
-    <RevealBlock delay={0.08 * idx} y={52}>
+    <div ref={cardRef}>
       <Link
         href={`/projets/${r.slug}`}
         data-cursor
@@ -43,26 +44,31 @@ function ProjectCard({ r, lang, idx }: { r: Residence; lang: string; idx: number
         {/* Image */}
         <div style={{
           position: 'relative', aspectRatio: '4/3',
-          overflow: 'hidden', borderRadius: '4px',
-          background: 'var(--border)',
-          boxShadow: hov ? '0 28px 64px rgba(0,0,0,0.18)' : '0 4px 20px rgba(0,0,0,0.07)',
-          transition: 'box-shadow 0.5s cubic-bezier(0.22,1,0.36,1)',
-          transform: hov ? 'translateY(-6px)' : 'translateY(0)',
+          overflow: 'hidden', borderRadius: '6px',
+          background: 'rgba(255,255,255,0.04)',
+          boxShadow: hov ? '0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(14,116,112,0.3)' : '0 16px 48px rgba(0,0,0,0.6)',
+          transform: hov ? 'translateY(-10px) scale(1.01)' : 'translateY(0) scale(1)',
           transitionProperty: 'box-shadow, transform',
-          transitionDuration: '0.5s',
+          transitionDuration: '0.6s',
           transitionTimingFunction: 'cubic-bezier(0.22,1,0.36,1)',
           marginBottom: '20px',
         }}>
-          <img src={r.thumb} alt={r.name_fr} style={{
+          <img src={thumb} alt={r.name_fr} style={{
             width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-            transition: 'transform 0.9s cubic-bezier(0.16,1,0.3,1)',
-            transform: hov ? 'scale(1.07)' : 'scale(1)',
+            transition: 'transform 1s cubic-bezier(0.16,1,0.3,1)',
+            transform: hov ? 'scale(1.08)' : 'scale(1)',
           }} />
 
-          {/* Dark overlay on hover */}
+          {/* Gradient overlay */}
           <div style={{
             position: 'absolute', inset: 0,
-            background: 'rgba(0,0,0,0.18)',
+            background: 'linear-gradient(to top, rgba(6,8,10,0.7) 0%, transparent 50%)',
+          }} />
+
+          {/* Hover teal glow */}
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: 'rgba(14,116,112,0.12)',
             opacity: hov ? 1 : 0,
             transition: 'opacity 0.4s ease',
           }} />
@@ -70,9 +76,14 @@ function ProjectCard({ r, lang, idx }: { r: Residence; lang: string; idx: number
           {/* Status badge */}
           <div style={{
             position: 'absolute', top: '16px', left: '16px',
-            background: r.status === 'completed' ? 'rgba(16,185,129,0.92)' : 'rgba(14,116,112,0.92)',
-            color: '#fff', padding: '4px 12px',
-            fontSize: '9px', fontWeight: '700', letterSpacing: '1.5px', textTransform: 'uppercase', borderRadius: '2px',
+            background: r.status === 'completed'
+              ? 'rgba(16,185,129,0.15)'
+              : 'rgba(14,116,112,0.15)',
+            backdropFilter: 'blur(12px)',
+            border: `1px solid ${r.status === 'completed' ? 'rgba(16,185,129,0.4)' : 'rgba(14,116,112,0.4)'}`,
+            color: r.status === 'completed' ? '#10b981' : '#14b8b0',
+            padding: '5px 14px',
+            fontSize: '9px', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', borderRadius: '3px',
           }}>
             {r.status === 'completed' ? (lang === 'ar' ? 'منجز' : 'Livré') : (lang === 'ar' ? 'جارٍ' : 'En Cours')}
           </div>
@@ -80,146 +91,308 @@ function ProjectCard({ r, lang, idx }: { r: Residence; lang: string; idx: number
           {r.available && (
             <div style={{
               position: 'absolute', bottom: '16px', left: '16px',
-              background: 'rgba(14,116,112,0.9)',
-              color: '#fff', padding: '4px 12px',
-              fontSize: '10px', fontWeight: '600', letterSpacing: '0.5px', borderRadius: '2px',
+              background: 'rgba(14,116,112,0.85)',
+              backdropFilter: 'blur(8px)',
+              color: '#fff', padding: '5px 14px',
+              fontSize: '10px', fontWeight: '600', letterSpacing: '0.5px', borderRadius: '3px',
             }}>
               {lang === 'ar' ? 'متاح' : r.available}
             </div>
           )}
 
-          {/* Arrow icon on hover */}
+          {/* Arrow circle */}
           <div style={{
             position: 'absolute', bottom: '16px', right: '16px',
-            width: '40px', height: '40px', borderRadius: '50%',
+            width: '42px', height: '42px', borderRadius: '50%',
             background: 'rgba(255,255,255,0.95)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             opacity: hov ? 1 : 0,
-            transform: hov ? 'scale(1) translateY(0)' : 'scale(0.7) translateY(8px)',
-            transition: 'opacity 0.35s ease, transform 0.45s cubic-bezier(0.22,1,0.36,1)',
-            fontSize: '16px', color: '#0e7470',
+            transform: hov ? 'scale(1) translateY(0)' : 'scale(0.6) translateY(10px)',
+            transition: 'opacity 0.35s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1)',
+            fontSize: '18px', color: '#0e7470',
           }}>
             →
           </div>
         </div>
 
         {/* Card text */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-          <h3 style={{
-            fontSize: '21px', fontWeight: '400',
-            color: 'var(--text-1)', margin: 0, letterSpacing: '-0.3px',
-            transition: 'color 0.3s',
-            ...(hov ? { color: 'var(--teal)' } : {}),
-          }}>
-            {lang === 'ar' ? r.name_ar : r.name_fr}
-          </h3>
-          <span style={{ fontSize: '13px', color: 'var(--text-4)', marginTop: '4px' }}>
-            {r.total_units} {lang === 'ar' ? 'وحدة' : 'unités'}
-          </span>
+        <div style={{ padding: '0 4px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+            <h3 style={{
+              fontSize: '22px', fontWeight: '300',
+              color: hov ? '#14b8b0' : 'rgba(255,255,255,0.9)',
+              margin: 0, letterSpacing: '-0.3px',
+              transition: 'color 0.3s',
+            }}>
+              {lang === 'ar' ? r.name_ar : r.name_fr}
+            </h3>
+            <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', marginTop: '5px', letterSpacing: '0.5px' }}>
+              {r.units} {lang === 'ar' ? 'وحدة' : 'unités'}
+            </span>
+          </div>
+          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', margin: '0 0 12px', letterSpacing: '0.5px' }}>
+            {r.location}
+          </p>
+          <div style={{ height: '1px', background: 'rgba(255,255,255,0.06)' }} />
+          {r.typology && (
+            <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.25)', margin: '10px 0 0', letterSpacing: '0.3px' }}>
+              {r.typology}
+            </p>
+          )}
         </div>
-        <p style={{ fontSize: '13px', color: 'var(--text-3)', margin: '0 0 10px' }}>{r.location}</p>
-        <div style={{ height: '1px', background: 'var(--border)', margin: '10px 0 0' }} />
-        <p style={{ fontSize: '11px', color: 'var(--text-4)', margin: '10px 0 0', letterSpacing: '0.3px' }}>
-          {r.typology}
-        </p>
       </Link>
-    </RevealBlock>
+    </div>
   );
 }
 
 export default function ProjectsPage() {
   const { lang } = useLanguage();
+  const { config } = useSiteConfig();
   const [filter, setFilter] = useState('');
 
-  const filtered = filter ? RESIDENCES.filter(r => r.status === filter) : RESIDENCES;
+  const titleRef   = useRef<HTMLDivElement>(null);
+  const pinRef     = useRef<HTMLDivElement>(null);
+  const cardsRef   = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Lines reveal
+  const residences = config.residenceList ?? [];
+  const filtered = filter ? residences.filter(r => r.status === filter) : residences;
+
+  // ── GSAP flying cards ───────────────────────────────────────
   useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll<HTMLElement>('.line-inner').forEach((el, i) => {
-          setTimeout(() => el.classList.add('lv'), i * 90);
+    let ctx: { revert?: () => void } = {};
+
+    const init = async () => {
+      const g = await import('gsap');
+      const { ScrollTrigger: ST } = await import('gsap/ScrollTrigger');
+      const gsap = g.gsap;
+      gsap.registerPlugin(ST);
+
+      ctx = gsap.context(() => {
+        // 1. Title character split
+        const titleEl = titleRef.current;
+        if (titleEl) {
+          const chars = titleEl.querySelectorAll<HTMLElement>('.proj-char');
+          if (chars.length) {
+            gsap.fromTo(chars, {
+              y: 100, opacity: 0, skewY: 8, rotateX: -50,
+            }, {
+              y: 0, opacity: 1, skewY: 0, rotateX: 0,
+              duration: 1.2,
+              ease: 'expo.out',
+              stagger: 0.05,
+              delay: 0.2,
+            });
+          }
+        }
+
+        // 2. Flying cards
+        const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
+        if (!pinRef.current || cards.length === 0) return;
+
+        // Set all cards to their starting fly-from positions
+        cards.forEach((card, i) => {
+          const from = FLY_FROM[i % FLY_FROM.length];
+          gsap.set(card, {
+            x: from.x, y: from.y,
+            rotation: from.r,
+            scale: from.s,
+            opacity: 0,
+            transformOrigin: '50% 50%',
+          });
         });
-        obs.unobserve(e.target);
-      }
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.lines-observe').forEach(el => obs.observe(el));
-    return () => obs.disconnect();
-  }, []);
+
+        // Pin section + scrub each card flying in
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: pinRef.current,
+            pin: true,
+            start: 'top top',
+            end: `+=${cards.length * 320}`,
+            scrub: 1.8,
+            anticipatePin: 1,
+          },
+        });
+
+        cards.forEach((card) => {
+          tl.to(card, {
+            x: 0, y: 0,
+            rotation: 0,
+            scale: 1,
+            opacity: 1,
+            duration: 1,
+            ease: 'expo.out',
+          }, '>-0.55');
+        });
+
+        // 3. General gsap-reveals
+        ST.batch('.proj-gsap-reveal', {
+          onEnter: (els) => {
+            gsap.fromTo(els, {
+              opacity: 0, y: 48,
+            }, {
+              opacity: 1, y: 0,
+              duration: 1,
+              ease: 'expo.out',
+              stagger: 0.12,
+            });
+          },
+          start: 'top 88%',
+          once: true,
+        });
+
+        // 4. Filter bar line draw
+        const filterBar = document.querySelector<HTMLElement>('.filter-line');
+        if (filterBar) {
+          gsap.fromTo(filterBar, { scaleX: 0, transformOrigin: 'left' }, {
+            scaleX: 1,
+            duration: 1.4,
+            ease: 'expo.out',
+            delay: 0.6,
+            scrollTrigger: { trigger: filterBar, start: 'top 90%', once: true },
+          });
+        }
+      });
+    };
+
+    init();
+    return () => ctx.revert?.();
+  }, [filtered.length]);
+
+  // re-init when filter changes — reset card refs
+  useEffect(() => {
+    cardsRef.current = cardsRef.current.slice(0, filtered.length);
+  }, [filtered.length]);
+
+  const title = lang === 'ar' ? 'مشاريعنا' : 'NOS PROJETS';
 
   return (
-    <div style={{ background: 'var(--bg-page)', overflowX: 'hidden' }}>
+    <div style={{ background: '#06080a', overflowX: 'hidden', color: 'rgba(255,255,255,0.85)' }}>
       <Navbar />
 
-      {/* ── Header ── */}
-      <section style={{ paddingTop: '180px', paddingBottom: '80px', paddingLeft: '60px', paddingRight: '60px', maxWidth: '1280px', margin: '0 auto' }}>
+      {/* ── Hero header ──────────────────────────────────── */}
+      <section style={{
+        paddingTop: '160px', paddingBottom: '80px',
+        paddingLeft: '60px', paddingRight: '60px',
+        maxWidth: '1400px', margin: '0 auto',
+        position: 'relative',
+      }}>
 
-        <RevealBlock delay={0} y={24}>
+        {/* Background label */}
+        <div style={{
+          position: 'absolute', top: '80px', left: '50%',
+          transform: 'translateX(-50%)',
+          fontSize: 'clamp(100px, 18vw, 260px)',
+          fontWeight: '700', color: 'rgba(255,255,255,0.025)',
+          letterSpacing: '-0.04em', userSelect: 'none', pointerEvents: 'none',
+          whiteSpace: 'nowrap',
+        }}>
+          PORTFOLIO
+        </div>
+
+        <div className="proj-gsap-reveal" style={{ marginBottom: '20px' }}>
           <span style={{
-            display: 'block',
-            fontSize: '10px', fontWeight: '700', color: 'var(--teal)',
-            letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '24px',
+            display: 'inline-block',
+            fontSize: '10px', fontWeight: '700', color: '#0e7470',
+            letterSpacing: '5px', textTransform: 'uppercase',
           }}>
-            {lang === 'ar' ? 'مجمعاتنا السكنية' : 'Portfolio'}
+            {lang === 'ar' ? 'مجمعاتنا السكنية' : 'Portfolio — Hamadat Résidences'}
           </span>
-        </RevealBlock>
+        </div>
 
-        <div className="lines-observe" style={{ marginBottom: '52px' }}>
-          <div style={{ overflow: 'hidden' }}>
-            <h1 className="line-inner" style={{
-              fontSize: 'clamp(44px, 7vw, 88px)',
-              fontWeight: '300', color: 'var(--text-1)',
-              letterSpacing: '-2px', margin: 0, lineHeight: '1.0',
-            }}>
-              {lang === 'ar' ? 'مشاريعنا' : 'Nos Projets'}
-            </h1>
-          </div>
+        {/* Title with character split */}
+        <div
+          ref={titleRef}
+          style={{
+            perspective: '1000px',
+            marginBottom: '48px',
+            overflow: 'hidden',
+          }}
+        >
+          <h1 style={{
+            fontSize: 'clamp(52px, 9vw, 120px)',
+            fontWeight: '200',
+            color: '#fff',
+            letterSpacing: '-3px',
+            margin: 0,
+            lineHeight: '0.95',
+            display: 'flex', flexWrap: 'wrap', gap: '0 2px',
+          }}>
+            {title.split('').map((ch, i) => (
+              <span key={i} className="proj-char" style={{
+                display: 'inline-block',
+                whiteSpace: ch === ' ' ? 'pre' : 'normal',
+                opacity: 0,
+              }}>
+                {ch === ' ' ? ' ' : ch}
+              </span>
+            ))}
+          </h1>
         </div>
 
         {/* Filters */}
-        <RevealBlock delay={0.2} y={20}>
-          <div style={{ display: 'flex', gap: '8px' }}>
-            {FILTERS.map(f => (
-              <button key={f.value} onClick={() => setFilter(f.value)} data-cursor style={{
-                padding: '9px 28px',
-                background: filter === f.value ? 'var(--teal)' : 'transparent',
-                color: filter === f.value ? '#fff' : 'var(--text-2)',
-                border: filter === f.value ? '1px solid var(--teal)' : '1px solid var(--border)',
-                borderRadius: '40px', fontSize: '11px', fontWeight: '700',
-                cursor: 'pointer', letterSpacing: '1px', textTransform: 'uppercase',
-                transition: 'all 0.3s cubic-bezier(0.22,1,0.36,1)',
-              }}
-                onMouseEnter={(e) => { if (filter !== f.value) { (e.currentTarget as HTMLElement).style.borderColor = 'var(--teal)'; (e.currentTarget as HTMLElement).style.color = 'var(--teal)'; } }}
-                onMouseLeave={(e) => { if (filter !== f.value) { (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'; (e.currentTarget as HTMLElement).style.color = 'var(--text-2)'; } }}
-              >
-                {lang === 'ar' ? f.ar : f.fr}
-              </button>
+        <div className="proj-gsap-reveal" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '32px' }}>
+          {FILTERS.map(f => (
+            <button key={f.value} onClick={() => setFilter(f.value)} data-cursor style={{
+              padding: '10px 32px',
+              background: filter === f.value ? '#0e7470' : 'rgba(255,255,255,0.04)',
+              color: filter === f.value ? '#fff' : 'rgba(255,255,255,0.5)',
+              border: filter === f.value ? '1px solid #0e7470' : '1px solid rgba(255,255,255,0.1)',
+              borderRadius: '40px', fontSize: '10px', fontWeight: '700',
+              cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase',
+              transition: 'all 0.35s cubic-bezier(0.22,1,0.36,1)',
+              backdropFilter: 'blur(8px)',
+            }}>
+              {lang === 'ar' ? f.ar : f.fr}
+            </button>
+          ))}
+        </div>
+
+        {/* Divider line */}
+        <div className="filter-line" style={{
+          height: '1px',
+          background: 'linear-gradient(90deg, rgba(14,116,112,0.6) 0%, rgba(255,255,255,0.05) 60%, transparent 100%)',
+        }} />
+      </section>
+
+      {/* ── Flying cards pin section ──────────────────── */}
+      {filtered.length > 0 ? (
+        <section ref={pinRef} style={{ minHeight: '100vh', paddingBottom: '120px' }}>
+          <div style={{
+            maxWidth: '1400px', margin: '0 auto',
+            padding: '0 60px 80px',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
+            gap: '56px 40px',
+          }} className="proj-cards-grid">
+            {filtered.map((r, idx) => (
+              <ProjectCard
+                key={r.slug}
+                r={r}
+                thumb={config.residences[r.slug]?.thumbnail ?? ''}
+                lang={lang}
+                cardRef={(el) => { cardsRef.current[idx] = el; }}
+              />
             ))}
           </div>
-        </RevealBlock>
-      </section>
-
-      {/* ── Grid ── */}
-      <section style={{ background: 'var(--bg-card)', padding: '80px 60px 140px' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          {filtered.length > 0 ? (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '48px 32px' }} className="proj-grid">
-              {filtered.map((r, idx) => <ProjectCard key={r.slug} r={r} lang={lang} idx={idx} />)}
-            </div>
-          ) : (
-            <RevealBlock delay={0} y={24}>
-              <p style={{ textAlign: 'center', color: 'var(--text-3)', padding: '80px 0', fontSize: '15px' }}>
-                {lang === 'ar' ? 'لا توجد مشاريع مطابقة' : 'Aucun projet ne correspond.'}
-              </p>
-            </RevealBlock>
-          )}
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section style={{ minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <RevealBlock delay={0} y={24}>
+            <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.3)', fontSize: '15px' }}>
+              {lang === 'ar' ? 'لا توجد مشاريع مطابقة' : 'Aucun projet ne correspond.'}
+            </p>
+          </RevealBlock>
+        </section>
+      )}
 
       <Footer />
+
       <style>{`
+        @media (max-width: 768px) {
+          .proj-cards-grid { grid-template-columns: 1fr !important; padding: 0 24px 60px !important; }
+        }
         @media (max-width: 600px) {
-          .proj-grid { grid-template-columns: 1fr !important; }
+          section[style] { padding-left: 24px !important; padding-right: 24px !important; }
         }
       `}</style>
     </div>
