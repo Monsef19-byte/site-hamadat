@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSiteConfig } from '@/lib/site-config-context';
 
 export default function AdminContactPage() {
@@ -10,6 +10,10 @@ export default function AdminContactPage() {
   const [social, setSocial] = useState({ ...config.social });
   const [savedContact, setSavedContact] = useState(false);
   const [savedSocial, setSavedSocial] = useState(false);
+
+  // Sync when config loads from localStorage after mount
+  useEffect(() => { setContact({ ...config.contact }); }, [config.contact]);
+  useEffect(() => { setSocial({ ...config.social }); }, [config.social]);
 
   const fieldBase: React.CSSProperties = {
     width: '100%', padding: '12px 16px',

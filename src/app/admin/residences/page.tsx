@@ -37,14 +37,24 @@ export default function AdminResidencesPage() {
   const { config, updateConfig } = useSiteConfig();
   const [residences, setResidences] = useState(INITIAL);
 
-  // ── Maps ──
+  // ── Maps — read directly from config, sync after localStorage loads ──
   const [mapInputs, setMapInputs] = useState<Record<string, string>>(
     Object.fromEntries(RESIDENCE_SLUGS.map(({ slug }) => [slug, config.residences[slug]?.mapEmbed || '']))
   );
   const [mapSaved, setMapSaved] = useState<Record<string, boolean>>({});
 
+  // Sync input fields when config loads from localStorage after mount
   useEffect(() => {
-    setMapInputs(Object.fromEntries(RESIDENCE_SLUGS.map(({ slug }) => [slug, config.residences[slug]?.mapEmbed || ''])));
+    setMapInputs(prev => {
+      const next = Object.fromEntries(
+        RESIDENCE_SLUGS.map(({ slug }) => [slug, config.residences[slug]?.mapEmbed || ''])
+      );
+      // Only update fields the user hasn't manually changed
+      return Object.fromEntries(
+        RESIDENCE_SLUGS.map(({ slug }) => [slug, mapSaved[slug] ? prev[slug] : next[slug]])
+      );
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config.residences]);
 
   const saveMap = (slug: string) => {

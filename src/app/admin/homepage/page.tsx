@@ -21,33 +21,28 @@ function ytThumb(url: string) { const id = ytId(url); return id ? `https://img.y
 export default function AdminHomepagePage() {
   const { config, updateConfig } = useSiteConfig();
 
-  // ── Hero media ──
-  const [mediaList, setMediaList] = useState<HomeMedia[]>(
-    [...config.homeMedia].sort((a, b) => a.order - b.order)
-  );
+  // ── Lists read directly from config — always in sync with localStorage ──
+  const mediaList: HomeMedia[]  = [...config.homeMedia].sort((a, b) => a.order - b.order);
+  const videoList: VideoEntry[] = [...(config.videos ?? [])].sort((a, b) => a.order - b.order);
+
+  // ── Add-form local state only ──
   const [newUrl, setNewUrl]     = useState('');
   const [newLabel, setNewLabel] = useState('');
   const [newType, setNewType]   = useState<'image' | 'video'>('image');
+  const [newVidUrl,   setNewVidUrl]   = useState('');
+  const [newVidLabel, setNewVidLabel] = useState('');
 
   // ── About image ──
-  const [aboutImg, setAboutImg] = useState(config.aboutImage || '/residences/les-3-princes/vue-2.jpg');
+  const [aboutImg, setAboutImg] = useState(config.aboutImage || '');
   const [aboutImgSaved, setAboutImgSaved] = useState(false);
-
-  // keep in sync with config (loaded from localStorage after mount)
-  useEffect(() => { setAboutImg(config.aboutImage || '/residences/les-3-princes/vue-2.jpg'); }, [config.aboutImage]);
+  // Sync when config loads from localStorage after mount
+  useEffect(() => { setAboutImg(config.aboutImage || ''); }, [config.aboutImage]);
 
   const saveAboutImg = () => {
     updateConfig({ aboutImage: aboutImg.trim() });
     setAboutImgSaved(true);
     setTimeout(() => setAboutImgSaved(false), 2000);
   };
-
-  // ── Videos ──
-  const [videoList, setVideoList] = useState<VideoEntry[]>(
-    [...(config.videos ?? [])].sort((a, b) => a.order - b.order)
-  );
-  const [newVidUrl,   setNewVidUrl]   = useState('');
-  const [newVidLabel, setNewVidLabel] = useState('');
 
   const fieldBase: React.CSSProperties = {
     padding: '10px 14px',
@@ -56,8 +51,8 @@ export default function AdminHomepagePage() {
     fontFamily: 'inherit', outline: 'none',
   };
 
-  // ── Media helpers ──
-  const saveMedia = (list: HomeMedia[]) => { setMediaList(list); updateConfig({ homeMedia: list }); };
+  // ── Media helpers — write directly to config ──
+  const saveMedia = (list: HomeMedia[]) => updateConfig({ homeMedia: list });
   const moveMediaUp   = (i: number) => { if (i === 0) return; const l = [...mediaList]; [l[i-1],l[i]]=[l[i],l[i-1]]; saveMedia(l.map((x,j)=>({...x,order:j}))); };
   const moveMediaDown = (i: number) => { if (i === mediaList.length-1) return; const l=[...mediaList]; [l[i],l[i+1]]=[l[i+1],l[i]]; saveMedia(l.map((x,j)=>({...x,order:j}))); };
   const deleteMedia   = (id: string) => saveMedia(mediaList.filter(m=>m.id!==id).map((x,j)=>({...x,order:j})));
@@ -68,8 +63,8 @@ export default function AdminHomepagePage() {
     setNewUrl(''); setNewLabel(''); setNewType('image');
   };
 
-  // ── Video helpers ──
-  const saveVideos = (list: VideoEntry[]) => { setVideoList(list); updateConfig({ videos: list }); };
+  // ── Video helpers — write directly to config ──
+  const saveVideos = (list: VideoEntry[]) => updateConfig({ videos: list });
   const moveVidUp   = (i: number) => { if (i === 0) return; const l=[...videoList]; [l[i-1],l[i]]=[l[i],l[i-1]]; saveVideos(l.map((x,j)=>({...x,order:j}))); };
   const moveVidDown = (i: number) => { if (i===videoList.length-1) return; const l=[...videoList]; [l[i],l[i+1]]=[l[i+1],l[i]]; saveVideos(l.map((x,j)=>({...x,order:j}))); };
   const deleteVideo   = (id: string) => saveVideos(videoList.filter(v=>v.id!==id).map((x,j)=>({...x,order:j})));
@@ -181,7 +176,6 @@ export default function AdminHomepagePage() {
           </button>
         </div>
 
-        {/* Preview */}
         {aboutImg && (
           <div style={{ marginTop: '16px', position: 'relative', height: '160px', borderRadius: '4px', overflow: 'hidden', background: 'var(--border)' }}>
             <img
@@ -217,8 +211,6 @@ export default function AdminHomepagePage() {
                 <BtnRow onClick={()=>moveVidUp(idx)} disabled={idx===0} style={{opacity:idx===0?0.3:1}}>▲</BtnRow>
                 <BtnRow onClick={()=>moveVidDown(idx)} disabled={idx===videoList.length-1} style={{opacity:idx===videoList.length-1?0.3:1}}>▼</BtnRow>
               </div>
-
-              {/* Thumbnail */}
               <div style={{ position:'relative', width:'80px', height:'52px', borderRadius:'4px', overflow:'hidden', background:'var(--border)', flexShrink:0 }}>
                 {hasId && <img src={thumb} alt={v.label} style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />}
                 {!hasId && <span style={{ position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'10px', color:'var(--text-4)' }}>?</span>}
@@ -226,15 +218,10 @@ export default function AdminHomepagePage() {
                   <div style={{ width:0, height:0, borderTop:'5px solid transparent', borderBottom:'5px solid transparent', borderLeft:'8px solid rgba(255,255,255,0.9)', marginLeft:'2px' }} />
                 </div>
               </div>
-
-              {/* Label */}
               <input type="text" value={v.label} onChange={e=>updateVidLabel(v.id,e.target.value)} style={{...fieldBase,flex:1}} placeholder="Titre de la vidéo" />
-
-              {/* URL display */}
               <span style={{ fontSize:'11px', color:'var(--text-4)', maxWidth:'200px', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', flexShrink:0 }}>
                 {v.url}
               </span>
-
               <button onClick={()=>deleteVideo(v.id)} style={{ background:'none', border:'1px solid #fecaca', borderRadius:'4px', padding:'5px 12px', cursor:'pointer', color:'#dc2626', fontSize:'12px', fontWeight:'600', flexShrink:0, transition:'all 0.15s' }} onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.background='#fee2e2';}} onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.background='none';}}>
                 Supprimer
               </button>
@@ -242,7 +229,6 @@ export default function AdminHomepagePage() {
           );
         })}
 
-        {/* Add video form */}
         <div style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: '1fr 200px auto', gap: '10px', alignItems: 'end' }}>
           <div>
             <label style={{ display:'block', fontSize:'10px', fontWeight:'700', color:'var(--text-3)', letterSpacing:'1.5px', textTransform:'uppercase', marginBottom:'6px' }}>URL YouTube</label>
@@ -266,7 +252,6 @@ export default function AdminHomepagePage() {
         <h2 style={{ fontSize: '11px', fontWeight: '700', color: 'var(--text-4)', letterSpacing: '2px', textTransform: 'uppercase', margin: '0 0 20px', paddingBottom: '12px', borderBottom: '1px solid var(--border)' }}>
           Taille des résidences dans la grille
         </h2>
-
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {RESIDENCE_SLUGS.map(({ slug, name }) => {
             const currentSize = config.residences[slug]?.gridSize ?? 3;
@@ -288,7 +273,6 @@ export default function AdminHomepagePage() {
           })}
         </div>
       </div>
-
 
     </div>
   );

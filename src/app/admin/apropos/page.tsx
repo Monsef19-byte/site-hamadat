@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSiteConfig } from '@/lib/site-config-context';
 
 export default function AdminAProposPage() {
@@ -8,6 +8,12 @@ export default function AdminAProposPage() {
   const [storyFr, setStoryFr] = useState(config.apropos.story_fr);
   const [storyAr, setStoryAr] = useState(config.apropos.story_ar);
   const [saved, setSaved] = useState(false);
+
+  // Sync when config loads from localStorage after mount
+  useEffect(() => {
+    setStoryFr(config.apropos.story_fr);
+    setStoryAr(config.apropos.story_ar);
+  }, [config.apropos.story_fr, config.apropos.story_ar]);
 
   const handleSave = () => {
     updateConfig({ apropos: { story_fr: storyFr, story_ar: storyAr } });
