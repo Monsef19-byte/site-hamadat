@@ -1,0 +1,202 @@
+/* Arabic fallback — Cairo from Google Fonts (loads when Montserrat Arabic files are absent) */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Axiforma (French / Latin) ── */
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('/fonts/Axiforma-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Montserrat Arabic ── */
+@font-face {
+  font-family: 'Montserrat Arabic';
+  src: url('/fonts/MontserratArabic-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat Arabic';
+  src: url('/fonts/MontserratArabic-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat Arabic';
+  src: url('/fonts/MontserratArabic-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat Arabic';
+  src: url('/fonts/MontserratArabic-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat Arabic';
+  src: url('/fonts/MontserratArabic-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Tahu (script accent) ── */
+@font-face {
+  font-family: 'Tahu';
+  src: url('/fonts/Tahu.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-main:    'Axiforma', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-arabic:  'Montserrat Arabic', 'Cairo', Arial, sans-serif;
+
+  --teal-primary:  #0e7470;
+  --teal-dark:     #0a5450;
+  --teal-accent:   #1a958b;
+  --charcoal:      #2a2826;
+  --charcoal-light:#6b6560;
+
+  --bg-page:    #f7f7f5;
+  --bg-card:    #ffffff;
+  --bg-dark:    #1c1917;
+  --text-1:     #2a2826;
+  --text-2:     #6b6560;
+  --text-3:     #9a9590;
+  --text-4:     #b8b0a8;
+  --border:     #e5e5e3;
+  --border-sub: #ececea;
+  --teal:       #0e7470;
+  --teal-dk:    #0a5450;
+  --nav-bg:     rgba(255,255,255,0.98);
+  --nav-border: #e5e5e3;
+  --input-bg:   #ffffff;
+
+  /* legacy aliases */
+  --bg-white:      #ffffff;
+  --bg-footer:     #1c1917;
+  --border-subtle: #ececea;
+}
+
+html.dark {
+  --bg-page:    #111110;
+  --bg-card:    #1a1a19;
+  --bg-dark:    #0a0a09;
+  --text-1:     #e8e6e3;
+  --text-2:     #a09c97;
+  --text-3:     #6b6764;
+  --text-4:     #3c3a38;
+  --border:     #2a2826;
+  --border-sub: #222220;
+  --teal:       #1a958b;
+  --teal-dk:    #0e7470;
+  --nav-bg:     rgba(17,17,16,0.98);
+  --nav-border: #2a2826;
+  --input-bg:   #1a1a19;
+
+  /* legacy aliases in dark */
+  --bg-white:      #1a1a19;
+  --bg-footer:     #0a0a09;
+  --border-subtle: #222220;
+  --charcoal:      #e8e6e3;
+  --charcoal-light:#a09c97;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg-page);
+  color: var(--text-1);
+}
+
+/* Arabic font when html[lang="ar"] is set */
+:lang(ar),
+[dir="rtl"] {
+  font-family: var(--font-arabic);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--teal); }
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(10px); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

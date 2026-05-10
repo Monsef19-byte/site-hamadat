@@ -1,0 +1,286 @@
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import { useParams, useRouter } from 'next/navigation';
+import { useSiteConfig } from '@/lib/site-config-context';
+
+const MOCK: Record<string, {
+  name_fr: string; name_ar: string; location: string; status: string;
+  total_units: string; typology: string; description_fr: string; description_ar: string;
+  available: string; delivery: string; featuredOnHome: boolean;
+}> = {
+  '1': { name_fr: 'Elysia', name_ar: 'إليسيا', location: 'Jijel', status: 'En cours', total_units: '56', typology: 'F3 (96 m² — 110 m²)', description_fr: "Implantée à Jijel, la résidence Elysia est un projet en cours développé par Hamadat Promotion Immobilière, proposant 56 logements de type F3 aux surfaces optimisées (96 m² et 110 m²).", description_ar: "في جيجل، تقدم إليسيا 56 وحدة سكنية من نوع F3 بمساحات 96 و110 م².", available: '', delivery: '24 mois', featuredOnHome: true },
+  '2': { name_fr: 'Les 3 Princes', name_ar: 'الثلاث أمراء', location: 'Dely Brahim, Alger', status: 'Livré', total_units: '43', typology: 'F3 à F6 — Simplex & Duplex', description_fr: "La résidence Les 3 Princes est un projet achevé comprenant 43 appartements allant du F3 au F6.", description_ar: "مجمع مكتمل في دالي إبراهيم يضم 43 شقة من F3 إلى F6.", available: '', delivery: '', featuredOnHome: false },
+  '3': { name_fr: 'Orea', name_ar: 'أوريا', location: 'Dely Brahim, Alger', status: 'En cours', total_units: '38', typology: 'F3 à F6', description_fr: "Orea est un projet en cours proposant 38 appartements allant du F3 au F6.", description_ar: "أوريا مشروع جارٍ يضم 38 شقة من F3 إلى F6.", available: '2 F3, 1 F4', delivery: '24 mois', featuredOnHome: true },
+  '4': { name_fr: 'Lumalac', name_ar: 'لوملاك', location: 'Dely Brahim, Alger', status: 'En cours', total_units: '8', typology: '6 × F3 — 2 × Triplex F7', description_fr: "La résidence Lumalac est un projet en cours composé de 8 logements.", description_ar: "لوملاك مشروع حديث في دالي إبراهيم يضم 8 وحدات.", available: '', delivery: '', featuredOnHome: false },
+  '5': { name_fr: 'Marmo', name_ar: 'مارمو', location: 'Dely Brahim, Alger', status: 'Livré', total_units: '8', typology: '6 × F3 — 2 × Duplex F6', description_fr: "Le projet Marmo est une résidence livrée de 8 logements à Dely Brahim.", description_ar: "مارمو مجمع سكني مسلم في دالي إبراهيم يضم 8 وحدات.", available: '', delivery: '', featuredOnHome: false },
+  '6': { name_fr: 'Vert Dalya', name_ar: 'فيرت داليا', location: 'Dely Brahim, Alger', status: 'Livré', total_units: '10', typology: 'Loft 270 m²', description_fr: "Vertdalya est une résidence finalisée composée de 10 lofts spacieux de 270 m².", description_ar: "فيرت داليا مجمع مكتمل في دالي إبراهيم يضم 10 شقق من نوع لوفت.", available: 'Disponible', delivery: '', featuredOnHome: false },
+};
+
+// Map numeric ID to slug
+const ID_TO_SLUG: Record<string, string> = {
+  '1': 'elysia', '2': 'les-3-princes', '3': 'orea',
+  '4': 'lumalac', '5': 'marmo', '6': 'vertdalya',
+};
+
+const STATUTS = ['En cours', 'Livré', 'Vendu'];
+
+const fieldBase: React.CSSProperties = {
+  width: '100%', padding: '12px 16px',
+  border: '1px solid var(--border)', borderRadius: '4px',
+  fontSize: '14px', color: 'var(--text-1)', background: 'var(--input-bg)',
+  boxSizing: 'border-box', fontFamily: 'inherit',
+  outline: 'none', transition: 'border-color 0.2s, box-shadow 0.2s',
+};
+
+const Label = ({ children, required }: { children: React.ReactNode; required?: boolean }) => (
+  <label style={{ display: 'block', fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '8px' }}>
+    {children}{required && <span style={{ color: '#0e7470', marginLeft: '3px' }}>*</span>}
+  </label>
+);
+
+const SectionTitle = ({ children }: { children: React.ReactNode }) => (
+  <h2 style={{ fontSize: '11px', fontWeight: '700', color: 'var(--text-4)', letterSpacing: '2px', textTransform: 'uppercase', margin: '0 0 20px', paddingBottom: '12px', borderBottom: '1px solid var(--border)' }}>
+    {children}
+  </h2>
+);
+
+export default function EditResidencePage() {
+  const { id } = useParams<{ id: string }>();
+  const router = useRouter();
+  const { config, updateConfig } = useSiteConfig();
+
+  const slug = ID_TO_SLUG[id] ?? id;
+  const cfgRes = config.residences[slug];
+
+  const base = MOCK[id] ?? MOCK['1'];
+  const [form, setForm] = useState(base);
+  const [focused, setFocused] = useState<string | null>(null);
+  const [saved, setSaved] = useState(false);
+
+  const [thumbnail, setThumbnail] = useState(cfgRes?.thumbnail ?? `/residences/${slug}.jpg`);
+  const [gridSize, setGridSize] = useState<number>(cfgRes?.gridSize ?? 3);
+
+  const f = (name: string): React.CSSProperties => ({
+    ...fieldBase,
+    borderColor: focused === name ? '#0e7470' : 'var(--border)',
+    boxShadow: focused === name ? '0 0 0 3px rgba(14,116,112,0.08)' : 'none',
+  });
+
+  const set = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    setForm(prev => ({ ...prev, [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateConfig({
+      residences: {
+        ...config.residences,
+        [slug]: { thumbnail, gridSize: gridSize as 2|3|4|5|6 },
+      },
+    });
+    setSaved(true);
+    setTimeout(() => router.push('/admin/residences'), 1200);
+  };
+
+  const handleDelete = () => {
+    if (confirm(`Supprimer "${form.name_fr}" définitivement ?`)) {
+      router.push('/admin/residences');
+    }
+  };
+
+  return (
+    <div style={{ background: 'var(--bg-page)', minHeight: '100vh', padding: '40px 48px' }}>
+
+      {/* Header */}
+      <div style={{ marginBottom: '40px' }}>
+        <Link href="/admin/residences" style={{ fontSize: '12px', color: 'var(--text-3)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px', marginBottom: '16px' }}>
+          ← Retour aux résidences
+        </Link>
+        <p style={{ fontSize: '11px', fontWeight: '700', color: '#0e7470', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '8px' }}>
+          Administration · Résidences
+        </p>
+        <h1 style={{ fontSize: '32px', fontWeight: '300', color: 'var(--text-1)', letterSpacing: '-0.5px', margin: 0 }}>
+          {form.name_fr}
+        </h1>
+      </div>
+
+      {saved && (
+        <div style={{ background: 'rgba(14,116,112,0.08)', border: '1px solid rgba(14,116,112,0.25)', borderRadius: '4px', padding: '14px 20px', marginBottom: '28px', fontSize: '14px', color: '#0e7470', fontWeight: '500' }}>
+          ✓ Résidence mise à jour. Redirection…
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '24px', alignItems: 'start' }}>
+
+          {/* Left */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+
+            {/* Photo principale */}
+            <div style={{ background: 'var(--bg-card)', borderRadius: '4px', padding: '28px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+              <SectionTitle>Photo principale</SectionTitle>
+              <div style={{ marginBottom: '16px' }}>
+                <img
+                  src={thumbnail}
+                  alt="Aperçu"
+                  style={{ width: '320px', height: '200px', objectFit: 'cover', borderRadius: '4px', display: 'block', background: 'var(--border)' }}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = '0.3'; }}
+                />
+              </div>
+              <Label>URL de l'image</Label>
+              <input
+                type="text"
+                value={thumbnail}
+                onChange={(e) => setThumbnail(e.target.value)}
+                onFocus={() => setFocused('thumbnail')}
+                onBlur={() => setFocused(null)}
+                style={f('thumbnail')}
+                placeholder="/residences/elysia.jpg"
+              />
+            </div>
+
+            <div style={{ background: 'var(--bg-card)', borderRadius: '4px', padding: '28px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+              <SectionTitle>Identité du projet</SectionTitle>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                <div>
+                  <Label required>Nom (Français)</Label>
+                  <input name="name_fr" type="text" value={form.name_fr} onChange={set} required
+                    onFocus={() => setFocused('name_fr')} onBlur={() => setFocused(null)} style={f('name_fr')} />
+                </div>
+                <div>
+                  <Label required>Nom (Arabe)</Label>
+                  <input name="name_ar" type="text" value={form.name_ar} onChange={set} required dir="rtl"
+                    onFocus={() => setFocused('name_ar')} onBlur={() => setFocused(null)}
+                    style={{ ...f('name_ar'), textAlign: 'right' }} />
+                </div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div>
+                  <Label required>Localisation</Label>
+                  <input name="location" type="text" value={form.location} onChange={set} required
+                    onFocus={() => setFocused('location')} onBlur={() => setFocused(null)} style={f('location')} />
+                </div>
+                <div>
+                  <Label required>Typologies</Label>
+                  <input name="typology" type="text" value={form.typology} onChange={set} required
+                    onFocus={() => setFocused('typology')} onBlur={() => setFocused(null)} style={f('typology')} />
+                </div>
+              </div>
+            </div>
+
+            <div style={{ background: 'var(--bg-card)', borderRadius: '4px', padding: '28px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+              <SectionTitle>Descriptions</SectionTitle>
+              <div style={{ marginBottom: '16px' }}>
+                <Label required>Description (Français)</Label>
+                <textarea name="description_fr" value={form.description_fr} onChange={set} required
+                  onFocus={() => setFocused('description_fr')} onBlur={() => setFocused(null)}
+                  style={{ ...f('description_fr'), minHeight: '120px', resize: 'vertical' }} />
+              </div>
+              <div dir="rtl">
+                <Label>الوصف (Arabe)</Label>
+                <textarea name="description_ar" value={form.description_ar} onChange={set}
+                  onFocus={() => setFocused('description_ar')} onBlur={() => setFocused(null)}
+                  style={{ ...f('description_ar'), minHeight: '120px', resize: 'vertical', textAlign: 'right' }} />
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', position: 'sticky', top: '24px' }}>
+
+            <div style={{ background: 'var(--bg-card)', borderRadius: '4px', padding: '24px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+              <SectionTitle>Taille dans la grille</SectionTitle>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                {([2, 3, 4, 5, 6] as const).map((s) => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => setGridSize(s)}
+                    style={{
+                      width: '40px', height: '40px', borderRadius: '4px',
+                      border: gridSize === s ? '2px solid #0e7470' : '1px solid var(--border)',
+                      background: gridSize === s ? '#0e7470' : 'var(--bg-page)',
+                      color: gridSize === s ? '#fff' : 'var(--text-2)',
+                      fontSize: '14px', fontWeight: '600', cursor: 'pointer',
+                      transition: 'all 0.15s',
+                    }}
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ background: 'var(--bg-card)', borderRadius: '4px', padding: '24px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+              <SectionTitle>Paramètres</SectionTitle>
+              <div style={{ marginBottom: '16px' }}>
+                <Label required>Statut</Label>
+                <select name="status" value={form.status} onChange={set}
+                  onFocus={() => setFocused('status')} onBlur={() => setFocused(null)} style={f('status')}>
+                  {STATUTS.map(s => <option key={s} value={s}>{s}</option>)}
+                </select>
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <Label required>Nombre d'unités</Label>
+                <input name="total_units" type="number" value={form.total_units} onChange={set} required
+                  onFocus={() => setFocused('total_units')} onBlur={() => setFocused(null)} style={f('total_units')} />
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <Label>Unités disponibles</Label>
+                <input name="available" type="text" value={form.available} onChange={set}
+                  onFocus={() => setFocused('available')} onBlur={() => setFocused(null)} style={f('available')} placeholder="Ex: 2 F3, 1 F4" />
+              </div>
+              <div>
+                <Label>Délai de livraison</Label>
+                <input name="delivery" type="text" value={form.delivery} onChange={set}
+                  onFocus={() => setFocused('delivery')} onBlur={() => setFocused(null)} style={f('delivery')} placeholder="Ex: 24 mois" />
+              </div>
+            </div>
+
+            <div style={{ background: 'var(--bg-card)', borderRadius: '4px', padding: '24px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+              <SectionTitle>Visibilité</SectionTitle>
+              <label style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', cursor: 'pointer' }}>
+                <input type="checkbox" name="featuredOnHome" checked={form.featuredOnHome} onChange={set}
+                  style={{ width: '16px', height: '16px', marginTop: '2px', accentColor: '#0e7470', cursor: 'pointer', flexShrink: 0 }} />
+                <div>
+                  <span style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-1)', display: 'block' }}>En vedette sur l'accueil</span>
+                  <span style={{ fontSize: '12px', color: 'var(--text-4)', display: 'block', marginTop: '2px' }}>Affiché dans la section projets phares</span>
+                </div>
+              </label>
+            </div>
+
+            <button type="submit" style={{
+              width: '100%', padding: '14px', background: '#0e7470', color: '#fff',
+              border: 'none', borderRadius: '4px', fontSize: '13px', fontWeight: '600',
+              cursor: 'pointer', letterSpacing: '0.5px', textTransform: 'uppercase', transition: 'background 0.2s',
+            }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#0a5450'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#0e7470'; }}>
+              Enregistrer les modifications
+            </button>
+
+            <Link href="/admin/residences" style={{ display: 'block', textAlign: 'center', padding: '12px', border: '1px solid var(--border)', borderRadius: '4px', fontSize: '13px', color: 'var(--text-3)', textDecoration: 'none' }}>
+              Annuler
+            </Link>
+
+            <button type="button" onClick={handleDelete} style={{
+              width: '100%', padding: '12px', background: 'transparent',
+              border: '1px solid #fecaca', borderRadius: '4px',
+              fontSize: '13px', color: '#dc2626', cursor: 'pointer',
+              fontWeight: '600', letterSpacing: '0.3px', transition: 'all 0.2s',
+            }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#fee2e2'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}>
+              Supprimer cette résidence
+            </button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+}
