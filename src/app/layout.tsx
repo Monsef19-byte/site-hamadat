@@ -3,6 +3,7 @@ import { LanguageProvider } from '@/lib/language-context';
 import { ThemeProvider } from '@/lib/theme-context';
 import { SiteConfigProvider } from '@/lib/site-config-context';
 import LayoutContent from '@/components/LayoutContent';
+import ClientOnly from '@/components/ClientOnly';
 import PageLoader from '@/components/anim/PageLoader';
 import CustomCursor from '@/components/anim/CustomCursor';
 import SmoothScroll from '@/components/anim/SmoothScroll';
@@ -28,18 +29,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body>
-        <PageLoader />
-        <CustomCursor />
-        <SmoothScroll />
-        <MeshBackground />
-        <ThemeProvider>
-          <SiteConfigProvider>
-            <LanguageProvider>
-              <LayoutContent>{children}</LayoutContent>
-            </LanguageProvider>
-          </SiteConfigProvider>
-        </ThemeProvider>
+      <body suppressHydrationWarning>
+        <ClientOnly>
+          <PageLoader />
+          <CustomCursor />
+          <SmoothScroll />
+          <MeshBackground />
+          <ThemeProvider>
+            <SiteConfigProvider>
+              <LanguageProvider>
+                <LayoutContent>{children}</LayoutContent>
+              </LanguageProvider>
+            </SiteConfigProvider>
+          </ThemeProvider>
+        </ClientOnly>
       </body>
     </html>
   );
