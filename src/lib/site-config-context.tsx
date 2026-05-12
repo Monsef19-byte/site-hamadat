@@ -144,11 +144,16 @@ export function SiteConfigProvider({ children }: { children: React.ReactNode }) 
     let cancelled = false;
     (async () => {
       try {
-        const res = await fetch('/api/config');
+        const res = await fetch('/api/config', { cache: 'no-store' });
         if (res.ok) {
           const remote = await res.json();
-          if (remote && !cancelled) {
-            setConfig(deepMerge(DEFAULTS, remote));
+          if (remote && !cancelled && typeof remote === 'object' && remote.residenceList) {
+            const merged = deepMerge(DEFAULTS, remote);
+            // Ensure arrays from remote take precedence
+            if (remote.residenceList) merged.residenceList = remote.residenceList;
+            if (remote.homeMedia) merged.homeMedia = remote.homeMedia;
+            if (remote.videos) merged.videos = remote.videos;
+            setConfig(merged);
             return;
           }
         }
