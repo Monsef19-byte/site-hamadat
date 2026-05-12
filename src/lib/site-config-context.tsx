@@ -111,56 +111,84 @@ interface SiteConfigCtx {
 
 const SiteConfigContext = createContext<SiteConfigCtx | undefined>(undefined);
 
+function applyPatch(prev: SiteConfig, patch: Partial<SiteConfig>): SiteConfig {
+  const next = deepMerge(prev, patch) as SiteConfig;
+  const merged: SiteConfig = { ...next };
+  if (patch.residenceList !== undefined) merged.residenceList = patch.residenceList;
+  if (patch.homeMedia   !== undefined) merged.homeMedia   = patch.homeMedia;
+  if (patch.videos      !== undefined) merged.videos      = patch.videos;
+  if (patch.residences  !== undefined) merged.residences  = { ...next.residences, ...patch.residences };
+  if (patch.blog        !== undefined) merged.blog        = { ...next.blog, ...patch.blog };
+  if (patch.apropos     !== undefined) merged.apropos     = { ...next.apropos, ...patch.apropos };
+  if (patch.contact     !== undefined) merged.contact     = { ...next.contact, ...patch.contact };
+  if (patch.social      !== undefined) merged.social      = { ...next.social, ...patch.social };
+  if (patch.aboutImage  !== undefined) merged.aboutImage  = patch.aboutImage;
+  if (patch.darkMode    !== undefined) merged.darkMode    = patch.darkMode;
+  if (patch.heroVideo       !== undefined) merged.heroVideo       = patch.heroVideo;
+  if (patch.heroTitle       !== undefined) merged.heroTitle       = patch.heroTitle;
+  if (patch.heroTitle_ar    !== undefined) merged.heroTitle_ar    = patch.heroTitle_ar;
+  if (patch.heroSubtitle_fr !== undefined) merged.heroSubtitle_fr = patch.heroSubtitle_fr;
+  if (patch.heroSubtitle_ar !== undefined) merged.heroSubtitle_ar = patch.heroSubtitle_ar;
+  if (patch.ctaTitle_fr  !== undefined) merged.ctaTitle_fr  = patch.ctaTitle_fr;
+  if (patch.ctaTitle_ar  !== undefined) merged.ctaTitle_ar  = patch.ctaTitle_ar;
+  if (patch.ctaButton_fr !== undefined) merged.ctaButton_fr = patch.ctaButton_fr;
+  if (patch.ctaButton_ar !== undefined) merged.ctaButton_ar = patch.ctaButton_ar;
+  return merged;
+}
+
 export function SiteConfigProvider({ children }: { children: React.ReactNode }) {
   const [config, setConfig] = useState<SiteConfig>(DEFAULTS);
 
+  // Load config from API (server-side KV), fall back to localStorage
   useEffect(() => {
-    try {
-      const version = localStorage.getItem('hamadat-site-config-version');
-      if (version !== String(CONFIG_VERSION)) {
-        localStorage.removeItem('hamadat-site-config');
-        localStorage.setItem('hamadat-site-config-version', String(CONFIG_VERSION));
-        return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch('/api/config');
+        if (res.ok) {
+          const remote = await res.json();
+          if (remote && !cancelled) {
+            setConfig(deepMerge(DEFAULTS, remote));
+            return;
+          }
+        }
+      } catch {
+        // API unavailable — fall back to localStorage
       }
-      const raw = localStorage.getItem('hamadat-site-config');
-      if (raw) {
-        const stored = JSON.parse(raw) as Partial<SiteConfig>;
-        setConfig(deepMerge(DEFAULTS, stored));
+      // Fallback: localStorage
+      try {
+        const version = localStorage.getItem('hamadat-site-config-version');
+        if (version !== String(CONFIG_VERSION)) {
+          localStorage.removeItem('hamadat-site-config');
+          localStorage.setItem('hamadat-site-config-version', String(CONFIG_VERSION));
+          return;
+        }
+        const raw = localStorage.getItem('hamadat-site-config');
+        if (raw && !cancelled) {
+          const stored = JSON.parse(raw) as Partial<SiteConfig>;
+          setConfig(deepMerge(DEFAULTS, stored));
+        }
+      } catch {
+        // ignore
       }
-    } catch {
-      // ignore parse errors
-    }
+    })();
+    return () => { cancelled = true; };
   }, []);
 
   const updateConfig = (patch: Partial<SiteConfig>) => {
     setConfig(prev => {
-      const next = deepMerge(prev, patch) as SiteConfig;
-      const merged: SiteConfig = { ...next };
-      if (patch.residenceList !== undefined) merged.residenceList = patch.residenceList;
-      if (patch.homeMedia   !== undefined) merged.homeMedia   = patch.homeMedia;
-      if (patch.videos      !== undefined) merged.videos      = patch.videos;
-      if (patch.residences  !== undefined) merged.residences  = { ...next.residences, ...patch.residences };
-      if (patch.blog        !== undefined) merged.blog        = { ...next.blog, ...patch.blog };
-      if (patch.apropos     !== undefined) merged.apropos     = { ...next.apropos, ...patch.apropos };
-      if (patch.contact     !== undefined) merged.contact     = { ...next.contact, ...patch.contact };
-      if (patch.social      !== undefined) merged.social      = { ...next.social, ...patch.social };
-      if (patch.aboutImage  !== undefined) merged.aboutImage  = patch.aboutImage;
-      if (patch.darkMode    !== undefined) merged.darkMode    = patch.darkMode;
-      if (patch.heroVideo       !== undefined) merged.heroVideo       = patch.heroVideo;
-      if (patch.heroTitle       !== undefined) merged.heroTitle       = patch.heroTitle;
-      if (patch.heroTitle_ar    !== undefined) merged.heroTitle_ar    = patch.heroTitle_ar;
-      if (patch.heroSubtitle_fr !== undefined) merged.heroSubtitle_fr = patch.heroSubtitle_fr;
-      if (patch.heroSubtitle_ar !== undefined) merged.heroSubtitle_ar = patch.heroSubtitle_ar;
-      if (patch.ctaTitle_fr  !== undefined) merged.ctaTitle_fr  = patch.ctaTitle_fr;
-      if (patch.ctaTitle_ar  !== undefined) merged.ctaTitle_ar  = patch.ctaTitle_ar;
-      if (patch.ctaButton_fr !== undefined) merged.ctaButton_fr = patch.ctaButton_fr;
-      if (patch.ctaButton_ar !== undefined) merged.ctaButton_ar = patch.ctaButton_ar;
+      const merged = applyPatch(prev, patch);
+      // Save to localStorage as cache
       try {
         localStorage.setItem('hamadat-site-config', JSON.stringify(merged));
         localStorage.setItem('hamadat-site-config-version', String(CONFIG_VERSION));
-      } catch {
-        // ignore storage errors
-      }
+      } catch { /* ignore */ }
+      // Save to server (KV) — fire and forget
+      fetch('/api/config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(merged),
+      }).catch(() => { /* ignore network errors */ });
       return merged;
     });
   };
