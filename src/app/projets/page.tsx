@@ -147,18 +147,24 @@ export default function ProjectsPage() {
         if (cards.length > 0) {
           cards.forEach((card, i) => {
             gsap.set(card, { opacity: 0, y: 60, scale: 0.95 });
-            ST.create({
-              trigger: card,
-              start: 'top 92%',
-              once: true,
-              onEnter: () => {
-                gsap.to(card, {
-                  opacity: 1, y: 0, scale: 1,
-                  duration: 0.8, delay: (i % 3) * 0.08,
-                  ease: 'expo.out',
-                });
-              },
-            });
+            const reveal = () => {
+              gsap.to(card, {
+                opacity: 1, y: 0, scale: 1,
+                duration: 0.8, delay: (i % 3) * 0.08,
+                ease: 'expo.out',
+              });
+            };
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.92) {
+              reveal();
+            } else {
+              ST.create({
+                trigger: card,
+                start: 'top 92%',
+                once: true,
+                onEnter: reveal,
+              });
+            }
           });
         }
 
