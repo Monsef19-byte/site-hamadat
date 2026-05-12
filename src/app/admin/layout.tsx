@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from '@/lib/theme-context';
 
@@ -15,7 +14,7 @@ const NAV = [
 ];
 
 const AdminIcon = ({ name }: { name: string }) => {
-  const s = { width: 15, height: 15, fill: 'none', stroke: 'currentColor', strokeWidth: '1.6', strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
+  const s = { width: 16, height: 16, fill: 'none', stroke: 'currentColor', strokeWidth: '1.6', strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
   switch (name) {
     case 'dashboard': return <svg viewBox="0 0 24 24" {...s}><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>;
     case 'building':  return <svg viewBox="0 0 24 24" {...s}><rect x="3" y="4" width="18" height="17" rx="1"/><path d="M9 21V9h6v12"/><path d="M3 9h18"/></svg>;
@@ -63,47 +62,45 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg-page)', fontFamily: 'inherit' }}>
+    <div className="dash-container" style={{ display: 'flex', minHeight: '100vh' }}>
 
-      {/* ── Sidebar ── always dark #1c1917 */}
+      {/* ── Sidebar ── */}
       <aside style={{
-        width: '240px', flexShrink: 0,
-        background: '#1c1917',
+        width: '260px', flexShrink: 0,
+        background: 'var(--dash-sidebar-bg, #0d0d0c)',
+        borderRight: '1px solid var(--dash-sidebar-border, rgba(255,255,255,0.06))',
+        padding: '32px 20px',
         display: 'flex', flexDirection: 'column',
         position: 'fixed', top: 0, left: 0, bottom: 0,
         zIndex: 100,
       }}>
         {/* Logo */}
-        <div style={{ padding: '32px 24px 24px', borderBottom: '1px solid #2c2826' }}>
-          <Link href="/admin" style={{ textDecoration: 'none' }}>
-            <Image
-              src="/images/logo/logo-horizontal-white.png"
-              alt="Hamadat"
-              width={140} height={38}
-              style={{ height: '32px', width: 'auto', objectFit: 'contain' }}
-            />
-          </Link>
-          <p style={{ fontSize: '10px', color: '#6b6560', letterSpacing: '2px', textTransform: 'uppercase', marginTop: '8px', marginBottom: 0 }}>
-            Administration
-          </p>
+        <div className="dash-animate-in dash-delay-1" style={{ marginBottom: '48px', paddingLeft: '18px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{
+              width: '36px', height: '36px', borderRadius: '10px',
+              background: 'linear-gradient(135deg, #0e7470, #0a5450)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: '#fff', fontWeight: '700', fontSize: '14px',
+              boxShadow: '0 4px 16px rgba(14,116,112,0.3)',
+            }}>H</div>
+            <div>
+              <p style={{ fontSize: '15px', fontWeight: '600', color: 'var(--dash-text-1, #fff)', margin: 0, letterSpacing: '-0.3px' }}>Hamadat</p>
+              <p style={{ fontSize: '10px', color: 'var(--dash-text-3, rgba(255,255,255,0.3))', margin: 0, letterSpacing: '1px', textTransform: 'uppercase' }}>Administration</p>
+            </div>
+          </div>
         </div>
 
         {/* Nav */}
-        <nav style={{ padding: '16px 0', flex: 1, overflowY: 'auto' }}>
-          {NAV.map(({ href, label, icon }) => {
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: 1 }}>
+          {NAV.map(({ href, label, icon }, idx) => {
             const active = href === '/admin' ? pathname === '/admin' : pathname.startsWith(href);
             return (
-              <Link key={href} href={href} style={{
-                display: 'flex', alignItems: 'center', gap: '12px',
-                padding: '12px 24px',
-                textDecoration: 'none',
-                fontSize: '13px', fontWeight: active ? '600' : '400',
-                color: active ? '#fff' : '#78716c',
-                background: active ? 'rgba(14,116,112,0.2)' : 'transparent',
-                borderLeft: active ? '3px solid #0e7470' : '3px solid transparent',
-                transition: 'all 0.15s ease',
-              }}>
-                <span style={{ opacity: active ? 1 : 0.6, display: 'flex', alignItems: 'center' }}><AdminIcon name={icon} /></span>
+              <Link key={href} href={href}
+                className={`dash-sidebar-link dash-animate-in dash-delay-${Math.min(idx + 2, 6)}${active ? ' active' : ''}`}
+                style={{ textDecoration: 'none' }}
+              >
+                <span style={{ opacity: active ? 1 : 0.5, display: 'flex', alignItems: 'center' }}><AdminIcon name={icon} /></span>
                 {label}
               </Link>
             );
@@ -111,27 +108,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </nav>
 
         {/* Footer */}
-        <div style={{ padding: '16px 24px', borderTop: '1px solid #2c2826' }}>
-          {/* Dark mode toggle */}
+        <div className="dash-animate-in dash-delay-6" style={{ paddingLeft: '4px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
           <button
             onClick={toggleTheme}
             style={{
-              width: '100%', padding: '9px 16px',
-              background: 'transparent', border: '1px solid #3c3330',
-              borderRadius: '4px', color: '#78716c',
+              width: '100%', padding: '10px 18px',
+              background: 'transparent',
+              border: '1px solid var(--dash-sidebar-border, rgba(255,255,255,0.08))',
+              borderRadius: '8px',
+              color: 'var(--dash-text-2, rgba(255,255,255,0.4))',
               fontSize: '12px', fontWeight: '500', cursor: 'pointer',
-              letterSpacing: '0.3px',
-              transition: 'all 0.15s ease', textAlign: 'left',
               display: 'flex', alignItems: 'center', gap: '8px',
-              marginBottom: '10px',
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = '#0e7470';
-              (e.currentTarget as HTMLElement).style.color = '#fff';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = '#3c3330';
-              (e.currentTarget as HTMLElement).style.color = '#78716c';
+              transition: 'all 0.2s ease',
             }}
           >
             <span style={{ display: 'flex', alignItems: 'center' }}>{isDark ? <SunIcon /> : <MoonIcon />}</span>
@@ -140,35 +128,30 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
           <Link href="/" target="_blank" style={{
             display: 'flex', alignItems: 'center', gap: '8px',
-            fontSize: '12px', color: '#6b6560', textDecoration: 'none', marginBottom: '12px',
+            padding: '10px 18px',
+            fontSize: '12px', color: 'var(--dash-text-2, rgba(255,255,255,0.4))', textDecoration: 'none',
             transition: 'color 0.15s',
           }}>
             <span>↗</span> Voir le site
           </Link>
+
           <button onClick={handleLogout} style={{
-            width: '100%', padding: '10px 16px',
-            background: 'transparent', border: '1px solid #3c3330',
-            borderRadius: '4px', color: '#78716c',
-            fontSize: '12px', fontWeight: '600', cursor: 'pointer',
-            letterSpacing: '0.5px', textTransform: 'uppercase',
-            transition: 'all 0.15s ease', textAlign: 'left',
-          }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = '#dc2626';
-              (e.currentTarget as HTMLElement).style.color = '#dc2626';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = '#3c3330';
-              (e.currentTarget as HTMLElement).style.color = '#78716c';
-            }}
-          >
+            width: '100%', padding: '10px 18px',
+            background: 'transparent',
+            border: '1px solid var(--dash-sidebar-border, rgba(255,255,255,0.08))',
+            borderRadius: '8px',
+            color: 'var(--dash-text-2, rgba(255,255,255,0.4))',
+            fontSize: '11px', fontWeight: '600', cursor: 'pointer',
+            letterSpacing: '1px', textTransform: 'uppercase',
+            transition: 'all 0.2s ease', textAlign: 'left',
+          }}>
             Déconnexion
           </button>
         </div>
       </aside>
 
       {/* ── Main content ── */}
-      <main style={{ marginLeft: '240px', flex: 1, minHeight: '100vh' }}>
+      <main style={{ marginLeft: '260px', flex: 1, minHeight: '100vh' }}>
         {children}
       </main>
     </div>

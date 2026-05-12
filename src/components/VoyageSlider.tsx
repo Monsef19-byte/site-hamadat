@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-// ── Types ────────────────────────────────────────────────────────────────────
+// ── Types ──────────────────────────────────────────────────────────────────────
 export interface VoyageSlide {
   image: string;
   title: string;
@@ -17,11 +17,11 @@ interface Props {
   onSlideChange?: (index: number) => void;
 }
 
-// ── Math helpers ─────────────────────────────────────────────────────────────
+// ── Math helpers ───────────────────────────────────────────────────────────────
 const wrap = (n: number, max: number) => (n + max) % max;
 const lerp  = (a: number, b: number, t: number) => a + (b - a) * t;
 
-// ── Per-card tilt state ───────────────────────────────────────────────────────
+// ── Per-slide tilt state ───────────────────────────────────────────────────────
 interface TiltState {
   rotX:   { cur: number; tgt: number };
   rotY:   { cur: number; tgt: number };
@@ -40,20 +40,21 @@ function makeTilt(): TiltState {
   };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ── Component ──────────────────────────────────────────────────────────────────
 export default function VoyageSlider({ slides, onSlideChange }: Props) {
   const count = slides.length;
   const [current, setCurrent] = useState(0);
+  const router = useRouter();
 
-  // Refs for card inner elements (tilt targets)
+  // Refs — innerRefs = .slide__inner, infoRefs = .slide-info__inner
   const innerRefs    = useRef<(HTMLDivElement | null)[]>([]);
   const infoRefs     = useRef<(HTMLDivElement | null)[]>([]);
   const tilts        = useRef<TiltState[]>(slides.map(makeTilt));
   const rafIdRef     = useRef<number>(0);
-  const sectionRef   = useRef<HTMLElement>(null);
+  const wrapperRef   = useRef<HTMLDivElement>(null);
   const wheelCooldown = useRef(false);
 
-  // ── RAF loop — lerp tilt CSS vars on all cards ──────────────────────────
+  // ── RAF loop — lerp CSS vars onto both .slide__inner and .slide-info__inner ──
   useEffect(() => {
     const tick = () => {
       tilts.current.forEach((t, i) => {
@@ -65,17 +66,22 @@ export default function VoyageSlider({ slides, onSlideChange }: Props) {
         const inner = innerRefs.current[i];
         const info  = infoRefs.current[i];
 
+        const rx = t.rotX.cur.toFixed(2) + 'deg';
+        const ry = t.rotY.cur.toFixed(2) + 'deg';
+        const bx = t.bgPosX.cur.toFixed(2) + '%';
+        const by = t.bgPosY.cur.toFixed(2) + '%';
+
         if (inner) {
-          inner.style.setProperty('--rotX',   t.rotX.cur.toFixed(2)   + 'deg');
-          inner.style.setProperty('--rotY',   t.rotY.cur.toFixed(2)   + 'deg');
-          inner.style.setProperty('--bgPosX', t.bgPosX.cur.toFixed(2) + '%');
-          inner.style.setProperty('--bgPosY', t.bgPosY.cur.toFixed(2) + '%');
+          inner.style.setProperty('--rotX',   rx);
+          inner.style.setProperty('--rotY',   ry);
+          inner.style.setProperty('--bgPosX', bx);
+          inner.style.setProperty('--bgPosY', by);
         }
         if (info) {
-          info.style.setProperty('--rotX',   t.rotX.cur.toFixed(2)   + 'deg');
-          info.style.setProperty('--rotY',   t.rotY.cur.toFixed(2)   + 'deg');
-          info.style.setProperty('--bgPosX', t.bgPosX.cur.toFixed(2) + '%');
-          info.style.setProperty('--bgPosY', t.bgPosY.cur.toFixed(2) + '%');
+          info.style.setProperty('--rotX',   rx);
+          info.style.setProperty('--rotY',   ry);
+          info.style.setProperty('--bgPosX', bx);
+          info.style.setProperty('--bgPosY', by);
         }
       });
       rafIdRef.current = requestAnimationFrame(tick);
@@ -84,15 +90,14 @@ export default function VoyageSlider({ slides, onSlideChange }: Props) {
     return () => cancelAnimationFrame(rafIdRef.current);
   }, []);
 
-  // ── Scroll wheel support ─────────────────────────────────────────────────
+  // ── Scroll wheel ───────────────────────────────────────────────────────────
   useEffect(() => {
     const onWheel = (e: WheelEvent) => {
       if (wheelCooldown.current) return;
-      const section = sectionRef.current;
-      if (!section) return;
-      const rect = section.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (!inView) return;
+      const el = wrapperRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top >= window.innerHeight || rect.bottom <= 0) return;
 
       const dir = e.deltaY > 0 ? 1 : -1;
       setCurrent(c => { const next = wrap(c + dir, count); onSlideChange?.(next); return next; });
@@ -103,7 +108,7 @@ export default function VoyageSlider({ slides, onSlideChange }: Props) {
     return () => window.removeEventListener('wheel', onWheel);
   }, [count]);
 
-  // ── Mouse handlers per card ──────────────────────────────────────────────
+  // ── Tilt mouse handlers ────────────────────────────────────────────────────
   const handleMouseMove = useCallback((idx: number, e: React.MouseEvent<HTMLDivElement>) => {
     const t = tilts.current[idx];
     t.lerpAmt = 0.1;
@@ -125,121 +130,108 @@ export default function VoyageSlider({ slides, onSlideChange }: Props) {
     t.bgPosY.tgt = 0;
   }, []);
 
-  const advance = (dir: 1 | -1) => setCurrent(c => { const next = wrap(c + dir, count); onSlideChange?.(next); return next; });
+  const advance = (dir: 1 | -1) =>
+    setCurrent(c => { const next = wrap(c + dir, count); onSlideChange?.(next); return next; });
 
-  // ── Data attribute per card ──────────────────────────────────────────────
-  const getVoy = (i: number): 'current' | 'previous' | 'next' | 'hidden' => {
-    if (i === current)               return 'current';
-    if (i === wrap(current - 1, count)) return 'previous';
-    if (i === wrap(current + 1, count)) return 'next';
-    return 'hidden';
+  const getPos = (i: number) => {
+    if (i === current)                    return 'current'  as const;
+    if (i === wrap(current - 1, count))   return 'previous' as const;
+    if (i === wrap(current + 1, count))   return 'next'     as const;
+    return 'hidden' as const;
   };
 
   if (!slides.length) return null;
 
   return (
-    <section ref={sectionRef} className="voy-slider">
+    <div ref={wrapperRef} className="voyage-section">
+      <div className="slider">
 
-      {/* ── Slide wrapper (grid, all on same cell) ── */}
-      <div className="voy-slides-wrapper">
+        {/* ── Prev button ── */}
+        <button className="slider--btn slider--btn__prev" onClick={() => advance(-1)} aria-label="Previous slide">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        </button>
 
-        {slides.map((slide, i) => {
-          const pos = getVoy(i);
-          const isCurrent = pos === 'current';
+        <div className="slides__wrapper">
 
-          const cardEl = (
-            <div
-              className="voy-card"
-              data-voy={pos}
-              onMouseMove={e => handleMouseMove(i, e)}
-              onMouseLeave={() => handleMouseLeave(i)}
-            >
-              <div
-                className="voy-card__inner"
-                ref={el => { innerRefs.current[i] = el; }}
-              >
-                {/* Image */}
-                <div className="voy-card__img-wrap">
-                  <img
-                    className="voy-card__img"
-                    src={slide.image}
-                    alt={slide.title}
-                    draggable={false}
-                  />
-                </div>
-
-                {/* Info overlay */}
+          {/* ── Cards layer ── */}
+          <div className="slides">
+            {slides.map((slide, i) => {
+              const pos = getPos(i);
+              const dataAttrs = {
+                ...(pos === 'current'  ? { 'data-current':  '' } : {}),
+                ...(pos === 'next'     ? { 'data-next':     '' } : {}),
+                ...(pos === 'previous' ? { 'data-previous': '' } : {}),
+              };
+              return (
                 <div
-                  className="voy-info"
-                  ref={el => { infoRefs.current[i] = el; }}
-                  data-voy={pos}
+                  key={i}
+                  className="slide"
+                  {...dataAttrs}
+                  onMouseMove={e => handleMouseMove(i, e)}
+                  onMouseLeave={() => handleMouseLeave(i)}
+                  onClick={pos === 'current' && slide.href ? () => router.push(slide.href!) : undefined}
+                  style={pos === 'current' && slide.href ? { cursor: 'pointer' } : undefined}
                 >
-                  <div className="voy-info__inner">
-                    <div className="voy-info__text-wrap">
-                      <div className="voy-info__text" data-title>
+                  <div className="slide__inner" ref={el => { innerRefs.current[i] = el; }}>
+                    <div className="slide--image__wrapper">
+                      <img
+                        className="slide--image"
+                        src={slide.image}
+                        alt={slide.title}
+                        draggable={false}
+                      />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* ── Info layer — same grid cell, z-index above cards ── */}
+          <div className="slides--infos">
+            {slides.map((slide, i) => {
+              const pos = getPos(i);
+              const dataAttrs = {
+                ...(pos === 'current'  ? { 'data-current':  '' } : {}),
+                ...(pos === 'next'     ? { 'data-next':     '' } : {}),
+                ...(pos === 'previous' ? { 'data-previous': '' } : {}),
+              };
+              return (
+                <div key={i} className="slide-info" {...dataAttrs}>
+                  <div className="slide-info__inner" ref={el => { infoRefs.current[i] = el; }}>
+                    <div className="slide-info--text__wrapper">
+                      <div data-title className="slide-info--text">
                         <span>{slide.title}</span>
                       </div>
-                      <div className="voy-info__text" data-subtitle>
+                      <div data-subtitle className="slide-info--text">
                         <span>{slide.subtitle}</span>
                       </div>
                       {slide.description && (
-                        <div className="voy-info__text" data-description>
+                        <div data-description className="slide-info--text">
                           <span>{slide.description}</span>
                         </div>
                       )}
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          );
+              );
+            })}
+          </div>
 
-          return (
-            <div key={i} className="voy-card-slot" data-voy={pos}>
-              {isCurrent && slide.href ? (
-                <Link href={slide.href} style={{ textDecoration: 'none', display: 'contents' }}>
-                  {cardEl}
-                </Link>
-              ) : (
-                cardEl
-              )}
-            </div>
-          );
-        })}
+        </div>
+
+        {/* ── Next button ── */}
+        <button className="slider--btn slider--btn__next" onClick={() => advance(1)} aria-label="Next slide">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
+
       </div>
-
-      {/* ── Prev / Next buttons ── */}
-      <button
-        className="voy-btn voy-btn--prev"
-        onClick={() => advance(-1)}
-        aria-label="Previous slide"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-      </button>
-
-      <button
-        className="voy-btn voy-btn--next"
-        onClick={() => advance(1)}
-        aria-label="Next slide"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="9 18 15 12 9 6" />
-        </svg>
-      </button>
-
-      {/* ── Dots indicator ── */}
-      <div className="voy-dots">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            className={`voy-dot${i === current ? ' voy-dot--active' : ''}`}
-            onClick={() => setCurrent(i)}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
-      </div>
-    </section>
+    </div>
   );
 }

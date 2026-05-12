@@ -19,6 +19,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const stored = localStorage.getItem('hamadat-lang') as Language;
     if (stored && (stored === 'fr' || stored === 'ar')) {
       setLangState(stored);
+      document.documentElement.lang = stored;
+      document.documentElement.dir = stored === 'ar' ? 'rtl' : 'ltr';
     }
   }, []);
 

@@ -1,7 +1,15 @@
 'use client';
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function SmoothScroll() {
+  const pathname = usePathname();
+
+  // Reset scroll on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   useEffect(() => {
     let lenis: import('lenis').default | null = null;
 

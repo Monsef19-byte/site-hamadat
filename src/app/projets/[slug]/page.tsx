@@ -6,7 +6,8 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import RevealBlock from '@/components/anim/RevealBlock';
-import VoyageSlider from '@/components/VoyageSlider';
+import PosterReel from '@/components/anim/PosterReel';
+import { useTilt } from '@/lib/use-tilt';
 import { useLanguage } from '@/lib/language-context';
 import { useSiteConfig } from '@/lib/site-config-context';
 
@@ -121,6 +122,26 @@ const ALL = [
   { slug: 'vertdalya',     name: 'Vert Dalya',    thumb: '/residences/vertdalya/vrtdalya.png' },
 ];
 
+function GalleryCard({ src, active, onClick }: { src: string; active: boolean; onClick: () => void }) {
+  const { innerRef, onMouseMove, onMouseLeave } = useTilt();
+  return (
+    <button
+      onClick={onClick}
+      style={{ display: 'block', width: '100%', aspectRatio: '4/3', border: 'none', padding: 0, cursor: 'zoom-in', borderRadius: '10px', overflow: 'hidden', outline: active ? '2px solid #0e7470' : 'none', outlineOffset: '2px' }}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+    >
+      <div ref={innerRef} style={{ width: '100%', height: '100%', transformStyle: 'preserve-3d', transform: 'rotateX(var(--rotX,0deg)) rotateY(var(--rotY,0deg))' }}>
+        <img src={src} alt="" style={{
+          width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+          transform: 'scale(1.15) translate3d(var(--bgPosX,0%),var(--bgPosY,0%),0)',
+          transition: 'transform 0.4s ease',
+        }} />
+      </div>
+    </button>
+  );
+}
+
 export default function ProjectDetailPage() {
   const { lang } = useLanguage();
   const { config } = useSiteConfig();
@@ -181,23 +202,42 @@ export default function ProjectDetailPage() {
     ...(project.delivery  ? [{ label: lang === 'ar' ? 'التسليم' : 'Livraison', value: project.delivery }] : []),
   ];
 
-  // Build voyage slides from gallery
-  const voyageSlides = gallery.map((img, i) => ({
-    image:       img,
-    title:       lang === 'ar' ? project.name_ar : project.name_fr,
-    subtitle:    project.location,
-    description: i === 0
-      ? project.typology
-      : `${i + 1} / ${gallery.length}`,
-  }));
-
   return (
     <div style={{ background: 'var(--bg-page)' }}>
       <Navbar />
 
-      {/* VoyageSlider — full screen gallery */}
-      <div style={{ paddingTop: '72px' }}>
-        <VoyageSlider slides={voyageSlides} onSlideChange={setActiveImg} />
+      {/* Hero image + poster reel */}
+      <div style={{ position: 'relative', height: '72vh', minHeight: '480px', overflow: 'hidden' }}>
+        {gallery.map((src, i) => (
+          <img key={i} src={src} alt="" style={{
+            position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
+            opacity: i === activeImg ? 1 : 0, transition: 'opacity 0.7s ease',
+          }} />
+        ))}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0.65) 100%)' }} />
+
+        {/* Poster reel — right side */}
+        <div style={{
+          position: 'absolute', top: '50%', right: '48px',
+          transform: 'translateY(-50%)',
+          opacity: 0.72,
+          animation: 'fadeSlideUp 0.9s ease-out 0.5s both',
+          display: 'flex', gap: '10px',
+        }}>
+          <PosterReel images={gallery} containerHeight={420} width={110} />
+          {gallery.length > 3 && (
+            <PosterReel images={[...gallery].reverse()} containerHeight={420} width={110} />
+          )}
+        </div>
+
+        <div style={{ position: 'absolute', bottom: '48px', left: '60px' }}>
+          <p className="eyebrow" style={{ marginBottom: '12px', animation: 'fadeSlideUp 0.7s ease-out 0.1s both', letterSpacing: '5px' }}>
+            {project.location}
+          </p>
+          <h1 style={{ fontSize: 'clamp(36px, 7vw, 96px)', fontWeight: '200', color: '#fff', letterSpacing: '-2px', margin: 0, lineHeight: 0.95, animation: 'fadeSlideUp 0.8s ease-out 0.2s both' }}>
+            {lang === 'ar' ? project.name_ar : project.name_fr}
+          </h1>
+        </div>
       </div>
 
       {/* Body */}
@@ -206,7 +246,7 @@ export default function ProjectDetailPage() {
 
           {/* Left: description + gallery grid */}
           <div>
-            <RevealBlock delay={0} y={20}>
+            <RevealBlock delay={0}>
               <Link href="/projets" data-cursor style={{
                 display: 'inline-flex', alignItems: 'center', gap: '6px',
                 fontSize: '12px', color: 'var(--text-3)', textDecoration: 'none', marginBottom: '40px',
@@ -227,7 +267,7 @@ export default function ProjectDetailPage() {
               </div>
             </div>
 
-            <RevealBlock delay={0.1} y={24}>
+            <RevealBlock delay={0.1}>
               <p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.95', fontWeight: '300', marginBottom: '64px' }}>
                 {lang === 'ar' ? project.description_ar : project.description_fr}
               </p>
@@ -235,28 +275,19 @@ export default function ProjectDetailPage() {
 
             {/* Gallery grid */}
             {gallery.length > 1 && (
-              <RevealBlock delay={0.2} y={36}>
+              <RevealBlock delay={0.2}>
                 <h3 style={{ fontSize: '11px', fontWeight: '700', color: 'var(--text-3)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '20px' }}>
                   {lang === 'ar' ? 'معرض الصور' : 'Galerie'}{' '}
                   <span style={{ color: 'var(--text-4)', fontWeight: '400', letterSpacing: '0', textTransform: 'none' }}>({gallery.length})</span>
                 </h3>
-                <div className="gallery-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '10px' }}>
+                <div className="gallery-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '12px' }}>
                   {gallery.map((src, idx) => (
-                    <button key={idx} onClick={() => { setActiveImg(idx); setLightboxOpen(true); }} data-cursor
-                      style={{
-                        display: 'block', width: '100%', aspectRatio: '4/3',
-                        border: 'none', padding: 0, cursor: 'zoom-in',
-                        overflow: 'hidden', borderRadius: '4px', background: 'var(--border)',
-                        transition: 'transform 0.4s cubic-bezier(0.22,1,0.36,1)',
-                      }}
-                      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.03)'; }}
-                      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; }}
-                    >
-                      <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.7s cubic-bezier(0.16,1,0.3,1)' }}
-                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)'; }}
-                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; }}
-                      />
-                    </button>
+                    <GalleryCard
+                      key={idx}
+                      src={src}
+                      active={idx === activeImg}
+                      onClick={() => { setActiveImg(idx); setLightboxOpen(true); }}
+                    />
                   ))}
                 </div>
               </RevealBlock>

@@ -1,7 +1,7 @@
 'use client';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const CONFIG_VERSION = 9; // bump whenever DEFAULTS shape changes to clear stale localStorage
+const CONFIG_VERSION = 10; // bump whenever DEFAULTS shape changes to clear stale localStorage
 
 interface ResidenceCfg { thumbnail: string; gridSize: 2|3|4|5|6; mapEmbed?: string }
 interface BlogCfg      { coverImage: string }
@@ -22,13 +22,22 @@ export interface SiteConfig {
   residences:    Record<string, ResidenceCfg>;
   residenceList: ResidenceEntry[];
   blog:          Record<string, BlogCfg>;
-  apropos:     { story_fr: string; story_ar: string };
-  contact:     { email: string; phone: string; address: string };
-  social:      { facebook: string; instagram: string; linkedin: string; youtube: string };
+  apropos:     { story_fr: string; story_ar: string; mission_fr: string; mission_ar: string; vision_fr: string; vision_ar: string };
+  contact:     { email: string; phone: string; address: string; mapEmbed: string };
+  social:      { facebook: string; instagram: string; linkedin: string; youtube: string; tiktok: string; twitter: string };
   homeMedia:   HomeMedia[];
   videos:      VideoEntry[];
   aboutImage:  string;
   darkMode:    boolean;
+  heroVideo: string;
+  heroTitle: string;
+  heroTitle_ar: string;
+  heroSubtitle_fr: string;
+  heroSubtitle_ar: string;
+  ctaTitle_fr: string;
+  ctaTitle_ar: string;
+  ctaButton_fr: string;
+  ctaButton_ar: string;
 }
 
 const DEFAULTS: SiteConfig = {
@@ -51,9 +60,9 @@ const DEFAULTS: SiteConfig = {
     vertdalya:       { thumbnail: '/residences/vertdalya/vrtdalya.png',      gridSize: 4, mapEmbed: 'https://www.openstreetmap.org/export/embed.html?bbox=2.88%2C36.69%2C3.11%2C36.80&layer=mapnik&marker=36.7397%2C2.9943' },
   },
   blog: {},
-  apropos: { story_fr: '', story_ar: '' },
-  contact: { email: 'contact@hamadat.dz', phone: '+213 21 00 00 00', address: 'Alger, Algérie' },
-  social:  { facebook: '', instagram: '', linkedin: '', youtube: '' },
+  apropos: { story_fr: '', story_ar: '', mission_fr: '', mission_ar: '', vision_fr: '', vision_ar: '' },
+  contact: { email: 'contact@hamadat.dz', phone: '+213 21 00 00 00', address: 'Alger, Algérie', mapEmbed: '' },
+  social:  { facebook: '', instagram: '', linkedin: '', youtube: '', tiktok: '', twitter: '' },
   homeMedia: [
     { id: '1', type: 'image', src: '/residences/elysia/vue-001-1.jpg',    label: 'Elysia',        order: 0 },
     { id: '2', type: 'image', src: '/residences/les-3-princes/vue-2.jpg', label: 'Les 3 Princes', order: 1 },
@@ -65,6 +74,15 @@ const DEFAULTS: SiteConfig = {
   ],
   aboutImage: '/residences/les-3-princes/vue-2.jpg',
   darkMode: false,
+  heroVideo: '/hero.mp4',
+  heroTitle: 'Hamadat',
+  heroTitle_ar: 'حمادات',
+  heroSubtitle_fr: 'Promotion Immobilière de Prestige',
+  heroSubtitle_ar: 'ترقية عقارية فاخرة',
+  ctaTitle_fr: 'Votre futur chez-vous commence ici',
+  ctaTitle_ar: 'منزلك المستقبلي يبدأ هنا',
+  ctaButton_fr: 'Contactez-nous',
+  ctaButton_ar: 'تواصل معنا',
 };
 
 function deepMerge<T>(defaults: T, stored: Partial<T>): T {
@@ -128,6 +146,15 @@ export function SiteConfigProvider({ children }: { children: React.ReactNode }) 
       if (patch.social      !== undefined) merged.social      = { ...next.social, ...patch.social };
       if (patch.aboutImage  !== undefined) merged.aboutImage  = patch.aboutImage;
       if (patch.darkMode    !== undefined) merged.darkMode    = patch.darkMode;
+      if (patch.heroVideo       !== undefined) merged.heroVideo       = patch.heroVideo;
+      if (patch.heroTitle       !== undefined) merged.heroTitle       = patch.heroTitle;
+      if (patch.heroTitle_ar    !== undefined) merged.heroTitle_ar    = patch.heroTitle_ar;
+      if (patch.heroSubtitle_fr !== undefined) merged.heroSubtitle_fr = patch.heroSubtitle_fr;
+      if (patch.heroSubtitle_ar !== undefined) merged.heroSubtitle_ar = patch.heroSubtitle_ar;
+      if (patch.ctaTitle_fr  !== undefined) merged.ctaTitle_fr  = patch.ctaTitle_fr;
+      if (patch.ctaTitle_ar  !== undefined) merged.ctaTitle_ar  = patch.ctaTitle_ar;
+      if (patch.ctaButton_fr !== undefined) merged.ctaButton_fr = patch.ctaButton_fr;
+      if (patch.ctaButton_ar !== undefined) merged.ctaButton_ar = patch.ctaButton_ar;
       try {
         localStorage.setItem('hamadat-site-config', JSON.stringify(merged));
         localStorage.setItem('hamadat-site-config-version', String(CONFIG_VERSION));

@@ -39,16 +39,20 @@ export default function AdminLoginPage() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      background: 'linear-gradient(135deg, #8b7a62 0%, #6e6250 100%)',
-      padding: '16px'
+      background: 'linear-gradient(135deg, #0a1a19 0%, #06080a 50%, #0e2f2d 100%)',
+      padding: '16px',
+      position: 'relative',
+      zIndex: 1,
     }}>
       <div style={{
         width: '100%',
         maxWidth: '400px',
-        background: 'white',
-        borderRadius: '12px',
-        padding: '32px',
-        boxShadow: '0 10px 40px rgba(0,0,0,0.2)'
+        background: 'rgba(255,255,255,0.04)',
+        backdropFilter: 'blur(24px)',
+        borderRadius: '16px',
+        padding: '40px',
+        boxShadow: '0 24px 64px rgba(0,0,0,0.4)',
+        border: '1px solid rgba(255,255,255,0.08)',
       }}>
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <img
@@ -56,14 +60,14 @@ export default function AdminLoginPage() {
             alt="Hamadat"
             style={{ height: '80px', width: 'auto', margin: '0 auto 20px', display: 'block', objectFit: 'contain' }}
           />
-          <p style={{ fontSize: '14px', color: '#6b7280', margin: 0 }}>
+          <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.35)', margin: 0 }}>
             Tableau de Bord Admin
           </p>
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div>
-            <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', color: '#1f2937', marginBottom: '8px' }}>
+            <label style={{ display: 'block', fontSize: '10px', fontWeight: '700', color: 'rgba(255,255,255,0.35)', marginBottom: '8px', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
               Email
             </label>
             <input
@@ -73,18 +77,25 @@ export default function AdminLoginPage() {
               required
               style={{
                 width: '100%',
-                padding: '12px 16px',
-                border: '1px solid #d1d5db',
+                padding: '14px 16px',
+                border: '1px solid rgba(255,255,255,0.1)',
                 borderRadius: '8px',
                 fontSize: '14px',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                background: 'rgba(255,255,255,0.04)',
+                color: '#fff',
+                outline: 'none',
+                fontFamily: 'inherit',
+                transition: 'border-color 0.3s',
               }}
+              onFocus={(e) => { e.currentTarget.style.borderColor = '#0e7470'; }}
+              onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; }}
               placeholder="admin@hamadat.dz"
             />
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '14px', fontWeight: '600', color: '#1f2937', marginBottom: '8px' }}>
+            <label style={{ display: 'block', fontSize: '10px', fontWeight: '700', color: 'rgba(255,255,255,0.35)', marginBottom: '8px', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
               Mot de passe
             </label>
             <input
@@ -94,25 +105,32 @@ export default function AdminLoginPage() {
               required
               style={{
                 width: '100%',
-                padding: '12px 16px',
-                border: '1px solid #d1d5db',
+                padding: '14px 16px',
+                border: '1px solid rgba(255,255,255,0.1)',
                 borderRadius: '8px',
                 fontSize: '14px',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                background: 'rgba(255,255,255,0.04)',
+                color: '#fff',
+                outline: 'none',
+                fontFamily: 'inherit',
+                transition: 'border-color 0.3s',
               }}
+              onFocus={(e) => { e.currentTarget.style.borderColor = '#0e7470'; }}
+              onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; }}
               placeholder="••••••••"
             />
           </div>
 
           {error && (
             <div style={{
-              background: '#fee2e2',
-              color: '#991b1b',
+              background: 'rgba(220,38,38,0.1)',
+              color: '#f87171',
               padding: '12px 16px',
               borderRadius: '8px',
               fontSize: '14px',
               fontWeight: '500',
-              border: '1px solid #fecaca'
+              border: '1px solid rgba(220,38,38,0.2)'
             }}>
               {error}
             </div>
@@ -123,29 +141,32 @@ export default function AdminLoginPage() {
             disabled={loading}
             style={{
               width: '100%',
-              padding: '12px 16px',
-              background: '#8b7a62',
+              padding: '14px 16px',
+              background: '#0e7470',
               color: 'white',
               border: 'none',
               borderRadius: '8px',
-              fontSize: '14px',
-              fontWeight: '600',
+              fontSize: '12px',
+              fontWeight: '700',
+              letterSpacing: '1.5px',
+              textTransform: 'uppercase' as const,
               cursor: loading ? 'not-allowed' : 'pointer',
               opacity: loading ? 0.6 : 1,
-              transition: 'background 0.2s'
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 20px rgba(14,116,112,0.3)',
             }}
-            onMouseEnter={(e) => !loading && (e.currentTarget.style.background = '#6e6250')}
-            onMouseLeave={(e) => (e.currentTarget.style.background = '#8b7a62')}
+            onMouseEnter={(e) => { if (!loading) { e.currentTarget.style.background = '#0a5450'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(14,116,112,0.4)'; } }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = '#0e7470'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(14,116,112,0.3)'; }}
           >
             {loading ? 'Connexion...' : 'Se Connecter'}
           </button>
         </form>
 
         <p style={{
-          fontSize: '12px',
-          color: '#6b7280',
+          fontSize: '11px',
+          color: 'rgba(255,255,255,0.2)',
           textAlign: 'center',
-          marginTop: '16px'
+          marginTop: '20px'
         }}>
           Identifiants de test: admin@hamadat.dz / admin123
         </p>
