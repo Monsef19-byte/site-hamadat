@@ -40,6 +40,7 @@ export default function NewResidencePage() {
     description_fr: '', description_ar: '',
     available: '', delivery: '',
     featuredOnHome: false,
+    thumbnail: '',
   });
 
   const f = (name: string): React.CSSProperties => ({
@@ -73,7 +74,13 @@ export default function NewResidencePage() {
       delivery: form.delivery.trim(),
       featuredOnHome: form.featuredOnHome,
     };
-    updateConfig({ residenceList: [...(config.residenceList ?? []), newEntry] });
+    updateConfig({
+      residenceList: [...(config.residenceList ?? []), newEntry],
+      residences: {
+        ...config.residences,
+        [slug]: { thumbnail: form.thumbnail.trim(), gridSize: 3, mapEmbed: '' },
+      },
+    });
     setSaved(true);
     setTimeout(() => router.push('/admin/residences'), 1200);
   };
@@ -185,6 +192,21 @@ export default function NewResidencePage() {
 
           {/* Right — sidebar */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', position: 'sticky', top: '24px' }}>
+
+            {/* Thumbnail */}
+            <div style={{ background: '#fff', borderRadius: '4px', padding: '24px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+              <SectionTitle>Image principale</SectionTitle>
+              <div style={{ marginBottom: '12px' }}>
+                <Label required>Chemin de l'image</Label>
+                <input name="thumbnail" type="text" value={form.thumbnail} onChange={set}
+                  onFocus={() => setFocused('thumbnail')} onBlur={() => setFocused(null)}
+                  style={f('thumbnail')} placeholder="/residences/nom/photo.jpg" />
+                <p style={{ fontSize: '11px', color: '#b8b0a8', marginTop: '6px' }}>Chemin vers l'image dans /public/residences/</p>
+              </div>
+              {form.thumbnail && (
+                <img src={form.thumbnail} alt="Aperçu" style={{ width: '100%', borderRadius: '4px', aspectRatio: '4/3', objectFit: 'cover' }} />
+              )}
+            </div>
 
             {/* Statut & chiffres */}
             <div style={{ background: '#fff', borderRadius: '4px', padding: '24px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>

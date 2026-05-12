@@ -282,7 +282,7 @@ export default function ProjectsPage() {
               <ProjectCard
                 key={r.slug}
                 r={r}
-                thumb={config.residences[r.slug]?.thumbnail ?? ''}
+                thumb={config.residences[r.slug]?.thumbnail || '/images/placeholder-residence.svg'}
                 lang={lang}
                 cardRef={(el) => { cardsRef.current[idx] = el; }}
               />
