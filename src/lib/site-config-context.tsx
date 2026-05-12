@@ -136,12 +136,29 @@ function applyPatch(prev: SiteConfig, patch: Partial<SiteConfig>): SiteConfig {
   return merged;
 }
 
-export function SiteConfigProvider({ children }: { children: React.ReactNode }) {
-  const [config, setConfig] = useState<SiteConfig>(DEFAULTS);
+function getInitialConfig(): SiteConfig {
+  if (typeof window !== 'undefined') {
+    // Try reading server-injected config first
+    try {
+      const w = window as unknown as { __SITE_CONFIG__?: SiteConfig };
+      if (w.__SITE_CONFIG__) {
+        return deepMerge(DEFAULTS, w.__SITE_CONFIG__);
+      }
+    } catch { /* ignore */ }
+  }
+  return DEFAULTS;
+}
 
-  // Load config from API (server-side KV), fall back to localStorage
+export function SiteConfigProvider({ children }: { children: React.ReactNode }) {
+  const [config, setConfig] = useState<SiteConfig>(getInitialConfig);
+
+  // Also fetch from API on mount as backup (handles client-side navigation)
   useEffect(() => {
     let cancelled = false;
+    // If we already have server-injected data, skip the fetch
+    const w = window as unknown as { __SITE_CONFIG__?: SiteConfig };
+    if (w.__SITE_CONFIG__) return;
+
     (async () => {
       try {
         const res = await fetch('/api/config', { cache: 'no-store' });
@@ -149,7 +166,6 @@ export function SiteConfigProvider({ children }: { children: React.ReactNode }) 
           const remote = await res.json();
           if (remote && !cancelled && typeof remote === 'object' && remote.residenceList) {
             const merged = deepMerge(DEFAULTS, remote);
-            // Ensure arrays from remote take precedence
             if (remote.residenceList) merged.residenceList = remote.residenceList;
             if (remote.homeMedia) merged.homeMedia = remote.homeMedia;
             if (remote.videos) merged.videos = remote.videos;
@@ -157,25 +173,7 @@ export function SiteConfigProvider({ children }: { children: React.ReactNode }) 
             return;
           }
         }
-      } catch {
-        // API unavailable — fall back to localStorage
-      }
-      // Fallback: localStorage
-      try {
-        const version = localStorage.getItem('hamadat-site-config-version');
-        if (version !== String(CONFIG_VERSION)) {
-          localStorage.removeItem('hamadat-site-config');
-          localStorage.setItem('hamadat-site-config-version', String(CONFIG_VERSION));
-          return;
-        }
-        const raw = localStorage.getItem('hamadat-site-config');
-        if (raw && !cancelled) {
-          const stored = JSON.parse(raw) as Partial<SiteConfig>;
-          setConfig(deepMerge(DEFAULTS, stored));
-        }
-      } catch {
-        // ignore
-      }
+      } catch { /* ignore */ }
     })();
     return () => { cancelled = true; };
   }, []);

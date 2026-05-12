@@ -8,7 +8,10 @@ import PageLoader from '@/components/anim/PageLoader';
 import CustomCursor from '@/components/anim/CustomCursor';
 import SmoothScroll from '@/components/anim/SmoothScroll';
 import MeshBackground from '@/components/anim/MeshBackground';
+import { getServerConfig } from '@/lib/get-server-config';
 import './globals.css';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Hamadat Promotion Immobilière',
@@ -21,7 +24,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const serverConfig = await getServerConfig();
+
   return (
     <html lang="fr" className="dark" suppressHydrationWarning>
       <head>
@@ -30,6 +35,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body suppressHydrationWarning>
+        {/* Inject server config so client picks it up instantly */}
+        {serverConfig && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__SITE_CONFIG__=${JSON.stringify(serverConfig)};`,
+            }}
+          />
+        )}
         <ClientOnly>
           <PageLoader />
           <CustomCursor />
