@@ -863,6 +863,18 @@ html.dark .dash-container::after {
 }
 
 
+/* Card reveal animation — CSS-only, no GSAP dependency */
+.proj-card-anim {
+  opacity: 0;
+  transform: translateY(60px) scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.proj-card-anim.proj-card-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 /* ═══════════════════════════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════════════════════════ */

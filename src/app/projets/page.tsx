@@ -15,16 +15,17 @@ const FILTERS = [
   { value: 'completed', fr: 'Livrés', ar: 'منجزة' },
 ];
 
-function ProjectCard({ r, thumb, lang, cardRef }: {
+function ProjectCard({ r, thumb, lang, cardRef, animDelay = 0 }: {
   r: { slug: string; name_fr: string; name_ar: string; location: string; status: string; units: number; typology?: string; available?: string };
   thumb: string; lang: string;
   cardRef?: (el: HTMLDivElement | null) => void;
+  animDelay?: number;
 }) {
   const { innerRef, onMouseMove, onMouseLeave } = useTilt();
   const [hov, setHov] = useState(false);
 
   return (
-    <div ref={cardRef}>
+    <div ref={cardRef} className="proj-card-anim" style={{ transitionDelay: `${animDelay * 0.08}s` }}>
       <Link href={`/projets/${r.slug}`} data-cursor style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
         <div
           style={{ perspective: '800px' }}
@@ -143,30 +144,7 @@ export default function ProjectsPage() {
           }
         }
 
-        const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
-        if (cards.length > 0) {
-          cards.forEach((card, i) => {
-            gsap.set(card, { opacity: 0, y: 60, scale: 0.95 });
-            const reveal = () => {
-              gsap.to(card, {
-                opacity: 1, y: 0, scale: 1,
-                duration: 0.8, delay: (i % 3) * 0.08,
-                ease: 'expo.out',
-              });
-            };
-            const rect = card.getBoundingClientRect();
-            if (rect.top < window.innerHeight * 0.92) {
-              reveal();
-            } else {
-              ST.create({
-                trigger: card,
-                start: 'top 92%',
-                once: true,
-                onEnter: reveal,
-              });
-            }
-          });
-        }
+        // Card animations handled by CSS + IntersectionObserver below
 
         ST.batch('.proj-gsap-reveal', {
           onEnter: (els) => {
@@ -192,6 +170,21 @@ export default function ProjectsPage() {
 
   useEffect(() => {
     cardsRef.current = cardsRef.current.slice(0, filtered.length);
+  }, [filtered.length]);
+
+  useEffect(() => {
+    const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
+    if (cards.length === 0) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).classList.add('proj-card-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+    cards.forEach(card => observer.observe(card));
+    return () => observer.disconnect();
   }, [filtered.length]);
 
   const title = lang === 'ar' ? 'مشاريعنا' : 'NOS PROJETS';
@@ -291,6 +284,7 @@ export default function ProjectsPage() {
                 thumb={config.residences[r.slug]?.thumbnail || '/images/placeholder-residence.svg'}
                 lang={lang}
                 cardRef={(el) => { cardsRef.current[idx] = el; }}
+                animDelay={idx % 3}
               />
             ))}
           </div>
