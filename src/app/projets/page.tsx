@@ -267,12 +267,6 @@ export default function ProjectsPage() {
         }} />
       </section>
 
-      {/* DEBUG — remove after testing */}
-      <div style={{ background: 'red', color: '#fff', padding: '12px 24px', fontSize: '16px', fontWeight: 'bold', textAlign: 'center', position: 'relative', zIndex: 999 }}>
-        DEBUG: {filtered.length} cards in data, residenceList has {residences.length} items.
-        Names: {filtered.map(r => r.name_fr).join(', ')}
-      </div>
-
       {/* Cards grid */}
       {filtered.length > 0 ? (
         <section style={{ paddingBottom: '120px' }}>
