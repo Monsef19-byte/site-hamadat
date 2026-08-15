@@ -1,0 +1,216 @@
+{
+  "brand": {
+    "name": "HAMADAT",
+    "tagline_fr": "PROMOTION IMMOBILIÈRE",
+    "tagline_ar": "للترقية العقارية",
+    "colors": {
+      "primary_teal": "#1E8C82",
+      "primary_teal_dark": "#146B63",
+      "charcoal": "#2A2A2A",
+      "charcoal_soft": "#262626",
+      "off_white": "#F5F6F7",
+      "grey_neutral_1": "#6E7679",
+      "grey_neutral_2": "#9BA1A2",
+      "grey_neutral_3": "#B9BFC1",
+      "note": "Déduites du PPTX de présentation ET du logo (bâtiment vert émeraude + gris anthracite). À faire valider par le client, aucune charte graphique officielle séparée n'a été fournie."
+    }
+  },
+  "home": {
+    "hero_intro_fr": "Forte de plus de 25 ans d'expérience dans le domaine de l'immobilier, Hamadat Promotion Immobilière conçoit des résidences d'exception dans des emplacements soigneusement sélectionnés, alliant architecture élégante, qualité de réalisation et valeur d'investissement durable.",
+    "hero_intro_ar": "بخبرة تتجاوز 25 عامًا، تطوّر حمادات إقامات راقية في مواقع مختارة بعناية، تجمع بين العمارة الأنيقة وجودة الإنجاز وقيمة استثمارية مستدامة.",
+    "hero_cta_fr": "Découvrir nos résidences",
+    "hero_cta_ar": "اكتشفوا إقاماتنا",
+    "note": "Le hero plein écran = carrousel principal (voir home_carousel.json), une slide par résidence, texte qui change avec l'image."
+  },
+  "about": {
+    "title_fr": "Bâtir l'excellence depuis 2004",
+    "title_ar": "نبني التميّز منذ عام 2004",
+    "text_fr": "Depuis plus de vingt ans, nous mettons notre expertise au service de projets alliant qualité de construction, architecture soignée et emplacements soigneusement sélectionnés. Notre engagement est simple : offrir des lieux de vie durables, élégants et pensés pour le confort de leurs habitants.",
+    "text_ar": "تأسست حمادات للترقية العقارية سنة 2004 انطلاقًا من رؤية واضحة مفادها أن السكن ليس مجرد بناء، بل فضاءٌ يمنح الإنسان الراحة، ويوفر للأسرة الاستقرار، ويشكّل استثمارًا يحافظ على قيمته عبر الأجيال. وعلى مدى أكثر من عشرين عامًا، نجحنا في إنجاز مشاريع سكنية راقية في عدد من الولايات الجزائرية، من الجزائر العاصمة إلى جيجل.",
+    "commitments_fr": [
+      "Architecture élégante et intemporelle",
+      "Qualité de réalisation rigoureuse",
+      "Emplacements soigneusement sélectionnés",
+      "Valeur d'investissement durable",
+      "Accompagnement personnalisé du client"
+    ],
+    "commitments_ar": [
+      "عمارة أنيقة وخالدة",
+      "جودة إنجاز صارمة",
+      "مواقع مختارة بعناية",
+      "قيمة استثمارية مستدامة",
+      "مرافقة شخصية للعميل"
+    ],
+    "history_title_fr": "Depuis 2004",
+    "history_title_ar": "منذ 2004"
+  },
+  "vision": {
+    "title_fr": "Concevoir une valeur qui dure",
+    "title_ar": "رؤيتنا",
+    "text_fr": "Notre vision est de concevoir des résidences où l'excellence de la construction, l'élégance architecturale et le choix des emplacements créent une valeur durable. À travers chacun de nos projets, nous aspirons à offrir des lieux de vie pérennes, pensés pour répondre aux attentes d'aujourd'hui tout en anticipant celles de demain.",
+    "text_ar": "لا ننظر إلى المستقبل باعتباره امتدادًا لما حققناه فحسب، بل نراه فرصةً لتطوير مفهوم السكن الراقي، وترسيخ مكانتنا بين أبرز رواد الترقية العقارية في الجزائر. نؤمن بأن مسؤوليتنا لا تنتهي عند تسليم المفاتيح، بل تمتد إلى إنشاء أحياء تنبض بالحياة وتحتفظ بقيمتها على المدى الطويل."
+  },
+  "values": [
+    {
+      "title_fr": "Qualité d'exécution",
+      "title_ar": "الجودة",
+      "text_fr": "Une exigence permanente dans chaque étape de réalisation.",
+      "text_ar": "التزام راسخ بأعلى معايير التنفيذ في جميع مراحل المشروع."
+    },
+    {
+      "title_fr": "Précision des détails",
+      "title_ar": "الإتقان",
+      "text_fr": "Un soin minutieux porté à chaque finition.",
+      "text_ar": "عناية فائقة بأدق التفاصيل، من التصميم إلى التشطيبات النهائية."
+    },
+    {
+      "title_fr": "Respect des engagements",
+      "title_ar": "الالتزام",
+      "text_fr": "Le respect rigoureux des délais et de la qualité promise.",
+      "text_ar": "احترام مواعيد التسليم والوفاء بجميع تعهداتنا تجاه عملائنا."
+    },
+    {
+      "title_fr": "Confiance & transparence",
+      "title_ar": "الثقة والشفافية",
+      "text_fr": "Une relation fondée sur le professionnalisme et la tenue des engagements.",
+      "text_ar": "بناء علاقات طويلة الأمد تقوم على الوضوح والمصداقية والاحترافية."
+    }
+  ],
+  "signature": {
+    "title_fr": "Bien plus qu'un logement",
+    "title_ar": "بصمتنا",
+    "text_fr": "Chaque projet signé Hamadat Promotion Immobilière est pensé pour offrir bien plus qu'un logement : une expérience de vie où l'architecture, les matériaux, les finitions et le confort s'accordent avec exigence.",
+    "text_ar": "كل مشروع يحمل توقيع حمادات للترقية العقارية مصمم ليقدّم أكثر من مجرد سكن: تجربة حياة تتناغم فيها العمارة والمواد والتشطيبات والراحة بكل دقة.",
+    "why_title_fr": "Pourquoi choisir Hamadat ?",
+    "why_title_ar": "لماذا تختارون حمادات؟",
+    "why_points": [
+      {
+        "icon": "badge",
+        "text_fr": "Savoir-faire reconnu depuis 2004",
+        "text_ar": "خبرة معترف بها منذ 2004"
+      },
+      {
+        "icon": "sparkles",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": "تشطيبات راقية"
+      },
+      {
+        "icon": "clock",
+        "text_fr": "Respect strict des délais",
+        "text_ar": "احترام صارم للآجال"
+      },
+      {
+        "icon": "eye",
+        "text_fr": "Suivi transparent du projet",
+        "text_ar": "متابعة شفافة للمشروع"
+      }
+    ]
+  },
+  "stats": {
+    "title_fr": "La crédibilité se prouve par les chiffres",
+    "title_ar": "بالأرقام",
+    "items": [
+      {
+        "value": "+20",
+        "label_fr": "ans d'expérience de terrain",
+        "label_ar": "عامًا من الخبرة الميدانية"
+      },
+      {
+        "value": "+10",
+        "label_fr": "projets résidentiels de prestige",
+        "label_ar": "مشاريع سكنية راقية"
+      },
+      {
+        "value": "+300",
+        "label_fr": "unités de logement livrées",
+        "label_ar": "وحدة سكنية تم تسليمها"
+      },
+      {
+        "value": "100%",
+        "label_fr": "des projets livrés dans les délais",
+        "label_ar": "من المشاريع سُلمت في الآجال"
+      }
+    ]
+  },
+  "news_section": {
+    "title_fr": "Actualités & avancement",
+    "title_ar": "المستجدات وتقدّم المشاريع",
+    "text_fr": "La transparence est au cœur de notre engagement. Suivez l'évolution de nos projets à chaque étape, du lancement des travaux jusqu'aux dernières finitions.",
+    "text_ar": "نؤمن بأن الشفافية أساس الثقة، لذلك نحرص على إبقاء عملائنا على اطلاع دائم بمراحل تقدم مشاريعنا.",
+    "content_status": "MANQUANT — aucun contenu concret (photos de chantier, dates, mises à jour) fourni dans le dossier. À demander au client : a-t-il des photos/vidéos d'avancement de chantier régulières pour Elysia, Lumalac notamment ?"
+  },
+  "contact": {
+    "title_fr": "Prenez rendez-vous avec un conseiller",
+    "title_ar": "احجزوا موعدًا مع أحد مستشارينا",
+    "text_fr": "Remplissez le formulaire et nous vous recontacterons rapidement afin de répondre à vos besoins.",
+    "text_ar": "املؤوا هذه الاستمارة وسيتواصل معكم فريقنا في أقرب الآجال.",
+    "fields": [
+      {
+        "name": "full_name",
+        "label_fr": "Nom et Prénom",
+        "label_ar": "الاسم واللقب",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "email",
+        "label_fr": "Adresse e-mail",
+        "label_ar": "البريد الإلكتروني",
+        "type": "email",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "label_fr": "Numéro de téléphone",
+        "label_ar": "رقم الهاتف",
+        "type": "tel",
+        "required": true
+      },
+      {
+        "name": "unit_type",
+        "label_fr": "Type de bien (F2 / F3 / F4 / Duplex / Loft)",
+        "label_ar": "نوع العقار",
+        "type": "select",
+        "options": [
+          "F2",
+          "F3",
+          "F4",
+          "Duplex",
+          "Loft"
+        ],
+        "required": false
+      },
+      {
+        "name": "residence",
+        "label_fr": "Résidence souhaitée",
+        "label_ar": "الإقامة المرغوبة",
+        "type": "select",
+        "options": [
+          "Orea",
+          "Dahlia",
+          "Elysia",
+          "Lumalac"
+        ],
+        "required": false
+      }
+    ],
+    "submit_fr": "Envoyer la demande",
+    "submit_ar": "إرسال الطلب",
+    "missing": "MANQUANT — pas d'adresse e-mail/CRM de destination précisée pour recevoir les leads du formulaire. À demander.",
+    "company_name_fr": "Hamadat Promotion Immobilière",
+    "company_name_ar": "حمادات للترقية العقارية",
+    "address_fr": "Cité 11 Décembre, Dely Brahim, Alger",
+    "address_ar": "حي 11 ديسمبر، دالي إبراهيم، الجزائر",
+    "city_fr": "Alger, Algérie",
+    "city_ar": "الجزائر العاصمة، الجزائر",
+    "phone": "+213 XX XX XX XX",
+    "email": "contact@hamadat.dz",
+    "badge_fr": "+20 ans d'expérience — +10 projets",
+    "badge_ar": "أكثر من 20 عامًا من الخبرة"
+  },
+  "footer_note": {
+    "quote_fr": "L'excellence, en toute transparence",
+    "quote_ar": "نبني اليوم قيمةً تدوم للمستقبل",
+    "missing": "MANQUANT — pas de liens réseaux sociaux, pas de mentions légales/CGU fournis dans le dossier (contrairement au site de référence oussamapromotion.com qui en a). À demander au client."
+  }
+}

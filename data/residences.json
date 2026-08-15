@@ -1,0 +1,1677 @@
+[
+  {
+    "id": "orea",
+    "category": "en_cours",
+    "name": "Orea",
+    "name_ar": "أوريا",
+    "tagline_fr": "L'élégance du style New Classique au cœur de Dely Brahim",
+    "tagline_ar": "أناقة الطراز الكلاسيكي الجديد في قلب الدالية إبراهيم",
+    "location_fr": "Cité 11 Décembre, Dely Brahim",
+    "location_ar": "حي 11 ديسمبر، الدالية إبراهيم",
+    "google_maps": null,
+    "status_fr": "Vendu en totalité",
+    "status_ar": "بِيع بالكامل",
+    "description_fr": "Projet résidentiel haut standing de 43 appartements F3, F4, F5, F6 et Penthouse. Un emplacement d'exception à proximité de Dounia Parc, une qualité de matériaux et un soin architectural qui en font une référence du résidentiel haut standing.",
+    "description_ar": "تُعدّ إقامة أوريا من المشاريع السكنية الراقية، ويتكوّن المشروع من 43 شقة من أنماط F3 وF4 وF5 وF6 والبنتهاوس. يتميّز بموقعه الاستثنائي بحي 11 ديسمبر بالدالية إبراهيم.",
+    "why_location_fr": "Nous avons choisi la Cité 11 Décembre, à Dely Ibrahim, avec la même exigence qui guide chacun de nos projets. Ce quartier compte parmi les adresses les plus recherchées d'Alger : environnement calme et verdoyant, à proximité immédiate de Dounia Parc, des établissements scolaires et de l'ensemble des commodités essentielles.",
+    "why_location_ar": "اخترنا حي 11 ديسمبر بالدالية إبراهيم بالحرص نفسه الذي يوجّه كل مشاريعنا. محيط هادئ وغنّاء، على مقربة مباشرة من حديقة الدنيا والمؤسسات التعليمية.",
+    "key_numbers": [
+      {
+        "value": "43",
+        "label_fr": "appartements haut standing",
+        "label_ar": "شقة راقية"
+      },
+      {
+        "value": "F3–F6",
+        "label_fr": "+ Penthouse",
+        "label_ar": "+ بنتهاوس"
+      },
+      {
+        "value": "0",
+        "label_fr": "disponibilité — vendu en totalité",
+        "label_ar": "المتوفّر — بيع بالكامل"
+      }
+    ],
+    "typologies_fr": "F3 · F4 · F5 · F6 · Penthouse",
+    "typologies_ar": "F3 · F4 · F5 · F6 · بنتهاوس",
+    "youtube": null,
+    "images": {
+      "principale": [
+        "PHOTOS PRINCIPALES/ChatGPT Image 6 juil. 2026, 09_17_33.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 6 juil. 2026, 09_27_58.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 6 juil. 2026, 10_18_21.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 6 juil. 2026, 10_23_01.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 6 juil. 2026, 10_25_44.png"
+      ],
+      "interieur": [
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 16_28_07.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 08_33_39.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 08_38_04.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 6 juil. 2026, 10_59_46.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 6 juil. 2026, 11_22_16.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 6 juil. 2026, 12_12_55.png"
+      ],
+      "plans": [
+        "PLANS/ChatGPT Image 6 juil. 2026, 10_36_55.png",
+        "PLANS/ChatGPT Image 6 juil. 2026, 10_44_46.png",
+        "PLANS/ChatGPT Image 6 juil. 2026, 10_50_06.png",
+        "PLANS/F3 Bloc A.png"
+      ],
+      "exterieur": [],
+      "autre": [
+        "Texte/contenu site web- AR.txt",
+        "Texte/contenu site web- FR.txt"
+      ]
+    },
+    "diaporama": [
+      {
+        "file": "fichier diaporama site hamadat/Orea/ChatGPT Image 16 juil. 2026, 08_38_04.png",
+        "caption_fr": "Le raffinement jusque dans les moindres détails",
+        "caption_ar": "الأناقة في أدق التفاصيل",
+        "caption_proposed": true,
+        "asset": "residences/orea/diaporama/01.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Orea/ChatGPT Image 6 juil. 2026, 09_17_33.png",
+        "caption_fr": "Une signature architecturale New Classique",
+        "caption_ar": "توقيع معماري بطراز الكلاسيكي الجديد",
+        "caption_proposed": true,
+        "asset": "residences/orea/diaporama/02.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Orea/ChatGPT Image 6 juil. 2026, 10_25_44.png",
+        "caption_fr": "Le détail qui fait la différence",
+        "caption_ar": "التفاصيل التي تصنع الفرق",
+        "caption_proposed": true,
+        "asset": "residences/orea/diaporama/03.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Orea/ChatGPT Image 6 juil. 2026, 10_59_46.png",
+        "caption_fr": "Un art de vivre au quotidien",
+        "caption_ar": "أسلوب حياة راقٍ في كل يوم",
+        "caption_proposed": true,
+        "asset": "residences/orea/diaporama/04.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Orea/ChatGPT Image 6 juil. 2026, 11_22_16.png",
+        "caption_fr": "Une cuisine pensée pour se retrouver",
+        "caption_ar": "مطبخ صُمم للجمع بين الأحبة",
+        "caption_proposed": true,
+        "asset": "residences/orea/diaporama/05.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Orea/ChatGPT Image 6 juil. 2026, 12_12_55.png",
+        "caption_fr": "La lumière naturelle, un luxe discret",
+        "caption_ar": "الضوء الطبيعي... فخامة هادئة",
+        "caption_proposed": true,
+        "asset": "residences/orea/diaporama/06.jpg"
+      }
+    ],
+    "progress_percent": null,
+    "availability_fr": "Vendu en totalité — 0 disponible",
+    "availability_ar": "بيع بالكامل — 0 متوفر",
+    "avail_open": false,
+    "services": [
+      {
+        "icon": "wifi",
+        "text_fr": "Ascenseur italien",
+        "text_ar": "مصعد إيطالي"
+      },
+      {
+        "icon": "shield",
+        "text_fr": "Sécurité 24h/24",
+        "text_ar": "أمن على مدار الساعة"
+      },
+      {
+        "icon": "car",
+        "text_fr": "Parking privatif",
+        "text_ar": "موقف سيارات خاص"
+      },
+      {
+        "icon": "playground",
+        "text_fr": "Aire de jeux",
+        "text_ar": "مساحة ألعاب"
+      },
+      {
+        "icon": "snowflake",
+        "text_fr": "Climatisation et chauffage centralisés LG",
+        "text_ar": "تكييف وتدفئة مركزيان من LG"
+      }
+    ],
+    "quality": [
+      {
+        "icon": "building",
+        "text_fr": "Conception architecturale contemporaine New Classique",
+        "text_ar": "تصميم معماري عصري بطراز الكلاسيكي الجديد"
+      },
+      {
+        "icon": "sparkles",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": "تشطيبات راقية"
+      },
+      {
+        "icon": "package",
+        "text_fr": "Matériaux de construction de haute qualité",
+        "text_ar": "مواد بناء عالية الجودة"
+      },
+      {
+        "icon": "soundwave",
+        "text_fr": "Isolation thermique et acoustique renforcée",
+        "text_ar": "عزل حراري وصوتي مُعزَّز"
+      },
+      {
+        "icon": "window",
+        "text_fr": "Fenêtres double vitrage",
+        "text_ar": "نوافذ بزجاج مزدوج"
+      },
+      {
+        "icon": "layers",
+        "text_fr": "Façades élégantes et soignées",
+        "text_ar": "واجهات أنيقة ومتقَنة"
+      }
+    ]
+  },
+  {
+    "id": "dahlia",
+    "category": "en_cours",
+    "name": "Dahlia",
+    "name_ar": "داليا",
+    "tagline_fr": "Confort moderne et prestations premium au cœur de Dely Brahim",
+    "tagline_ar": "راحة عصرية وخدمات فاخرة في قلب دالي إبراهيم",
+    "location_fr": "Cité 11 Décembre, Dely Brahim",
+    "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
+    "google_maps": null,
+    "status_fr": "Disponible — 20 unités",
+    "status_ar": "متوفر — 20 وحدة",
+    "description_fr": "20 appartements F3, F4, F5 et Penthouse, conçus avec le même souci du détail qui caractérise l'ensemble des réalisations Hamadat. Un quartier calme et verdoyant, à proximité de Dounia Parc et des commodités essentielles.",
+    "description_ar": "إقامة داليا مشروع سكني فاخر يضم 20 شقة متنوعة بين أنماط F3 وF4 وF5، بالإضافة إلى شقق البنتهاوس، صُمِّم بعناية فائقة مع الالتزام بأعلى معايير الجودة.",
+    "why_location_fr": "Nous avons choisi la Cité 11 Décembre, à Dely Ibrahim, avec la même exigence qui guide chacun de nos projets — environnement calme et verdoyant, à proximité immédiate de Dounia Parc, des établissements scolaires et de l'ensemble des commodités essentielles.",
+    "why_location_ar": "اخترنا حي 11 ديسمبر، دالي إبراهيم، بالعناية نفسها التي تميّز جميع مشاريعنا — بيئة هادئة ومحاطة بالمساحات الخضراء، قريبة من حديقة الدنيا.",
+    "key_numbers": [
+      {
+        "value": "20",
+        "label_fr": "appartements haut standing",
+        "label_ar": "شقة راقية"
+      },
+      {
+        "value": "F3–F5",
+        "label_fr": "+ Penthouse",
+        "label_ar": "+ بنتهاوس"
+      },
+      {
+        "value": "20",
+        "label_fr": "disponibles (0 vendu) — 4×F3, 8×F4, 4×F5, 3×Penthouse",
+        "label_ar": "متوفرة (0 مباع) — 4×F3، 8×F4، 4×F5، 3×بنتهاوس"
+      }
+    ],
+    "typologies_fr": "F3 · F4 · F5 · Penthouse",
+    "typologies_ar": "F3 · F4 · F5 · بنتهاوس",
+    "youtube": null,
+    "images": {
+      "principale": [
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_17_52.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_22_46.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_24_04.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_27_31.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_30_04.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_31_20.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_33_01.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_35_56.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_37_30.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_39_26.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_40_55.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_43_04.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_45_04.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_46_23.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_48_09.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_49_34.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_50_45.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_52_05.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_53_20.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_54_33.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 6 juil. 2026, 13_26_56.png"
+      ],
+      "interieur": [
+        "PHOTOS INTERIEUR/01 Chambre Parental de luxe.png",
+        "PHOTOS INTERIEUR/02 Cuisine ouverte sur séjour.png",
+        "PHOTOS INTERIEUR/03 Un espace de vie fluide et lumineux.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 26 juil. 2026, 15_00_42.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 5 juil. 2026, 13_56_46.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 6 juil. 2026, 08_27_17.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 6 juil. 2026, 08_32_44.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 6 juil. 2026, 08_57_52.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 6 juil. 2026, 15_29_56.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 6 juil. 2026, 15_44_33.png"
+      ],
+      "plans": [
+        "PLANS/AFFICHE F3 100m² 1er.jpg",
+        "PLANS/AFFICHE F3 100m² 2eme.jpg",
+        "PLANS/AFFICHE F3 100m² 3eme.jpg",
+        "PLANS/AFFICHE F3 100m² RDC.jpg",
+        "PLANS/AFFICHE F4 120m² 1er.jpg",
+        "PLANS/AFFICHE F4 120m² 2eme.jpg",
+        "PLANS/AFFICHE F4 120m² 3eme.jpg",
+        "PLANS/AFFICHE F4 120m² RDC.jpg",
+        "PLANS/AFFICHE F4 136m² 1er.jpg",
+        "PLANS/AFFICHE F4 136m² 2eme.jpg",
+        "PLANS/AFFICHE F4 136m² 3eme.jpg",
+        "PLANS/AFFICHE F4 136m² RDC.jpg",
+        "PLANS/AFFICHE F5 166m² 1er.jpg",
+        "PLANS/AFFICHE F5 166m² 2eme.jpg",
+        "PLANS/AFFICHE F5 166m² 3eme.jpg",
+        "PLANS/ChatGPT Image 5 juil. 2026, 10_51_55.png",
+        "PLANS/ChatGPT Image 5 juil. 2026, 15_14_04.png",
+        "PLANS/ChatGPT Image 5 juil. 2026, 15_56_46.png",
+        "PLANS/ChatGPT Image 5 juil. 2026, 16_29_36.png",
+        "PLANS/F3 78 RDC.jpg",
+        "PLANS/WhatsApp Image 2026-07-06 at 9.58.52 AM.jpeg"
+      ],
+      "exterieur": [
+        "Dossier global/2.Photo exterieur.png"
+      ],
+      "autre": [
+        "Dossier global/1.localisation.png",
+        "Dossier global/3.Entrée.png",
+        "Dossier global/4.digicode.png",
+        "Dossier global/ascensseur.png",
+        "Dossier global/Bache a eau.png",
+        "Dossier global/cameras de surveillence.png",
+        "Dossier global/Femme de ménage (2).png",
+        "Dossier global/Fiche globale du projet.png",
+        "Dossier global/fiche technique des materiaux.jpg",
+        "Dossier global/Hall d'entrée.png",
+        "Dossier global/Parking.png",
+        "Dossier global/sécurité.png",
+        "texte/contenu site web - AR.txt",
+        "texte/contenu site web - FR.txt"
+      ]
+    },
+    "diaporama": [
+      {
+        "file": "fichier diaporama site hamadat/DAHLIA/01 Cuisine ouverte sur séjour.png",
+        "caption_fr": "Cuisine ouverte sur séjour",
+        "caption_ar": "مطبخ مفتوح على الصالة",
+        "caption_proposed": false,
+        "asset": "residences/dahlia/diaporama/01.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/DAHLIA/Chambre lumineuse et apaisante.png",
+        "caption_fr": "Chambre lumineuse et apaisante",
+        "caption_ar": "غرفة نوم مضيئة وهادئة",
+        "caption_proposed": false,
+        "asset": "residences/dahlia/diaporama/02.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/DAHLIA/Femme de ménage.png",
+        "caption_fr": "Service de femme de ménage",
+        "caption_ar": "خدمة عاملة منزلية",
+        "caption_proposed": false,
+        "asset": "residences/dahlia/diaporama/03.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/DAHLIA/L'élégance du rangement.png",
+        "caption_fr": "L'élégance du rangement",
+        "caption_ar": "أناقة في تنظيم المساحة",
+        "caption_proposed": false,
+        "asset": "residences/dahlia/diaporama/04.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/DAHLIA/Résidence haut standing.png",
+        "caption_fr": "Résidence haut standing",
+        "caption_ar": "إقامة راقية",
+        "caption_proposed": false,
+        "asset": "residences/dahlia/diaporama/05.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/DAHLIA/Un cocon de confort.png",
+        "caption_fr": "Un cocon de confort",
+        "caption_ar": "فضاء مفعم بالراحة",
+        "caption_proposed": false,
+        "asset": "residences/dahlia/diaporama/06.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/DAHLIA/Une signature architecturale.png",
+        "caption_fr": "Une signature architecturale",
+        "caption_ar": "بصمة معمارية مميزة",
+        "caption_proposed": false,
+        "asset": "residences/dahlia/diaporama/07.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/DAHLIA/Vidéosurveillance 24h24.png",
+        "caption_fr": "Vidéosurveillance 24h/24",
+        "caption_ar": "مراقبة بالفيديو على مدار الساعة",
+        "caption_proposed": false,
+        "asset": "residences/dahlia/diaporama/08.jpg"
+      }
+    ],
+    "progress_percent": null,
+    "availability_fr": "20 disponibles sur 20 (0 vendu)",
+    "availability_ar": "20 متوفرة من 20 (0 مباع)",
+    "avail_open": true,
+    "services": [
+      {
+        "icon": "lift",
+        "text_fr": "Ascenseur",
+        "text_ar": "مصعد"
+      },
+      {
+        "icon": "shield",
+        "text_fr": "Sécurité 24h/24",
+        "text_ar": "أمن على مدار الساعة"
+      },
+      {
+        "icon": "car",
+        "text_fr": "Parking privatif",
+        "text_ar": "موقف سيارات خاص"
+      },
+      {
+        "icon": "snowflake",
+        "text_fr": "Climatisation et chauffage centralisés",
+        "text_ar": "تكييف وتدفئة مركزيان"
+      },
+      {
+        "icon": "closet",
+        "text_fr": "Dressing intégré",
+        "text_ar": "خزانة ملابس مدمجة"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Cuisine équipée",
+        "text_ar": "مطبخ مجهّز"
+      }
+    ],
+    "quality": [
+      {
+        "icon": "building",
+        "text_fr": "Conception architecturale contemporaine",
+        "text_ar": "تصميم معماري عصري"
+      },
+      {
+        "icon": "sparkles",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": "تشطيبات راقية"
+      },
+      {
+        "icon": "package",
+        "text_fr": "Matériaux de construction de haute qualité",
+        "text_ar": "مواد بناء عالية الجودة"
+      },
+      {
+        "icon": "soundwave",
+        "text_fr": "Isolation thermique et acoustique renforcée",
+        "text_ar": "عزل حراري وصوتي مُعزَّز"
+      },
+      {
+        "icon": "layers",
+        "text_fr": "Façades élégantes et soignées",
+        "text_ar": "واجهات أنيقة ومتقَنة"
+      }
+    ]
+  },
+  {
+    "id": "elysia",
+    "category": "en_cours",
+    "name": "Elysia",
+    "name_ar": "إليزيا",
+    "tagline_fr": "L'architecture contemporaine face à la Méditerranée",
+    "tagline_ar": "تصميم معماري معاصر بإطلالة على البحر الأبيض المتوسط",
+    "location_fr": "Ouled Bounar, Jijel",
+    "location_ar": "أولاد بونار، جيجل",
+    "google_maps": null,
+    "status_fr": "En cours — 26%",
+    "status_ar": "قيد الإنجاز — 26%",
+    "description_fr": "14 étages, 4 appartements F3 par niveau, face à la mer. Un accès direct à la Méditerranée dans un environnement préservé, pour une expérience de vie privilégiée sur le littoral algérien.",
+    "description_ar": "تجسّد إقامة إليزيا توسّع حمادات نحو الساحل الجزائري، ترتفع على 14 طابقًا بأربع شقق من نمط F3 في كل طابق، في إطار يجمع بين الأناقة والخصوصية والقرب من البحر.",
+    "why_location_fr": "Jijel est l'une des wilayas les plus prisées du littoral algérien. Ouled Bounar bénéficie d'un environnement préservé, en bord de mer, loin de l'agitation urbaine.",
+    "why_location_ar": "تُعدّ ولاية جيجل من أبرز الوجهات الساحلية في الجزائر. توفّر منطقة أولاد بونار موقعًا استثنائيًا بإطلالة مباشرة على البحر الأبيض المتوسط.",
+    "key_numbers": [
+      {
+        "value": "14",
+        "label_fr": "étages, typologie unique F3",
+        "label_ar": "طابقًا، نمط وحيد F3"
+      },
+      {
+        "value": "26%",
+        "label_fr": "état d'avancement",
+        "label_ar": "نسبة التقدّم"
+      },
+      {
+        "value": "55",
+        "label_fr": "disponibles (1 vendu)",
+        "label_ar": "متوفرة (1 مباع)"
+      }
+    ],
+    "typologies_fr": "F3 (typologie unique)",
+    "typologies_ar": "F3 (نمط وحيد)",
+    "youtube": null,
+    "images": {
+      "principale": [
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 14_52_00.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 14_55_45.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 15_06_28.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 15_08_35.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 15_10_14.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 15_12_53.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 15_23_43.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 15_25_30.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 20 juil. 2026, 16_19_14.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 20 juil. 2026, 16_21_57.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 4 juil. 2026, 11_24_06.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 4 juil. 2026, 11_47_36.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 4 juil. 2026, 11_51_48.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 4 juil. 2026, 12_15_46.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 4 juil. 2026, 13_24_18.png"
+      ],
+      "interieur": [
+        "PHOTOS INTERIEUR/02 Cuisine équipée, ouverte sur le séjour.png",
+        "PHOTOS INTERIEUR/6. cuisine.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 13 juil. 2026, 10_57_53.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 08_42_48.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 09_07_24.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 09_15_55.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 18 juil. 2026, 11_35_00.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 18 juil. 2026, 11_43_04.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 18 juil. 2026, 11_47_54.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 18 juil. 2026, 11_54_46.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 18 juil. 2026, 14_20_38.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 18 juil. 2026, 14_29_06.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 19 juil. 2026, 16_24_05.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 19 juil. 2026, 16_33_11.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 22 juil. 2026, 13_35_38.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 23 juil. 2026, 11_16_18.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 4 juil. 2026, 14_55_16.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 4 juil. 2026, 15_39_56.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 4 juil. 2026, 15_40_13.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 5 juil. 2026, 15_43_02.png",
+        "Fichier appartement/Photos interieur/1. balcon coté foret.png",
+        "Fichier appartement/Photos interieur/2.  Balcon coté mer 2.png",
+        "Fichier appartement/Photos interieur/2.  Balcon coté mer.png",
+        "Fichier appartement/Photos interieur/2.  Balcon coté mer3.png",
+        "Fichier appartement/Photos interieur/3.chambre.png",
+        "Fichier appartement/Photos interieur/4. cuisine + SAM.png",
+        "Fichier appartement/Photos interieur/5. séjour.png",
+        "Fichier appartement/Photos interieur/6. cuisine.png",
+        "Fichier appartement/Photos interieur/7. example suite parentale.png",
+        "Fichier appartement/Photos interieur/8. séjour.png",
+        "Fichier appartement/Photos interieur/ChatGPT Image 16 juil. 2026, 08_42_48.png",
+        "Fichier appartement/Photos interieur/ChatGPT Image 18 juil. 2026, 11_47_54.png",
+        "Fichier appartement/Photos interieur/ChatGPT Image 18 juil. 2026, 11_54_46.png",
+        "Fichier appartement/Photos interieur/ChatGPT Image 18 juil. 2026, 14_20_38.png",
+        "Fichier appartement/Photos interieur/ChatGPT Image 18 juil. 2026, 14_29_06.png",
+        "Fichier appartement/Photos interieur/ChatGPT Image 19 juil. 2026, 16_24_05.png",
+        "Fichier appartement/Photos interieur/ChatGPT Image 19 juil. 2026, 16_33_11.png",
+        "Fichier appartement/Photos interieur/ChatGPT Image 22 juil. 2026, 13_35_38.png"
+      ],
+      "plans": [
+        "PLANS/VSFDJ.jpg",
+        "PLANS/VSFGB.jpg",
+        "PLANS/VSMDB.jpg",
+        "PLANS/VSMGJ.jpg"
+      ],
+      "exterieur": [],
+      "autre": [
+        "Fichier global/1.Localilation.jpeg",
+        "Fichier global/10. Hammam.png",
+        "Fichier global/11. Exemple SDB.png",
+        "Fichier global/12. Exemple balcon.png",
+        "Fichier global/13. exemple chambre.png",
+        "Fichier global/14. Example cuisine + SAM.png",
+        "Fichier global/15. Example séjour.png",
+        "Fichier global/16. example cuisine.png",
+        "Fichier global/17. example suite parentale.png",
+        "Fichier global/2. Entrée du batiment.png",
+        "Fichier global/3. digicode.png",
+        "Fichier global/4. Lobby.png",
+        "Fichier global/5. ascensseur.png",
+        "Fichier global/6. bache a eau.png",
+        "Fichier global/7. femme de menage.png",
+        "Fichier global/8. sécurité.png",
+        "Fichier global/9. salle de sport.png",
+        "Fichier global/cuisine.png",
+        "Fichier global/fiche technique.png",
+        "TEXTE/contenu site web - ar.txt",
+        "TEXTE/contenu site web - fr.txt",
+        "Fichier appartement/Commodités appartement/balcon.png",
+        "Fichier appartement/Commodités appartement/chambre.png",
+        "Fichier appartement/Commodités appartement/Cuisine.png",
+        "Fichier appartement/Commodités appartement/SDB.png",
+        "Fichier global/Fiche technique des matériaux/fiche technique.png"
+      ]
+    },
+    "diaporama": [
+      {
+        "file": "fichier diaporama site hamadat/Elysia/1. balcon coté foret.png",
+        "caption_fr": "Balcon côté forêt",
+        "caption_ar": "شرفة تطل على الغابة",
+        "caption_proposed": false,
+        "asset": "residences/elysia/diaporama/01.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/10. Hammam.png",
+        "caption_fr": "Un hammam pour se ressourcer",
+        "caption_ar": "حمّام للاسترخاء وتجديد النشاط",
+        "caption_proposed": false,
+        "asset": "residences/elysia/diaporama/02.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/11. Exemple SDB.png",
+        "caption_fr": "Une salle de bain à l'élégance épurée",
+        "caption_ar": "حمّام بأناقة نقية",
+        "caption_proposed": false,
+        "asset": "residences/elysia/diaporama/03.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/13. exemple chambre.png",
+        "caption_fr": "Une chambre pensée pour le repos",
+        "caption_ar": "غرفة نوم صُممت للراحة",
+        "caption_proposed": false,
+        "asset": "residences/elysia/diaporama/04.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/16. example cuisine.png",
+        "caption_fr": "Une cuisine entièrement équipée",
+        "caption_ar": "مطبخ مجهّز بالكامل",
+        "caption_proposed": false,
+        "asset": "residences/elysia/diaporama/05.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/2.  Balcon coté mer 2.png",
+        "caption_fr": "Balcon face à la mer",
+        "caption_ar": "شرفة تطل على البحر",
+        "caption_proposed": false,
+        "asset": "residences/elysia/diaporama/06.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/2. Entrée du batiment.png",
+        "caption_fr": "Une entrée qui donne le ton",
+        "caption_ar": "مدخلٌ يعكس الرقي",
+        "caption_proposed": false,
+        "asset": "residences/elysia/diaporama/07.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/3. digicode.png",
+        "caption_fr": "Un accès sécurisé par digicode",
+        "caption_ar": "دخول آمن عبر رمز رقمي",
+        "caption_proposed": false,
+        "asset": "residences/elysia/diaporama/08.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/6. bache a eau.png",
+        "caption_fr": "Une réserve d'eau pour votre tranquillité",
+        "caption_ar": "خزان مياه لراحة بالكم",
+        "caption_proposed": false,
+        "asset": "residences/elysia/diaporama/09.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/9. salle de sport.png",
+        "caption_fr": "Une salle de sport à votre disposition",
+        "caption_ar": "قاعة رياضية في متناولكم",
+        "caption_proposed": false,
+        "asset": "residences/elysia/diaporama/10.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/ChatGPT Image 18 juil. 2026, 15_10_14.png",
+        "caption_fr": "Elysia s'illumine face à la Méditerranée",
+        "caption_ar": "إليزيا تتلألأ في مواجهة المتوسط",
+        "caption_proposed": true,
+        "asset": "residences/elysia/diaporama/11.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/ChatGPT Image 20 juil. 2026, 16_21_57.png",
+        "caption_fr": "À deux pas de la plage",
+        "caption_ar": "على بعد خطوات من الشاطئ",
+        "caption_proposed": true,
+        "asset": "residences/elysia/diaporama/12.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/ChatGPT Image 4 juil. 2026, 11_47_36.png",
+        "caption_fr": "Une piscine suspendue face à la mer",
+        "caption_ar": "مسبح معلّق يطل على البحر",
+        "caption_proposed": true,
+        "asset": "residences/elysia/diaporama/13.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Elysia/ChatGPT Image 4 juil. 2026, 13_24_18.png",
+        "caption_fr": "Le coucher de soleil, chaque soir",
+        "caption_ar": "غروبٌ يوميّ ساحر",
+        "caption_proposed": true,
+        "asset": "residences/elysia/diaporama/14.jpg"
+      }
+    ],
+    "progress_percent": 26,
+    "availability_fr": "55 disponibles (1 vendu)",
+    "availability_ar": "55 متوفرة (1 مباع)",
+    "avail_open": true,
+    "services": [
+      {
+        "icon": "lift",
+        "text_fr": "Ascenseur intelligent",
+        "text_ar": "مصعد ذكي"
+      },
+      {
+        "icon": "droplet",
+        "text_fr": "Piscine & Jacuzzi",
+        "text_ar": "مسبح وجاكوزي"
+      },
+      {
+        "icon": "dumbbell",
+        "text_fr": "Salle de sport",
+        "text_ar": "قاعة رياضة"
+      },
+      {
+        "icon": "shield",
+        "text_fr": "Sécurité 24h/24",
+        "text_ar": "أمن على مدار الساعة"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Cuisine équipée",
+        "text_ar": "مطبخ مجهّز"
+      },
+      {
+        "icon": "closet",
+        "text_fr": "Dressing intégré",
+        "text_ar": "خزانة ملابس مدمجة"
+      },
+      {
+        "icon": "bell",
+        "text_fr": "Interphone",
+        "text_ar": "إنتركوم"
+      },
+      {
+        "icon": "droplet",
+        "text_fr": "Bâche à eau",
+        "text_ar": "خزان مياه"
+      }
+    ],
+    "quality": [
+      {
+        "icon": "building",
+        "text_fr": "Design contemporain sur 14 niveaux",
+        "text_ar": "تصميم معاصر على 14 طابقًا"
+      },
+      {
+        "icon": "grid",
+        "text_fr": "Revêtements en porcelaine rectifiée laser",
+        "text_ar": "بلاطات بورسلان مصقولة بالليزر"
+      },
+      {
+        "icon": "sparkles",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": "تشطيبات راقية"
+      },
+      {
+        "icon": "soundwave",
+        "text_fr": "Isolation thermique et acoustique renforcée",
+        "text_ar": "عزل حراري وصوتي مُعزَّز"
+      },
+      {
+        "icon": "layers",
+        "text_fr": "Façades modernes en harmonie avec l'environnement maritime",
+        "text_ar": "واجهات عصرية منسجمة مع المحيط البحري"
+      }
+    ]
+  },
+  {
+    "id": "lumalac",
+    "category": "en_cours",
+    "name": "Lumalac",
+    "name_ar": "لومالاك",
+    "tagline_fr": "En cours de finalisation — face à Dounia Parc, Dely Brahim",
+    "tagline_ar": "إطلالة تنبض بجمال الطبيعة ورقيّ الحياة",
+    "location_fr": "Dely Brahim",
+    "location_ar": "دالي إبراهيم",
+    "google_maps": null,
+    "status_fr": "Quasi vendu — 80%",
+    "status_ar": "شبه مباع بالكامل — 80%",
+    "description_fr": "12 unités exclusives F3 et Triplex Loft, en phase de finalisation. Une situation exceptionnelle face à Dounia Parc, avec vues ouvertes sur les espaces verts dans un cadre calme et privilégié.",
+    "description_ar": "تُعدّ إقامة لومالاك من أرقى المشاريع السكنية، في مراحلها الأخيرة من الإنجاز. تضمّ 12 وحدة سكنية حصرية من نمطي F3 والتريبلكس لوفت، بموقع استثنائي مقابل حديقة دنيا بارك.",
+    "why_location_fr": "Nous avons choisi Dely Ibrahim avec la même exigence qui guide chacun de nos projets — environnement calme et verdoyant, avec une vue directe sur Dounia Parc.",
+    "why_location_ar": "اخترنا دالي إبراهيم بالعناية نفسها التي تميّز جميع مشاريعنا — بيئة هادئة تحتضنها المساحات الخضراء، وإطلالة مباشرة على حديقة دنيا بارك.",
+    "key_numbers": [
+      {
+        "value": "08",
+        "label_fr": "unités résidentielles",
+        "label_ar": "وحدات سكنية"
+      },
+      {
+        "value": "80%",
+        "label_fr": "avancement des travaux",
+        "label_ar": "نسبة تقدّم الأشغال"
+      },
+      {
+        "value": "F3",
+        "label_fr": "+ Triplex Loft",
+        "label_ar": "+ تريبلكس لوفت"
+      }
+    ],
+    "typologies_fr": "F3 · Triplex Loft",
+    "typologies_ar": "F3 · تريبلكس لوفت",
+    "youtube": null,
+    "images": {
+      "principale": [
+        "PHOTO PRINCIPALE/ChatGPT Image 23 juil. 2026, 08_50_40.png",
+        "PHOTO PRINCIPALE/ChatGPT Image 23 juil. 2026, 08_54_52.png",
+        "PHOTO PRINCIPALE/ChatGPT Image 8 juil. 2026, 10_41_44.png",
+        "PHOTO PRINCIPALE/ChatGPT Image 8 juil. 2026, 10_42_34.png",
+        "PHOTO PRINCIPALE/ChatGPT Image 8 juil. 2026, 11_07_55.png",
+        "PHOTO PRINCIPALE/ChatGPT Image 8 juil. 2026, 11_08_04.png"
+      ],
+      "interieur": [
+        "PHOTOS INTERIEUR/1..png",
+        "PHOTOS INTERIEUR/2.png",
+        "PHOTOS INTERIEUR/3.png",
+        "PHOTOS INTERIEUR/4.png"
+      ],
+      "plans": [],
+      "exterieur": [],
+      "autre": [
+        "Texte/contenu site web - AR.txt",
+        "Texte/contenu site web - FR.txt"
+      ]
+    },
+    "diaporama": [
+      {
+        "file": "fichier diaporama site hamadat/Lumalac/Résidence de luxe, matériaux d'exception.png",
+        "caption_fr": "Résidence de luxe, matériaux d'exception",
+        "caption_ar": "إقامة فاخرة، بمواد استثنائية",
+        "caption_proposed": false,
+        "asset": "residences/lumalac/diaporama/01.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Lumalac/Résidence haut de gamme, exigence absolue.png",
+        "caption_fr": "Résidence haut de gamme, exigence absolue",
+        "caption_ar": "إقامة راقية، بمعايير صارمة",
+        "caption_proposed": false,
+        "asset": "residences/lumalac/diaporama/02.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Lumalac/Un cocon rien qu'à vous.png",
+        "caption_fr": "Un cocon rien qu'à vous",
+        "caption_ar": "ملاذكم الخاص",
+        "caption_proposed": false,
+        "asset": "residences/lumalac/diaporama/03.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Lumalac/Un espace pensé pour le confort.png",
+        "caption_fr": "Un espace pensé pour le confort",
+        "caption_ar": "فضاء صُمم من أجل الراحة",
+        "caption_proposed": false,
+        "asset": "residences/lumalac/diaporama/04.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Lumalac/Un seul espace pour tous les moments de vie.png",
+        "caption_fr": "Un seul espace pour tous les moments de vie",
+        "caption_ar": "فضاء واحد لكل لحظات الحياة",
+        "caption_proposed": false,
+        "asset": "residences/lumalac/diaporama/05.jpg"
+      }
+    ],
+    "progress_percent": 80,
+    "availability_fr": "Quasi vendu",
+    "availability_ar": "شبه مباع بالكامل",
+    "avail_open": false,
+    "services": [
+      {
+        "icon": "lift",
+        "text_fr": "Ascenseur intelligent",
+        "text_ar": "مصعد ذكي"
+      },
+      {
+        "icon": "droplet",
+        "text_fr": "Jacuzzi & Hammam",
+        "text_ar": "جاكوزي وحمّام"
+      },
+      {
+        "icon": "shield",
+        "text_fr": "Sécurité 24h/24",
+        "text_ar": "أمن على مدار الساعة"
+      },
+      {
+        "icon": "snowflake",
+        "text_fr": "Climatisation et chauffage centralisés LG",
+        "text_ar": "تكييف وتدفئة مركزيان من LG"
+      },
+      {
+        "icon": "closet",
+        "text_fr": "Dressing intégré",
+        "text_ar": "خزانة ملابس مدمجة"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Cuisine équipée",
+        "text_ar": "مطبخ مجهّز"
+      }
+    ],
+    "quality": [
+      {
+        "icon": "building",
+        "text_fr": "Conception architecturale moderne",
+        "text_ar": "تصميم معماري عصري"
+      },
+      {
+        "icon": "sparkles",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": "تشطيبات راقية"
+      },
+      {
+        "icon": "package",
+        "text_fr": "Matériaux de construction de haute qualité",
+        "text_ar": "مواد بناء عالية الجودة"
+      },
+      {
+        "icon": "soundwave",
+        "text_fr": "Isolation thermique et acoustique renforcée",
+        "text_ar": "عزل حراري وصوتي مُعزَّز"
+      },
+      {
+        "icon": "layers",
+        "text_fr": "Façades élégantes en harmonie avec le quartier",
+        "text_ar": "واجهات أنيقة منسجمة مع الحي"
+      }
+    ]
+  },
+  {
+    "id": "les-3-princes",
+    "category": "livre",
+    "name": "Les Trois Princes",
+    "name_ar": "الأمراء الثلاثة",
+    "tagline_fr": "Livrée en 2019 — l'une des réalisations phares de Hamadat à Dely Brahim",
+    "tagline_ar": "حيث يلتقي الرقيّ بأصالة التصميم",
+    "location_fr": "Cité 11 Décembre, Dely Brahim",
+    "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
+    "google_maps": "https://maps.app.goo.gl/3A1AQGoQLdhZY6wC7",
+    "status_fr": "Vendu en totalité",
+    "status_ar": "بِيع بالكامل",
+    "delivered_year": 2019,
+    "description_fr": "Architecture contemporaine soignée, vendue dans sa totalité — une référence du savoir-faire Hamadat sur le résidentiel haut standing à Alger. 47 appartements F3, F4, F5 et Duplex, répartis sur trois bâtiments.",
+    "description_ar": "سُلِّمت سنة 2019، وتُرسّخ مكانتها كأحد أبرز المشاريع في دالي إبراهيم. يضم 47 وحدة سكنية F3، F4، F5 ودوبلكس، موزعة على ثلاث عمارات.",
+    "key_numbers": [
+      {
+        "value": "47",
+        "label_fr": "appartements répartis sur trois bâtiments",
+        "label_ar": "شقة موزعة على ثلاث عمارات"
+      }
+    ],
+    "typologies_fr": "F3 · F4 · F5 · Duplex",
+    "typologies_ar": "F3 · F4 · F5 · دوبلكس",
+    "youtube": "not_available",
+    "images": {
+      "principale": [
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 16_01_46.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 25 juil. 2026, 11_48_42.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 25 juil. 2026, 11_51_36.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 25 juil. 2026, 12_07_20.png"
+      ],
+      "interieur": [
+        "PHOTOS INTERIEUR/CHAMBRE.png",
+        "PHOTOS INTERIEUR/CUISINE 02.png",
+        "PHOTOS INTERIEUR/CUISINE 3.png",
+        "PHOTOS INTERIEUR/CUISINE.png",
+        "PHOTOS INTERIEUR/HALL.png",
+        "PHOTOS INTERIEUR/SDB 01.png",
+        "PHOTOS INTERIEUR/SDB.png",
+        "PHOTOS INTERIEUR/SEJOUR 02.png",
+        "PHOTOS INTERIEUR/SEJOUR.png"
+      ],
+      "plans": [],
+      "exterieur": [],
+      "autre": [
+        "TEXT/texte- AR.txt",
+        "TEXT/texte- FR.txt"
+      ]
+    },
+    "diaporama": [
+      {
+        "file": "fichier diaporama site hamadat/Les 3 princes/Chambre confortable et raffinée.png",
+        "caption_fr": "Chambre confortable et raffinée",
+        "caption_ar": "غرفة نوم مريحة وراقية",
+        "caption_proposed": false,
+        "asset": "residences/les-3-princes/diaporama/01.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les 3 princes/Cuisine design, esprit contemporain.png",
+        "caption_fr": "Cuisine design, esprit contemporain",
+        "caption_ar": "مطبخ بتصميم عصري",
+        "caption_proposed": false,
+        "asset": "residences/les-3-princes/diaporama/02.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les 3 princes/Praticité et élégance réunies.png",
+        "caption_fr": "Praticité et élégance réunies",
+        "caption_ar": "عملية وأناقة في آنٍ واحد",
+        "caption_proposed": false,
+        "asset": "residences/les-3-princes/diaporama/03.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les 3 princes/Résidence de prestige, emplacement recherché.png",
+        "caption_fr": "Résidence de prestige, emplacement recherché",
+        "caption_ar": "إقامة راقية، بموقع مطلوب",
+        "caption_proposed": false,
+        "asset": "residences/les-3-princes/diaporama/04.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les 3 princes/Résidence pensée pour l'excellence.png",
+        "caption_fr": "Résidence pensée pour l'excellence",
+        "caption_ar": "إقامة صُممت من أجل التميّز",
+        "caption_proposed": false,
+        "asset": "residences/les-3-princes/diaporama/05.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les 3 princes/Salle de bain équipée, finitions premium.png",
+        "caption_fr": "Salle de bain équipée, finitions premium",
+        "caption_ar": "حمّام مجهّز بتشطيبات فاخرة",
+        "caption_proposed": false,
+        "asset": "residences/les-3-princes/diaporama/06.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les 3 princes/SEJOUR.png",
+        "caption_fr": "Séjour",
+        "caption_ar": "الصالة",
+        "caption_proposed": false,
+        "asset": "residences/les-3-princes/diaporama/07.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les 3 princes/Un espace de transition élégant.png",
+        "caption_fr": "Un espace de transition élégant",
+        "caption_ar": "ممر أنيق يربط الفضاءات",
+        "caption_proposed": false,
+        "asset": "residences/les-3-princes/diaporama/08.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les 3 princes/Une adresse qui se distingue.png",
+        "caption_fr": "Une adresse qui se distingue",
+        "caption_ar": "عنوانٌ يتميّز",
+        "caption_proposed": false,
+        "asset": "residences/les-3-princes/diaporama/09.jpg"
+      }
+    ],
+    "progress_percent": null,
+    "availability_fr": "Vendu en totalité",
+    "availability_ar": "بيع بالكامل",
+    "avail_open": false,
+    "services": [],
+    "quality": []
+  },
+  {
+    "id": "les-hirondelles",
+    "category": "livre",
+    "name": "Les Hirondelles",
+    "name_ar": "الحرونديل",
+    "tagline_fr": "Livrée en 2022 — finitions en marbre italien",
+    "tagline_ar": "عنوانٌ للرقي... ومساحاتٌ صُممت للتميز",
+    "location_fr": "Cité 11 Décembre, Dely Brahim",
+    "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
+    "google_maps": "https://maps.app.goo.gl/vjT9M1Rj3QV2kcPj7",
+    "status_fr": "Vendu en totalité",
+    "status_ar": "بِيع بالكامل",
+    "delivered_year": 2022,
+    "description_fr": "Grand ensemble résidentiel haut standing avec finitions en marbre italien et parking souterrain privatif. Vendue dans sa totalité — l'une des réalisations les plus significatives de l'entreprise. 63 appartements F3 à F7, Simplex et Duplex.",
+    "description_ar": "سُلِّمت سنة 2022، وتُجسّد خبرة حمادات في تطوير المجمعات السكنية الراقية. يضم 63 وحدة F3 إلى F7 بنمطي السمبلكس والدوبلكس، بتشطيبات من الرخام الإيطالي.",
+    "key_numbers": [
+      {
+        "value": "63",
+        "label_fr": "appartements, finitions marbre italien",
+        "label_ar": "شقة، تشطيبات رخام إيطالي"
+      }
+    ],
+    "typologies_fr": "F3 à F7 · Simplex · Duplex",
+    "typologies_ar": "F3 إلى F7 · سمبلكس · دوبلكس",
+    "youtube": null,
+    "images": {
+      "principale": [
+        "PHOTOS PRINCIPALES/ChatGPT Image 25 juil. 2026, 11_27_28.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 25 juil. 2026, 11_36_42.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 25 juil. 2026, 12_11_11.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 25 juil. 2026, 12_14_46.png"
+      ],
+      "interieur": [
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 10_09_20.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 10_18_49.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 10_23_50.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 10_39_59.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 13_28_52.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 14_12_50.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 14_48_55.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 15_11_27.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 15_14_52.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 15_18_26.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 15_21_51.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 15_28_31.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 15_30_57.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 15_32_59.png"
+      ],
+      "plans": [],
+      "exterieur": [],
+      "autre": [
+        "TEXTE/contenu site - AR.txt",
+        "TEXTE/contenu site - FR.txt"
+      ]
+    },
+    "diaporama": [
+      {
+        "file": "fichier diaporama site hamadat/Les hirondelles/Hammam raffiné, ambiance douce.png",
+        "caption_fr": "Hammam raffiné, ambiance douce",
+        "caption_ar": "حمّام راقٍ، أجواء هادئة",
+        "caption_proposed": false,
+        "asset": "residences/les-hirondelles/diaporama/01.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les hirondelles/L'excellence architecturale à l'état pur.png",
+        "caption_fr": "L'excellence architecturale à l'état pur",
+        "caption_ar": "التميّز المعماري في أنقى صوره",
+        "caption_proposed": false,
+        "asset": "residences/les-hirondelles/diaporama/02.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les hirondelles/Luxe, élégance et raffinement.png",
+        "caption_fr": "Luxe, élégance et raffinement",
+        "caption_ar": "فخامة، أناقة ورقيّ",
+        "caption_proposed": false,
+        "asset": "residences/les-hirondelles/diaporama/03.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les hirondelles/Résidence de luxe, emplacement rare.png",
+        "caption_fr": "Résidence de luxe, emplacement rare",
+        "caption_ar": "إقامة فاخرة، بموقع نادر",
+        "caption_proposed": false,
+        "asset": "residences/les-hirondelles/diaporama/04.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les hirondelles/Résidence prestige, signature Hamadat.png",
+        "caption_fr": "Résidence prestige, signature Hamadat",
+        "caption_ar": "إقامة راقية، بتوقيع حمادات",
+        "caption_proposed": false,
+        "asset": "residences/les-hirondelles/diaporama/05.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les hirondelles/Séjour aux volumes généreux.png",
+        "caption_fr": "Séjour aux volumes généreux",
+        "caption_ar": "صالة بمساحات رحبة",
+        "caption_proposed": false,
+        "asset": "residences/les-hirondelles/diaporama/06.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les hirondelles/Séjour spacieux, ouverture sur cuisine équipée.png",
+        "caption_fr": "Séjour spacieux, ouverture sur cuisine équipée",
+        "caption_ar": "صالة واسعة تنفتح على مطبخ مجهّز",
+        "caption_proposed": false,
+        "asset": "residences/les-hirondelles/diaporama/07.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les hirondelles/Terrasse aménagée, esprit outdoor.png",
+        "caption_fr": "Terrasse aménagée, esprit outdoor",
+        "caption_ar": "شرفة مهيأة بروح الهواء الطلق",
+        "caption_proposed": false,
+        "asset": "residences/les-hirondelles/diaporama/08.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les hirondelles/Un espace de vie chaleureux.png",
+        "caption_fr": "Un espace de vie chaleureux",
+        "caption_ar": "فضاء عيش دافئ",
+        "caption_proposed": false,
+        "asset": "residences/les-hirondelles/diaporama/09.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les hirondelles/Un espace pensé pour la détente.png",
+        "caption_fr": "Un espace pensé pour la détente",
+        "caption_ar": "فضاء صُمم للاسترخاء",
+        "caption_proposed": false,
+        "asset": "residences/les-hirondelles/diaporama/10.jpg"
+      }
+    ],
+    "progress_percent": null,
+    "availability_fr": "Vendu en totalité",
+    "availability_ar": "بيع بالكامل",
+    "avail_open": false,
+    "services": [],
+    "quality": []
+  },
+  {
+    "id": "la-lune",
+    "category": "livre",
+    "name": "La Lune",
+    "name_ar": "القمر",
+    "tagline_fr": "Livrée en 2018 — seulement 7 appartements",
+    "tagline_ar": "حيث تبدأ الخصوصية... ويكتمل الرقي",
+    "location_fr": "Cité Bouchbouk, Dely Brahim",
+    "location_ar": "حي بوشبوك، دالي إبراهيم",
+    "google_maps": "https://maps.app.goo.gl/9AZBUjGLezzoQ7DK6",
+    "status_fr": "Vendu en totalité",
+    "status_ar": "بِيع بالكامل",
+    "delivered_year": 2018,
+    "description_fr": "L'une des réalisations les plus exclusives de Hamadat. Seulement 7 appartements, pensés pour l'intimité, le raffinement et le confort haut standing.",
+    "description_ar": "سُلِّمت سنة 2018، وتُعدّ من أكثر المشاريع حصريةً. سبع وحدات سكنية فقط، تتنوع بين F5 وF6 بنمطي السمبلكس والدوبلكس، إلى جانب البنتهاوس.",
+    "key_numbers": [
+      {
+        "value": "7",
+        "label_fr": "appartements seulement — résidence exclusive",
+        "label_ar": "شقق فقط — إقامة حصرية"
+      }
+    ],
+    "typologies_fr": "F5 · F6 · Penthouse",
+    "typologies_ar": "F5 · F6 · بنتهاوس",
+    "youtube": null,
+    "images": {
+      "principale": [],
+      "interieur": [
+        "PHOTOS INTERIEUR/ChatGPT Image 13 juil. 2026, 11_46_57.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 13 juil. 2026, 11_49_28.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 09_23_22.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 09_26_57.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 09_29_12.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 09_30_18.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 09_35_02.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_19_31.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_20_54.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_23_22.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_24_38.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_26_09.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_30_36.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_38_04.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_39_27.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_51_19.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_52_52.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_54_14.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_55_45.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 11_57_56.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 12_00_05.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 12_01_45.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 12_02_48.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 12_03_59.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 12_07_17.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 12_08_53.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 12_09_52.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 12_10_55.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 13_20_12.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 14_06_51.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 14_08_20.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 16 juil. 2026, 14_14_31.png",
+        "PHOTOS INTERIEUR/IEZJ2743.JPG",
+        "PHOTOS INTERIEUR/WhatsApp Image 2026-07-13 at 12.50.51 PM.jpeg"
+      ],
+      "plans": [],
+      "exterieur": [
+        "PHOTOS EXTERIEUR/ChatGPT Image 25 juil. 2026, 16_04_12.png",
+        "PHOTOS EXTERIEUR/ChatGPT Image 25 juil. 2026, 16_07_03.png",
+        "PHOTOS EXTERIEUR/ChatGPT Image 25 juil. 2026, 16_17_55.png"
+      ],
+      "autre": [
+        "TEXT/texte - AR.txt",
+        "TEXT/texte-  FR.txt"
+      ]
+    },
+    "diaporama": [
+      {
+        "file": "fichier diaporama site hamadat/La lune/Cuisine moderne et fonctionnelle.png",
+        "caption_fr": "Cuisine moderne et fonctionnelle",
+        "caption_ar": "مطبخ عصري وعملي",
+        "caption_proposed": false,
+        "asset": "residences/la-lune/diaporama/01.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/La lune/Hammam Détente et bien-être au quotidien.png",
+        "caption_fr": "Hammam — détente et bien-être au quotidien",
+        "caption_ar": "حمّام... استرخاء ورفاهية يومية",
+        "caption_proposed": false,
+        "asset": "residences/la-lune/diaporama/02.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/La lune/Sanitaire moderne et fonctionnel (2).png",
+        "caption_fr": "Sanitaire moderne et fonctionnel",
+        "caption_ar": "دورة مياه عصرية وعملية",
+        "caption_proposed": false,
+        "asset": "residences/la-lune/diaporama/03.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/La lune/Sanitaire moderne et fonctionnel.png",
+        "caption_fr": "Sanitaire moderne et fonctionnel",
+        "caption_ar": "دورة مياه عصرية وعملية",
+        "caption_proposed": false,
+        "asset": "residences/la-lune/diaporama/04.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/La lune/Séjour spacieux et lumineux.png",
+        "caption_fr": "Séjour spacieux et lumineux",
+        "caption_ar": "صالة واسعة ومضيئة",
+        "caption_proposed": false,
+        "asset": "residences/la-lune/diaporama/05.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/La lune/Terrasse avec vue dégagée.png",
+        "caption_fr": "Terrasse avec vue dégagée",
+        "caption_ar": "شرفة بإطلالة مفتوحة",
+        "caption_proposed": false,
+        "asset": "residences/la-lune/diaporama/06.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/La lune/Un espace détente au cœur du foyer.png",
+        "caption_fr": "Un espace détente au cœur du foyer",
+        "caption_ar": "ركن للاسترخاء في قلب المنزل",
+        "caption_proposed": false,
+        "asset": "residences/la-lune/diaporama/07.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/La lune/Volumes généreux, ambiance douce.png",
+        "caption_fr": "Volumes généreux, ambiance douce",
+        "caption_ar": "مساحات رحبة، أجواء هادئة",
+        "caption_proposed": false,
+        "asset": "residences/la-lune/diaporama/08.jpg"
+      }
+    ],
+    "progress_percent": null,
+    "availability_fr": "Vendu en totalité",
+    "availability_ar": "بيع بالكامل",
+    "avail_open": false,
+    "services": [],
+    "quality": []
+  },
+  {
+    "id": "vertdalya",
+    "category": "livre",
+    "name": "Vertdalya",
+    "name_ar": "فيرداليا",
+    "tagline_fr": "Livrée en 2022 — vue directe sur Dounia Parc",
+    "tagline_ar": "إطلالة استثنائية... وجودة تعيشها كل يوم",
+    "location_fr": "Cité 11 Décembre, Dely Brahim",
+    "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
+    "google_maps": "https://maps.app.goo.gl/YLzG27EUbrAMJ8z66",
+    "status_fr": "Vendu en totalité",
+    "status_ar": "بِيع بالكامل",
+    "delivered_year": 2022,
+    "description_fr": "10 unités — 7 appartements F3, un appartement F4 et 2 lofts. Emplacement exceptionnel avec vue directe sur Dounia Parc, espaces baignés de lumière naturelle.",
+    "description_ar": "سُلِّمت سنة 2022. 10 وحدات — 7 شقق F3 وشقة واحدة F4 ولوفتين، بموقع استثنائي يطل مباشرة على حديقة دنيا بارك.",
+    "key_numbers": [
+      {
+        "value": "10",
+        "label_fr": "unités avec vue directe sur Dounia Parc",
+        "label_ar": "وحدات بإطلالة مباشرة على حديقة دنيا بارك"
+      }
+    ],
+    "typologies_fr": "F3 · F4 · Lofts",
+    "typologies_ar": "F3 · F4 · لوفت",
+    "youtube": null,
+    "images": {
+      "principale": [
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 14_27_33.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 14_28_54.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 14_31_20 (1).png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 14_46_14.png",
+        "PHOTOS PRINCIPALES/hf_20260312_075332_35c1d861-2b13-429b-925f-37ca5a9b2b0a.png",
+        "PHOTOS PRINCIPALES/Timeline 1_01_05_15_16.jpg"
+      ],
+      "interieur": [
+        "PHOTOS INTERIEUR/ChatGPT Image 11 juil. 2026, 15_30_01.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 11 juil. 2026, 15_31_25.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 11 juil. 2026, 15_33_03.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 11 juil. 2026, 16_03_27.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 11 juil. 2026, 16_07_31.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 13 juil. 2026, 08_11_40.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 13 juil. 2026, 08_12_59.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 13 juil. 2026, 08_14_36.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 13 juil. 2026, 08_19_57.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 13 juil. 2026, 08_23_05.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 13 juil. 2026, 08_28_37.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 13 juil. 2026, 08_33_51.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 13 juil. 2026, 08_48_28.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 19 juil. 2026, 08_43_17.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 19 juil. 2026, 08_45_17.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 19 juil. 2026, 08_48_43.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 19 juil. 2026, 08_50_30.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 19 juil. 2026, 08_51_28.png"
+      ],
+      "plans": [],
+      "exterieur": [],
+      "autre": [
+        "TEXT/CONTENU SITE WEB AR.txt",
+        "TEXT/CONTENU SITE WEB FR.txt"
+      ]
+    },
+    "diaporama": [
+      {
+        "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 11 juil. 2026, 15_30_01.png",
+        "caption_fr": "Une chambre habillée de marbre",
+        "caption_ar": "غرفة نوم تكتسي بالرخام",
+        "caption_proposed": true,
+        "asset": "residences/vertdalya/diaporama/01.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 11 juil. 2026, 15_33_03.png",
+        "caption_fr": "Le marbre, une signature intemporelle",
+        "caption_ar": "الرخام... توقيع خالد",
+        "caption_proposed": true,
+        "asset": "residences/vertdalya/diaporama/02.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 11 juil. 2026, 16_03_27.png",
+        "caption_fr": "Un balcon suspendu entre ciel et verdure",
+        "caption_ar": "شرفة معلّقة بين السماء والخضرة",
+        "caption_proposed": true,
+        "asset": "residences/vertdalya/diaporama/03.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 13 juil. 2026, 08_11_40.png",
+        "caption_fr": "Des espaces baignés de lumière naturelle",
+        "caption_ar": "فضاءات تنعم بضوء طبيعي وفير",
+        "caption_proposed": true,
+        "asset": "residences/vertdalya/diaporama/04.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 13 juil. 2026, 08_14_36.png",
+        "caption_fr": "Un hammam, cocon de bien-être",
+        "caption_ar": "حمّام، واحة للاسترخاء",
+        "caption_proposed": true,
+        "asset": "residences/vertdalya/diaporama/05.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 13 juil. 2026, 08_19_57.png",
+        "caption_fr": "Les volumes généreux du loft",
+        "caption_ar": "مساحات اللوفت الرحبة",
+        "caption_proposed": true,
+        "asset": "residences/vertdalya/diaporama/06.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 13 juil. 2026, 08_48_28.png",
+        "caption_fr": "Un loft pensé pour la vie à deux niveaux",
+        "caption_ar": "لوفت صُمّم للعيش على مستويين",
+        "caption_proposed": true,
+        "asset": "residences/vertdalya/diaporama/07.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 18 juil. 2026, 14_27_33.png",
+        "caption_fr": "Vertdalya, une adresse qui se distingue",
+        "caption_ar": "فيرداليا... عنوان يتميز",
+        "caption_proposed": true,
+        "asset": "residences/vertdalya/diaporama/08.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 18 juil. 2026, 14_46_14.png",
+        "caption_fr": "Vertdalya s'illumine à la tombée du jour",
+        "caption_ar": "فيرداليا تتلألأ عند الغروب",
+        "caption_proposed": true,
+        "asset": "residences/vertdalya/diaporama/09.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 19 juil. 2026, 08_51_28.png",
+        "caption_fr": "Une vue qui n'appartient qu'à vous",
+        "caption_ar": "إطلالة لا تُضاهى، خاصة بكم",
+        "caption_proposed": true,
+        "asset": "residences/vertdalya/diaporama/10.jpg"
+      }
+    ],
+    "progress_percent": null,
+    "availability_fr": "Vendu en totalité",
+    "availability_ar": "بيع بالكامل",
+    "avail_open": false,
+    "services": [],
+    "quality": []
+  },
+  {
+    "id": "marmo",
+    "category": "livre",
+    "name": "Marmo",
+    "name_ar": "مارمو",
+    "tagline_fr": "Livrée en 2025 — signature marbre naturel",
+    "tagline_ar": "حيث تنطق التفاصيل بالفخامة",
+    "location_fr": "Cité 11 Décembre, Dely Brahim",
+    "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
+    "google_maps": "https://maps.app.goo.gl/vfQkQ8eJLdXfucJS8",
+    "status_fr": "Vendu en totalité",
+    "status_ar": "بِيع بالكامل",
+    "delivered_year": 2025,
+    "description_fr": "L'un des projets les plus récents de Hamadat. Le marbre naturel signature confère à chaque espace une touche de raffinement. Vendue dans sa totalité en un temps record. 8 unités exclusives (6 F3 et 2 Duplex).",
+    "description_ar": "سُلِّمت سنة 2025، وتُعدّ من أحدث المشاريع. يستمد المشروع اسمه من الحضور البارز للرخام الطبيعي. 8 وحدات حصرية (6 شقق F3 ووحدتي دوبلكس).",
+    "key_numbers": [
+      {
+        "value": "8",
+        "label_fr": "unités exclusives, signature marbre naturel",
+        "label_ar": "وحدات حصرية، توقيع الرخام الطبيعي"
+      }
+    ],
+    "typologies_fr": "F3 · Duplex",
+    "typologies_ar": "F3 · دوبلكس",
+    "youtube": null,
+    "images": {
+      "principale": [
+        "PHOTOS PRICIPALES/ChatGPT Image 23 juil. 2026, 15_15_36.png",
+        "PHOTOS PRICIPALES/ChatGPT Image 23 juil. 2026, 15_42_05.png",
+        "PHOTOS PRICIPALES/ChatGPT Image 23 juil. 2026, 15_44_56.png",
+        "PHOTOS PRICIPALES/ChatGPT Image 23 juil. 2026, 15_46_28.png",
+        "PHOTOS PRICIPALES/ChatGPT Image 23 juil. 2026, 15_59_00.png",
+        "PHOTOS PRICIPALES/ChatGPT Image 25 juil. 2026, 09_34_35.png",
+        "PHOTOS PRICIPALES/ChatGPT Image 25 juil. 2026, 16_08_40.png",
+        "PHOTOS PRICIPALES/ChatGPT Image 25 juil. 2026, 16_10_27.png",
+        "PHOTOS PRICIPALES/ChatGPT Image 25 juil. 2026, 16_14_10.png"
+      ],
+      "interieur": [
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 13_07_12.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 13_12_42.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 13_22_50.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 13_40_13.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 13_48_43.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 14_00_32.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 14_05_03.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 14_10_59.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 14_30_52.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 14_33_24.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 14_37_31.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 14_39_19.png"
+      ],
+      "plans": [],
+      "exterieur": [],
+      "autre": [
+        "TEXTE/contenue - AR.txt",
+        "TEXTE/contenue - FR.txt"
+      ]
+    },
+    "diaporama": [
+      {
+        "file": "fichier diaporama site hamadat/Marmo/Cuisine et séjour, en toute fluidité.png",
+        "caption_fr": "Cuisine et séjour, en toute fluidité",
+        "caption_ar": "مطبخ وصالة بانسيابية تامة",
+        "caption_proposed": false,
+        "asset": "residences/marmo/diaporama/01.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Marmo/Le luxe n'est plus un rêve, c'est votre adresse.png",
+        "caption_fr": "Le luxe n'est plus un rêve, c'est votre adresse",
+        "caption_ar": "الفخامة لم تعد حلمًا، بل عنوانكم",
+        "caption_proposed": false,
+        "asset": "residences/marmo/diaporama/02.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Marmo/Résidence pensée pour l'élite.png",
+        "caption_fr": "Résidence pensée pour l'élite",
+        "caption_ar": "إقامة صُممت للنخبة",
+        "caption_proposed": false,
+        "asset": "residences/marmo/diaporama/03.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Marmo/ChatGPT Image 15 juil. 2026, 13_07_12.png",
+        "caption_fr": "L'escalier, sculpture de marbre",
+        "caption_ar": "درجٌ... منحوتة من الرخام",
+        "caption_proposed": true,
+        "asset": "residences/marmo/diaporama/04.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Marmo/ChatGPT Image 15 juil. 2026, 13_22_50.png",
+        "caption_fr": "Deux étages, un seul esprit de raffinement",
+        "caption_ar": "طابقان... روح واحدة من الرقي",
+        "caption_proposed": true,
+        "asset": "residences/marmo/diaporama/05.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Marmo/ChatGPT Image 15 juil. 2026, 13_48_43.png",
+        "caption_fr": "Le raffinement, jusqu'au moindre recoin",
+        "caption_ar": "الرقي حتى في أدق الزوايا",
+        "caption_proposed": true,
+        "asset": "residences/marmo/diaporama/06.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Marmo/ChatGPT Image 15 juil. 2026, 14_00_32.png",
+        "caption_fr": "Le marbre naturel, signature Marmo",
+        "caption_ar": "الرخام الطبيعي، توقيع مارمو",
+        "caption_proposed": true,
+        "asset": "residences/marmo/diaporama/07.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Marmo/ChatGPT Image 15 juil. 2026, 14_33_24.png",
+        "caption_fr": "Une salle de bain à l'élégance minérale",
+        "caption_ar": "حمّام بأناقة معدنية راقية",
+        "caption_proposed": true,
+        "asset": "residences/marmo/diaporama/08.jpg"
+      }
+    ],
+    "progress_percent": null,
+    "availability_fr": "Vendu en totalité",
+    "availability_ar": "بيع بالكامل",
+    "avail_open": false,
+    "services": [],
+    "quality": []
+  },
+  {
+    "id": "les-pyramides",
+    "category": "livre",
+    "name": "Les Pyramides",
+    "name_ar": "الأهرامات",
+    "tagline_fr": "Livrée en 2016 — l'une des toutes premières réalisations Hamadat",
+    "tagline_ar": "مشروعٌ رسّخ معايير الجودة",
+    "location_fr": "Cité 11 Décembre, Dely Brahim",
+    "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
+    "google_maps": "https://maps.app.goo.gl/8scU3zhKGeYDNEzf9",
+    "status_fr": "Vendu en totalité",
+    "status_ar": "بِيع بالكامل",
+    "delivered_year": 2016,
+    "description_fr": "L'une des premières grandes réalisations Hamadat à Dely Brahim. A établi les standards de qualité qui caractérisent aujourd'hui l'ensemble des projets de l'entreprise. 80 unités réparties sur six bâtiments.",
+    "description_ar": "سُلِّمت سنة 2016، من أوائل المشاريع الكبرى لحمادات. أرست معايير الجودة والتميز. 80 وحدة سكنية موزعة على ست عمارات.",
+    "key_numbers": [
+      {
+        "value": "80",
+        "label_fr": "unités réparties sur six bâtiments",
+        "label_ar": "وحدة موزعة على ست عمارات"
+      }
+    ],
+    "typologies_fr": "F3 · F4 · F5 · Duplex · Penthouse",
+    "typologies_ar": "F3 · F4 · F5 · دوبلكس · بنتهاوس",
+    "youtube": null,
+    "images": {
+      "principale": [
+        "PHOTOS PRINCIPALES/ChatGPT Image 12 juil. 2026, 12_36_32.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 12 juil. 2026, 12_39_04.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 12 juil. 2026, 12_39_16.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 12 juil. 2026, 12_42_41.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 12 juil. 2026, 12_53_34.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 12 juil. 2026, 12_55_46.png",
+        "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_04_14.png"
+      ],
+      "interieur": [
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 16_09_05.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 16_11_03.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 16_15_09.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 16_17_26.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 16_30_03.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 16_31_24.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 16_32_52.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 14 juil. 2026, 16_36_03.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 09_22_02.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 09_24_02.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 09_36_47.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 09_44_10.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 09_51_42.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 10_00_20.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 10_08_05.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 10_13_10.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 10_21_35.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 10_24_49.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 10_33_48.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 10_37_32.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 10_41_48.png",
+        "PHOTOS INTERIEUR/ChatGPT Image 15 juil. 2026, 10_54_37.png"
+      ],
+      "plans": [],
+      "exterieur": [],
+      "autre": [
+        "Text/contenu site - AR.txt",
+        "Text/contenu site - FR.txt"
+      ]
+    },
+    "diaporama": [
+      {
+        "file": "fichier diaporama site hamadat/Les pyramides/Ambiance soignée, matériaux sélectionnés.png",
+        "caption_fr": "Ambiance soignée, matériaux sélectionnés",
+        "caption_ar": "أجواء أنيقة، مواد مختارة بعناية",
+        "caption_proposed": false,
+        "asset": "residences/les-pyramides/diaporama/01.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les pyramides/Architecture d'exception, matériaux nobles.png",
+        "caption_fr": "Architecture d'exception, matériaux nobles",
+        "caption_ar": "عمارة استثنائية، مواد نبيلة",
+        "caption_proposed": false,
+        "asset": "residences/les-pyramides/diaporama/02.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les pyramides/Calme, espace, élégance.png",
+        "caption_fr": "Calme, espace, élégance",
+        "caption_ar": "هدوء، رحابة، أناقة",
+        "caption_proposed": false,
+        "asset": "residences/les-pyramides/diaporama/03.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les pyramides/Cuisine et séjour, une seule respiration.png",
+        "caption_fr": "Cuisine et séjour, une seule respiration",
+        "caption_ar": "مطبخ وصالة في انسجام تام",
+        "caption_proposed": false,
+        "asset": "residences/les-pyramides/diaporama/04.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les pyramides/Grand espace, petite touche de douceur.png",
+        "caption_fr": "Grand espace, petite touche de douceur",
+        "caption_ar": "مساحة واسعة بلمسة رقيقة",
+        "caption_proposed": false,
+        "asset": "residences/les-pyramides/diaporama/05.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les pyramides/Hammam, un cocon de bien-être.png",
+        "caption_fr": "Hammam, un cocon de bien-être",
+        "caption_ar": "حمّام، واحة للراحة والرفاهية",
+        "caption_proposed": false,
+        "asset": "residences/les-pyramides/diaporama/06.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les pyramides/Le luxe comme art de vivre.png",
+        "caption_fr": "Le luxe comme art de vivre",
+        "caption_ar": "الفخامة كأسلوب حياة",
+        "caption_proposed": false,
+        "asset": "residences/les-pyramides/diaporama/07.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les pyramides/Résidence prestige, signature Hamadat.png",
+        "caption_fr": "Résidence prestige, signature Hamadat",
+        "caption_ar": "إقامة راقية، بتوقيع حمادات",
+        "caption_proposed": false,
+        "asset": "residences/les-pyramides/diaporama/08.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les pyramides/Terrasse aménagée avec soin, matériaux nobles.png",
+        "caption_fr": "Terrasse aménagée avec soin, matériaux nobles",
+        "caption_ar": "شرفة مهيأة بعناية، بمواد نبيلة",
+        "caption_proposed": false,
+        "asset": "residences/les-pyramides/diaporama/09.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les pyramides/Une résidence pensée pour ceux qui exigent le meilleur.png",
+        "caption_fr": "Une résidence pensée pour ceux qui exigent le meilleur",
+        "caption_ar": "إقامة صُممت لمن يطلبون الأفضل",
+        "caption_proposed": false,
+        "asset": "residences/les-pyramides/diaporama/10.jpg"
+      }
+    ],
+    "progress_percent": null,
+    "availability_fr": "Vendu en totalité",
+    "availability_ar": "بيع بالكامل",
+    "avail_open": false,
+    "services": [],
+    "quality": []
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "buildCommand": "node build.js",
+  "outputDirectory": "public",
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/liens", "destination": "/liens.html" }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "page_title_fr": "Nos liens",
+  "page_title_ar": "روابطنا",
+  "intro_fr": "Retrouvez-nous sur nos réseaux et accédez rapidement à nos services.",
+  "intro_ar": "تابعونا على مواقع التواصل الاجتماعي واطّلعوا بسرعة على خدماتنا.",
+  "items": [
+    {
+      "icon": "globe",
+      "label_fr": "Site web",
+      "label_ar": "الموقع الإلكتروني",
+      "url": "https://hamadat-promotion.com"
+    },
+    {
+      "icon": "phone",
+      "label_fr": "Nous appeler",
+      "label_ar": "اتصل بنا",
+      "url": "tel:+213000000000"
+    },
+    {
+      "icon": "whatsapp",
+      "label_fr": "WhatsApp",
+      "label_ar": "واتساب",
+      "url": "https://wa.me/213000000000"
+    },
+    {
+      "icon": "facebook",
+      "label_fr": "Facebook",
+      "label_ar": "فيسبوك",
+      "url": "https://facebook.com/hamadatpromotion"
+    },
+    {
+      "icon": "instagram",
+      "label_fr": "Instagram",
+      "label_ar": "إنستغرام",
+      "url": "https://instagram.com/hamadatpromotion"
+    }
+  ]
+}
