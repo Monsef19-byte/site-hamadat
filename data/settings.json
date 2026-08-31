@@ -1,0 +1,11 @@
+{
+  "notify_enabled": false,
+  "lead_recipient": "contact@hamadat.dz",
+  "smtp_host": "smtp.gmail.com",
+  "smtp_port": 587,
+  "smtp_user": "",
+  "smtp_sender_name": "Hamadat — Site Web",
+  "cta_float_enabled": true,
+  "cta_minibar_enabled": true,
+  "cta_rdv_modal_enabled": true
+}

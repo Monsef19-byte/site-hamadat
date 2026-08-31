@@ -23,6 +23,7 @@
       <a href="apropos.html"><span lang="fr">Qui sommes-nous</span><span lang="ar">من نحن</span></a>
       <a href="index.html#residences"><span lang="fr">Nos résidences</span><span lang="ar">إقاماتنا</span></a>
       <a href="actualites.html"><span lang="fr">Actualités</span><span lang="ar">المستجدات</span></a>
+      <a href="opportunites.html"><span lang="fr">Opportunités</span><span lang="ar">الفرص</span></a>
       
       <a href="index.html#contact"><span lang="fr">Contact</span><span lang="ar">اتصل بنا</span></a>
     </div>
@@ -35,7 +36,7 @@
         <button data-lang="fr" class="active">FR</button>
         <button data-lang="ar">AR</button>
       </div>
-      <a class="nav__cta" href="index.html#contact"><span lang="fr">Prendre rendez-vous</span><span lang="ar">أخذ موعد</span></a>
+      <a class="nav__cta" href="index.html#contact" data-rdv-trigger><span lang="fr">Prendre rendez-vous</span><span lang="ar">أخذ موعد</span></a>
       <button class="nav__burger" aria-label="menu"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg></button>
     </div>
   </nav>
@@ -223,6 +224,7 @@
           <li><a href="apropos.html"><span lang="fr">Qui sommes-nous</span><span lang="ar">من نحن</span></a></li>
           <li><a href="index.html#residences"><span lang="fr">Nos résidences</span><span lang="ar">إقاماتنا</span></a></li>
           <li><a href="actualites.html"><span lang="fr">Actualités</span><span lang="ar">المستجدات</span></a></li>
+          <li><a href="opportunites.html"><span lang="fr">Opportunités</span><span lang="ar">الفرص</span></a></li>
           
           <li><a href="liens.html"><span lang="fr">Liens</span><span lang="ar">الروابط</span></a></li>
         </ul>
@@ -242,7 +244,7 @@
         <h4><span lang="fr">Contact</span><span lang="ar">اتصل بنا</span></h4>
         <ul>
           <li><span lang="fr">Alger, Algérie</span><span lang="ar">الجزائر العاصمة، الجزائر</span></li>
-          <li><a href="index.html#contact"><span lang="fr">Prendre rendez-vous</span><span lang="ar">أخذ موعد</span></a></li>
+          <li><a href="index.html#contact" data-rdv-trigger><span lang="fr">Prendre rendez-vous</span><span lang="ar">أخذ موعد</span></a></li>
         </ul>
       </div>
     </div>
@@ -252,6 +254,22 @@
     </div>
   </div>
 </footer>
+
+<div class="float-cta" id="floatCta" aria-label="Contact rapide"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+<div class="float-card" id="floatCard">
+  <div class="x" id="floatClose">✕</div>
+  <p><span lang="fr">Une question sur votre projet ?</span><span lang="ar">لديكم سؤال حول مشروعكم؟</span></p>
+  <a class="float-btn call" href="tel:+213"><span lang="fr">Appeler maintenant</span><span lang="ar">اتصل الآن</span></a>
+  <a class="float-btn wa" href="https://wa.me/213" target="_blank" rel="noopener"><span lang="fr">WhatsApp</span><span lang="ar">واتساب</span></a>
+</div>
+<nav class="mini-cta-bar" aria-label="Actions rapides">
+  <a href="tel:+213"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span><span lang="fr">Appeler</span><span lang="ar">اتصال</span></span></a>
+  <a class="mid" href="https://wa.me/213" target="_blank" rel="noopener"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.36 7.56L4 20l1.05-4.5A8.5 8.5 0 1 1 21 11.5z"></path><path d="M8.5 10.5c.3 2.8 2.2 4.7 5 5"></path></svg><span>WhatsApp</span></a>
+  <a href="index.html#contact" data-rdv-trigger><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span><span lang="fr">RDV</span><span lang="ar">موعد</span></span></a>
+</nav>
+<script>window.HAMADAT_CTA_FLAGS={"float":true,"minibar":true,"rdvModal":true};</script>
+
+<script>window.HAMADAT_CONTACT_EMAIL="contact@hamadat.dz";</script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

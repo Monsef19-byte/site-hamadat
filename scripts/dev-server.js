@@ -61,6 +61,9 @@ const ROUTES = [
   { test: (p) => p === "/api/admin/logout", mod: "../api/admin/logout" },
   { test: (p) => p === "/api/admin/me", mod: "../api/admin/me" },
   { test: (p) => p === "/api/admin/upload", mod: "../api/admin/upload" },
+  { test: (p) => p === "/api/admin/leads", mod: "../api/admin/leads" },
+  { test: (p) => p === "/api/admin/test-email", mod: "../api/admin/test-email" },
+  { test: (p) => p === "/api/submit-lead", mod: "../api/submit-lead" },
   {
     test: (p) => /^\/api\/admin\/content\/[^/]+$/.test(p),
     mod: "../api/admin/content/[file]",

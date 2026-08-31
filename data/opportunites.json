@@ -1,0 +1,50 @@
+{
+  "hero_title_fr": "Vous avez un terrain, un bien à céder ?",
+  "hero_title_ar": "لديكم أرض أو عقار للتنازل عنه؟",
+  "hero_text_fr": "Proposez-le à Hamadat Promotion Immobilière — vente, échange ou partenariat, notre équipe étudie votre projet sous 48h.",
+  "hero_text_ar": "اقترحوه على حمادات للترقية العقارية — بيع، تبادل أو شراكة، يدرس فريقنا مشروعكم خلال 48 ساعة.",
+  "categories_title_fr": "Ce que nous recherchons",
+  "categories_title_ar": "ما نبحث عنه",
+  "categories": [
+    {
+      "icon": "map",
+      "label_fr": "Terrain",
+      "label_ar": "أرض",
+      "type_bien": "Terrain"
+    },
+    {
+      "icon": "home",
+      "label_fr": "Bien existant",
+      "label_ar": "عقار قائم",
+      "type_bien": "Bien existant"
+    },
+    {
+      "icon": "link",
+      "label_fr": "Troc / Échange",
+      "label_ar": "تبادل",
+      "type_demande": "Troc"
+    },
+    {
+      "icon": "users",
+      "label_fr": "Partenariat",
+      "label_ar": "شراكة",
+      "type_demande": "Partenariat"
+    }
+  ],
+  "features_title_fr": "Caractéristiques",
+  "features_title_ar": "الخصائص",
+  "features": [
+    { "fr": "Vente de terrain, toute surface, tout emplacement", "ar": "بيع أرض، بأي مساحة وفي أي موقع" },
+    { "fr": "Vente d'un bien immobilier existant", "ar": "بيع عقار قائم" },
+    { "fr": "Troc / échange contre un bien Hamadat", "ar": "تبادل مقابل عقار من حمادات" },
+    { "fr": "Partenariat & co-promotion sur vos projets fonciers", "ar": "شراكة وترقية مشتركة لمشاريعكم العقارية" },
+    { "fr": "Estimation gratuite et confidentielle sous 48h", "ar": "تقييم مجاني وسري خلال 48 ساعة" },
+    { "fr": "Accompagnement juridique et administratif complet", "ar": "مرافقة قانونية وإدارية كاملة" }
+  ],
+  "form_title_fr": "Proposez votre bien à Hamadat",
+  "form_text_fr": "Remplissez ce formulaire et notre équipe vous recontactera rapidement pour étudier votre projet : vente, troc ou partenariat.",
+  "form_title_ar": "اقترحوا عقاركم على حمادات",
+  "form_text_ar": "املؤوا هذه الاستمارة وسيتصل بكم فريقنا في أقرب وقت لدراسة مشروعكم: بيع، تبادل أو شراكة.",
+  "submit_fr": "Envoyer ma proposition",
+  "submit_ar": "إرسال اقتراحي"
+}

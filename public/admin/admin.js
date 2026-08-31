@@ -59,6 +59,12 @@ const state = {
   blog: { data: null, sha: null },
   links: { data: null, sha: null },
   videos: { data: null, sha: null },
+  gallery: { data: null, sha: null },
+  settings: { data: null, sha: null },
+  opportunites: { data: null, sha: null },
+  leads: [],
+  leadStats: null,
+  smtpPasswordSet: false,
   currentView: "global",
   currentResidenceIndex: null,
   currentArticleIndex: null,
@@ -69,6 +75,7 @@ const state = {
 // ============================================================================
 async function checkAuth() {
   const me = await api("GET", "/api/admin/me");
+  state.smtpPasswordSet = Boolean(me.smtpPasswordSet);
   return me.authenticated;
 }
 
@@ -133,13 +140,16 @@ $("#logout-btn").addEventListener("click", async () => {
 // Chargement / sauvegarde des données
 // ============================================================================
 async function loadAll() {
-  const [g, car, res, blog, links, videos] = await Promise.all([
+  const [g, car, res, blog, links, videos, gallery, settings, opp] = await Promise.all([
     api("GET", "/api/admin/content/global.json"),
     api("GET", "/api/admin/content/home_carousel.json"),
     api("GET", "/api/admin/content/residences.json"),
     api("GET", "/api/admin/content/blog.json"),
     api("GET", "/api/admin/content/links.json"),
     api("GET", "/api/admin/content/videos.json"),
+    api("GET", "/api/admin/content/gallery.json"),
+    api("GET", "/api/admin/content/settings.json"),
+    api("GET", "/api/admin/content/opportunites.json"),
   ]);
   state.global = { data: g.content, sha: g.sha };
   state.carousel = { data: car.content, sha: car.sha };
@@ -147,6 +157,15 @@ async function loadAll() {
   state.blog = { data: blog.content, sha: blog.sha };
   state.links = { data: links.content, sha: links.sha };
   state.videos = { data: videos.content, sha: videos.sha };
+  state.gallery = { data: gallery.content, sha: gallery.sha };
+  state.settings = { data: settings.content, sha: settings.sha };
+  state.opportunites = { data: opp.content, sha: opp.sha };
+}
+
+async function loadLeads() {
+  const { leads, stats } = await api("GET", "/api/admin/leads");
+  state.leads = leads;
+  state.leadStats = stats;
 }
 
 async function saveSection(key, filename) {
@@ -180,6 +199,10 @@ function renderView(view) {
   if (view === "blog") renderBlogView();
   if (view === "links") renderLinksView();
   if (view === "videos") renderVideosView();
+  if (view === "gallery") renderGalleryView();
+  if (view === "leads") renderLeadsView();
+  if (view === "settings") renderSettingsView();
+  if (view === "opportunites") renderOpportunitesView();
 }
 
 // ============================================================================
@@ -590,6 +613,8 @@ function renderGlobalView() {
 
   renderBilingualStringList(container, "Engagements", "Liste affichée sous le texte « Qui sommes-nous ».", G.about, "commitments_fr", "commitments_ar");
 
+  renderAboutPhotosEditor(container, G.about);
+
   card = newCard(container, "Notre vision");
   bilingualRow(card, "Titre", G.vision, "title_fr", "title_ar");
   bilingualRow(card, "Texte", G.vision, "text_fr", "text_ar", { multiline: true });
@@ -683,11 +708,33 @@ function renderCarouselView() {
   const container = $("#view-carousel");
   container.innerHTML = "";
   const CAR = state.carousel.data;
-  const RES = state.residences.data;
 
   container.appendChild(
-    el(`<div><h2>Carrousel de la page d'accueil</h2><p class="view-sub">Une slide plein écran par résidence. L'ordre ci-dessous détermine l'ordre d'affichage.</p></div>`)
+    el(`<div><h2>Carrousel de la page d'accueil</h2><p class="view-sub">Des slides plein écran, entièrement libres : titre, accroche, emplacement, badges et image sont saisis ici, indépendamment des fiches résidences. L'ordre ci-dessous détermine l'ordre d'affichage.</p></div>`)
   );
+
+  const addSlideBtn = document.createElement("button");
+  addSlideBtn.type = "button";
+  addSlideBtn.className = "btn btn-primary";
+  addSlideBtn.id = "add-slide-btn";
+  addSlideBtn.style.cssText = "font-size:16px;padding:14px 22px;margin:4px 0 20px;";
+  addSlideBtn.textContent = "+ Ajouter une slide";
+  addSlideBtn.onclick = () => {
+    CAR.push({
+      residence_id: null,
+      free_id: "libre-" + Math.random().toString(36).slice(2, 8),
+      name: "",
+      name_ar: "",
+      location_fr: "",
+      location_ar: "",
+      tagline_fr: "",
+      tagline_ar: "",
+      badges: [],
+      asset: "",
+    });
+    renderCarouselView();
+  };
+  container.appendChild(addSlideBtn);
 
   const listWrap = document.createElement("div");
   container.appendChild(listWrap);
@@ -709,10 +756,25 @@ function renderCarouselView() {
       fields.className = "slide-fields";
       const topLine = document.createElement("div");
       topLine.style.cssText = "font-weight:700;font-size:13px;";
-      topLine.textContent = `${i + 1}. ${slide.name || slide.residence_id}`;
+      topLine.textContent = `Slide ${i + 1}`;
       fields.appendChild(topLine);
+      bilingualRow(fields, "Titre", slide, "name", "name_ar");
+      bilingualRow(fields, "Emplacement (sous-titre)", slide, "location_fr", "location_ar");
       bilingualRow(fields, "Accroche", slide, "tagline_fr", "tagline_ar");
-      bilingualRow(fields, "Bouton", slide, "cta_fr", "cta_ar");
+      const ctaNote = document.createElement("div");
+      ctaNote.className = "hint";
+      ctaNote.textContent = "Le bouton du hero est fixe : « Contactez-nous », identique sur toutes les slides (pointe vers la section contact de la page d'accueil).";
+      fields.appendChild(ctaNote);
+      const badgesField = document.createElement("div");
+      badgesField.className = "field";
+      badgesField.innerHTML = `<label>Badges libres (un par ligne, ex : « Nouveau », « Livraison 2026 ») — jamais liés au statut d'une résidence, uniquement ce que vous écrivez ici.</label>`;
+      const badgesTa = document.createElement("textarea");
+      badgesTa.value = (slide.badges || []).join("\n");
+      badgesTa.addEventListener("input", () => {
+        slide.badges = badgesTa.value.split("\n").map((s) => s.trim()).filter(Boolean);
+      });
+      badgesField.appendChild(badgesTa);
+      fields.appendChild(badgesField);
       card.appendChild(fields);
 
       const actions = document.createElement("div");
@@ -726,7 +788,8 @@ function renderCarouselView() {
         uploadBtn.disabled = true;
         const prevText = uploadBtn.textContent;
         try {
-          const url = await pickAndUploadImage(`home-carousel/${slide.residence_id}`, (s) => (uploadBtn.textContent = s));
+          if (!slide.residence_id && !slide.free_id) slide.free_id = "libre-" + Math.random().toString(36).slice(2, 8);
+          const url = await pickAndUploadImage(`home-carousel/${slide.residence_id || slide.free_id}`, (s) => (uploadBtn.textContent = s));
           if (url) {
             slide.asset = url;
             renderList();
@@ -778,49 +841,13 @@ function renderCarouselView() {
   }
   renderList();
 
-  const usedIds = new Set(CAR.map((s) => s.residence_id));
-  const available = RES.filter((r) => !usedIds.has(r.id));
-  if (available.length) {
-    const addWrap = newCard(container, "Ajouter une résidence au carrousel");
-    const row = document.createElement("div");
-    row.style.cssText = "display:flex;gap:10px;align-items:center;";
-    const select = document.createElement("select");
-    select.style.cssText = "flex:1;padding:9px 10px;border:1px solid var(--border);border-radius:7px;";
-    available.forEach((r) => {
-      const opt = document.createElement("option");
-      opt.value = r.id;
-      opt.textContent = r.name;
-      select.appendChild(opt);
-    });
-    const addBtn = document.createElement("button");
-    addBtn.type = "button";
-    addBtn.className = "btn btn-primary btn-sm";
-    addBtn.textContent = "Ajouter";
-    addBtn.onclick = () => {
-      const r = RES.find((x) => x.id === select.value);
-      if (!r) return;
-      CAR.push({
-        residence_id: r.id,
-        name: r.name,
-        name_ar: r.name_ar,
-        category: r.category,
-        tagline_fr: r.tagline_fr,
-        tagline_ar: r.tagline_ar,
-        location_fr: r.location_fr,
-        location_ar: r.location_ar,
-        status_fr: r.status_fr,
-        status_ar: r.status_ar,
-        cta_fr: "Découvrir la résidence",
-        cta_ar: "اكتشف الإقامة",
-        link: `/residences/${r.id}`,
-        asset: "",
-      });
-      renderCarouselView();
-    };
-    row.appendChild(select);
-    row.appendChild(addBtn);
-    addWrap.appendChild(row);
-  }
+  const bottomAddBtn = document.createElement("button");
+  bottomAddBtn.type = "button";
+  bottomAddBtn.className = "btn btn-ghost";
+  bottomAddBtn.style.cssText = "margin:10px 0 4px;";
+  bottomAddBtn.textContent = "+ Ajouter une slide";
+  bottomAddBtn.onclick = addSlideBtn.onclick;
+  container.appendChild(bottomAddBtn);
 
   const toolbar = el(`<div class="section-toolbar"><button class="btn btn-primary" id="save-carousel">Enregistrer le carrousel</button></div>`);
   container.appendChild(toolbar);
@@ -862,6 +889,7 @@ function blankResidence() {
     typologies_ar: "",
     services: [],
     quality: [],
+    dispo: { intro_fr: "", intro_ar: "", typologies: [], note_fr: "", note_ar: "" },
     youtube: null,
     images: { principale: [], interieur: [] },
     diaporama: [],
@@ -1024,6 +1052,7 @@ function renderResidenceDetail() {
   renderIconTextList(container, "Qualité & finitions", "Choisissez une icône pour chaque élément.", r.quality);
 
   renderDiaporamaEditor(container, r);
+  renderDispoEditor(container, r);
 
   card = newCard(container, "Zone sensible", "La suppression retire la résidence de la liste et de toutes les pages générées (à retirer aussi du carrousel d'accueil si elle y figure).");
   const delBtn = document.createElement("button");
@@ -1162,6 +1191,241 @@ function renderDiaporamaEditor(container, r) {
       const url = await pickAndUploadImage(`residences/${r.id}/diaporama`, (s) => (addBtn.textContent = s));
       if (url) {
         r.diaporama.push({ file: "", caption_fr: "", caption_ar: "", caption_proposed: true, asset: url });
+        renderList();
+      }
+    } catch (err) {
+      toast("Échec de l'upload : " + err.message, true);
+    } finally {
+      addBtn.disabled = false;
+      addBtn.textContent = prevText;
+    }
+  };
+  card.appendChild(addBtn);
+}
+
+// Éditeur du bloc « Disponibilité » d'une résidence — tableau par typologie
+// affiché dans la fenêtre modale « Voir les disponibilités » de la fiche
+// résidence (public, généré par lib/gen-residences.js#render_dispo_modal).
+// Porté depuis New Era (admin/static/admin.js#renderVillaDispo), adapté au
+// contenu bilingue FR/AR de Hamadat.
+function renderDispoEditor(container, r) {
+  if (!r.dispo) r.dispo = { intro_fr: "", intro_ar: "", typologies: [], note_fr: "", note_ar: "" };
+  const d = r.dispo;
+  if (!d.typologies) d.typologies = [];
+
+  const card = newCard(
+    container,
+    "Disponibilité",
+    "Tableau et détails affichés dans la fenêtre « Voir les disponibilités ». Le bouton n'apparaît sur la fiche résidence que s'il y a au moins une typologie ci-dessous."
+  );
+  bilingualRow(card, "Texte d'introduction", d, "intro_fr", "intro_ar");
+
+  const listWrap = document.createElement("div");
+  card.appendChild(listWrap);
+
+  function renderList() {
+    listWrap.innerHTML = "";
+    d.typologies.forEach((t, i) => {
+      const wrap = document.createElement("div");
+      wrap.className = "list-item";
+      const removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      removeBtn.className = "list-item-remove";
+      removeBtn.textContent = "✕";
+      removeBtn.onclick = () => {
+        d.typologies.splice(i, 1);
+        renderList();
+      };
+      wrap.appendChild(removeBtn);
+
+      bilingualRow(wrap, "Typologie", t, "name_fr", "name_ar");
+      bilingualRow(wrap, "Nb. d'appartements", t, "count_fr", "count_ar");
+
+      const chkField = document.createElement("div");
+      chkField.className = "field";
+      chkField.innerHTML = `<div class="checkbox-row"><input type="checkbox" id="dispo-confirmed-${i}" ${t.confirmed ? "checked" : ""}> <label for="dispo-confirmed-${i}" style="margin:0;">Confirmé (sinon « à confirmer »)</label></div>`;
+      wrap.appendChild(chkField);
+      $(`#dispo-confirmed-${i}`, chkField).addEventListener("change", (e) => {
+        t.confirmed = e.target.checked;
+      });
+
+      bilingualRow(wrap, "Détail (texte optionnel)", t, "detail_text_fr", "detail_text_ar", { multiline: true });
+
+      if (!t.detail_images) t.detail_images = [];
+      const imgsField = document.createElement("div");
+      imgsField.className = "field";
+      imgsField.innerHTML = `<label>Images de cette typologie (plans, photos — affichées dans « voir détails »)</label>`;
+      const thumbRow = document.createElement("div");
+      thumbRow.style.cssText = "display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;";
+      function renderThumbs() {
+        thumbRow.innerHTML = "";
+        t.detail_images.forEach((imgAsset, ii) => {
+          const thumbWrap = document.createElement("div");
+          thumbWrap.style.cssText = "position:relative;width:90px;";
+          const url = imageDisplayUrl(imgAsset);
+          thumbWrap.innerHTML = url
+            ? `<img src="${url}" style="width:90px;height:66px;object-fit:cover;border-radius:6px;">`
+            : `<div class="img-picker-empty" style="width:90px;height:66px;">Image</div>`;
+          const rm = document.createElement("button");
+          rm.type = "button";
+          rm.title = "Retirer cette image";
+          rm.textContent = "✕";
+          rm.style.cssText = "position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;border:none;background:#c0392b;color:#fff;cursor:pointer;font-size:11px;line-height:1;";
+          rm.onclick = () => {
+            t.detail_images.splice(ii, 1);
+            renderThumbs();
+          };
+          thumbWrap.appendChild(rm);
+          thumbRow.appendChild(thumbWrap);
+        });
+        const addImgBtn = document.createElement("button");
+        addImgBtn.type = "button";
+        addImgBtn.className = "btn btn-ghost btn-sm";
+        addImgBtn.textContent = "+ Ajouter une image";
+        addImgBtn.onclick = async () => {
+          addImgBtn.disabled = true;
+          const prevText = addImgBtn.textContent;
+          try {
+            const url = await pickAndUploadImage(`residences/${r.id}/dispo/${i}`, (s) => (addImgBtn.textContent = s));
+            if (url) {
+              t.detail_images.push(url);
+              renderThumbs();
+            }
+          } catch (err) {
+            toast("Échec de l'upload : " + err.message, true);
+          } finally {
+            addImgBtn.disabled = false;
+            addImgBtn.textContent = prevText;
+          }
+        };
+        thumbRow.appendChild(addImgBtn);
+      }
+      renderThumbs();
+      imgsField.appendChild(thumbRow);
+      wrap.appendChild(imgsField);
+
+      listWrap.appendChild(wrap);
+    });
+  }
+  renderList();
+
+  const addBtn = document.createElement("button");
+  addBtn.type = "button";
+  addBtn.className = "btn btn-ghost btn-sm list-add";
+  addBtn.textContent = "+ Ajouter une typologie";
+  addBtn.onclick = () => {
+    d.typologies.push({ name_fr: "", name_ar: "", count_fr: "à confirmer", count_ar: "للتأكيد", confirmed: false, detail_text_fr: "", detail_text_ar: "", detail_images: [] });
+    renderList();
+  };
+  card.appendChild(addBtn);
+
+  bilingualRow(card, "Note en bas de tableau", d, "note_fr", "note_ar", { multiline: true });
+}
+
+// Éditeur du carrousel de photos « Qui sommes-nous » (G.about.images) —
+// affiché dans la section .intro-figure de la page /apropos.html
+// (lib/gen-apropos.js). Tant qu'aucune photo n'est ajoutée ici, la page
+// retombe automatiquement sur la 1ʳᵉ image du carrousel d'accueil.
+function renderAboutPhotosEditor(container, about) {
+  if (!about.images) about.images = [];
+  const card = newCard(
+    container,
+    "Photos « Qui sommes-nous »",
+    "Carrousel de photos affiché sur la page /apropos.html. Sans photo ici, la 1ʳᵉ image du carrousel d'accueil est utilisée par défaut."
+  );
+  const listWrap = document.createElement("div");
+  card.appendChild(listWrap);
+
+  function renderList() {
+    listWrap.innerHTML = "";
+    about.images.forEach((img, i) => {
+      const slideCard = document.createElement("div");
+      slideCard.className = "slide-card";
+
+      const imgUrl = imageDisplayUrl(img.asset);
+      const imgHtml = imgUrl
+        ? `<img src="${imgUrl}" style="width:110px;height:80px;object-fit:cover;border-radius:8px;">`
+        : `<div class="img-picker-empty" style="width:110px;height:80px;">Aucune image</div>`;
+      slideCard.appendChild(el(imgHtml));
+
+      const fields = document.createElement("div");
+      fields.className = "slide-fields";
+      bilingualRow(fields, `Légende ${i + 1} (optionnelle)`, img, "caption_fr", "caption_ar");
+      slideCard.appendChild(fields);
+
+      const actions = document.createElement("div");
+      actions.className = "slide-actions";
+      const uploadBtn = document.createElement("button");
+      uploadBtn.type = "button";
+      uploadBtn.className = "btn btn-ghost btn-sm";
+      uploadBtn.textContent = "Changer l'image";
+      uploadBtn.onclick = async () => {
+        uploadBtn.disabled = true;
+        const prevText = uploadBtn.textContent;
+        try {
+          const url = await pickAndUploadImage("about", (s) => (uploadBtn.textContent = s));
+          if (url) {
+            img.asset = url;
+            renderList();
+          }
+        } catch (err) {
+          toast("Échec de l'upload : " + err.message, true);
+        } finally {
+          uploadBtn.disabled = false;
+          uploadBtn.textContent = prevText;
+        }
+      };
+      actions.appendChild(uploadBtn);
+
+      if (i > 0) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "btn btn-ghost btn-sm";
+        b.textContent = "↑";
+        b.onclick = () => {
+          [about.images[i - 1], about.images[i]] = [about.images[i], about.images[i - 1]];
+          renderList();
+        };
+        actions.appendChild(b);
+      }
+      if (i < about.images.length - 1) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "btn btn-ghost btn-sm";
+        b.textContent = "↓";
+        b.onclick = () => {
+          [about.images[i + 1], about.images[i]] = [about.images[i], about.images[i + 1]];
+          renderList();
+        };
+        actions.appendChild(b);
+      }
+      const removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      removeBtn.className = "btn btn-danger btn-sm";
+      removeBtn.textContent = "Retirer";
+      removeBtn.onclick = () => {
+        about.images.splice(i, 1);
+        renderList();
+      };
+      actions.appendChild(removeBtn);
+
+      slideCard.appendChild(actions);
+      listWrap.appendChild(slideCard);
+    });
+  }
+  renderList();
+
+  const addBtn = document.createElement("button");
+  addBtn.type = "button";
+  addBtn.className = "btn btn-ghost btn-sm list-add";
+  addBtn.textContent = "+ Ajouter une photo";
+  addBtn.onclick = async () => {
+    addBtn.disabled = true;
+    const prevText = addBtn.textContent;
+    try {
+      const url = await pickAndUploadImage("about", (s) => (addBtn.textContent = s));
+      if (url) {
+        about.images.push({ asset: url, caption_fr: "", caption_ar: "" });
         renderList();
       }
     } catch (err) {
@@ -1596,6 +1860,447 @@ function renderVideosView() {
     e.target.disabled = true;
     try {
       await saveSection("videos", "videos.json");
+    } catch (err) {
+      toast("Échec de l'enregistrement : " + err.message, true);
+    } finally {
+      e.target.disabled = false;
+    }
+  });
+}
+
+// ============================================================================
+// Vue : Galerie / Catalogue (carrousel accueil)
+// ============================================================================
+function renderGalleryView() {
+  const container = $("#view-gallery");
+  container.innerHTML = "";
+  const GALLERY = state.gallery.data;
+  if (!GALLERY.items) GALLERY.items = [];
+  if (GALLERY.enabled === undefined) GALLERY.enabled = true;
+
+  container.appendChild(
+    el(`<div><h2>Galerie / Catalogue</h2><p class="view-sub">Carrousel affiché sur la page d'accueil — réalisations, plans, documents.</p></div>`)
+  );
+
+  let card = newCard(container, "Activation");
+  {
+    const row = document.createElement("div");
+    row.className = "toggle-row";
+    row.innerHTML = `
+      <label class="toggle-switch">
+        <input type="checkbox" id="gallery-enabled-chk" ${GALLERY.enabled ? "checked" : ""}>
+        <span class="track"></span>
+      </label>
+      <div>
+        <div class="toggle-label">Activer la Galerie / Catalogue</div>
+        <div class="toggle-sub">Quand désactivée, la section disparaît du site même si des images sont présentes — pratique pour la masquer temporairement sans perdre le contenu.</div>
+      </div>
+    `;
+    card.appendChild(row);
+    $("#gallery-enabled-chk", row).addEventListener("change", (e) => (GALLERY.enabled = e.target.checked));
+  }
+
+  card = newCard(container, "En-tête de la section");
+  bilingualRow(card, "Titre", GALLERY, "section_title_fr", "section_title_ar");
+  bilingualRow(card, "Texte", GALLERY, "section_text_fr", "section_text_ar", { multiline: true });
+
+  card = newCard(container, "Images", "Si aucune image n'est ajoutée, la section n'apparaît pas sur le site.");
+  const listWrap = document.createElement("div");
+  card.appendChild(listWrap);
+
+  function renderList() {
+    listWrap.innerHTML = "";
+    GALLERY.items.forEach((item, i) => {
+      const slideCard = document.createElement("div");
+      slideCard.className = "slide-card";
+
+      const imgUrl = imageDisplayUrl(item.asset);
+      const imgHtml = imgUrl
+        ? `<img src="${imgUrl}" style="width:110px;height:80px;object-fit:cover;border-radius:8px;">`
+        : `<div class="img-picker-empty" style="width:110px;height:80px;">Aucune image</div>`;
+      slideCard.appendChild(el(imgHtml));
+
+      const fields = document.createElement("div");
+      fields.className = "slide-fields";
+      bilingualRow(fields, "Légende (optionnelle)", item, "caption_fr", "caption_ar");
+      slideCard.appendChild(fields);
+
+      const actions = document.createElement("div");
+      actions.className = "slide-actions";
+      const uploadBtn = document.createElement("button");
+      uploadBtn.type = "button";
+      uploadBtn.className = "btn btn-ghost btn-sm";
+      uploadBtn.textContent = "Changer l'image";
+      uploadBtn.onclick = async () => {
+        uploadBtn.disabled = true;
+        const prevText = uploadBtn.textContent;
+        try {
+          const url = await pickAndUploadImage("catalogue", (s) => (uploadBtn.textContent = s));
+          if (url) {
+            item.asset = url;
+            renderList();
+          }
+        } catch (err) {
+          toast("Échec de l'upload : " + err.message, true);
+        } finally {
+          uploadBtn.disabled = false;
+          uploadBtn.textContent = prevText;
+        }
+      };
+      actions.appendChild(uploadBtn);
+
+      if (i > 0) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "btn btn-ghost btn-sm";
+        b.textContent = "↑";
+        b.onclick = () => {
+          [GALLERY.items[i - 1], GALLERY.items[i]] = [GALLERY.items[i], GALLERY.items[i - 1]];
+          renderList();
+        };
+        actions.appendChild(b);
+      }
+      if (i < GALLERY.items.length - 1) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "btn btn-ghost btn-sm";
+        b.textContent = "↓";
+        b.onclick = () => {
+          [GALLERY.items[i + 1], GALLERY.items[i]] = [GALLERY.items[i], GALLERY.items[i + 1]];
+          renderList();
+        };
+        actions.appendChild(b);
+      }
+      const removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      removeBtn.className = "btn btn-danger btn-sm";
+      removeBtn.textContent = "Retirer";
+      removeBtn.onclick = () => {
+        GALLERY.items.splice(i, 1);
+        renderList();
+      };
+      actions.appendChild(removeBtn);
+
+      slideCard.appendChild(actions);
+      listWrap.appendChild(slideCard);
+    });
+    if (!GALLERY.items.length) {
+      listWrap.appendChild(el(`<div class="entry-empty">Aucune image pour le moment.</div>`));
+    }
+  }
+  renderList();
+
+  const addBtn = document.createElement("button");
+  addBtn.type = "button";
+  addBtn.className = "btn btn-ghost btn-sm list-add";
+  addBtn.textContent = "+ Ajouter une image";
+  addBtn.onclick = async () => {
+    addBtn.disabled = true;
+    const prevText = addBtn.textContent;
+    try {
+      const url = await pickAndUploadImage("catalogue", (s) => (addBtn.textContent = s));
+      if (url) {
+        GALLERY.items.push({ asset: url, caption_fr: "", caption_ar: "" });
+        renderList();
+      }
+    } catch (err) {
+      toast("Échec de l'upload : " + err.message, true);
+    } finally {
+      addBtn.disabled = false;
+      addBtn.textContent = prevText;
+    }
+  };
+  card.appendChild(addBtn);
+
+  const toolbar = el(`<div class="section-toolbar"><button class="btn btn-primary" id="save-gallery">Enregistrer la galerie</button></div>`);
+  container.appendChild(toolbar);
+  $("#save-gallery", toolbar).addEventListener("click", async (e) => {
+    e.target.disabled = true;
+    try {
+      await saveSection("gallery", "gallery.json");
+    } catch (err) {
+      toast("Échec de l'enregistrement : " + err.message, true);
+    } finally {
+      e.target.disabled = false;
+    }
+  });
+}
+
+// ============================================================================
+// Vue : Demandes reçues (leads du formulaire de contact)
+// ============================================================================
+function leadStatusLabel(status) {
+  return status === "handled" ? "Traitée" : "Nouvelle";
+}
+
+async function renderLeadsView() {
+  const container = $("#view-leads");
+  container.innerHTML = "";
+  container.appendChild(
+    el(`<div><h2>Demandes reçues</h2><p class="view-sub">Chaque soumission du formulaire de contact (accueil, Qui sommes-nous, blog) apparaît ici — même si l'e-mail de notification échoue.</p></div>`)
+  );
+  const loadingCard = newCard(container, "Chargement…");
+  try {
+    await loadLeads();
+  } catch (err) {
+    loadingCard.innerHTML = `<h3>Échec du chargement</h3><p class="card-sub">${escapeHtml(err.message)}</p>`;
+    return;
+  }
+  container.removeChild(loadingCard);
+
+  const stats = state.leadStats || { total: 0, new: 0 };
+  const statsCard = newCard(container, "Aperçu");
+  statsCard.appendChild(el(`<p class="card-sub">${stats.total} demande(s) au total, dont <strong>${stats.new}</strong> non traitée(s).</p>`));
+
+  if (!state.leads.length) {
+    newCard(container, "Aucune demande pour le moment", "Les nouvelles soumissions du formulaire de contact apparaîtront ici automatiquement.");
+    return;
+  }
+
+  const listCard = newCard(container, "Toutes les demandes");
+  const table = document.createElement("table");
+  table.className = "leads-table";
+  table.innerHTML = `<thead><tr>
+    <th>Reçue le</th><th>Nom</th><th>Contact</th><th>Bien</th><th>Code</th><th>E-mail</th><th>Statut</th><th></th>
+  </tr></thead>`;
+  const tbody = document.createElement("tbody");
+  table.appendChild(tbody);
+
+  function paintRows() {
+    tbody.innerHTML = "";
+    state.leads.forEach((lead) => {
+      const f = lead.fields || {};
+      const tr = document.createElement("tr");
+      const when = new Date(lead.received_at).toLocaleString("fr-FR");
+      tr.innerHTML = `
+        <td>${escapeHtml(when)}</td>
+        <td>${escapeHtml(f.full_name)}</td>
+        <td>${escapeHtml(f.email)}<br><span class="card-sub">${escapeHtml(f.phone)}</span></td>
+        <td>${escapeHtml([f.unit_type, f.residence, f.type_demande, f.type_bien, f.localisation].filter(Boolean).join(" · ") || "—")}</td>
+        <td><span class="badge badge-teal">${escapeHtml(lead.code)}</span></td>
+        <td>${lead.email_sent ? "✓ envoyé" : "✗ non envoyé"}</td>
+        <td><span class="badge ${lead.status === "handled" ? "badge-grey" : "badge-teal"}">${leadStatusLabel(lead.status)}</span></td>
+        <td></td>
+      `;
+      const actionTd = tr.lastElementChild;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "btn btn-ghost btn-sm";
+      btn.textContent = lead.status === "handled" ? "Marquer nouvelle" : "Marquer traitée";
+      btn.onclick = async () => {
+        btn.disabled = true;
+        try {
+          const nextStatus = lead.status === "handled" ? "new" : "handled";
+          await api("PATCH", "/api/admin/leads", { id: lead.id, status: nextStatus });
+          lead.status = nextStatus;
+          paintRows();
+        } catch (err) {
+          toast("Échec : " + err.message, true);
+          btn.disabled = false;
+        }
+      };
+      actionTd.appendChild(btn);
+      if (f.message) {
+        const msgRow = document.createElement("tr");
+        msgRow.className = "leads-table-msgrow";
+        msgRow.innerHTML = `<td></td><td colspan="7" class="card-sub">« ${escapeHtml(f.message)} »</td>`;
+        tbody.appendChild(tr);
+        tbody.appendChild(msgRow);
+      } else {
+        tbody.appendChild(tr);
+      }
+    });
+  }
+  paintRows();
+  listCard.appendChild(table);
+
+  const refreshBtn = el(`<div class="section-toolbar"><button class="btn btn-ghost" id="refresh-leads">↻ Actualiser</button></div>`);
+  container.appendChild(refreshBtn);
+  $("#refresh-leads", refreshBtn).addEventListener("click", () => renderLeadsView());
+}
+
+// ============================================================================
+// Vue : Réglages Email
+// ============================================================================
+function renderSettingsView() {
+  const container = $("#view-settings");
+  container.innerHTML = "";
+  const S = state.settings.data;
+
+  container.appendChild(
+    el(`<div><h2>Réglages</h2><p class="view-sub">Boutons d'action sitewide et notifications par e-mail des nouvelles demandes.</p></div>`)
+  );
+
+  const ctaCard = newCard(container, "Boutons d'action (CTA)", "Chaque élément est activable/désactivable indépendamment. Un élément désactivé disparaît proprement — les liens existants (« Prendre rendez-vous »…) redeviennent de simples ancres.");
+  const ctaToggles = [
+    { key: "cta_float_enabled", label: "Bulle flottante (Appeler / WhatsApp)", sub: "Bulle en bas à droite, visible sur ordinateur." },
+    { key: "cta_minibar_enabled", label: "Barre d'actions rapides (mobile)", sub: "Barre persistante en bas d'écran sur mobile : Appeler / WhatsApp / RDV." },
+    { key: "cta_rdv_modal_enabled", label: "Modal « Prendre rendez-vous »", sub: "Fait apparaître un choix (Appeler / E-mail / Formulaire) au clic sur tout lien « Prendre rendez-vous »." },
+  ];
+  ctaToggles.forEach(({ key, label, sub }) => {
+    const row = document.createElement("div");
+    row.className = "toggle-row";
+    row.innerHTML = `
+      <label class="toggle-switch">
+        <input type="checkbox" id="${key}-chk" ${S[key] !== false ? "checked" : ""}>
+        <span class="track"></span>
+      </label>
+      <div>
+        <div class="toggle-label">${label}</div>
+        <div class="toggle-sub">${sub}</div>
+      </div>
+    `;
+    ctaCard.appendChild(row);
+    $(`#${key}-chk`, row).addEventListener("change", (e) => (S[key] = e.target.checked));
+  });
+  const ctaSaveBtn = document.createElement("button");
+  ctaSaveBtn.type = "button";
+  ctaSaveBtn.className = "btn btn-primary btn-sm";
+  ctaSaveBtn.style.marginTop = "8px";
+  ctaSaveBtn.textContent = "Enregistrer les CTA";
+  ctaSaveBtn.addEventListener("click", async () => {
+    ctaSaveBtn.disabled = true;
+    try {
+      await saveSection("settings", "settings.json");
+    } catch (err) {
+      toast("Échec de l'enregistrement : " + err.message, true);
+    } finally {
+      ctaSaveBtn.disabled = false;
+    }
+  });
+  ctaCard.appendChild(ctaSaveBtn);
+
+  const card = newCard(container, "Notification par e-mail");
+  const toggleRow = makeFieldRow(card);
+  const toggleWrap = document.createElement("div");
+  toggleWrap.className = "field";
+  toggleWrap.innerHTML = `<label>Envoyer un e-mail à chaque nouvelle demande</label>`;
+  const toggleSelect = document.createElement("select");
+  toggleSelect.innerHTML = `<option value="false">Désactivé</option><option value="true">Activé</option>`;
+  toggleSelect.value = String(Boolean(S.notify_enabled));
+  toggleSelect.addEventListener("change", () => (S.notify_enabled = toggleSelect.value === "true"));
+  toggleWrap.appendChild(toggleSelect);
+  toggleRow.appendChild(toggleWrap);
+  toggleRow.appendChild(document.createElement("div"));
+
+  {
+    const row = makeFieldRow(card);
+    makeField(row, { label: "Destinataire des demandes", value: S.lead_recipient, type: "email", onInput: (v) => (S.lead_recipient = v) });
+    makeField(row, { label: "Nom de l'expéditeur (affiché)", value: S.smtp_sender_name, onInput: (v) => (S.smtp_sender_name = v) });
+  }
+  {
+    const row = makeFieldRow(card);
+    makeField(row, { label: "Serveur SMTP (ex : smtp.gmail.com)", value: S.smtp_host, onInput: (v) => (S.smtp_host = v) });
+    makeField(row, { label: "Port SMTP (ex : 587)", value: S.smtp_port, type: "number", onInput: (v) => (S.smtp_port = Number(v) || 587) });
+  }
+  {
+    const row = makeFieldRow(card);
+    makeField(row, { label: "Adresse d'envoi (compte SMTP)", value: S.smtp_user, type: "email", onInput: (v) => (S.smtp_user = v) });
+  }
+
+  const pwCard = newCard(container, "Mot de passe SMTP", "Volontairement absent de ce dashboard : comme les autres identifiants du projet (mot de passe admin, jetons GitHub…), il n'est jamais stocké dans le contenu versionné, uniquement dans la variable d'environnement Vercel SMTP_PASSWORD.");
+  const pwStatus = document.createElement("p");
+  pwStatus.className = state.smtpPasswordSet ? "card-sub" : "card-sub";
+  pwStatus.innerHTML = state.smtpPasswordSet
+    ? `<span class="badge badge-teal">Configuré</span> — SMTP_PASSWORD est défini côté serveur.`
+    : `<span class="badge badge-grey">Non configuré</span> — ajoutez la variable d'environnement SMTP_PASSWORD dans Vercel (Project Settings → Environment Variables), pour un compte Gmail utilisez un « mot de passe d'application », pas le mot de passe normal.`;
+  pwCard.appendChild(pwStatus);
+
+  const toolbar = el(`<div class="section-toolbar"></div>`);
+  const saveBtn = document.createElement("button");
+  saveBtn.className = "btn btn-primary";
+  saveBtn.textContent = "Enregistrer les réglages";
+  const testBtn = document.createElement("button");
+  testBtn.className = "btn btn-ghost";
+  testBtn.textContent = "Tester l'envoi";
+  toolbar.appendChild(saveBtn);
+  toolbar.appendChild(testBtn);
+  container.appendChild(toolbar);
+
+  saveBtn.addEventListener("click", async () => {
+    saveBtn.disabled = true;
+    try {
+      await saveSection("settings", "settings.json");
+    } catch (err) {
+      toast("Échec de l'enregistrement : " + err.message, true);
+    } finally {
+      saveBtn.disabled = false;
+    }
+  });
+
+  testBtn.addEventListener("click", async () => {
+    testBtn.disabled = true;
+    try {
+      await saveSection("settings", "settings.json");
+      await api("POST", "/api/admin/test-email");
+      toast("E-mail de test envoyé ✓");
+    } catch (err) {
+      toast("Échec du test : " + err.message, true);
+    } finally {
+      testBtn.disabled = false;
+    }
+  });
+}
+
+// ============================================================================
+// Vue : Opportunités (proposez-nous votre bien)
+// ============================================================================
+function renderOpportunitesView() {
+  const container = $("#view-opportunites");
+  container.innerHTML = "";
+  const OPP = state.opportunites.data;
+  if (!OPP.categories) OPP.categories = [];
+  if (!OPP.features) OPP.features = [];
+
+  container.appendChild(
+    el(`<div><h2>Page Opportunités</h2><p class="view-sub">Page destinée aux visiteurs qui ont un terrain ou un bien à proposer à Hamadat — pas aux acheteurs de résidence. Accessible sur /opportunites.html.</p></div>`)
+  );
+
+  let card = newCard(container, "En-tête de la page");
+  bilingualRow(card, "Titre", OPP, "hero_title_fr", "hero_title_ar");
+  bilingualRow(card, "Texte", OPP, "hero_text_fr", "hero_text_ar", { multiline: true });
+
+  renderObjectList(container, {
+    title: "Ce que nous recherchons",
+    hint: "Cartes cliquables — au clic, le visiteur est envoyé directement au formulaire avec le type déjà présélectionné.",
+    arr: OPP.categories,
+    itemLabel: (item, i) => `Catégorie ${i + 1}`,
+    newItem: () => ({ icon: "map", label_fr: "", label_ar: "", type_bien: "", type_demande: "" }),
+    fieldsSpec: (wrap, item) => {
+      iconPickerField(wrap, { label: "Icône", value: item.icon, onSelect: (name) => (item.icon = name) });
+      bilingualRow(wrap, "Libellé", item, "label_fr", "label_ar");
+      const row = makeFieldRow(wrap);
+      makeField(row, { label: "Type de bien à présélectionner (ex: Terrain) — laisser vide si non applicable", value: item.type_bien, onInput: (v) => (item.type_bien = v) });
+      makeField(row, { label: "Type de demande à présélectionner (ex: Troc) — laisser vide si non applicable", value: item.type_demande, onInput: (v) => (item.type_demande = v) });
+    },
+  });
+
+  card = newCard(container, "Caractéristiques");
+  bilingualRow(card, "Titre de la section", OPP, "features_title_fr", "features_title_ar");
+  renderObjectList(container, {
+    title: "Liste à puces",
+    hint: "Affichée sous forme de liste avec coche.",
+    arr: OPP.features,
+    itemLabel: (item, i) => `Ligne ${i + 1}`,
+    newItem: () => ({ fr: "", ar: "" }),
+    fieldsSpec: (wrap, item) => {
+      const row = makeFieldRow(wrap);
+      makeField(row, { label: "FR", value: item.fr, onInput: (v) => (item.fr = v) });
+      makeField(row, { label: "AR", value: item.ar, dir: "rtl", onInput: (v) => (item.ar = v) });
+    },
+  });
+
+  card = newCard(container, "Formulaire de proposition");
+  bilingualRow(card, "Titre", OPP, "form_title_fr", "form_title_ar");
+  bilingualRow(card, "Texte", OPP, "form_text_fr", "form_text_ar", { multiline: true });
+  bilingualRow(card, "Bouton d'envoi", OPP, "submit_fr", "submit_ar");
+
+  const toolbar = el(`<div class="section-toolbar"><button class="btn btn-primary" id="save-opportunites">Enregistrer la page Opportunités</button></div>`);
+  container.appendChild(toolbar);
+  $("#save-opportunites", toolbar).addEventListener("click", async (e) => {
+    e.target.disabled = true;
+    try {
+      await saveSection("opportunites", "opportunites.json");
     } catch (err) {
       toast("Échec de l'enregistrement : " + err.message, true);
     } finally {

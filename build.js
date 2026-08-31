@@ -12,6 +12,7 @@ const { genHome } = require("./lib/gen-home");
 const { genResidences } = require("./lib/gen-residences");
 const { genApropos } = require("./lib/gen-apropos");
 const { genActualites } = require("./lib/gen-actualites");
+const { genOpportunites } = require("./lib/gen-opportunites");
 const { genBlogIndex, genBlogArticles } = require("./lib/gen-blog");
 const { genLinks } = require("./lib/gen-links");
 const { ICONS } = require("./lib/icons");
@@ -64,6 +65,11 @@ function build() {
   const actualites = genActualites(data);
   fs.writeFileSync(path.join(SITE, "actualites.html"), actualites, "utf8");
   console.log("actualites.html written,", actualites.length, "chars");
+
+  // opportunites.html
+  const opportunites = genOpportunites(data);
+  fs.writeFileSync(path.join(SITE, "opportunites.html"), opportunites, "utf8");
+  console.log("opportunites.html written,", opportunites.length, "chars");
 
   // residences/<slug>.html
   const pages = genResidences(data);
