@@ -137,7 +137,7 @@
           <div class="row"><span><span lang="fr">Emplacement</span><span lang="ar">الموقع</span></span><span><span lang="fr">Cité 11 Décembre, Dely Brahim</span><span lang="ar">حي 11 ديسمبر، دالي إبراهيم</span></span></div>
           <div class="row"><span><span lang="fr">Disponibilité</span><span lang="ar">التوفر</span></span><span><span lang="fr">20 disponibles sur 20 (0 vendu)</span><span lang="ar">20 متوفرة من 20 (0 مباع)</span></span></div>
           
-          
+          <button type="button" class="btn btn--dark" id="dispoOpen" style="width:100%;margin-top:14px;"><span lang="fr">Voir les disponibilités</span><span lang="ar">عرض التوفر</span></button>
           <a href="../index.html#contact" class="btn btn--primary" style="margin-top:10px;" data-rdv-trigger><span lang="fr">Prendre rendez-vous</span><span lang="ar">أخذ موعد</span></a>
         </div>
       </div>
@@ -308,3 +308,27 @@
 <script src="../assets/js/main.js"></script>
 </body>
 </html>
+
+<!-- DISPONIBILITÉ MODAL -->
+<div class="dispo-modal" id="dispoModal">
+  <div class="dispo-modal-box">
+    <button class="dispo-modal-close" id="dispoClose" aria-label="Fermer">✕</button>
+    <h3><span lang="fr">Disponibilité</span><span lang="ar">التوفر</span> — Dahlia</h3>
+    <div class="sub"><span lang="fr"></span><span lang="ar"></span></div>
+    <div class="dispo-pending"><span lang="fr">Détail des disponibilités à venir — revenez bientôt ou contactez-nous directement.</span><span lang="ar">تفاصيل التوفر قريبًا — عودوا لاحقًا أو تواصلوا معنا مباشرة.</span></div>
+    
+  </div>
+</div>
+<script>
+(function(){
+  var m = document.getElementById('dispoModal');
+  var openBtn = document.getElementById('dispoOpen');
+  if(!m || !openBtn) return;
+  function close(){ m.classList.remove('open'); document.body.style.overflow = ''; }
+  openBtn.addEventListener('click', function(){ m.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  var closeBtn = document.getElementById('dispoClose');
+  if(closeBtn) closeBtn.addEventListener('click', close);
+  m.addEventListener('click', function(e){ if(e.target === m) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && m.classList.contains('open')) close(); });
+})();
+</script>

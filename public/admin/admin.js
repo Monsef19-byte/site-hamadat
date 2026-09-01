@@ -1216,7 +1216,7 @@ function renderDispoEditor(container, r) {
   const card = newCard(
     container,
     "Disponibilité",
-    "Tableau et détails affichés dans la fenêtre « Voir les disponibilités ». Le bouton n'apparaît sur la fiche résidence que s'il y a au moins une typologie ci-dessous."
+    "Tableau et détails affichés dans la fenêtre « Voir les disponibilités » — le bouton est visible sur toutes les fiches résidences. Tant qu'aucune typologie n'est ajoutée ci-dessous, la fenêtre affiche un message « à venir » au lieu d'un tableau vide."
   );
   bilingualRow(card, "Texte d'introduction", d, "intro_fr", "intro_ar");
 
