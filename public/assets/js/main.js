@@ -47,6 +47,17 @@
       burger.addEventListener("click", function () {
         links.classList.toggle("nav__links--open");
       });
+      links.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () { links.classList.remove("nav__links--open"); });
+      });
+      document.addEventListener("click", function (e) {
+        if (links.classList.contains("nav__links--open") && !links.contains(e.target) && e.target !== burger && !burger.contains(e.target)) {
+          links.classList.remove("nav__links--open");
+        }
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") links.classList.remove("nav__links--open");
+      });
     }
 
     /* ---------------- Tabs (en cours / livrées) ---------------- */

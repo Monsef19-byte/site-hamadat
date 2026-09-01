@@ -167,6 +167,36 @@ html.dark-mode .lang-toggle button.active{background:var(--teal);color:#0D1315;}
 @media(max-width:900px){
   .nav__links{display:none;}
   .nav__burger{display:block;}
+  /* .nav__cta's text is white-space:nowrap, so it can't shrink — together
+     with the burger it was ~395px wide, more than the mobile nav pill has
+     room for, which pushed the burger off-screen entirely and squeezed
+     .nav__logo down to 0 width. Drop the header CTA here; the bottom
+     .mini-cta-bar (Appeler/WhatsApp/RDV) already offers the same action
+     on every page at this width. */
+  .nav__cta{display:none;}
+  /* .nav__links doubled as the mobile menu's own markup (burger toggles
+     nav__links--open, see main.js) but had no styling for that state at
+     all — display:none from the rule above simply never got overridden,
+     so the burger was a dead button. Turn it into an actual dropdown
+     panel below the nav pill when open. */
+  .nav__links.nav__links--open{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:2px;
+    position:fixed;
+    top:90px;left:20px;right:20px;
+    z-index:199;
+    background:var(--nav-bg);
+    backdrop-filter:blur(22px) saturate(180%);
+    -webkit-backdrop-filter:blur(22px) saturate(180%);
+    border:1px solid var(--nav-border);
+    border-radius:24px;
+    padding:10px;
+    box-shadow:var(--shadow-soft);
+  }
+  .nav__links--open a{padding:14px 16px;border-radius:16px;}
+  .nav__links--open a:hover{background:rgba(127,127,127,.1);}
 }
 
 /* ---------- Full-screen hero carousel ---------- */
