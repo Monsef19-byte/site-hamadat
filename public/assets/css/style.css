@@ -317,6 +317,9 @@ section{padding:120px 0;}
 .side-card .btn{width:100%;justify-content:center;margin-top:20px;}
 @media(max-width:900px){.detail-grid{grid-template-columns:1fr;}.side-card{position:static;}}
 
+.map-link{color:var(--teal);font-weight:600;}
+.map-embed{margin-top:18px;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border-c);position:relative;height:320px;}
+.map-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
 .feature-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px;}
 .feature-item{display:flex;align-items:center;gap:14px;background:var(--bg-card);border-radius:var(--radius-sm);padding:16px 18px;font-size:14.5px;font-weight:500;color:var(--text);}
 .feature-item .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex:none;}
