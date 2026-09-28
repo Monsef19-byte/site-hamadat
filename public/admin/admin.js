@@ -1023,7 +1023,7 @@ function renderResidenceDetail() {
     makeField(row, { label: "Année de livraison (références)", value: r.delivered_year, onInput: (v) => (r.delivered_year = v || null) });
   }
 
-  card = newCard(container, "Disponibilité & avancement", "Affichés sur la carte de la résidence (accueil) et sur sa fiche. L'avancement apparaît dans un cercle.");
+  card = newCard(container, "Disponibilité & avancement", "La disponibilité est affichée sur la carte (accueil) et la fiche ; l'avancement uniquement sur la fiche résidence, dans un cercle.");
   bilingualRow(card, "Disponibilité", r, "availability_fr", "availability_ar");
   {
     const row = makeFieldRow(card);
