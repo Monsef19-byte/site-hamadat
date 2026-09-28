@@ -1,8 +1,9 @@
 {
   "enabled": true,
-  "section_title_fr": "",
-  "section_title_ar": "",
-  "section_text_fr": "",
-  "section_text_ar": "",
-  "items": []
+  "section_title_fr": "Galerie",
+  "section_title_ar": "معرض الصور",
+  "section_text_fr": "L'ensemble de nos résidences en images — extérieurs, intérieurs et détails de finition.",
+  "section_text_ar": "جميع إقاماتنا بالصور — الواجهات والديكورات الداخلية وتفاصيل التشطيبات.",
+  "items": [],
+  "excluded": []
 }

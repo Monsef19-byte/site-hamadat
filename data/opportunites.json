@@ -34,17 +34,39 @@
   "features_title_fr": "Caractéristiques",
   "features_title_ar": "الخصائص",
   "features": [
-    { "fr": "Vente de terrain, toute surface, tout emplacement", "ar": "بيع أرض، بأي مساحة وفي أي موقع" },
-    { "fr": "Vente d'un bien immobilier existant", "ar": "بيع عقار قائم" },
-    { "fr": "Troc / échange contre un bien Hamadat", "ar": "تبادل مقابل عقار من حمادات" },
-    { "fr": "Partenariat & co-promotion sur vos projets fonciers", "ar": "شراكة وترقية مشتركة لمشاريعكم العقارية" },
-    { "fr": "Estimation gratuite et confidentielle sous 48h", "ar": "تقييم مجاني وسري خلال 48 ساعة" },
-    { "fr": "Accompagnement juridique et administratif complet", "ar": "مرافقة قانونية وإدارية كاملة" }
+    {
+      "fr": "Vente de terrain, toute surface, tout emplacement",
+      "ar": "بيع أرض، بأي مساحة وفي أي موقع"
+    },
+    {
+      "fr": "Vente d'un bien immobilier existant",
+      "ar": "بيع عقار قائم"
+    },
+    {
+      "fr": "Troc / échange contre un bien Hamadat",
+      "ar": "تبادل مقابل عقار من حمادات"
+    },
+    {
+      "fr": "Partenariat & co-promotion sur vos projets fonciers",
+      "ar": "شراكة وترقية مشتركة لمشاريعكم العقارية"
+    },
+    {
+      "fr": "Estimation gratuite et confidentielle sous 48h",
+      "ar": "تقييم مجاني وسري خلال 48 ساعة"
+    },
+    {
+      "fr": "Accompagnement juridique et administratif complet",
+      "ar": "مرافقة قانونية وإدارية كاملة"
+    }
   ],
   "form_title_fr": "Proposez votre bien à Hamadat",
   "form_text_fr": "Remplissez ce formulaire et notre équipe vous recontactera rapidement pour étudier votre projet : vente, troc ou partenariat.",
   "form_title_ar": "اقترحوا عقاركم على حمادات",
   "form_text_ar": "املؤوا هذه الاستمارة وسيتصل بكم فريقنا في أقرب وقت لدراسة مشروعكم: بيع، تبادل أو شراكة.",
   "submit_fr": "Envoyer ma proposition",
-  "submit_ar": "إرسال اقتراحي"
+  "submit_ar": "إرسال اقتراحي",
+  "media": {
+    "mode": "single",
+    "images": []
+  }
 }
