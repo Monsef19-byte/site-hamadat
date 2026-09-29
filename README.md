@@ -116,8 +116,10 @@ Le dashboard a besoin d'un token pour committer les modifications de contenu
 | `JWT_SECRET` | Une longue chaîne aléatoire (ex. générée avec `openssl rand -hex 32`). |
 | `GITHUB_TOKEN` | Le token créé à l'étape 3.2. |
 | `GITHUB_REPO` | `votre-compte/votre-repo` |
-| `GITHUB_BRANCH` | `main` (ou la branche que Vercel déploie) |
+| `GITHUB_BRANCH` | `main` (branche de production). Un déploiement de preview enregistre toujours sur sa propre branche, quelle que soit cette valeur. |
 | `BLOB_READ_WRITE_TOKEN` | Le token créé à l'étape 3.3. |
+
+Pour utiliser le dashboard sur un déploiement de **preview**, cochez aussi l'environnement *Preview* pour `ADMIN_PASSWORD`, `JWT_SECRET`, `GITHUB_TOKEN`, `GITHUB_REPO` et `BLOB_READ_WRITE_TOKEN`. Les enregistrements y sont commités sur la branche de preview et les demandes reçues sont rangées à part (`hamadat/preview/leads/`).
 
 4. Déployez. Vercel exécute `node build.js` (défini dans `vercel.json`) puis
    sert le contenu de `public/`. La page « Liens » est accessible à l'URL
