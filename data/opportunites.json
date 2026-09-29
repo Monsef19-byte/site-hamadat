@@ -66,7 +66,44 @@
   "submit_fr": "Envoyer ma proposition",
   "submit_ar": "إرسال اقتراحي",
   "media": {
-    "mode": "single",
-    "images": []
-  }
+    "mode": "carousel",
+    "images": [
+      {
+        "asset": "residences/vertdalya/diaporama/08.jpg",
+        "caption_fr": "Vertdalya, une adresse qui se distingue",
+        "caption_ar": "فيرداليا... عنوان يتميز"
+      },
+      {
+        "asset": "residences/les-hirondelles/diaporama/05.jpg",
+        "caption_fr": "Les Hirondelles — Résidence prestige, signature Hamadat",
+        "caption_ar": "الحرونديل — إقامة راقية، بتوقيع حمادات"
+      },
+      {
+        "asset": "residences/les-3-princes/diaporama/04.jpg",
+        "caption_fr": "Les Trois Princes — Résidence de prestige, emplacement recherché",
+        "caption_ar": "الأمراء الثلاثة — إقامة راقية، بموقع مطلوب"
+      },
+      {
+        "asset": "residences/vertdalya/diaporama/09.jpg",
+        "caption_fr": "Vertdalya s'illumine à la tombée du jour",
+        "caption_ar": "فيرداليا تتلألأ عند الغروب"
+      },
+      {
+        "asset": "residences/les-hirondelles/diaporama/02.jpg",
+        "caption_fr": "Les Hirondelles — L'excellence architecturale à l'état pur",
+        "caption_ar": "الحرونديل — التميّز المعماري في أنقى صوره"
+      }
+    ]
+  },
+  "form_type_demande_options": [
+    "Vente",
+    "Achat",
+    "Troc",
+    "Partenariat"
+  ],
+  "form_type_bien_options": [
+    "Terrain",
+    "Bien existant",
+    "Immeuble"
+  ]
 }

@@ -693,11 +693,24 @@ function renderGlobalView() {
   }
   bilingualRow(card, "Badge (ex : +20 ans d'expérience)", G.contact, "badge_fr", "badge_ar");
 
-  card = newCard(container, "Champs du formulaire", "Libellés affichés au-dessus de chaque champ. Tous les champs sont obligatoires, sauf « Description ».");
+  card = newCard(container, "Champs du formulaire", "Libellés affichés au-dessus de chaque champ, et choix proposés dans les listes (un par ligne). Tous les champs sont obligatoires, sauf « Description ».");
   (G.contact.fields || []).forEach((f) => {
     const wrap = document.createElement("div");
     wrap.className = "list-item";
     bilingualRow(wrap, `Libellé (${f.name})`, f, "label_fr", "label_ar");
+    if (f.type === "select") {
+      const row = makeFieldRow(wrap);
+      const ta = makeField(row, { label: "Choix proposés (un par ligne)", value: (f.options || []).join("\n"), multiline: true, onInput: (v) => (f.options = v.split("\n").map((x) => x.trim()).filter(Boolean)) });
+      ta.rows = 5;
+      if (f.name === "residence") {
+        const sync = el(`<button type="button" class="btn btn-ghost btn-sm">Reprendre la liste des résidences</button>`);
+        sync.onclick = () => {
+          f.options = (state.residences.data || []).map((r) => r.name).filter(Boolean);
+          ta.value = f.options.join("\n");
+        };
+        row.appendChild(sync);
+      }
+    }
     card.appendChild(wrap);
   });
 
@@ -957,7 +970,7 @@ function renderResidencesList() {
     row.innerHTML = `
       ${imgUrl ? `<img src="${imgUrl}">` : `<div class="img-picker-empty" style="width:52px;height:52px;">—</div>`}
       <div class="res-row-info">
-        <div class="res-row-name">${escapeHtml(r.name) || "(sans nom)"} <span class="badge ${r.category === "en_cours" ? "badge-teal" : "badge-grey"}">${r.category === "en_cours" ? "En cours" : "Livré"}</span></div>
+        <div class="res-row-name">${escapeHtml(r.name) || "(sans nom)"} <span class="badge ${r.category === "en_cours" ? "badge-teal" : "badge-grey"}">${r.category === "en_cours" ? "En cours" : "Référence"}</span></div>
         <div class="res-row-meta">${escapeHtml(r.location_fr || "")} · ${escapeHtml(r.availability_fr || "")}</div>
       </div>
     `;
@@ -1015,7 +1028,7 @@ function renderResidenceDetail() {
     row.appendChild(catField);
   }
   bilingualRow(card, "Nom", r, "name", "name_ar");
-  bilingualRow(card, "Accroche", r, "tagline_fr", "tagline_ar");
+  bilingualRow(card, "Accroche (description courte pour Google et le partage)", r, "tagline_fr", "tagline_ar");
   bilingualRow(card, "Emplacement", r, "location_fr", "location_ar");
   {
     const row = makeFieldRow(card);
@@ -1023,7 +1036,7 @@ function renderResidenceDetail() {
     makeField(row, { label: "Année de livraison (références)", value: r.delivered_year, onInput: (v) => (r.delivered_year = v || null) });
   }
 
-  card = newCard(container, "Disponibilité & avancement", "La disponibilité est affichée sur la carte (accueil) et la fiche ; l'avancement uniquement sur la fiche résidence, dans un cercle.");
+  card = newCard(container, "Disponibilité & avancement", "La disponibilité est affichée sur les cartes (accueil, Actualités) et la fiche. L'avancement s'affiche dans un cercle sur la fiche résidence et dans la section « Nos résidences » de la page Actualités — plus sur l'accueil.");
   bilingualRow(card, "Disponibilité", r, "availability_fr", "availability_ar");
   {
     const row = makeFieldRow(card);
@@ -1338,6 +1351,40 @@ function renderDispoEditor(container, r) {
 // affiché dans la section .intro-figure de la page /apropos.html
 // (lib/gen-apropos.js). Tant qu'aucune photo n'est ajoutée ici, la page
 // retombe automatiquement sur la 1ʳᵉ image du carrousel d'accueil.
+// Sélecteur « Choisir parmi les images du site » : toutes les images déjà
+// présentes (carrousel, résidences, Qui sommes-nous, Opportunités,
+// Actualités, Galerie) — on réutilise une photo sans la renvoyer.
+function openSiteImagePicker(onPick) {
+  const all = galleryCollect();
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+  overlay.innerHTML = `
+    <div class="modal-card site-image-modal">
+      <div class="modal-header"><h3>Choisir une image du site</h3><button type="button" class="modal-close" aria-label="Fermer">✕</button></div>
+      <input type="text" class="icon-picker-search" placeholder="Filtrer (ex : Elysia, séjour, façade…)">
+      <div class="site-image-grid"></div>
+    </div>`;
+  document.body.appendChild(overlay);
+  const grid = $(".site-image-grid", overlay);
+  const close = () => { overlay.remove(); document.removeEventListener("keydown", esc); };
+  const esc = (e) => { if (e.key === "Escape") close(); };
+  document.addEventListener("keydown", esc);
+  $(".modal-close", overlay).onclick = close;
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) close(); });
+  function draw(f) {
+    const q = (f || "").toLowerCase();
+    grid.innerHTML = "";
+    all.filter((it) => !q || (it.source + " " + it.caption).toLowerCase().includes(q)).forEach((it) => {
+      const b = el(`<button type="button" class="site-image-cell" title="${escapeHtml(it.source + (it.caption ? " — " + it.caption : ""))}"><img src="${escapeHtml(imageDisplayUrl(it.asset))}" loading="lazy" alt=""><span>${escapeHtml(it.source)}</span></button>`);
+      b.onclick = () => { close(); onPick(it); };
+      grid.appendChild(b);
+    });
+    if (!grid.children.length) grid.appendChild(el(`<div class="entry-empty">Aucune image ne correspond.</div>`));
+  }
+  draw("");
+  $(".icon-picker-search", overlay).addEventListener("input", (e) => draw(e.target.value));
+}
+
 // Liste d'images générique : ajout (upload), légende FR/AR optionnelle,
 // réordonnancement ↑/↓, retrait. Utilisée pour « Qui sommes-nous »,
 // l'espace photo Opportunités, les photos d'Actualités et la Galerie.
@@ -1385,6 +1432,13 @@ function renderImageListEditor(container, { title, hint, arr, folder, captions =
       uploadBtn.textContent = "Changer l'image";
       uploadBtn.onclick = () => upload(uploadBtn, (url) => { img.asset = url; renderList(); });
       actions.appendChild(uploadBtn);
+      const pickBtn = document.createElement("button");
+      pickBtn.type = "button";
+      pickBtn.className = "btn btn-ghost btn-sm";
+      pickBtn.textContent = "Image du site…";
+      pickBtn.title = "Remplacer par une image déjà présente sur le site";
+      pickBtn.onclick = () => openSiteImagePicker((it) => { img.asset = it.asset; renderList(); });
+      actions.appendChild(pickBtn);
       if (i > 0) {
         const up = document.createElement("button");
         up.type = "button";
@@ -1422,6 +1476,12 @@ function renderImageListEditor(container, { title, hint, arr, folder, captions =
   addBtn.textContent = "+ Ajouter une image";
   addBtn.onclick = () => upload(addBtn, (url) => { arr.push({ asset: url, caption_fr: "", caption_ar: "" }); renderList(); });
   card.appendChild(addBtn);
+  const addPick = document.createElement("button");
+  addPick.type = "button";
+  addPick.className = "btn btn-ghost btn-sm list-add";
+  addPick.textContent = "+ Choisir une image du site";
+  addPick.onclick = () => openSiteImagePicker((it) => { arr.push({ asset: it.asset, caption_fr: it.caption || "", caption_ar: it.caption_ar || "" }); renderList(); });
+  card.appendChild(addPick);
   return card;
 }
 
@@ -1889,15 +1949,15 @@ function galleryCollect() {
   const GALLERY = state.gallery.data || {};
   const seen = new Set();
   const out = [];
-  const add = (asset, caption, source) => {
+  const add = (asset, caption, source, caption_ar) => {
     if (!asset || seen.has(asset)) return;
     seen.add(asset);
-    out.push({ asset, caption: caption || "", source });
+    out.push({ asset, caption: caption || "", caption_ar: caption_ar || "", source });
   };
   (GALLERY.items || []).forEach((it) => add(it.asset, it.caption_fr, "Galerie"));
   CAR.forEach((c) => add(c.asset, c.name, "Carrousel d'accueil"));
   ((G.about && G.about.images) || []).forEach((im) => add(im.asset, im.caption_fr, "Qui sommes-nous"));
-  RES.forEach((r) => (r.diaporama || []).forEach((d) => add(d.asset, d.caption_fr || r.name, `Résidence ${r.name}`)));
+  RES.forEach((r) => (r.diaporama || []).forEach((d) => add(d.asset, d.caption_fr ? `${r.name} — ${d.caption_fr}` : r.name, `Résidence ${r.name}`, d.caption_ar ? `${r.name_ar || r.name} — ${d.caption_ar}` : "")));
   ((OPP.media && OPP.media.images) || []).forEach((im) => add(im.asset, im.caption_fr, "Opportunités"));
   add(NEWS.cover, NEWS.title_fr, "Actualités");
   (NEWS.images || []).forEach((im) => add(im.asset, im.caption_fr, "Actualités"));
@@ -1913,7 +1973,7 @@ function renderGalleryView() {
   if (GALLERY.enabled === undefined) GALLERY.enabled = true;
 
   container.appendChild(
-    el(`<div><h2>Galerie</h2><p class="view-sub">Section « Galerie » de la page d'accueil : elle regroupe automatiquement toutes les images du site (carrousel, Qui sommes-nous, résidences, Opportunités, Actualités). Décochez une image pour la retirer de la galerie — elle reste en place ailleurs sur le site.</p></div>`)
+    el(`<div><h2>Galerie</h2><p class="view-sub">Carrousel « Galerie » de la page d'accueil : il regroupe automatiquement toutes les images du site (carrousel, Qui sommes-nous, résidences, Opportunités, Actualités). Décochez une image pour la retirer de la galerie — elle reste en place ailleurs sur le site.</p></div>`)
   );
 
   let card = newCard(container, "Activation");
@@ -1999,10 +2059,10 @@ function renderActualitesView() {
   if (!N.images) N.images = [];
 
   container.appendChild(
-    el(`<div><h2>Actualités</h2><p class="view-sub">La page /actualites.html affiche UNE actualité, sans historique : modifiez les textes et les photos ci-dessous puis enregistrez — l'ancienne actualité est remplacée.</p></div>`)
+    el(`<div><h2>Actualités</h2><p class="view-sub">La page /actualites.html affiche UNE actualité, sans historique : en haut, un bandeau de photos (carrousel) ; en dessous, l'article ; en bas, la section « Nos résidences ». Modifiez puis enregistrez — l'ancienne actualité est remplacée.</p></div>`)
   );
 
-  let card = newCard(container, "En-tête de la page");
+  let card = newCard(container, "En-tête de la page", "Titre et texte affichés sur le bandeau de photos, en haut de la page.");
   bilingualRow(card, "Titre de la page", N, "page_title_fr", "page_title_ar");
   bilingualRow(card, "Texte d'introduction", N, "page_text_fr", "page_text_ar", { multiline: true });
 
@@ -2016,7 +2076,7 @@ function renderActualitesView() {
   bilingualRow(card, "Texte (laisser une ligne vide entre deux paragraphes)", N, "body_fr", "body_ar", { multiline: true });
   card.querySelectorAll("textarea").forEach((t) => (t.rows = 10));
 
-  card = newCard(container, "Photo principale", "Grande photo affichée sous le titre.");
+  card = newCard(container, "Photo principale", "Première photo du bandeau en haut de la page.");
   const coverWrap = document.createElement("div");
   card.appendChild(coverWrap);
   const renderCover = () => {
@@ -2035,6 +2095,9 @@ function renderActualitesView() {
       } finally { up.disabled = false; }
     };
     actions.appendChild(up);
+    const pk = el(`<button type="button" class="btn btn-ghost btn-sm">Image du site…</button>`);
+    pk.onclick = () => openSiteImagePicker((it) => { N.cover = it.asset; renderCover(); });
+    actions.appendChild(pk);
     if (N.cover) {
       const rm = el(`<button type="button" class="btn btn-danger btn-sm">Retirer</button>`);
       rm.onclick = () => { N.cover = ""; renderCover(); };
@@ -2046,11 +2109,28 @@ function renderActualitesView() {
 
   renderImageListEditor(container, {
     title: "Photos de l'actualité",
-    hint: "Grille de photos sous le texte — cliquables, elles s'ouvrent en grand. Ajoutez-en autant que nécessaire.",
+    hint: "Photos du bandeau en haut de la page : elles défilent après la photo principale. Ajoutez-en autant que nécessaire.",
     arr: N.images,
     folder: "actualites",
     emptyText: "Aucune photo pour le moment.",
   });
+
+  card = newCard(container, "Section « Nos résidences » (bas de page)", "Grille des résidences sous l'actualité : onglet « En cours » par défaut, « Références » pour les projets livrés, avancement en cercle. Statuts, photos et pourcentages se gèrent dans l'onglet Résidences.");
+  {
+    if (N.tracker_enabled === undefined) N.tracker_enabled = true;
+    const row = document.createElement("div");
+    row.className = "toggle-row";
+    row.innerHTML = `
+      <label class="toggle-switch">
+        <input type="checkbox" id="news-tracker-chk" ${N.tracker_enabled !== false ? "checked" : ""}>
+        <span class="track"></span>
+      </label>
+      <div><div class="toggle-label">Afficher la section « Nos résidences »</div></div>`;
+    card.appendChild(row);
+    $("#news-tracker-chk", row).addEventListener("change", (e) => (N.tracker_enabled = e.target.checked));
+  }
+  bilingualRow(card, "Titre", N, "tracker_title_fr", "tracker_title_ar");
+  bilingualRow(card, "Texte", N, "tracker_text_fr", "tracker_text_ar", { multiline: true });
 
   saveToolbar(container, "Publier l'actualité", "actualites", "actualites.json");
 }
@@ -2291,7 +2371,7 @@ function renderOpportunitesView() {
 
   if (!OPP.media) OPP.media = { mode: "single", images: [] };
   if (!OPP.media.images) OPP.media.images = [];
-  card = newCard(container, "Espace photo", "Affiché sous l'en-tête de la page Opportunités. Choisissez une image unique ou un carrousel.");
+  card = newCard(container, "Espace photo", "Bandeau en haut de la page Opportunités, sous le titre (à la place du fond noir). Choisissez une image unique ou un carrousel.");
   {
     const row = makeFieldRow(card);
     const f = document.createElement("div");
@@ -2307,7 +2387,7 @@ function renderOpportunitesView() {
   }
   renderImageListEditor(container, {
     title: "Images de l'espace photo",
-    hint: "En mode « Image unique », seule la première image est affichée (utilisez ↑ pour la choisir). Aucune image = espace photo masqué.",
+    hint: "En mode « Image unique », seule la première image est affichée (utilisez ↑ pour la choisir). Aucune image = en-tête sombre sans photo.",
     arr: OPP.media.images,
     folder: "opportunites",
   });
@@ -2346,6 +2426,15 @@ function renderOpportunitesView() {
   bilingualRow(card, "Titre", OPP, "form_title_fr", "form_title_ar");
   bilingualRow(card, "Texte", OPP, "form_text_fr", "form_text_ar", { multiline: true });
   bilingualRow(card, "Bouton d'envoi", OPP, "submit_fr", "submit_ar");
+  {
+    if (!OPP.form_type_demande_options) OPP.form_type_demande_options = ["Vente", "Achat", "Troc", "Partenariat"];
+    if (!OPP.form_type_bien_options) OPP.form_type_bien_options = ["Terrain", "Bien existant", "Immeuble"];
+    const row = makeFieldRow(card);
+    const t1 = makeField(row, { label: "Choix « Type de demande » (un par ligne)", value: OPP.form_type_demande_options.join("\n"), multiline: true, onInput: (v) => (OPP.form_type_demande_options = v.split("\n").map((x) => x.trim()).filter(Boolean)) });
+    const t2 = makeField(row, { label: "Choix « Type de bien » (un par ligne)", value: OPP.form_type_bien_options.join("\n"), multiline: true, onInput: (v) => (OPP.form_type_bien_options = v.split("\n").map((x) => x.trim()).filter(Boolean)) });
+    t1.rows = t2.rows = 5;
+    card.appendChild(el(`<p class="card-sub">Les cartes « Ce que nous recherchons » présélectionnent un choix : leur valeur doit correspondre exactement à l'une de ces lignes.</p>`));
+  }
 
   const toolbar = el(`<div class="section-toolbar"><button class="btn btn-primary" id="save-opportunites">Enregistrer la page Opportunités</button></div>`);
   container.appendChild(toolbar);

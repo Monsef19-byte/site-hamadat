@@ -687,7 +687,7 @@ html[dir="rtl"] .lightbox__nav--next{right:auto;left:18px;transform:translateY(-
 .opp-media{position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:16/7;box-shadow:var(--shadow-card);background:#111;}
 .opp-media > img{width:100%;height:100%;object-fit:cover;}
 .opp-media .gallery__caption{left:20px;bottom:20px;}
-.opp-media-section{padding-top:0;}
+.opp-media-section{padding-top:56px;}
 @media(max-width:640px){.opp-media{aspect-ratio:4/3;}}
 [data-gallery] .hero__arrow{cursor:pointer;}
 
@@ -729,3 +729,35 @@ body.cta-over-hero .mini-cta-bar{opacity:0;visibility:hidden;pointer-events:none
 .float-cta,.mini-cta-bar{transition:opacity .3s ease,transform .3s ease,visibility .3s;}
 .tab-btn{white-space:nowrap;}
 @media(max-width:420px){.tabs{gap:6px;}.tab-btn{padding:10px 16px;font-size:13px;}}
+
+/* Cercle d'avancement sur les cartes photo (page Actualités) */
+.progress-mini{display:flex;align-items:center;gap:10px;margin:0 0 10px;}
+.progress-mini .progress-circle{background:rgba(0,0,0,.25);border-color:#fff;}
+.progress-mini .progress-circle__value{color:#fff;}
+.progress-mini .progress-circle__label{color:rgba(255,255,255,.85);}
+
+/* ---------- En-tête en images (Actualités / Opportunités) ---------- */
+.media-hero{position:relative;height:clamp(420px,68vh,640px);overflow:hidden;background:var(--charcoal);color:#fff;}
+.media-hero .gallery__slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;}
+.media-hero .gallery__slide.active{opacity:1;z-index:1;}
+.media-hero .gallery__slide img{width:100%;height:100%;object-fit:cover;}
+.media-hero__scrim{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(15,20,20,.45) 0%,rgba(15,20,20,.15) 35%,rgba(10,15,15,.80) 100%);}
+.media-hero__content{position:absolute;left:0;right:0;bottom:64px;z-index:3;}
+.media-hero__content .eyebrow{color:rgba(255,255,255,.85);}
+.media-hero__content .eyebrow::before{background:var(--teal);}
+.media-hero__content h1{color:#fff;font-size:clamp(32px,5vw,56px);max-width:820px;margin-bottom:14px;}
+.media-hero__content .page-hero__lead{color:rgba(255,255,255,.85);max-width:640px;}
+.media-hero__caption{position:absolute;right:24px;top:110px;z-index:3;font-size:12.5px;color:#fff;background:rgba(20,25,25,.5);backdrop-filter:blur(6px);padding:6px 14px;border-radius:999px;max-width:60%;}
+html[dir="rtl"] .media-hero__caption{right:auto;left:24px;}
+.media-hero__counter{top:auto;bottom:24px;left:auto;right:132px;z-index:4;}
+.media-hero__arrows{z-index:4;}
+html[dir="rtl"] .media-hero__counter{right:auto;left:132px;}
+@media(max-width:640px){
+  .media-hero{height:clamp(420px,72vh,560px);}
+  .media-hero__content{bottom:84px;}
+  .media-hero__caption{display:none;}
+  .media-hero__counter{right:auto;left:16px;}
+  .media-hero__arrows{right:16px;bottom:18px;}
+}
+/* Espace « article » entre le bandeau images et la section résidences */
+.news-article-section{padding:90px 0;}

@@ -177,3 +177,11 @@ body{margin:0;background:var(--bg);color:var(--text);font-size:14px;line-height:
 .gallery-pick.is-off img{opacity:.3;}
 .gallery-pick:not(.is-off){border-color:var(--teal, #1E8C82);}
 .gallery-pick__chk{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#fff;background:rgba(0,0,0,.6);padding:4px 6px;}
+
+/* ---- Sélecteur d'images du site ---- */
+.site-image-modal{max-width:860px;}
+.site-image-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;overflow-y:auto;padding-right:4px;margin-top:10px;}
+.site-image-cell{border:2px solid transparent;border-radius:8px;overflow:hidden;padding:0;background:#111;cursor:pointer;position:relative;text-align:left;}
+.site-image-cell:hover,.site-image-cell:focus-visible{border-color:var(--teal);}
+.site-image-cell img{width:100%;height:92px;object-fit:cover;display:block;}
+.site-image-cell span{position:absolute;left:0;right:0;bottom:0;font-size:10.5px;color:#fff;background:rgba(0,0,0,.6);padding:3px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}

@@ -243,7 +243,13 @@
       var slides = root.querySelectorAll(".gallery__slide");
       var counter = root.querySelector(".gallery__counter");
       var idx = 0, timer;
+      function load(i) {
+        var s = slides[(i + slides.length) % slides.length];
+        var im = s && s.querySelector("img[data-src]");
+        if (im) { im.src = im.getAttribute("data-src"); im.removeAttribute("data-src"); }
+      }
       function show(i) {
+        load(i); load(i + 1); // image courante + suivante préchargée
         slides.forEach(function (s, si) { s.classList.toggle("active", si === i); });
         idx = i;
         if (counter) counter.textContent = (i + 1) + " / " + slides.length;
