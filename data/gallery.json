@@ -5,5 +5,7 @@
   "section_text_fr": "L'ensemble de nos résidences en images — extérieurs, intérieurs et détails de finition.",
   "section_text_ar": "جميع إقاماتنا بالصور — الواجهات والديكورات الداخلية وتفاصيل التشطيبات.",
   "items": [],
-  "excluded": []
+  "excluded": [
+    "residences/orea/hero.jpg"
+  ]
 }
