@@ -77,13 +77,13 @@
   "values": [
     {
       "title_fr": "Qualité d'exécution",
-      "title_ar": "الجودة",
+      "title_ar": "جودة التنفيذ",
       "text_fr": "Une exigence permanente dans chaque étape de réalisation.",
       "text_ar": "التزام راسخ بأعلى معايير التنفيذ في جميع مراحل المشروع."
     },
     {
       "title_fr": "Précision des détails",
-      "title_ar": "الإتقان",
+      "title_ar": "دقة التفاصيل",
       "text_fr": "Un soin minutieux porté à chaque finition.",
       "text_ar": "عناية فائقة بأدق التفاصيل، من التصميم إلى التشطيبات النهائية."
     },
@@ -219,8 +219,8 @@
     "missing": "Mentions légales / CGU non fournies."
   },
   "social": {
-    "facebook": "https://facebook.com/hamadatpromotion",
-    "instagram": "https://instagram.com/hamadatpromotion",
+    "facebook": "facebook.com/Hamadat.Pomotion.Immobiliere",
+    "instagram": "instagram.com/hamadat.promotion.immobiliere",
     "youtube": "www.youtube.com/@hamadat.promotion.immobiliere",
     "tiktok": "tiktok.com/@hamadatpromotion?_r=1&_t=ZS-97QA2K0vXxE",
     "linkedin": "linkedin.com/in/promotion-immobilière-hamadat-ab29aa35a",
