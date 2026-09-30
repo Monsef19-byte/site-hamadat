@@ -55,11 +55,22 @@ module.exports = async (req, res) => {
   const source = clean(body.source, MAX_LEN.source) || "contact";
   const lang = body.lang === "ar" ? "ar" : "fr";
 
-  if (!fields.full_name || !fields.email || !fields.phone) {
-    return res.status(400).json({ error: "Nom, e-mail et téléphone sont requis." });
+  // Brief client : tous les champs sont obligatoires SAUF « Description »
+  // (message). Même règle que la validation JS du site (main.js) — revérifiée
+  // ici pour ne jamais dépendre du seul navigateur.
+  const isProposal = source === "opportunites" || Boolean(fields.type_bien || fields.type_demande);
+  const required = isProposal
+    ? [["full_name", "Nom et prénom"], ["email", "E-mail"], ["phone", "Téléphone"], ["type_demande", "Type de demande"], ["type_bien", "Type de bien"], ["localisation", "Localisation du bien"]]
+    : [["full_name", "Nom et prénom"], ["email", "E-mail"], ["phone", "Téléphone"], ["unit_type", "Type de bien"], ["residence", "Résidence souhaitée"]];
+  const missing = required.filter(([k]) => !fields[k]).map(([, label]) => label);
+  if (missing.length) {
+    return res.status(400).json({ error: `Champs obligatoires manquants : ${missing.join(", ")}.` });
   }
   if (!isEmail(fields.email)) {
     return res.status(400).json({ error: "Adresse e-mail invalide." });
+  }
+  if (fields.phone.replace(/\D/g, "").length < 8) {
+    return res.status(400).json({ error: "Numéro de téléphone invalide (8 chiffres minimum)." });
   }
 
   const cls = classify(fields);

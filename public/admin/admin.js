@@ -62,6 +62,7 @@ const state = {
   gallery: { data: null, sha: null },
   settings: { data: null, sha: null },
   opportunites: { data: null, sha: null },
+  actualites: { data: null, sha: null },
   leads: [],
   leadStats: null,
   smtpPasswordSet: false,
@@ -140,7 +141,7 @@ $("#logout-btn").addEventListener("click", async () => {
 // Chargement / sauvegarde des données
 // ============================================================================
 async function loadAll() {
-  const [g, car, res, blog, links, videos, gallery, settings, opp] = await Promise.all([
+  const [g, car, res, blog, links, videos, gallery, settings, opp, news] = await Promise.all([
     api("GET", "/api/admin/content/global.json"),
     api("GET", "/api/admin/content/home_carousel.json"),
     api("GET", "/api/admin/content/residences.json"),
@@ -150,6 +151,7 @@ async function loadAll() {
     api("GET", "/api/admin/content/gallery.json"),
     api("GET", "/api/admin/content/settings.json"),
     api("GET", "/api/admin/content/opportunites.json"),
+    api("GET", "/api/admin/content/actualites.json"),
   ]);
   state.global = { data: g.content, sha: g.sha };
   state.carousel = { data: car.content, sha: car.sha };
@@ -160,6 +162,7 @@ async function loadAll() {
   state.gallery = { data: gallery.content, sha: gallery.sha };
   state.settings = { data: settings.content, sha: settings.sha };
   state.opportunites = { data: opp.content, sha: opp.sha };
+  state.actualites = { data: news.content, sha: news.sha };
 }
 
 async function loadLeads() {
@@ -203,6 +206,7 @@ function renderView(view) {
   if (view === "leads") renderLeadsView();
   if (view === "settings") renderSettingsView();
   if (view === "opportunites") renderOpportunitesView();
+  if (view === "actualites") renderActualitesView();
 }
 
 // ============================================================================
@@ -602,18 +606,27 @@ function renderGlobalView() {
     el(`<div><h2>Contenu global du site</h2><p class="view-sub">Textes communs à toutes les pages — accueil, à propos, actualités, contact, pied de page.</p></div>`)
   );
 
-  let card = newCard(container, "Accroche d'accueil", "Texte affiché sous le carrousel principal de la page d'accueil.");
-  bilingualRow(card, "Introduction", G.home, "hero_intro_fr", "hero_intro_ar", { multiline: true });
-  bilingualRow(card, "Bouton d'action", G.home, "hero_cta_fr", "hero_cta_ar");
+  if (!G.brand) G.brand = {};
+  let card = newCard(container, "Slogan", "Affiché dans le pied de page de toutes les pages et dans le titre de l'onglet de la page d'accueil.");
+  bilingualRow(card, "Slogan", G.brand, "slogan_fr", "slogan_ar");
+
+  card = newCard(container, "Carrousel d'accueil (Hero)", "Texte du bouton affiché sur chaque image du carrousel principal — il mène au formulaire de contact.");
+  bilingualRow(card, "Bouton", G.home, "hero_cta_fr", "hero_cta_ar");
 
   card = newCard(container, "Qui sommes-nous");
-  bilingualRow(card, "Titre (page d'accueil)", G.about, "title_fr", "title_ar");
+  bilingualRow(card, "Titre (accueil + page Qui sommes-nous)", G.about, "title_fr", "title_ar");
   bilingualRow(card, "Titre « Notre histoire » (page Qui sommes-nous)", G.about, "history_title_fr", "history_title_ar");
   bilingualRow(card, "Texte", G.about, "text_fr", "text_ar", { multiline: true });
 
   renderBilingualStringList(container, "Engagements", "Liste affichée sous le texte « Qui sommes-nous ».", G.about, "commitments_fr", "commitments_ar");
 
-  renderAboutPhotosEditor(container, G.about);
+  if (!G.about.images) G.about.images = [];
+  renderImageListEditor(container, {
+    title: "Photos « Qui sommes-nous »",
+    hint: "Carrousel affiché dans la section « Qui sommes-nous » de l'accueil et sur la page Qui sommes-nous. Une seule photo = image fixe. Sans photo, la 1ʳᵉ image du carrousel d'accueil est utilisée.",
+    arr: G.about.images,
+    folder: "about",
+  });
 
   card = newCard(container, "Notre vision");
   bilingualRow(card, "Titre", G.vision, "title_fr", "title_ar");
@@ -639,7 +652,7 @@ function renderGlobalView() {
   if (!G.signature.why_points) G.signature.why_points = [];
   renderIconTextList(container, "Pourquoi choisir Hamadat", "Choisissez une icône pour chaque atout.", G.signature.why_points);
 
-  card = newCard(container, "Chiffres clés");
+  card = newCard(container, "Chiffres clés", "Bande de chiffres de l'accueil et de la page Qui sommes-nous (1 à 4 chiffres, la mise en page s'adapte).");
   bilingualRow(card, "Titre de la section", G.stats, "title_fr", "title_ar");
 
   renderObjectList(container, {
@@ -656,10 +669,6 @@ function renderGlobalView() {
     },
   });
 
-  card = newCard(container, "Page « Actualités »", "En-tête de la page /actualites.html");
-  bilingualRow(card, "Titre", G.news_section, "title_fr", "title_ar");
-  bilingualRow(card, "Texte", G.news_section, "text_fr", "text_ar", { multiline: true });
-
   card = newCard(container, "Section contact");
   bilingualRow(card, "Titre", G.contact, "title_fr", "title_ar");
   bilingualRow(card, "Texte", G.contact, "text_fr", "text_ar", { multiline: true });
@@ -671,21 +680,52 @@ function renderGlobalView() {
   bilingualRow(card, "Ville (résumé, pied de page)", G.contact, "city_fr", "city_ar");
   {
     const row = makeFieldRow(card);
-    makeField(row, { label: "Téléphone", value: G.contact.phone, onInput: (v) => (G.contact.phone = v) });
+    const warn = el(`<div class="field-warning hidden"></div>`);
+    const checkPhone = (v) => {
+      const ok = String(v || "").replace(/\D/g, "").length >= 8;
+      warn.classList.toggle("hidden", ok);
+      warn.textContent = ok ? "" : "⚠ Numéro incomplet ou factice : les boutons « Appeler » et WhatsApp du site renvoient vers le formulaire de contact tant qu'un vrai numéro (8 chiffres minimum) n'est pas saisi.";
+    };
+    const phoneInput = makeField(row, { label: "Téléphone (boutons Appeler / WhatsApp)", value: G.contact.phone, onInput: (v) => { G.contact.phone = v; checkPhone(v); } });
+    phoneInput.parentNode.appendChild(warn);
+    checkPhone(G.contact.phone);
     makeField(row, { label: "E-mail", value: G.contact.email, type: "email", onInput: (v) => (G.contact.email = v) });
   }
   bilingualRow(card, "Badge (ex : +20 ans d'expérience)", G.contact, "badge_fr", "badge_ar");
 
-  card = newCard(container, "Champs du formulaire", "Libellés affichés au-dessus de chaque champ (la structure du formulaire n'est pas modifiable ici).");
+  card = newCard(container, "Champs du formulaire", "Libellés affichés au-dessus de chaque champ, et choix proposés dans les listes (un par ligne). Tous les champs sont obligatoires, sauf « Description ».");
   (G.contact.fields || []).forEach((f) => {
     const wrap = document.createElement("div");
     wrap.className = "list-item";
     bilingualRow(wrap, `Libellé (${f.name})`, f, "label_fr", "label_ar");
+    if (f.type === "select") {
+      const row = makeFieldRow(wrap);
+      const ta = makeField(row, { label: "Choix proposés (un par ligne)", value: (f.options || []).join("\n"), multiline: true, onInput: (v) => (f.options = v.split("\n").map((x) => x.trim()).filter(Boolean)) });
+      ta.rows = 5;
+      if (f.name === "residence") {
+        const sync = el(`<button type="button" class="btn btn-ghost btn-sm">Reprendre la liste des résidences</button>`);
+        sync.onclick = () => {
+          f.options = (state.residences.data || []).map((r) => r.name).filter(Boolean);
+          ta.value = f.options.join("\n");
+        };
+        row.appendChild(sync);
+      }
+    }
     card.appendChild(wrap);
   });
 
-  card = newCard(container, "Pied de page");
-  bilingualRow(card, "Citation", G.footer_note, "quote_fr", "quote_ar");
+  if (!G.social) G.social = {};
+  card = newCard(container, "Réseaux sociaux", "Icônes cliquables du pied de page. Collez l'adresse complète du compte (https://…) ; laissez vide pour masquer l'icône.");
+  [["facebook", "Facebook"], ["instagram", "Instagram"], ["youtube", "YouTube"], ["tiktok", "TikTok"], ["linkedin", "LinkedIn"], ["x", "X (Twitter)"]].forEach(([k, label], i, all) => {
+    if (i % 2 === 0) card._row = makeFieldRow(card);
+    const input = makeField(card._row, { label, value: G.social[k] || "", type: "url", onInput: (v) => (G.social[k] = v.trim()) });
+    input.placeholder = "https://…";
+    const test = el(`<a class="field-link" target="_blank" rel="noopener">Tester le lien ↗</a>`);
+    const sync = () => { const v = input.value.trim(); test.href = v || "#"; test.classList.toggle("hidden", !/^https?:\/\//i.test(v)); };
+    input.addEventListener("input", sync);
+    sync();
+    input.parentNode.appendChild(test);
+  });
 
   const toolbar = el(`<div class="section-toolbar"><button class="btn btn-primary" id="save-global">Enregistrer le contenu global</button></div>`);
   container.appendChild(toolbar);
@@ -930,7 +970,7 @@ function renderResidencesList() {
     row.innerHTML = `
       ${imgUrl ? `<img src="${imgUrl}">` : `<div class="img-picker-empty" style="width:52px;height:52px;">—</div>`}
       <div class="res-row-info">
-        <div class="res-row-name">${escapeHtml(r.name) || "(sans nom)"} <span class="badge ${r.category === "en_cours" ? "badge-teal" : "badge-grey"}">${r.category === "en_cours" ? "En cours" : "Livré"}</span></div>
+        <div class="res-row-name">${escapeHtml(r.name) || "(sans nom)"} <span class="badge ${r.category === "en_cours" ? "badge-teal" : "badge-grey"}">${r.category === "en_cours" ? "En cours" : "Référence"}</span></div>
         <div class="res-row-meta">${escapeHtml(r.location_fr || "")} · ${escapeHtml(r.availability_fr || "")}</div>
       </div>
     `;
@@ -979,7 +1019,7 @@ function renderResidenceDetail() {
     ["en_cours", "livre"].forEach((v) => {
       const opt = document.createElement("option");
       opt.value = v;
-      opt.textContent = v === "en_cours" ? "En cours" : "Livré";
+      opt.textContent = v === "en_cours" ? "En cours" : "Référence (livrée)";
       if (r.category === v) opt.selected = true;
       select.appendChild(opt);
     });
@@ -988,15 +1028,15 @@ function renderResidenceDetail() {
     row.appendChild(catField);
   }
   bilingualRow(card, "Nom", r, "name", "name_ar");
-  bilingualRow(card, "Accroche", r, "tagline_fr", "tagline_ar");
+  bilingualRow(card, "Accroche (description courte pour Google et le partage)", r, "tagline_fr", "tagline_ar");
   bilingualRow(card, "Emplacement", r, "location_fr", "location_ar");
   {
     const row = makeFieldRow(card);
     makeField(row, { label: "Lien Google Maps", value: r.google_maps, onInput: (v) => (r.google_maps = v || null) });
-    makeField(row, { label: "Année de livraison (si livrée)", value: r.delivered_year, onInput: (v) => (r.delivered_year = v || null) });
+    makeField(row, { label: "Année de livraison (références)", value: r.delivered_year, onInput: (v) => (r.delivered_year = v || null) });
   }
 
-  card = newCard(container, "Disponibilité & avancement", "Affiché en badge sur la page d'accueil, la fiche résidence et la page actualités.");
+  card = newCard(container, "Disponibilité & avancement", "La disponibilité est affichée sur les cartes (accueil, Actualités) et la fiche. L'avancement s'affiche dans un cercle sur la fiche résidence et dans la section « Nos résidences » de la page Actualités — plus sur l'accueil.");
   bilingualRow(card, "Disponibilité", r, "availability_fr", "availability_ar");
   {
     const row = makeFieldRow(card);
@@ -1019,7 +1059,7 @@ function renderResidenceDetail() {
       r.progress_percent = input.value === "" ? null : Math.max(0, Math.min(100, Number(input.value)));
     });
     pctField.appendChild(input);
-    pctField.appendChild(el(`<div class="progress-hint">Laissez vide si le client n'a pas communiqué de pourcentage — aucune barre ne sera affichée.</div>`));
+    pctField.appendChild(el(`<div class="progress-hint">Laissez vide si le pourcentage n'est pas communiqué — aucun cercle ne sera affiché.</div>`));
     row.appendChild(pctField);
   }
 
@@ -1029,22 +1069,7 @@ function renderResidenceDetail() {
   card = newCard(container, "Présentation");
   bilingualRow(card, "Description", r, "description_fr", "description_ar", { multiline: true });
   bilingualRow(card, "Pourquoi cet emplacement", r, "why_location_fr", "why_location_ar", { multiline: true });
-  bilingualRow(card, "Typologies (ex: F3 · F4 · F5)", r, "typologies_fr", "typologies_ar");
-
-  if (!r.key_numbers) r.key_numbers = [];
-  renderObjectList(container, {
-    title: "Le projet en chiffres",
-    hint: "Ex : valeur « 20 », libellé « appartements haut standing ».",
-    arr: r.key_numbers,
-    itemLabel: (item, i) => `Chiffre ${i + 1}`,
-    newItem: () => ({ value: "", label_fr: "", label_ar: "" }),
-    fieldsSpec: (wrap, item) => {
-      const row = makeFieldRow(wrap);
-      makeField(row, { label: "Valeur", value: item.value, onInput: (v) => (item.value = v) });
-      row.appendChild(document.createElement("div"));
-      bilingualRow(wrap, "Libellé", item, "label_fr", "label_ar");
-    },
-  });
+  bilingualRow(card, "Typologies (ex: F3 · F4 · F5) — affichées dans la fiche résidence", r, "typologies_fr", "typologies_ar");
 
   if (!r.services) r.services = [];
   if (!r.quality) r.quality = [];
@@ -1326,31 +1351,77 @@ function renderDispoEditor(container, r) {
 // affiché dans la section .intro-figure de la page /apropos.html
 // (lib/gen-apropos.js). Tant qu'aucune photo n'est ajoutée ici, la page
 // retombe automatiquement sur la 1ʳᵉ image du carrousel d'accueil.
-function renderAboutPhotosEditor(container, about) {
-  if (!about.images) about.images = [];
-  const card = newCard(
-    container,
-    "Photos « Qui sommes-nous »",
-    "Carrousel de photos affiché sur la page /apropos.html. Sans photo ici, la 1ʳᵉ image du carrousel d'accueil est utilisée par défaut."
-  );
+// Sélecteur « Choisir parmi les images du site » : toutes les images déjà
+// présentes (carrousel, résidences, Qui sommes-nous, Opportunités,
+// Actualités, Galerie) — on réutilise une photo sans la renvoyer.
+function openSiteImagePicker(onPick) {
+  const all = galleryCollect();
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+  overlay.innerHTML = `
+    <div class="modal-card site-image-modal">
+      <div class="modal-header"><h3>Choisir une image du site</h3><button type="button" class="modal-close" aria-label="Fermer">✕</button></div>
+      <input type="text" class="icon-picker-search" placeholder="Filtrer (ex : Elysia, séjour, façade…)">
+      <div class="site-image-grid"></div>
+    </div>`;
+  document.body.appendChild(overlay);
+  const grid = $(".site-image-grid", overlay);
+  const close = () => { overlay.remove(); document.removeEventListener("keydown", esc); };
+  const esc = (e) => { if (e.key === "Escape") close(); };
+  document.addEventListener("keydown", esc);
+  $(".modal-close", overlay).onclick = close;
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) close(); });
+  function draw(f) {
+    const q = (f || "").toLowerCase();
+    grid.innerHTML = "";
+    all.filter((it) => !q || (it.source + " " + it.caption).toLowerCase().includes(q)).forEach((it) => {
+      const b = el(`<button type="button" class="site-image-cell" title="${escapeHtml(it.source + (it.caption ? " — " + it.caption : ""))}"><img src="${escapeHtml(imageDisplayUrl(it.asset))}" loading="lazy" alt=""><span>${escapeHtml(it.source)}</span></button>`);
+      b.onclick = () => { close(); onPick(it); };
+      grid.appendChild(b);
+    });
+    if (!grid.children.length) grid.appendChild(el(`<div class="entry-empty">Aucune image ne correspond.</div>`));
+  }
+  draw("");
+  $(".icon-picker-search", overlay).addEventListener("input", (e) => draw(e.target.value));
+}
+
+// Liste d'images générique : ajout (upload), légende FR/AR optionnelle,
+// réordonnancement ↑/↓, retrait. Utilisée pour « Qui sommes-nous »,
+// l'espace photo Opportunités, les photos d'Actualités et la Galerie.
+function renderImageListEditor(container, { title, hint, arr, folder, captions = true, emptyText = "Aucune image pour le moment." }) {
+  const card = newCard(container, title, hint);
   const listWrap = document.createElement("div");
   card.appendChild(listWrap);
 
+  async function upload(btn, onUrl) {
+    btn.disabled = true;
+    const prevText = btn.textContent;
+    try {
+      const url = await pickAndUploadImage(folder, (st) => (btn.textContent = st));
+      if (url) onUrl(url);
+    } catch (err) {
+      toast("Échec de l'upload : " + err.message, true);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = prevText;
+    }
+  }
+
   function renderList() {
     listWrap.innerHTML = "";
-    about.images.forEach((img, i) => {
+    arr.forEach((img, i) => {
       const slideCard = document.createElement("div");
       slideCard.className = "slide-card";
-
       const imgUrl = imageDisplayUrl(img.asset);
-      const imgHtml = imgUrl
-        ? `<img src="${imgUrl}" style="width:110px;height:80px;object-fit:cover;border-radius:8px;">`
-        : `<div class="img-picker-empty" style="width:110px;height:80px;">Aucune image</div>`;
-      slideCard.appendChild(el(imgHtml));
-
+      slideCard.appendChild(
+        el(imgUrl
+          ? `<img src="${escapeHtml(imgUrl)}" style="width:110px;height:80px;object-fit:cover;border-radius:8px;">`
+          : `<div class="img-picker-empty" style="width:110px;height:80px;">Aucune image</div>`)
+      );
       const fields = document.createElement("div");
       fields.className = "slide-fields";
-      bilingualRow(fields, `Légende ${i + 1} (optionnelle)`, img, "caption_fr", "caption_ar");
+      if (captions) bilingualRow(fields, `Légende ${i + 1} (optionnelle)`, img, "caption_fr", "caption_ar");
+      else fields.appendChild(el(`<div class="card-sub">Image ${i + 1}</div>`));
       slideCard.appendChild(fields);
 
       const actions = document.createElement("div");
@@ -1359,83 +1430,78 @@ function renderAboutPhotosEditor(container, about) {
       uploadBtn.type = "button";
       uploadBtn.className = "btn btn-ghost btn-sm";
       uploadBtn.textContent = "Changer l'image";
-      uploadBtn.onclick = async () => {
-        uploadBtn.disabled = true;
-        const prevText = uploadBtn.textContent;
-        try {
-          const url = await pickAndUploadImage("about", (s) => (uploadBtn.textContent = s));
-          if (url) {
-            img.asset = url;
-            renderList();
-          }
-        } catch (err) {
-          toast("Échec de l'upload : " + err.message, true);
-        } finally {
-          uploadBtn.disabled = false;
-          uploadBtn.textContent = prevText;
-        }
-      };
+      uploadBtn.onclick = () => upload(uploadBtn, (url) => { img.asset = url; renderList(); });
       actions.appendChild(uploadBtn);
-
+      const pickBtn = document.createElement("button");
+      pickBtn.type = "button";
+      pickBtn.className = "btn btn-ghost btn-sm";
+      pickBtn.textContent = "Image du site…";
+      pickBtn.title = "Remplacer par une image déjà présente sur le site";
+      pickBtn.onclick = () => openSiteImagePicker((it) => { img.asset = it.asset; renderList(); });
+      actions.appendChild(pickBtn);
       if (i > 0) {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "btn btn-ghost btn-sm";
-        b.textContent = "↑";
-        b.onclick = () => {
-          [about.images[i - 1], about.images[i]] = [about.images[i], about.images[i - 1]];
-          renderList();
-        };
-        actions.appendChild(b);
+        const up = document.createElement("button");
+        up.type = "button";
+        up.className = "btn btn-ghost btn-sm";
+        up.textContent = "↑";
+        up.title = "Monter";
+        up.onclick = () => { [arr[i - 1], arr[i]] = [arr[i], arr[i - 1]]; renderList(); };
+        actions.appendChild(up);
       }
-      if (i < about.images.length - 1) {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "btn btn-ghost btn-sm";
-        b.textContent = "↓";
-        b.onclick = () => {
-          [about.images[i + 1], about.images[i]] = [about.images[i], about.images[i + 1]];
-          renderList();
-        };
-        actions.appendChild(b);
+      if (i < arr.length - 1) {
+        const down = document.createElement("button");
+        down.type = "button";
+        down.className = "btn btn-ghost btn-sm";
+        down.textContent = "↓";
+        down.title = "Descendre";
+        down.onclick = () => { [arr[i + 1], arr[i]] = [arr[i], arr[i + 1]]; renderList(); };
+        actions.appendChild(down);
       }
       const removeBtn = document.createElement("button");
       removeBtn.type = "button";
       removeBtn.className = "btn btn-danger btn-sm";
       removeBtn.textContent = "Retirer";
-      removeBtn.onclick = () => {
-        about.images.splice(i, 1);
-        renderList();
-      };
+      removeBtn.onclick = () => { arr.splice(i, 1); renderList(); };
       actions.appendChild(removeBtn);
-
       slideCard.appendChild(actions);
       listWrap.appendChild(slideCard);
     });
+    if (!arr.length) listWrap.appendChild(el(`<div class="entry-empty">${escapeHtml(emptyText)}</div>`));
   }
   renderList();
 
   const addBtn = document.createElement("button");
   addBtn.type = "button";
   addBtn.className = "btn btn-ghost btn-sm list-add";
-  addBtn.textContent = "+ Ajouter une photo";
-  addBtn.onclick = async () => {
-    addBtn.disabled = true;
-    const prevText = addBtn.textContent;
-    try {
-      const url = await pickAndUploadImage("about", (s) => (addBtn.textContent = s));
-      if (url) {
-        about.images.push({ asset: url, caption_fr: "", caption_ar: "" });
-        renderList();
-      }
-    } catch (err) {
-      toast("Échec de l'upload : " + err.message, true);
-    } finally {
-      addBtn.disabled = false;
-      addBtn.textContent = prevText;
-    }
-  };
+  addBtn.textContent = "+ Ajouter une image";
+  addBtn.onclick = () => upload(addBtn, (url) => { arr.push({ asset: url, caption_fr: "", caption_ar: "" }); renderList(); });
   card.appendChild(addBtn);
+  const addPick = document.createElement("button");
+  addPick.type = "button";
+  addPick.className = "btn btn-ghost btn-sm list-add";
+  addPick.textContent = "+ Choisir une image du site";
+  addPick.onclick = () => openSiteImagePicker((it) => { arr.push({ asset: it.asset, caption_fr: it.caption || "", caption_ar: it.caption_ar || "" }); renderList(); });
+  card.appendChild(addPick);
+  return card;
+}
+
+// Bouton « Enregistrer » standard en bas de vue.
+function saveToolbar(container, label, key, filename, after) {
+  const toolbar = el(`<div class="section-toolbar"><button class="btn btn-primary">${escapeHtml(label)}</button></div>`);
+  container.appendChild(toolbar);
+  const btn = toolbar.querySelector("button");
+  btn.addEventListener("click", async () => {
+    btn.disabled = true;
+    try {
+      await saveSection(key, filename);
+      if (after) after();
+    } catch (err) {
+      toast("Échec de l'enregistrement : " + err.message, true);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+  return toolbar;
 }
 
 // ============================================================================
@@ -1871,15 +1937,43 @@ function renderVideosView() {
 // ============================================================================
 // Vue : Galerie / Catalogue (carrousel accueil)
 // ============================================================================
+// Même agrégation que lib/gallery.js#collectGallery (côté build) — à garder
+// synchronisées. Calculée sur l'état COURANT du dashboard, donc une image
+// ajoutée dans un autre onglet apparaît ici immédiatement.
+function galleryCollect() {
+  const G = state.global.data || {};
+  const CAR = state.carousel.data || [];
+  const RES = state.residences.data || [];
+  const OPP = state.opportunites.data || {};
+  const NEWS = state.actualites.data || {};
+  const GALLERY = state.gallery.data || {};
+  const seen = new Set();
+  const out = [];
+  const add = (asset, caption, source, caption_ar) => {
+    if (!asset || seen.has(asset)) return;
+    seen.add(asset);
+    out.push({ asset, caption: caption || "", caption_ar: caption_ar || "", source });
+  };
+  (GALLERY.items || []).forEach((it) => add(it.asset, it.caption_fr, "Galerie"));
+  CAR.forEach((c) => add(c.asset, c.name, "Carrousel d'accueil"));
+  ((G.about && G.about.images) || []).forEach((im) => add(im.asset, im.caption_fr, "Qui sommes-nous"));
+  RES.forEach((r) => (r.diaporama || []).forEach((d) => add(d.asset, d.caption_fr ? `${r.name} — ${d.caption_fr}` : r.name, `Résidence ${r.name}`, d.caption_ar ? `${r.name_ar || r.name} — ${d.caption_ar}` : "")));
+  ((OPP.media && OPP.media.images) || []).forEach((im) => add(im.asset, im.caption_fr, "Opportunités"));
+  add(NEWS.cover, NEWS.title_fr, "Actualités");
+  (NEWS.images || []).forEach((im) => add(im.asset, im.caption_fr, "Actualités"));
+  return out;
+}
+
 function renderGalleryView() {
   const container = $("#view-gallery");
   container.innerHTML = "";
   const GALLERY = state.gallery.data;
   if (!GALLERY.items) GALLERY.items = [];
+  if (!GALLERY.excluded) GALLERY.excluded = [];
   if (GALLERY.enabled === undefined) GALLERY.enabled = true;
 
   container.appendChild(
-    el(`<div><h2>Galerie / Catalogue</h2><p class="view-sub">Carrousel affiché sur la page d'accueil — réalisations, plans, documents.</p></div>`)
+    el(`<div><h2>Galerie</h2><p class="view-sub">Carrousel « Galerie » de la page d'accueil : il regroupe automatiquement toutes les images du site (carrousel, Qui sommes-nous, résidences, Opportunités, Actualités). Décochez une image pour la retirer de la galerie — elle reste en place ailleurs sur le site.</p></div>`)
   );
 
   let card = newCard(container, "Activation");
@@ -1892,8 +1986,8 @@ function renderGalleryView() {
         <span class="track"></span>
       </label>
       <div>
-        <div class="toggle-label">Activer la Galerie / Catalogue</div>
-        <div class="toggle-sub">Quand désactivée, la section disparaît du site même si des images sont présentes — pratique pour la masquer temporairement sans perdre le contenu.</div>
+        <div class="toggle-label">Afficher la Galerie sur le site</div>
+        <div class="toggle-sub">Quand désactivée, la section disparaît du site sans rien perdre (sélection et images conservées).</div>
       </div>
     `;
     card.appendChild(row);
@@ -1904,126 +1998,141 @@ function renderGalleryView() {
   bilingualRow(card, "Titre", GALLERY, "section_title_fr", "section_title_ar");
   bilingualRow(card, "Texte", GALLERY, "section_text_fr", "section_text_ar", { multiline: true });
 
-  card = newCard(container, "Images", "Si aucune image n'est ajoutée, la section n'apparaît pas sur le site.");
-  const listWrap = document.createElement("div");
-  card.appendChild(listWrap);
-
-  function renderList() {
-    listWrap.innerHTML = "";
-    GALLERY.items.forEach((item, i) => {
-      const slideCard = document.createElement("div");
-      slideCard.className = "slide-card";
-
-      const imgUrl = imageDisplayUrl(item.asset);
-      const imgHtml = imgUrl
-        ? `<img src="${imgUrl}" style="width:110px;height:80px;object-fit:cover;border-radius:8px;">`
-        : `<div class="img-picker-empty" style="width:110px;height:80px;">Aucune image</div>`;
-      slideCard.appendChild(el(imgHtml));
-
-      const fields = document.createElement("div");
-      fields.className = "slide-fields";
-      bilingualRow(fields, "Légende (optionnelle)", item, "caption_fr", "caption_ar");
-      slideCard.appendChild(fields);
-
-      const actions = document.createElement("div");
-      actions.className = "slide-actions";
-      const uploadBtn = document.createElement("button");
-      uploadBtn.type = "button";
-      uploadBtn.className = "btn btn-ghost btn-sm";
-      uploadBtn.textContent = "Changer l'image";
-      uploadBtn.onclick = async () => {
-        uploadBtn.disabled = true;
-        const prevText = uploadBtn.textContent;
-        try {
-          const url = await pickAndUploadImage("catalogue", (s) => (uploadBtn.textContent = s));
-          if (url) {
-            item.asset = url;
-            renderList();
-          }
-        } catch (err) {
-          toast("Échec de l'upload : " + err.message, true);
-        } finally {
-          uploadBtn.disabled = false;
-          uploadBtn.textContent = prevText;
-        }
-      };
-      actions.appendChild(uploadBtn);
-
-      if (i > 0) {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "btn btn-ghost btn-sm";
-        b.textContent = "↑";
-        b.onclick = () => {
-          [GALLERY.items[i - 1], GALLERY.items[i]] = [GALLERY.items[i], GALLERY.items[i - 1]];
-          renderList();
-        };
-        actions.appendChild(b);
-      }
-      if (i < GALLERY.items.length - 1) {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "btn btn-ghost btn-sm";
-        b.textContent = "↓";
-        b.onclick = () => {
-          [GALLERY.items[i + 1], GALLERY.items[i]] = [GALLERY.items[i], GALLERY.items[i + 1]];
-          renderList();
-        };
-        actions.appendChild(b);
-      }
-      const removeBtn = document.createElement("button");
-      removeBtn.type = "button";
-      removeBtn.className = "btn btn-danger btn-sm";
-      removeBtn.textContent = "Retirer";
-      removeBtn.onclick = () => {
-        GALLERY.items.splice(i, 1);
-        renderList();
-      };
-      actions.appendChild(removeBtn);
-
-      slideCard.appendChild(actions);
-      listWrap.appendChild(slideCard);
-    });
-    if (!GALLERY.items.length) {
-      listWrap.appendChild(el(`<div class="entry-empty">Aucune image pour le moment.</div>`));
-    }
-  }
-  renderList();
-
-  const addBtn = document.createElement("button");
-  addBtn.type = "button";
-  addBtn.className = "btn btn-ghost btn-sm list-add";
-  addBtn.textContent = "+ Ajouter une image";
-  addBtn.onclick = async () => {
-    addBtn.disabled = true;
-    const prevText = addBtn.textContent;
-    try {
-      const url = await pickAndUploadImage("catalogue", (s) => (addBtn.textContent = s));
-      if (url) {
-        GALLERY.items.push({ asset: url, caption_fr: "", caption_ar: "" });
-        renderList();
-      }
-    } catch (err) {
-      toast("Échec de l'upload : " + err.message, true);
-    } finally {
-      addBtn.disabled = false;
-      addBtn.textContent = prevText;
-    }
+  const all = galleryCollect();
+  const excluded = new Set(GALLERY.excluded);
+  card = newCard(container, "Images affichées", "");
+  const sub = el(`<p class="card-sub"></p>`);
+  card.appendChild(sub);
+  const bulk = el(`<div class="gallery-bulk"><button type="button" class="btn btn-ghost btn-sm" data-all>Tout cocher</button><button type="button" class="btn btn-ghost btn-sm" data-none>Tout décocher</button></div>`);
+  card.appendChild(bulk);
+  const grid = el(`<div class="gallery-pick-grid"></div>`);
+  card.appendChild(grid);
+  const refreshCount = () => {
+    const shown = all.filter((it) => !excluded.has(it.asset)).length;
+    sub.textContent = `${shown} image(s) affichée(s) sur ${all.length}. Les nouvelles images ajoutées ailleurs sur le site apparaissent automatiquement.`;
+    GALLERY.excluded = Array.from(excluded);
   };
-  card.appendChild(addBtn);
+  const renderGrid = () => {
+    grid.innerHTML = "";
+    let lastSource = null;
+    all.forEach((it) => {
+      if (it.source !== lastSource) {
+        grid.appendChild(el(`<div class="gallery-pick-group">${escapeHtml(it.source)}</div>`));
+        lastSource = it.source;
+      }
+      const on = !excluded.has(it.asset);
+      const tile = el(`<label class="gallery-pick${on ? "" : " is-off"}" title="${escapeHtml(it.caption)}">
+        <img src="${escapeHtml(imageDisplayUrl(it.asset))}" loading="lazy" alt="">
+        <span class="gallery-pick__chk"><input type="checkbox" ${on ? "checked" : ""}> Afficher</span>
+      </label>`);
+      tile.querySelector("input").addEventListener("change", (e) => {
+        if (e.target.checked) excluded.delete(it.asset); else excluded.add(it.asset);
+        tile.classList.toggle("is-off", !e.target.checked);
+        refreshCount();
+      });
+      grid.appendChild(tile);
+    });
+    if (!all.length) grid.appendChild(el(`<div class="entry-empty">Aucune image sur le site pour le moment.</div>`));
+    refreshCount();
+  };
+  bulk.querySelector("[data-all]").onclick = () => { excluded.clear(); renderGrid(); };
+  bulk.querySelector("[data-none]").onclick = () => { all.forEach((it) => excluded.add(it.asset)); renderGrid(); };
+  renderGrid();
 
-  const toolbar = el(`<div class="section-toolbar"><button class="btn btn-primary" id="save-gallery">Enregistrer la galerie</button></div>`);
-  container.appendChild(toolbar);
-  $("#save-gallery", toolbar).addEventListener("click", async (e) => {
-    e.target.disabled = true;
-    try {
-      await saveSection("gallery", "gallery.json");
-    } catch (err) {
-      toast("Échec de l'enregistrement : " + err.message, true);
-    } finally {
-      e.target.disabled = false;
-    }
+  renderImageListEditor(container, {
+    title: "Images supplémentaires",
+    hint: "Images présentes uniquement dans la Galerie (réalisations, chantier, documents…). Elles s'ajoutent à celles du reste du site. Enregistrez puis revenez sur cet onglet pour les voir dans la sélection ci-dessus.",
+    arr: GALLERY.items,
+    folder: "catalogue",
   });
+
+  saveToolbar(container, "Enregistrer la galerie", "gallery", "gallery.json", () => renderGalleryView());
+}
+
+// ============================================================================
+// Vue : Actualités (une seule actualité, remplacée à chaque mise à jour)
+// ============================================================================
+function renderActualitesView() {
+  const container = $("#view-actualites");
+  container.innerHTML = "";
+  const N = state.actualites.data;
+  if (!N.images) N.images = [];
+
+  container.appendChild(
+    el(`<div><h2>Actualités</h2><p class="view-sub">La page /actualites.html affiche UNE actualité, sans historique : en haut, un bandeau de photos (carrousel) ; en dessous, l'article ; en bas, la section « Nos résidences ». Modifiez puis enregistrez — l'ancienne actualité est remplacée.</p></div>`)
+  );
+
+  let card = newCard(container, "En-tête de la page", "Titre et texte affichés sur le bandeau de photos, en haut de la page.");
+  bilingualRow(card, "Titre de la page", N, "page_title_fr", "page_title_ar");
+  bilingualRow(card, "Texte d'introduction", N, "page_text_fr", "page_text_ar", { multiline: true });
+
+  card = newCard(container, "L'actualité");
+  bilingualRow(card, "Titre", N, "title_fr", "title_ar");
+  {
+    const row = makeFieldRow(card);
+    makeField(row, { label: "Date (optionnelle)", value: N.date || "", type: "date", onInput: (v) => (N.date = v) });
+    row.appendChild(document.createElement("div"));
+  }
+  bilingualRow(card, "Texte (laisser une ligne vide entre deux paragraphes)", N, "body_fr", "body_ar", { multiline: true });
+  card.querySelectorAll("textarea").forEach((t) => (t.rows = 10));
+
+  card = newCard(container, "Photo principale", "Première photo du bandeau en haut de la page.");
+  const coverWrap = document.createElement("div");
+  card.appendChild(coverWrap);
+  const renderCover = () => {
+    coverWrap.innerHTML = "";
+    const url = imageDisplayUrl(N.cover);
+    const box = el(`<div class="slide-card">${url ? `<img src="${escapeHtml(url)}" style="width:160px;height:110px;object-fit:cover;border-radius:8px;">` : `<div class="img-picker-empty" style="width:160px;height:110px;">Aucune photo</div>`}<div class="slide-actions"></div></div>`);
+    const actions = box.querySelector(".slide-actions");
+    const up = el(`<button type="button" class="btn btn-ghost btn-sm">${N.cover ? "Changer la photo" : "Ajouter une photo"}</button>`);
+    up.onclick = async () => {
+      up.disabled = true;
+      try {
+        const u = await pickAndUploadImage("actualites", (st) => (up.textContent = st));
+        if (u) { N.cover = u; renderCover(); }
+      } catch (err) {
+        toast("Échec de l'upload : " + err.message, true);
+      } finally { up.disabled = false; }
+    };
+    actions.appendChild(up);
+    const pk = el(`<button type="button" class="btn btn-ghost btn-sm">Image du site…</button>`);
+    pk.onclick = () => openSiteImagePicker((it) => { N.cover = it.asset; renderCover(); });
+    actions.appendChild(pk);
+    if (N.cover) {
+      const rm = el(`<button type="button" class="btn btn-danger btn-sm">Retirer</button>`);
+      rm.onclick = () => { N.cover = ""; renderCover(); };
+      actions.appendChild(rm);
+    }
+    coverWrap.appendChild(box);
+  };
+  renderCover();
+
+  renderImageListEditor(container, {
+    title: "Photos de l'actualité",
+    hint: "Photos du bandeau en haut de la page : elles défilent après la photo principale. Ajoutez-en autant que nécessaire.",
+    arr: N.images,
+    folder: "actualites",
+    emptyText: "Aucune photo pour le moment.",
+  });
+
+  card = newCard(container, "Section « Nos résidences » (bas de page)", "Grille des résidences sous l'actualité : onglet « En cours » par défaut, « Références » pour les projets livrés, avancement en cercle. Statuts, photos et pourcentages se gèrent dans l'onglet Résidences.");
+  {
+    if (N.tracker_enabled === undefined) N.tracker_enabled = true;
+    const row = document.createElement("div");
+    row.className = "toggle-row";
+    row.innerHTML = `
+      <label class="toggle-switch">
+        <input type="checkbox" id="news-tracker-chk" ${N.tracker_enabled !== false ? "checked" : ""}>
+        <span class="track"></span>
+      </label>
+      <div><div class="toggle-label">Afficher la section « Nos résidences »</div></div>`;
+    card.appendChild(row);
+    $("#news-tracker-chk", row).addEventListener("change", (e) => (N.tracker_enabled = e.target.checked));
+  }
+  bilingualRow(card, "Titre", N, "tracker_title_fr", "tracker_title_ar");
+  bilingualRow(card, "Texte", N, "tracker_text_fr", "tracker_text_ar", { multiline: true });
+
+  saveToolbar(container, "Publier l'actualité", "actualites", "actualites.json");
 }
 
 // ============================================================================
@@ -2133,8 +2242,8 @@ function renderSettingsView() {
 
   const ctaCard = newCard(container, "Boutons d'action (CTA)", "Chaque élément est activable/désactivable indépendamment. Un élément désactivé disparaît proprement — les liens existants (« Prendre rendez-vous »…) redeviennent de simples ancres.");
   const ctaToggles = [
-    { key: "cta_float_enabled", label: "Bulle flottante (Appeler / WhatsApp)", sub: "Bulle en bas à droite, visible sur ordinateur." },
-    { key: "cta_minibar_enabled", label: "Barre d'actions rapides (mobile)", sub: "Barre persistante en bas d'écran sur mobile : Appeler / WhatsApp / RDV." },
+    { key: "cta_float_enabled", label: "Bulle flottante (Appeler / WhatsApp)", sub: "Bulle en bas à droite, visible sur ordinateur — masquée tant que le Hero (grande image du haut) est à l'écran." },
+    { key: "cta_minibar_enabled", label: "Barre d'actions rapides (mobile)", sub: "Barre en bas d'écran sur mobile : Appeler / WhatsApp / RDV — masquée tant que le Hero est à l'écran." },
     { key: "cta_rdv_modal_enabled", label: "Modal « Prendre rendez-vous »", sub: "Fait apparaître un choix (Appeler / E-mail / Formulaire) au clic sur tout lien « Prendre rendez-vous »." },
   ];
   ctaToggles.forEach(({ key, label, sub }) => {
@@ -2260,6 +2369,29 @@ function renderOpportunitesView() {
   bilingualRow(card, "Titre", OPP, "hero_title_fr", "hero_title_ar");
   bilingualRow(card, "Texte", OPP, "hero_text_fr", "hero_text_ar", { multiline: true });
 
+  if (!OPP.media) OPP.media = { mode: "single", images: [] };
+  if (!OPP.media.images) OPP.media.images = [];
+  card = newCard(container, "Espace photo", "Bandeau en haut de la page Opportunités, sous le titre (à la place du fond noir). Choisissez une image unique ou un carrousel.");
+  {
+    const row = makeFieldRow(card);
+    const f = document.createElement("div");
+    f.className = "field";
+    f.innerHTML = `<label>Mode d'affichage</label>`;
+    const sel = document.createElement("select");
+    sel.innerHTML = `<option value="single">Image unique (1ʳᵉ image de la liste)</option><option value="carousel">Carrousel (toutes les images)</option>`;
+    sel.value = OPP.media.mode === "carousel" ? "carousel" : "single";
+    sel.addEventListener("change", () => (OPP.media.mode = sel.value));
+    f.appendChild(sel);
+    row.appendChild(f);
+    row.appendChild(document.createElement("div"));
+  }
+  renderImageListEditor(container, {
+    title: "Images de l'espace photo",
+    hint: "En mode « Image unique », seule la première image est affichée (utilisez ↑ pour la choisir). Aucune image = en-tête sombre sans photo.",
+    arr: OPP.media.images,
+    folder: "opportunites",
+  });
+
   renderObjectList(container, {
     title: "Ce que nous recherchons",
     hint: "Cartes cliquables — au clic, le visiteur est envoyé directement au formulaire avec le type déjà présélectionné.",
@@ -2294,6 +2426,15 @@ function renderOpportunitesView() {
   bilingualRow(card, "Titre", OPP, "form_title_fr", "form_title_ar");
   bilingualRow(card, "Texte", OPP, "form_text_fr", "form_text_ar", { multiline: true });
   bilingualRow(card, "Bouton d'envoi", OPP, "submit_fr", "submit_ar");
+  {
+    if (!OPP.form_type_demande_options) OPP.form_type_demande_options = ["Vente", "Achat", "Troc", "Partenariat"];
+    if (!OPP.form_type_bien_options) OPP.form_type_bien_options = ["Terrain", "Bien existant", "Immeuble"];
+    const row = makeFieldRow(card);
+    const t1 = makeField(row, { label: "Choix « Type de demande » (un par ligne)", value: OPP.form_type_demande_options.join("\n"), multiline: true, onInput: (v) => (OPP.form_type_demande_options = v.split("\n").map((x) => x.trim()).filter(Boolean)) });
+    const t2 = makeField(row, { label: "Choix « Type de bien » (un par ligne)", value: OPP.form_type_bien_options.join("\n"), multiline: true, onInput: (v) => (OPP.form_type_bien_options = v.split("\n").map((x) => x.trim()).filter(Boolean)) });
+    t1.rows = t2.rows = 5;
+    card.appendChild(el(`<p class="card-sub">Les cartes « Ce que nous recherchons » présélectionnent un choix : leur valeur doit correspondre exactement à l'une de ces lignes.</p>`));
+  }
 
   const toolbar = el(`<div class="section-toolbar"><button class="btn btn-primary" id="save-opportunites">Enregistrer la page Opportunités</button></div>`);
   container.appendChild(toolbar);

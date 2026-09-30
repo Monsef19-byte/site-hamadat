@@ -42,11 +42,41 @@
   </nav>
 </div>
 
-<section class="page-hero">
-  <div class="container">
-    <div class="eyebrow"><span lang="fr">Opportunités</span><span lang="ar">الفرص</span></div>
-    <h1><span lang="fr">Vous avez un terrain, un bien à céder ?</span><span lang="ar">لديكم أرض أو عقار للتنازل عنه؟</span></h1>
-    <p class="page-hero__lead"><span lang="fr">Proposez-le à Hamadat Promotion Immobilière — vente, échange ou partenariat, notre équipe étudie votre projet sous 48h.</span><span lang="ar">اقترحوه على حمادات للترقية العقارية — بيع، تبادل أو شراكة، يدرس فريقنا مشروعكم خلال 48 ساعة.</span></p>
+<section class="media-hero" data-gallery>
+  
+    <div class="gallery__slide media-hero__slide active">
+      <img src="assets/residences/vertdalya/diaporama/08.jpg" alt="Vertdalya, une adresse qui se distingue">
+      <div class="media-hero__caption"><span lang="fr">Vertdalya, une adresse qui se distingue</span><span lang="ar">فيرداليا... عنوان يتميز</span></div>
+    </div>
+    <div class="gallery__slide media-hero__slide ">
+      <img src="assets/residences/les-hirondelles/diaporama/05.jpg" alt="Les Hirondelles — Résidence prestige, signature Hamadat">
+      <div class="media-hero__caption"><span lang="fr">Les Hirondelles — Résidence prestige, signature Hamadat</span><span lang="ar">الحرونديل — إقامة راقية، بتوقيع حمادات</span></div>
+    </div>
+    <div class="gallery__slide media-hero__slide ">
+      <img data-src="assets/residences/les-3-princes/diaporama/04.jpg" alt="Les Trois Princes — Résidence de prestige, emplacement recherché">
+      <div class="media-hero__caption"><span lang="fr">Les Trois Princes — Résidence de prestige, emplacement recherché</span><span lang="ar">الأمراء الثلاثة — إقامة راقية، بموقع مطلوب</span></div>
+    </div>
+    <div class="gallery__slide media-hero__slide ">
+      <img data-src="assets/residences/vertdalya/diaporama/09.jpg" alt="Vertdalya s'illumine à la tombée du jour">
+      <div class="media-hero__caption"><span lang="fr">Vertdalya s'illumine à la tombée du jour</span><span lang="ar">فيرداليا تتلألأ عند الغروب</span></div>
+    </div>
+    <div class="gallery__slide media-hero__slide ">
+      <img data-src="assets/residences/les-hirondelles/diaporama/02.jpg" alt="Les Hirondelles — L'excellence architecturale à l'état pur">
+      <div class="media-hero__caption"><span lang="fr">Les Hirondelles — L'excellence architecturale à l'état pur</span><span lang="ar">الحرونديل — التميّز المعماري في أنقى صوره</span></div>
+    </div>
+  <div class="media-hero__scrim"></div>
+  
+    <div class="media-hero__content">
+      <div class="container">
+        <div class="eyebrow"><span lang="fr">Opportunités</span><span lang="ar">الفرص</span></div>
+        <h1><span lang="fr">Vous avez un terrain, un bien à céder ?</span><span lang="ar">لديكم أرض أو عقار للتنازل عنه؟</span></h1>
+        <p class="page-hero__lead"><span lang="fr">Proposez-le à Hamadat Promotion Immobilière — vente, échange ou partenariat, notre équipe étudie votre projet sous 48h.</span><span lang="ar">اقترحوه على حمادات للترقية العقارية — بيع، تبادل أو شراكة، يدرس فريقنا مشروعكم خلال 48 ساعة.</span></p>
+      </div>
+    </div>
+  <div class="gallery__counter media-hero__counter">1 / 5</div>
+  <div class="gallery__arrows media-hero__arrows">
+    <div class="hero__arrow" data-g-prev role="button" tabindex="0" aria-label="Précédente"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+    <div class="hero__arrow" data-g-next role="button" tabindex="0" aria-label="Suivante"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
   </div>
 </section>
 
@@ -93,37 +123,37 @@
     <div class="eyebrow"><span lang="fr">Contact</span><span lang="ar">اتصل بنا</span></div>
     <h2><span lang="fr">Proposez votre bien à Hamadat</span><span lang="ar">اقترحوا عقاركم على حمادات</span></h2>
     <p style="color:rgba(255,255,255,.78);margin-bottom:8px;"><span lang="fr">Remplissez ce formulaire et notre équipe vous recontactera rapidement pour étudier votre projet : vente, troc ou partenariat.</span><span lang="ar">املؤوا هذه الاستمارة وسيتصل بكم فريقنا في أقرب وقت لدراسة مشروعكم: بيع، تبادل أو شراكة.</span></p>
-    <form data-proposal-form data-lead-source="opportunites">
+    <form data-proposal-form data-lead-source="opportunites" novalidate>
       <div class="form-field-row">
         <div class="form-field">
-          <label><span lang="fr">Type de demande</span><span lang="ar">نوع الطلب</span></label>
-          <select name="type_demande" id="prop-typedemande"><option>Vente</option><option>Achat</option><option>Troc</option><option>Partenariat</option></select>
+          <label><span lang="fr">Type de demande</span><span lang="ar">نوع الطلب</span> <span class="req" aria-hidden="true">*</span></label>
+          <select name="type_demande" id="prop-typedemande" required><option value="" selected disabled data-choose-fr="Choisissez" data-choose-ar="اختر">Choisissez</option><option>Vente</option><option>Achat</option><option>Troc</option><option>Partenariat</option></select>
         </div>
         <div class="form-field">
-          <label><span lang="fr">Type de bien</span><span lang="ar">نوع العقار</span></label>
-          <select name="type_bien" id="prop-typebien"><option>Terrain</option><option>Bien existant</option><option>Immeuble</option></select>
+          <label><span lang="fr">Type de bien</span><span lang="ar">نوع العقار</span> <span class="req" aria-hidden="true">*</span></label>
+          <select name="type_bien" id="prop-typebien" required><option value="" selected disabled data-choose-fr="Choisissez" data-choose-ar="اختر">Choisissez</option><option>Terrain</option><option>Bien existant</option><option>Immeuble</option></select>
         </div>
       </div>
       <div class="form-field">
-        <label><span lang="fr">Localisation du bien</span><span lang="ar">موقع العقار</span></label>
-        <input type="text" name="localisation" placeholder="Wilaya, commune...">
+        <label><span lang="fr">Localisation du bien</span><span lang="ar">موقع العقار</span> <span class="req" aria-hidden="true">*</span></label>
+        <input type="text" name="localisation" placeholder="Wilaya, commune..." required>
       </div>
       <div class="form-field-row">
         <div class="form-field">
-          <label><span lang="fr">Nom et Prénom</span><span lang="ar">الاسم واللقب</span></label>
+          <label><span lang="fr">Nom et Prénom</span><span lang="ar">الاسم واللقب</span> <span class="req" aria-hidden="true">*</span></label>
           <input type="text" name="full_name" id="prop-nom" required>
         </div>
         <div class="form-field">
-          <label><span lang="fr">Téléphone</span><span lang="ar">رقم الهاتف</span></label>
-          <input type="tel" name="phone" required>
+          <label><span lang="fr">Téléphone</span><span lang="ar">رقم الهاتف</span> <span class="req" aria-hidden="true">*</span></label>
+          <input type="tel" name="phone" required inputmode="tel" autocomplete="tel">
         </div>
       </div>
       <div class="form-field">
-        <label><span lang="fr">Adresse e-mail</span><span lang="ar">البريد الإلكتروني</span></label>
-        <input type="email" name="email" required>
+        <label><span lang="fr">Adresse e-mail</span><span lang="ar">البريد الإلكتروني</span> <span class="req" aria-hidden="true">*</span></label>
+        <input type="email" name="email" required autocomplete="email">
       </div>
       <div class="form-field">
-        <label><span lang="fr">Message (facultatif)</span><span lang="ar">رسالة (اختياري)</span></label>
+        <label><span lang="fr">Description (facultatif)</span><span lang="ar">الوصف (اختياري)</span></label>
         <textarea rows="4" name="message" placeholder="Décrivez votre bien ou votre projet..."></textarea>
       </div>
       <div class="form-field form-field--hp" aria-hidden="true">
@@ -143,7 +173,8 @@
         <div class="footer-logo">
           <img src="assets/logo/hamadat-logo.png" alt="Hamadat">
         </div>
-        <p style="max-width:280px;color:var(--grey-3);font-size:14px;"><span lang="fr">L'excellence, en toute transparence</span><span lang="ar">نبني اليوم قيمةً تدوم للمستقبل</span></p>
+        <p class="footer-slogan"><span lang="fr">Là où le rêve prend toit.</span><span lang="ar">حيث يجد الحلم سقفه.</span></p>
+        <div class="social-links"><a class="social-link" href="https://facebook.com/hamadatpromotion" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a><a class="social-link" href="https://instagram.com/hamadatpromotion" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"></circle></svg></a></div>
       </div>
       <div>
         <h4><span lang="fr">Navigation</span><span lang="ar">روابط</span></h4>
@@ -178,7 +209,6 @@
     </div>
     <div class="footer-bottom">
       <div>© 2026 Hamadat Promotion Immobilière — <span lang="fr">Tous droits réservés</span><span lang="ar">جميع الحقوق محفوظة</span></div>
-      <div><span lang="fr">L'excellence, en toute transparence</span><span lang="ar">نبني اليوم قيمةً تدوم للمستقبل</span></div>
     </div>
   </div>
 </footer>
@@ -187,12 +217,12 @@
 <div class="float-card" id="floatCard">
   <div class="x" id="floatClose">✕</div>
   <p><span lang="fr">Une question sur votre projet ?</span><span lang="ar">لديكم سؤال حول مشروعكم؟</span></p>
-  <a class="float-btn call" href="tel:+213"><span lang="fr">Appeler maintenant</span><span lang="ar">اتصل الآن</span></a>
-  <a class="float-btn wa" href="https://wa.me/213" target="_blank" rel="noopener"><span lang="fr">WhatsApp</span><span lang="ar">واتساب</span></a>
+  <a class="float-btn call" href="index.html#contact"><span lang="fr">Appeler maintenant</span><span lang="ar">اتصل الآن</span></a>
+  
 </div>
 <nav class="mini-cta-bar" aria-label="Actions rapides">
-  <a href="tel:+213"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span><span lang="fr">Appeler</span><span lang="ar">اتصال</span></span></a>
-  <a class="mid" href="https://wa.me/213" target="_blank" rel="noopener"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.36 7.56L4 20l1.05-4.5A8.5 8.5 0 1 1 21 11.5z"></path><path d="M8.5 10.5c.3 2.8 2.2 4.7 5 5"></path></svg><span>WhatsApp</span></a>
+  <a href="index.html#contact"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span><span lang="fr">Appeler</span><span lang="ar">اتصال</span></span></a>
+  
   <a href="index.html#contact" data-rdv-trigger><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span><span lang="fr">RDV</span><span lang="ar">موعد</span></span></a>
 </nav>
 <script>window.HAMADAT_CTA_FLAGS={"float":true,"minibar":true,"rdvModal":true};</script>

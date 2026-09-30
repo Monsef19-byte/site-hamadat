@@ -13,18 +13,20 @@
       "grey_neutral_2": "#9BA1A2",
       "grey_neutral_3": "#B9BFC1",
       "note": "Déduites du PPTX de présentation ET du logo (bâtiment vert émeraude + gris anthracite). À faire valider par le client, aucune charte graphique officielle séparée n'a été fournie."
-    }
+    },
+    "slogan_fr": "Là où le rêve prend toit.",
+    "slogan_ar": "حيث يجد الحلم سقفه."
   },
   "home": {
     "hero_intro_fr": "Forte de plus de 25 ans d'expérience dans le domaine de l'immobilier, Hamadat Promotion Immobilière conçoit des résidences d'exception dans des emplacements soigneusement sélectionnés, alliant architecture élégante, qualité de réalisation et valeur d'investissement durable.",
     "hero_intro_ar": "بخبرة تتجاوز 25 عامًا، تطوّر حمادات إقامات راقية في مواقع مختارة بعناية، تجمع بين العمارة الأنيقة وجودة الإنجاز وقيمة استثمارية مستدامة.",
-    "hero_cta_fr": "Découvrir nos résidences",
-    "hero_cta_ar": "اكتشفوا إقاماتنا",
+    "hero_cta_fr": "Contactez-nous",
+    "hero_cta_ar": "اتصلوا بنا",
     "note": "Le hero plein écran = carrousel principal (voir home_carousel.json), une slide par résidence, texte qui change avec l'image."
   },
   "about": {
-    "title_fr": "Bâtir l'excellence depuis 2004",
-    "title_ar": "نبني التميّز منذ عام 2004",
+    "title_fr": "Là où le rêve prend toit.",
+    "title_ar": "حيث يجد الحلم سقفه.",
     "text_fr": "Depuis plus de vingt ans, nous mettons notre expertise au service de projets alliant qualité de construction, architecture soignée et emplacements soigneusement sélectionnés. Notre engagement est simple : offrir des lieux de vie durables, élégants et pensés pour le confort de leurs habitants.",
     "text_ar": "تأسست حمادات للترقية العقارية سنة 2004 انطلاقًا من رؤية واضحة مفادها أن السكن ليس مجرد بناء، بل فضاءٌ يمنح الإنسان الراحة، ويوفر للأسرة الاستقرار، ويشكّل استثمارًا يحافظ على قيمته عبر الأجيال. وعلى مدى أكثر من عشرين عامًا، نجحنا في إنجاز مشاريع سكنية راقية في عدد من الولايات الجزائرية، من الجزائر العاصمة إلى جيجل.",
     "commitments_fr": [
@@ -42,7 +44,29 @@
       "مرافقة شخصية للعميل"
     ],
     "history_title_fr": "Depuis 2004",
-    "history_title_ar": "منذ 2004"
+    "history_title_ar": "منذ 2004",
+    "images": [
+      {
+        "asset": "residences/orea/hero.jpg",
+        "caption_fr": "",
+        "caption_ar": ""
+      },
+      {
+        "asset": "residences/dahlia/hero.jpg",
+        "caption_fr": "",
+        "caption_ar": ""
+      },
+      {
+        "asset": "residences/elysia/hero.jpg",
+        "caption_fr": "",
+        "caption_ar": ""
+      },
+      {
+        "asset": "residences/lumalac/hero.jpg",
+        "caption_fr": "",
+        "caption_ar": ""
+      }
+    ]
   },
   "vision": {
     "title_fr": "Concevoir une valeur qui dure",
@@ -116,28 +140,11 @@
         "label_ar": "عامًا من الخبرة الميدانية"
       },
       {
-        "value": "+10",
-        "label_fr": "projets résidentiels de prestige",
-        "label_ar": "مشاريع سكنية راقية"
-      },
-      {
-        "value": "+300",
-        "label_fr": "unités de logement livrées",
-        "label_ar": "وحدة سكنية تم تسليمها"
-      },
-      {
         "value": "100%",
         "label_fr": "des projets livrés dans les délais",
         "label_ar": "من المشاريع سُلمت في الآجال"
       }
     ]
-  },
-  "news_section": {
-    "title_fr": "Actualités & avancement",
-    "title_ar": "المستجدات وتقدّم المشاريع",
-    "text_fr": "La transparence est au cœur de notre engagement. Suivez l'évolution de nos projets à chaque étape, du lancement des travaux jusqu'aux dernières finitions.",
-    "text_ar": "نؤمن بأن الشفافية أساس الثقة، لذلك نحرص على إبقاء عملائنا على اطلاع دائم بمراحل تقدم مشاريعنا.",
-    "content_status": "MANQUANT — aucun contenu concret (photos de chantier, dates, mises à jour) fourni dans le dossier. À demander au client : a-t-il des photos/vidéos d'avancement de chantier régulières pour Elysia, Lumalac notamment ?"
   },
   "contact": {
     "title_fr": "Prenez rendez-vous avec un conseiller",
@@ -178,7 +185,7 @@
           "Duplex",
           "Loft"
         ],
-        "required": false
+        "required": true
       },
       {
         "name": "residence",
@@ -191,7 +198,7 @@
           "Elysia",
           "Lumalac"
         ],
-        "required": false
+        "required": true
       }
     ],
     "submit_fr": "Envoyer la demande",
@@ -205,12 +212,18 @@
     "city_ar": "الجزائر العاصمة، الجزائر",
     "phone": "+213 XX XX XX XX",
     "email": "contact@hamadat.dz",
-    "badge_fr": "+20 ans d'expérience — +10 projets",
-    "badge_ar": "أكثر من 20 عامًا من الخبرة"
+    "badge_fr": "+20 ans d'expérience — 100 % dans les délais",
+    "badge_ar": "أكثر من 20 عامًا من الخبرة — 100% في الآجال"
   },
   "footer_note": {
-    "quote_fr": "L'excellence, en toute transparence",
-    "quote_ar": "نبني اليوم قيمةً تدوم للمستقبل",
-    "missing": "MANQUANT — pas de liens réseaux sociaux, pas de mentions légales/CGU fournis dans le dossier (contrairement au site de référence oussamapromotion.com qui en a). À demander au client."
+    "missing": "Mentions légales / CGU non fournies."
+  },
+  "social": {
+    "facebook": "https://facebook.com/hamadatpromotion",
+    "instagram": "https://instagram.com/hamadatpromotion",
+    "youtube": "",
+    "tiktok": "",
+    "linkedin": "",
+    "x": ""
   }
 }

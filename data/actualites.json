@@ -1,0 +1,64 @@
+{
+  "page_title_fr": "Actualités",
+  "page_title_ar": "المستجدات",
+  "page_text_fr": "La transparence est au cœur de notre engagement. Suivez l'évolution de nos projets à chaque étape, du lancement des travaux jusqu'aux dernières finitions.",
+  "page_text_ar": "نؤمن بأن الشفافية أساس الثقة، لذلك نحرص على إبقاء عملائنا على اطلاع دائم بمراحل تقدم مشاريعنا.",
+  "title_fr": "Suivez l'avancement de nos projets",
+  "title_ar": "تابعوا تقدّم مشاريعنا",
+  "date": "",
+  "cover": "residences/elysia/diaporama/11.jpg",
+  "body_fr": "Retrouvez ici les dernières nouvelles de nos chantiers et de nos résidences : avancement des travaux, lancements et livraisons.",
+  "body_ar": "تجدون هنا آخر أخبار ورشاتنا وإقاماتنا: تقدّم الأشغال، الإطلاقات والتسليمات.",
+  "images": [
+    {
+      "asset": "residences/elysia/diaporama/13.jpg",
+      "caption_fr": "Elysia — Une piscine suspendue face à la mer",
+      "caption_ar": "إليزيا — مسبح معلّق يطل على البحر"
+    },
+    {
+      "asset": "residences/elysia/diaporama/12.jpg",
+      "caption_fr": "Elysia — À deux pas de la plage",
+      "caption_ar": "إليزيا — على بعد خطوات من الشاطئ"
+    },
+    {
+      "asset": "residences/elysia/diaporama/01.jpg",
+      "caption_fr": "Elysia — Balcon côté forêt",
+      "caption_ar": "إليزيا — شرفة تطل على الغابة"
+    },
+    {
+      "asset": "residences/lumalac/diaporama/01.jpg",
+      "caption_fr": "Lumalac — Résidence de luxe, matériaux d'exception",
+      "caption_ar": "لومالاك — إقامة فاخرة، بمواد استثنائية"
+    },
+    {
+      "asset": "residences/lumalac/diaporama/02.jpg",
+      "caption_fr": "Lumalac — Résidence haut de gamme, exigence absolue",
+      "caption_ar": "لومالاك — إقامة راقية، بمعايير صارمة"
+    },
+    {
+      "asset": "residences/dahlia/diaporama/05.jpg",
+      "caption_fr": "Dahlia — Résidence haut standing",
+      "caption_ar": "داليا — إقامة راقية"
+    },
+    {
+      "asset": "residences/dahlia/diaporama/07.jpg",
+      "caption_fr": "Dahlia — Une signature architecturale",
+      "caption_ar": "داليا — بصمة معمارية مميزة"
+    },
+    {
+      "asset": "residences/orea/diaporama/02.jpg",
+      "caption_fr": "Orea — Une signature architecturale New Classique",
+      "caption_ar": "أوريا — توقيع معماري بطراز الكلاسيكي الجديد"
+    },
+    {
+      "asset": "residences/orea/diaporama/06.jpg",
+      "caption_fr": "Orea — La lumière naturelle, un luxe discret",
+      "caption_ar": "أوريا — الضوء الطبيعي... فخامة هادئة"
+    }
+  ],
+  "tracker_enabled": true,
+  "tracker_title_fr": "L'avancement de chaque résidence",
+  "tracker_title_ar": "تقدّم كل إقامة",
+  "tracker_text_fr": "Projets en cours et références : retrouvez le statut et l'avancement de chacune de nos résidences.",
+  "tracker_text_ar": "مشاريع قيد الإنجاز ومراجعنا: اطّلعوا على وضع كل إقامة من إقاماتنا ونسبة تقدّمها."
+}
