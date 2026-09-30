@@ -15,7 +15,7 @@
       "note": "Déduites du PPTX de présentation ET du logo (bâtiment vert émeraude + gris anthracite). À faire valider par le client, aucune charte graphique officielle séparée n'a été fournie."
     },
     "slogan_fr": "Là où le rêve prend toit.",
-    "slogan_ar": "حيث يجد الحلم سقفه."
+    "slogan_ar": "حيث يجد الحلم سقفه"
   },
   "home": {
     "hero_intro_fr": "Forte de plus de 25 ans d'expérience dans le domaine de l'immobilier, Hamadat Promotion Immobilière conçoit des résidences d'exception dans des emplacements soigneusement sélectionnés, alliant architecture élégante, qualité de réalisation et valeur d'investissement durable.",
@@ -210,8 +210,8 @@
     "address_ar": "حي 11 ديسمبر، دالي إبراهيم، الجزائر",
     "city_fr": "Alger, Algérie",
     "city_ar": "الجزائر العاصمة، الجزائر",
-    "phone": "+213 XX XX XX XX",
-    "email": "contact@hamadat.dz",
+    "phone": "+213 542278128",
+    "email": "hamadat.marketing@gmail.com",
     "badge_fr": "+20 ans d'expérience — 100 % dans les délais",
     "badge_ar": "أكثر من 20 عامًا من الخبرة — 100% في الآجال"
   },
@@ -221,9 +221,9 @@
   "social": {
     "facebook": "https://facebook.com/hamadatpromotion",
     "instagram": "https://instagram.com/hamadatpromotion",
-    "youtube": "",
-    "tiktok": "",
-    "linkedin": "",
+    "youtube": "www.youtube.com/@hamadat.promotion.immobiliere",
+    "tiktok": "tiktok.com/@hamadatpromotion?_r=1&_t=ZS-97QA2K0vXxE",
+    "linkedin": "linkedin.com/in/promotion-immobilière-hamadat-ab29aa35a",
     "x": ""
   }
 }
