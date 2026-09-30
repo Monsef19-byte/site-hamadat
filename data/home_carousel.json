@@ -1,11 +1,11 @@
 [
   {
     "residence_id": "orea",
-    "name": "Orea",
-    "name_ar": "أوريا",
+    "name": "Les Hirondelles",
+    "name_ar": "ليز إيروندال",
     "category": "en_cours",
-    "tagline_fr": "L'élégance du style New Classique au cœur de Dely Brahim",
-    "tagline_ar": "أناقة الطراز الكلاسيكي الجديد في قلب الدالية إبراهيم",
+    "tagline_fr": "Le luxe d'un art de vivre raffiné, au cœur de Dely Brahim.",
+    "tagline_ar": "فخامة العيش الراقي، في قلب دالي إبراهيم",
     "location_fr": "Cité 11 Décembre, Dely Brahim",
     "location_ar": "حي 11 ديسمبر، الدالية إبراهيم",
     "status_fr": "Vendu en totalité",
@@ -15,7 +15,7 @@
     "link": "/residences/orea",
     "hero_image_source": "principale",
     "hero_image_file": "PHOTOS PRINCIPALES/ChatGPT Image 6 juil. 2026, 09_17_33.png",
-    "asset": "residences/orea/hero.jpg"
+    "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/orea/1790781464753-chatgpt-image-14-juil.-2026-15_21_51-AXc8ppCNAA9wIMrBZUVc6nW8GSYjF6.jpg"
   },
   {
     "residence_id": "dahlia",
