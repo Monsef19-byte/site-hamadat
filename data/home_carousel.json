@@ -112,11 +112,11 @@
   },
   {
     "residence_id": "marmo",
-    "name": "Marmo",
-    "name_ar": "مارمو",
+    "name": "Séjour Marmo",
+    "name_ar": "غرفة المعيشة مارمو",
     "category": "livre",
-    "tagline_fr": "Livrée en 2025 — signature marbre naturel",
-    "tagline_ar": "حيث تنطق التفاصيل بالفخامة",
+    "tagline_fr": "Livrée en 2025 — Un espace de vie ouvert et lumineux, où le marbre et les lumières chaudes créent une atmosphère raffinée.",
+    "tagline_ar": "فضاء معيشة مفتوح ومشرق، يجمع بين الرخام والإضاءة الدافئة في أجواء راقية",
     "location_fr": "Cité 11 Décembre, Dely Brahim",
     "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
     "status_fr": "Vendu en totalité",
@@ -126,7 +126,7 @@
     "link": "/residences/marmo",
     "hero_image_source": "principale",
     "hero_image_file": "PHOTOS PRICIPALES/ChatGPT Image 23 juil. 2026, 15_15_36.png",
-    "asset": "residences/marmo/hero.jpg"
+    "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/marmo/1790868321453-chatgpt-image-15-juil.-2026-13_22_50-gGj6O2UA3XYbICnmeKdlmlHbBJpBKE.jpg"
   },
   {
     "residence_id": "les-pyramides",
