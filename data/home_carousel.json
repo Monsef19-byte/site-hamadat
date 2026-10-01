@@ -19,11 +19,11 @@
   },
   {
     "residence_id": "dahlia",
-    "name": "Dahlia",
-    "name_ar": "داليا",
+    "name": "Les trois princes ",
+    "name_ar": "الأمراء الثلاثة",
     "category": "en_cours",
-    "tagline_fr": "Confort moderne et prestations premium au cœur de Dely Brahim",
-    "tagline_ar": "راحة عصرية وخدمات فاخرة في قلب دالي إبراهيم",
+    "tagline_fr": "Une architecture contemporaine, aux balcons vitrés ouverts sur le ciel.",
+    "tagline_ar": "هندسة معاصرة، بشرفات زجاجية تنفتح على السماء",
     "location_fr": "Cité 11 Décembre, Dely Brahim",
     "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
     "status_fr": "Disponible — 20 unités",
@@ -33,7 +33,7 @@
     "link": "/residences/dahlia",
     "hero_image_source": "principale",
     "hero_image_file": "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_17_52.png",
-    "asset": "residences/dahlia/hero.jpg"
+    "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/dahlia/1790867191072-chatgpt-image-18-juil.-2026-16_01_46-XEspQGPs79wi7enCMbNXsItTVHXHW2.jpg"
   },
   {
     "residence_id": "elysia",
