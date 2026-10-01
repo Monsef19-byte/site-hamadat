@@ -19,7 +19,7 @@
   },
   {
     "residence_id": "dahlia",
-    "name": "Les trois princes ",
+    "name": "Les Trois Princes ",
     "name_ar": "الأمراء الثلاثة",
     "category": "en_cours",
     "tagline_fr": "Une architecture contemporaine, aux balcons vitrés ouverts sur le ciel.",
@@ -34,24 +34,6 @@
     "hero_image_source": "principale",
     "hero_image_file": "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_17_52.png",
     "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/dahlia/1790867191072-chatgpt-image-18-juil.-2026-16_01_46-XEspQGPs79wi7enCMbNXsItTVHXHW2.jpg"
-  },
-  {
-    "residence_id": "elysia",
-    "name": "Elysia",
-    "name_ar": "إليزيا",
-    "category": "en_cours",
-    "tagline_fr": "L'architecture contemporaine face à la Méditerranée",
-    "tagline_ar": "تصميم معماري معاصر بإطلالة على البحر الأبيض المتوسط",
-    "location_fr": "Ouled Bounar, Jijel",
-    "location_ar": "أولاد بونار، جيجل",
-    "status_fr": "En cours — 26%",
-    "status_ar": "قيد الإنجاز — 26%",
-    "cta_fr": "Découvrir la résidence",
-    "cta_ar": "اكتشف الإقامة",
-    "link": "/residences/elysia",
-    "hero_image_source": "principale",
-    "hero_image_file": "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 14_52_00.png",
-    "asset": "residences/elysia/hero.jpg"
   },
   {
     "residence_id": "lumalac",
@@ -70,24 +52,6 @@
     "hero_image_source": "principale",
     "hero_image_file": "PHOTO PRINCIPALE/ChatGPT Image 23 juil. 2026, 08_50_40.png",
     "asset": "residences/lumalac/hero.jpg"
-  },
-  {
-    "residence_id": "les-3-princes",
-    "name": "Les Trois Princes",
-    "name_ar": "الأمراء الثلاثة",
-    "category": "livre",
-    "tagline_fr": "Livrée en 2019 — l'une des réalisations phares de Hamadat à Dely Brahim",
-    "tagline_ar": "حيث يلتقي الرقيّ بأصالة التصميم",
-    "location_fr": "Cité 11 Décembre, Dely Brahim",
-    "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
-    "status_fr": "Vendu en totalité",
-    "status_ar": "بِيع بالكامل",
-    "cta_fr": "Découvrir la résidence",
-    "cta_ar": "اكتشف الإقامة",
-    "link": "/residences/les-3-princes",
-    "hero_image_source": "principale",
-    "hero_image_file": "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 16_01_46.png",
-    "asset": "residences/les-3-princes/hero.jpg"
   },
   {
     "residence_id": "les-hirondelles",
