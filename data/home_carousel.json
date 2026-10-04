@@ -142,6 +142,18 @@
     "link": "/residences/les-pyramides",
     "hero_image_source": "principale",
     "hero_image_file": "PHOTOS PRINCIPALES/ChatGPT Image 12 juil. 2026, 12_36_32.png",
-    "asset": "residences/les-pyramides/hero.jpg"
+    "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/les-pyramides/1791100109060-chatgpt-image-19-juil.-2026-09_04_14-jSLVHCs33l4e6CxJIS6EpUXrkbWrRr.jpg"
+  },
+  {
+    "residence_id": null,
+    "free_id": "libre-9jjc3q",
+    "name": "",
+    "name_ar": "",
+    "location_fr": "",
+    "location_ar": "",
+    "tagline_fr": "",
+    "tagline_ar": "",
+    "badges": [],
+    "asset": ""
   }
 ]
