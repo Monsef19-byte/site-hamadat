@@ -22,7 +22,7 @@
     "name": "Les Trois Princes ",
     "name_ar": "الأمراء الثلاثة",
     "category": "en_cours",
-    "tagline_fr": "Une architecture contemporaine, aux balcons vitrés ouverts sur le ciel.",
+    "tagline_fr": "Livrée en 2022 — Architecture contemporaine, balcons vitrés ouverts sur le ciel.",
     "tagline_ar": "هندسة معاصرة، بشرفات زجاجية تنفتح على السماء",
     "location_fr": "Cité 11 Décembre, Dely Brahim",
     "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
@@ -35,24 +35,6 @@
     "hero_image_file": "PHOTOS PRINCIPALES/ChatGPT Image 19 juil. 2026, 09_17_52.png",
     "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/dahlia/1790867191072-chatgpt-image-18-juil.-2026-16_01_46-XEspQGPs79wi7enCMbNXsItTVHXHW2.jpg",
     "badges": []
-  },
-  {
-    "residence_id": "lumalac",
-    "name": "Lumalac",
-    "name_ar": "لومالاك",
-    "category": "en_cours",
-    "tagline_fr": "En cours de finalisation — face à Dounia Parc, Dely Brahim",
-    "tagline_ar": "إطلالة تنبض بجمال الطبيعة ورقيّ الحياة",
-    "location_fr": "Dely Brahim",
-    "location_ar": "دالي إبراهيم",
-    "status_fr": "Quasi vendu — 80%",
-    "status_ar": "شبه مباع بالكامل — 80%",
-    "cta_fr": "Découvrir la résidence",
-    "cta_ar": "اكتشف الإقامة",
-    "link": "/residences/lumalac",
-    "hero_image_source": "principale",
-    "hero_image_file": "PHOTO PRINCIPALE/ChatGPT Image 23 juil. 2026, 08_50_40.png",
-    "asset": "residences/lumalac/hero.jpg"
   },
   {
     "residence_id": "les-hirondelles",
@@ -88,7 +70,7 @@
     "link": "/residences/la-lune",
     "hero_image_source": "exterieur",
     "hero_image_file": "PHOTOS EXTERIEUR/ChatGPT Image 25 juil. 2026, 16_04_12.png",
-    "asset": "residences/la-lune/hero.jpg"
+    "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/la-lune/1791099793721-chatgpt-image-16-juil.-2026-12_01_45-dmQvCotqt2LQYVJn8E4pOfwWvpH9Hc.jpg"
   },
   {
     "residence_id": "vertdalya",
@@ -106,7 +88,7 @@
     "link": "/residences/vertdalya",
     "hero_image_source": "principale",
     "hero_image_file": "PHOTOS PRINCIPALES/ChatGPT Image 18 juil. 2026, 14_27_33.png",
-    "asset": "residences/vertdalya/hero.jpg"
+    "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/vertdalya/1791099832162-chatgpt-image-11-juil.-2026-16_03_27-HXFeL4Ou8ap0NdXkYJbwT0JCCxjIjo.jpg"
   },
   {
     "residence_id": "marmo",
@@ -125,6 +107,24 @@
     "hero_image_source": "principale",
     "hero_image_file": "PHOTOS PRICIPALES/ChatGPT Image 23 juil. 2026, 15_15_36.png",
     "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/marmo/1790868321453-chatgpt-image-15-juil.-2026-13_22_50-gGj6O2UA3XYbICnmeKdlmlHbBJpBKE.jpg"
+  },
+  {
+    "residence_id": "lumalac",
+    "name": "Lumalac",
+    "name_ar": "لومالاك",
+    "category": "en_cours",
+    "tagline_fr": "En cours de finalisation — face à Dounia Parc, Dely Brahim",
+    "tagline_ar": "إطلالة تنبض بجمال الطبيعة ورقيّ الحياة",
+    "location_fr": "Dely Brahim",
+    "location_ar": "دالي إبراهيم",
+    "status_fr": "Quasi vendu — 80%",
+    "status_ar": "شبه مباع بالكامل — 80%",
+    "cta_fr": "Découvrir la résidence",
+    "cta_ar": "اكتشف الإقامة",
+    "link": "/residences/lumalac",
+    "hero_image_source": "principale",
+    "hero_image_file": "PHOTO PRINCIPALE/ChatGPT Image 23 juil. 2026, 08_50_40.png",
+    "asset": "residences/lumalac/hero.jpg"
   },
   {
     "residence_id": "les-pyramides",
