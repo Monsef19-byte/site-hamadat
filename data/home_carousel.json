@@ -1,7 +1,7 @@
 [
   {
     "residence_id": "orea",
-    "name": "Duplex - Les Hirondelles",
+    "name": " Les Hirondelles - Terrasse",
     "name_ar": "ليز إيروندال",
     "category": "en_cours",
     "tagline_fr": "Le luxe d'un art de vivre raffiné, au cœur de Dely Brahim.",
@@ -109,24 +109,6 @@
     "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/marmo/1790868321453-chatgpt-image-15-juil.-2026-13_22_50-gGj6O2UA3XYbICnmeKdlmlHbBJpBKE.jpg"
   },
   {
-    "residence_id": "lumalac",
-    "name": "Lumalac",
-    "name_ar": "لومالاك",
-    "category": "en_cours",
-    "tagline_fr": "En cours de finalisation — face à Dounia Parc, Dely Brahim",
-    "tagline_ar": "إطلالة تنبض بجمال الطبيعة ورقيّ الحياة",
-    "location_fr": "Dely Brahim",
-    "location_ar": "دالي إبراهيم",
-    "status_fr": "Quasi vendu — 80%",
-    "status_ar": "شبه مباع بالكامل — 80%",
-    "cta_fr": "Découvrir la résidence",
-    "cta_ar": "اكتشف الإقامة",
-    "link": "/residences/lumalac",
-    "hero_image_source": "principale",
-    "hero_image_file": "PHOTO PRINCIPALE/ChatGPT Image 23 juil. 2026, 08_50_40.png",
-    "asset": "residences/lumalac/hero.jpg"
-  },
-  {
     "residence_id": "les-pyramides",
     "name": "Les Pyramides",
     "name_ar": "الأهرامات",
@@ -146,14 +128,14 @@
   },
   {
     "residence_id": null,
-    "free_id": "libre-9jjc3q",
-    "name": "",
-    "name_ar": "",
-    "location_fr": "",
-    "location_ar": "",
-    "tagline_fr": "",
+    "free_id": "libre-hffvkg",
+    "name": "La lune - Hammam",
+    "name_ar": "القمر - حمام",
+    "location_fr": "Cité Bouchbouk, Dely Brahim",
+    "location_ar": "حي بوشبوك، دالي إبراهيم",
+    "tagline_fr": "Le hammam, sublimé par le marbre et la lumière.",
     "tagline_ar": "",
     "badges": [],
-    "asset": ""
+    "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/libre-hffvkg/1791100998782-chatgpt-image-16-juil.-2026-12_03_59-UhsSXNJXlgaasZYivVuas6UoH7hTjy.jpg"
   }
 ]
