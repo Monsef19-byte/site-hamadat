@@ -180,8 +180,8 @@
           "count_fr": "3",
           "count_ar": "3",
           "confirmed": false,
-          "detail_text_fr": "Disponible",
-          "detail_text_ar": "متوفر",
+          "detail_text_fr": "Vendu",
+          "detail_text_ar": "تم البيع",
           "detail_images": []
         },
         {
