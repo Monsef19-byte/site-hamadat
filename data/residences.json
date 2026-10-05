@@ -738,7 +738,14 @@
         "text_fr": "Façades modernes en harmonie avec l'environnement maritime",
         "text_ar": "واجهات عصرية منسجمة مع المحيط البحري"
       }
-    ]
+    ],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    }
   },
   {
     "id": "lumalac",
@@ -1019,7 +1026,14 @@
     "availability_ar": "بيع بالكامل",
     "avail_open": false,
     "services": [],
-    "quality": []
+    "quality": [],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    }
   },
   {
     "id": "les-hirondelles",
@@ -1432,7 +1446,14 @@
     "availability_ar": "بيع بالكامل",
     "avail_open": false,
     "services": [],
-    "quality": []
+    "quality": [],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    }
   },
   {
     "id": "marmo",
@@ -1701,5 +1722,45 @@
     "avail_open": false,
     "services": [],
     "quality": []
+  },
+  {
+    "id": "nouvelle-residence-kfbvfq",
+    "category": "en_cours",
+    "name": "",
+    "name_ar": "",
+    "tagline_fr": "",
+    "tagline_ar": "",
+    "location_fr": "",
+    "location_ar": "",
+    "google_maps": null,
+    "status_fr": "",
+    "status_ar": "",
+    "description_fr": "",
+    "description_ar": "",
+    "why_location_fr": "",
+    "why_location_ar": "",
+    "key_numbers": [],
+    "typologies_fr": "",
+    "typologies_ar": "",
+    "services": [],
+    "quality": [],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    },
+    "youtube": null,
+    "images": {
+      "principale": [],
+      "interieur": []
+    },
+    "diaporama": [],
+    "progress_percent": null,
+    "availability_fr": "",
+    "availability_ar": "",
+    "avail_open": true,
+    "delivered_year": null
   }
 ]
