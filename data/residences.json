@@ -169,7 +169,35 @@
         "text_fr": "Façades élégantes et soignées",
         "text_ar": "واجهات أنيقة ومتقَنة"
       }
-    ]
+    ],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [
+        {
+          "name_fr": "F3",
+          "name_ar": "F3",
+          "count_fr": "3",
+          "count_ar": "3",
+          "confirmed": false,
+          "detail_text_fr": "Disponible",
+          "detail_text_ar": "متوفر",
+          "detail_images": []
+        },
+        {
+          "name_fr": "F4",
+          "name_ar": "f4",
+          "count_fr": "5",
+          "count_ar": "5",
+          "confirmed": false,
+          "detail_text_fr": "Vendu",
+          "detail_text_ar": "تم البيع",
+          "detail_images": []
+        }
+      ],
+      "note_fr": "",
+      "note_ar": ""
+    }
   },
   {
     "id": "dahlia",
