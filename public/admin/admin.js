@@ -109,7 +109,6 @@ async function showApp() {
     return;
   }
   renderView("global");
-  startLeadsWatch();
 }
 
 $("#login-form").addEventListener("submit", async (e) => {
@@ -170,84 +169,6 @@ async function loadLeads() {
   const { leads, stats } = await api("GET", "/api/admin/leads");
   state.leads = leads;
   state.leadStats = stats;
-  noteLeads(leads);
-}
-
-// ---------------------------------------------------------------------------
-// Notifications des demandes : pastille rouge sur « Demandes reçues » (nombre
-// de demandes non traitées), compteur dans le titre de l'onglet, et alerte à
-// l'écran quand une nouvelle demande arrive pendant que le dashboard est
-// ouvert (vérification chaque minute et au retour sur l'onglet).
-// ---------------------------------------------------------------------------
-const BASE_TITLE = document.title;
-let leadsKnown = null;
-let leadsTimer = null;
-
-function setLeadsBadge() {
-  const n = (state.leads || []).filter((l) => l.status !== "handled").length;
-  const b = $("#leadsBadge");
-  if (b) {
-    b.textContent = n > 99 ? "99+" : String(n);
-    b.hidden = !n;
-    b.title = `${n} demande(s) non traitée(s)`;
-  }
-  document.title = (n ? `(${n}) ` : "") + BASE_TITLE;
-}
-
-function leadLabel(l) {
-  const f = l.fields || {};
-  const what = [f.residence, f.unit_type, f.type_demande, f.type_bien].filter(Boolean).join(" · ");
-  return (f.full_name || "Sans nom") + (what ? " — " + what : "");
-}
-
-function showLeadAlert(fresh) {
-  let box = $("#leadAlert");
-  if (!box) {
-    box = el(`<div id="leadAlert" class="lead-alert" role="status"></div>`);
-    document.body.appendChild(box);
-  }
-  const title = fresh.length > 1 ? `${fresh.length} nouvelles demandes reçues` : "Nouvelle demande reçue";
-  box.innerHTML = `<div class="lead-alert-ico">🔔</div><div class="lead-alert-txt"><b>${escapeHtml(title)}</b><span>${fresh
-    .slice(0, 3).map((l) => escapeHtml(leadLabel(l))).join("<br>")}${fresh.length > 3 ? "<br>…" : ""}</span></div>
-    <button type="button" class="btn btn-primary btn-sm" data-go>Voir</button><button type="button" class="lead-alert-x" aria-label="Fermer" data-x>✕</button>`;
-  box.classList.add("show");
-  box.querySelector("[data-x]").onclick = () => box.classList.remove("show");
-  box.querySelector("[data-go]").onclick = () => { box.classList.remove("show"); renderView("leads"); };
-}
-
-// Compare la liste reçue à la précédente : alerte pour les nouvelles demandes.
-function noteLeads(leads) {
-  let fresh = [];
-  if (leadsKnown) {
-    fresh = leads.filter((l) => !leadsKnown.has(l.id) && l.status !== "handled");
-  } else {
-    // 1er chargement : demandes arrivées depuis la dernière visite
-    let last = "";
-    try { last = localStorage.getItem("hmd_leads_seen_at") || ""; } catch (e) {}
-    if (last) fresh = leads.filter((l) => (l.received_at || "") > last && l.status !== "handled");
-  }
-  leadsKnown = new Set(leads.map((l) => l.id));
-  const newest = leads.reduce((m, l) => ((l.received_at || "") > m ? l.received_at : m), "");
-  try { if (newest) localStorage.setItem("hmd_leads_seen_at", newest); } catch (e) {}
-  setLeadsBadge();
-  if (fresh.length) showLeadAlert(fresh);
-  return fresh;
-}
-
-async function pollLeads() {
-  if (document.visibilityState !== "visible") return;
-  try {
-    const before = leadsKnown;
-    await loadLeads();
-    if (before && state.currentView === "leads" && state.leads.some((l) => !before.has(l.id))) renderLeadsView();
-  } catch (e) { /* hors ligne ou session expirée : on réessaie à la prochaine minute */ }
-}
-
-function startLeadsWatch() {
-  pollLeads();
-  if (leadsTimer) return;
-  leadsTimer = setInterval(pollLeads, 60000);
-  document.addEventListener("visibilitychange", pollLeads);
 }
 
 async function saveSection(key, filename) {
@@ -2238,26 +2159,7 @@ async function renderLeadsView() {
 
   const stats = state.leadStats || { total: 0, new: 0 };
   const statsCard = newCard(container, "Aperçu");
-  statsCard.appendChild(el(`<p class="card-sub">${stats.total} demande(s) au total, dont <strong>${stats.new}</strong> non traitée(s). Les demandes non traitées sont signalées par la pastille rouge du menu : marquez-les « traitées » une fois la personne recontactée.</p>`));
-  if (stats.new) {
-    const allBtn = el(`<button type="button" class="btn btn-ghost btn-sm">Tout marquer comme traité (${stats.new})</button>`);
-    allBtn.onclick = async () => {
-      allBtn.disabled = true;
-      allBtn.textContent = "Enregistrement…";
-      try {
-        for (const lead of state.leads.filter((l) => l.status !== "handled")) {
-          await api("PATCH", "/api/admin/leads", { id: lead.id, status: "handled" });
-          lead.status = "handled";
-          setLeadsBadge();
-        }
-        toast("Toutes les demandes sont marquées comme traitées.");
-      } catch (err) {
-        toast("Échec : " + err.message, true);
-      }
-      renderLeadsView();
-    };
-    statsCard.appendChild(allBtn);
-  }
+  statsCard.appendChild(el(`<p class="card-sub">${stats.total} demande(s) au total, dont <strong>${stats.new}</strong> non traitée(s).</p>`));
 
   if (!state.leads.length) {
     newCard(container, "Aucune demande pour le moment", "Les nouvelles soumissions du formulaire de contact apparaîtront ici automatiquement.");
@@ -2301,7 +2203,6 @@ async function renderLeadsView() {
           await api("PATCH", "/api/admin/leads", { id: lead.id, status: nextStatus });
           lead.status = nextStatus;
           paintRows();
-          setLeadsBadge();
         } catch (err) {
           toast("Échec : " + err.message, true);
           btn.disabled = false;
