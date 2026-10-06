@@ -150,7 +150,7 @@
     "title_fr": "Prenez rendez-vous avec un conseiller",
     "title_ar": "احجزوا موعدًا مع أحد مستشارينا",
     "text_fr": "Remplissez le formulaire et nous vous recontacterons rapidement afin de répondre à vos besoins.",
-    "text_ar": "املؤوا هذه الاستمارة وسيتواصل معكم فريقنا في أقرب الآجال.",
+    "text_ar": "يُرجى ملء هذه الاستمارة، وسيتواصل معكم فريقنا في أقرب وقت ممكن.",
     "fields": [
       {
         "name": "full_name",
