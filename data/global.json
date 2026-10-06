@@ -219,11 +219,11 @@
     "missing": "Mentions légales / CGU non fournies."
   },
   "social": {
-    "facebook": "facebook.com/Hamadat.Pomotion.Immobiliere",
-    "instagram": "instagram.com/hamadat.promotion.immobiliere",
-    "youtube": "www.youtube.com/@hamadat.promotion.immobiliere",
-    "tiktok": "tiktok.com/@hamadatpromotion?_r=1&_t=ZS-97QA2K0vXxE",
-    "linkedin": "linkedin.com/in/promotion-immobilière-hamadat-ab29aa35a",
+    "facebook": "https://www.facebook.com/Hamadat.Pomotion.Immobiliere/",
+    "instagram": "https://www.instagram.com/hamadat.promotion.immobiliere/",
+    "youtube": "https://www.youtube.com/@hamadat.promotion.immobiliere",
+    "tiktok": "https://www.tiktok.com/@hamadatpromotion?_r=1&_t=ZS-97QA2K0vXxE",
+    "linkedin": "https://www.linkedin.com/in/promotion-immobili%C3%A8re-hamadat-ab29aa35a",
     "x": "https://x.com/hamadatpromo?s=11"
   }
 }
