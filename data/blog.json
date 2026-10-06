@@ -1,20 +1,8 @@
 {
-  "enabled": true,
+  "enabled": false,
   "page_title_fr": "Blog & actualités",
   "page_title_ar": "المدونة والمستجدات",
   "page_intro_fr": "",
   "page_intro_ar": "",
-  "articles": [
-    {
-      "id": "article-u6ncsy",
-      "title_fr": "",
-      "title_ar": "",
-      "excerpt_fr": "",
-      "excerpt_ar": "",
-      "content_fr": "",
-      "content_ar": "",
-      "cover_image": "",
-      "published_at": "2026-10-06"
-    }
-  ]
+  "articles": []
 }
