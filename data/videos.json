@@ -3,5 +3,13 @@
   "section_title_ar": "فيديوهاتنا",
   "section_text_fr": "Visites virtuelles et actualités de nos résidences en vidéo.",
   "section_text_ar": "جولات افتراضية ومستجدات إقاماتنا بالفيديو.",
-  "items": []
+  "items": [
+    {
+      "url": "https://youtu.be/XsAet9TpRlQ?si=Ty4I3wiZdjhk4OHH",
+      "title_fr": "Loft d’Exception 270 m² à Dely Brahim | Résidence VertDalya",
+      "title_ar": "لوفت استثنائي 270 م² في دالي إبراهيم | إقامة فيرداليا",
+      "desc_fr": "Découvrez ce loft d’exception de 270 m², situé à Dely Brahim, Cité 11 Décembre, une adresse résidentielle prisée pour son calme, son standing et son cadre de vie privilégié.\n\nEntièrement meublé, ce bien rare allie architecture contemporaine, raffinement et confort absolu. Ses volumes généreux, sa luminosité naturelle et son intimité totale sans vis-à-vis \n",
+      "desc_ar": "اكتشفوا هذا اللوفت الاستثنائي بمساحة 270 م²، الواقع في دالي إبراهيم، حي 11 ديسمبر، وهو عنوان سكني مرموق يتميّز بهدوئه ورقيّه وإطار حياته الفريد.\n\nمفروش بالكامل، يجمع هذا العقار النادر بين العمارة المعاصرة والأناقة والراحة المطلقة. مساحاته الرحبة، وإضاءته الطبيعية، وخصوصيته التامة دون أي مبانٍ مقابلة"
+    }
+  ]
 }
