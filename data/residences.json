@@ -177,9 +177,9 @@
         {
           "name_fr": "F3",
           "name_ar": "F3",
-          "count_fr": "3",
-          "count_ar": "3",
-          "confirmed": false,
+          "count_fr": "6",
+          "count_ar": "6",
+          "confirmed": true,
           "detail_text_fr": "Vendu",
           "detail_text_ar": "تم البيع",
           "detail_images": []
