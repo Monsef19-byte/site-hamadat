@@ -194,10 +194,9 @@
         "label_ar": "الإقامة المرغوبة",
         "type": "select",
         "options": [
-          "Orea",
           "Dahlia",
           "Elysia",
-          "Lumalac"
+          "Orea"
         ],
         "required": true
       }
