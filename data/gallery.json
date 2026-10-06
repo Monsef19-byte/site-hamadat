@@ -1,9 +1,11 @@
 {
-  "enabled": true,
+  "enabled": false,
   "section_title_fr": "Galerie",
   "section_title_ar": "معرض الصور",
   "section_text_fr": "L'ensemble de nos résidences en images — extérieurs, intérieurs et détails de finition.",
   "section_text_ar": "جميع إقاماتنا بالصور — الواجهات والديكورات الداخلية وتفاصيل التشطيبات.",
   "items": [],
-  "excluded": []
+  "excluded": [
+    "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/opportunites/1791283862187-chatgpt-image-19-juil.-2026-09_04_14-QqaZ13TRBmQhMCAIVWvG6iOoJmjg7d.jpg"
+  ]
 }
