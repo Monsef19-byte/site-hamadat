@@ -1042,8 +1042,7 @@ function renderResidencesList() {
   const list = document.createElement("div");
   list.className = "res-list";
   RES.forEach((r, i) => {
-    const hero = (state.carousel.data || []).find((c) => c.residence_id === r.id);
-    const imgUrl = imageDisplayUrl(hero && hero.asset);
+    const imgUrl = imageDisplayUrl(residenceCoverAsset(r));
     const row = document.createElement("div");
     row.className = "res-row";
     row.innerHTML = `
@@ -1114,6 +1113,8 @@ function renderResidenceDetail() {
     makeField(row, { label: "Lien Google Maps", value: r.google_maps, onInput: (v) => (r.google_maps = v || null) });
     makeField(row, { label: "Année de livraison (références)", value: r.delivered_year, onInput: (v) => (r.delivered_year = v || null) });
   }
+
+  renderCoverEditor(container, r);
 
   card = newCard(container, "Disponibilité & avancement", "La disponibilité est affichée sur les cartes (accueil, Actualités) et la fiche. L'avancement s'affiche dans un cercle sur la fiche résidence et dans la section « Nos résidences » de la page Actualités — plus sur l'accueil.");
   bilingualRow(card, "Disponibilité", r, "availability_fr", "availability_ar");
@@ -1193,11 +1194,69 @@ function renderResidenceDetail() {
   });
 }
 
+// Photo principale d'une résidence : même règle que le site (lib/common.js
+// residenceCover) — choix explicite, sinon image du carrousel d'accueil,
+// sinon 1re image du diaporama.
+function residenceCoverAsset(r) {
+  if (r.cover) return r.cover;
+  const hero = (state.carousel.data || []).find((c) => c.residence_id === r.id);
+  if (hero && hero.asset) return hero.asset;
+  return ((r.diaporama || [])[0] || {}).asset || "";
+}
+let refreshCoverEditor = () => {};
+let refreshDiaporamaEditor = () => {};
+
+function renderCoverEditor(container, r) {
+  const card = newCard(
+    container,
+    "Photo principale",
+    "Photo de la résidence sur les cartes (accueil, Actualités, « Nos autres résidences ») et première image de sa fiche. Envoyez une photo, choisissez-en une du diaporama ci-dessous (★) ou une image déjà présente sur le site."
+  );
+  const wrap = document.createElement("div");
+  card.appendChild(wrap);
+  const paint = () => {
+    wrap.innerHTML = "";
+    const asset = residenceCoverAsset(r);
+    const url = imageDisplayUrl(asset);
+    const box = el(`<div class="slide-card cover-card">
+      ${url ? `<img src="${escapeHtml(url)}" style="width:220px;height:140px;object-fit:cover;border-radius:8px;">` : `<div class="img-picker-empty" style="width:220px;height:140px;">Aucune photo</div>`}
+      <div class="slide-fields"><p class="card-sub cover-state">${r.cover ? "Photo choisie pour cette résidence." : asset ? "Aucune photo choisie : le site utilise pour l'instant cette image par défaut (carrousel d'accueil ou 1re image du diaporama)." : "Aucune photo : ajoutez-en une."}</p></div>
+      <div class="slide-actions"></div></div>`);
+    const actions = $(".slide-actions", box);
+    const up = el(`<button type="button" class="btn btn-ghost btn-sm" data-cover-upload>Envoyer une photo</button>`);
+    up.onclick = async () => {
+      up.disabled = true;
+      const prev = up.textContent;
+      try {
+        const u = await pickAndUploadImage(`residences/${r.id}`, (st) => (up.textContent = st));
+        if (u) { r.cover = u; paint(); refreshDiaporamaEditor(); }
+      } catch (err) {
+        toast("Échec de l'upload : " + err.message, true);
+      } finally {
+        up.disabled = false;
+        up.textContent = prev;
+      }
+    };
+    actions.appendChild(up);
+    const pk = el(`<button type="button" class="btn btn-ghost btn-sm" data-cover-site>Image du site…</button>`);
+    pk.onclick = () => openSiteImagePicker((it) => { r.cover = it.asset; paint(); refreshDiaporamaEditor(); });
+    actions.appendChild(pk);
+    if (r.cover) {
+      const reset = el(`<button type="button" class="btn btn-ghost btn-sm" data-cover-reset>Revenir à l'image par défaut</button>`);
+      reset.onclick = () => { delete r.cover; paint(); refreshDiaporamaEditor(); };
+      actions.appendChild(reset);
+    }
+    wrap.appendChild(box);
+  };
+  refreshCoverEditor = paint;
+  paint();
+}
+
 function renderDiaporamaEditor(container, r) {
   const card = newCard(
     container,
     "Galerie / diaporama",
-    "Images affichées dans le diaporama plein écran de la page résidence et dans la galerie. La 1ʳᵉ image sert de photo principale."
+    "Images affichées dans le diaporama plein écran de la page résidence et dans la galerie. ★ : utiliser l'image comme photo principale de la résidence."
   );
   const listWrap = document.createElement("div");
   card.appendChild(listWrap);
@@ -1246,6 +1305,20 @@ function renderDiaporamaEditor(container, r) {
       };
       actions.appendChild(uploadBtn);
 
+      const isCover = slide.asset && residenceCoverAsset(r) === slide.asset;
+      const star = document.createElement("button");
+      star.type = "button";
+      star.className = "btn btn-ghost btn-sm" + (isCover ? " is-cover" : "");
+      star.dataset.coverPick = String(i);
+      star.textContent = isCover ? "★ Photo principale" : "☆ Photo principale";
+      star.disabled = !slide.asset || (isCover && r.cover === slide.asset);
+      star.onclick = () => {
+        r.cover = slide.asset;
+        refreshCoverEditor();
+        renderList();
+      };
+      actions.appendChild(star);
+
       if (i > 0) {
         const b = document.createElement("button");
         b.type = "button";
@@ -1283,6 +1356,7 @@ function renderDiaporamaEditor(container, r) {
     });
   }
   renderList();
+  refreshDiaporamaEditor = renderList;
 
   const addBtn = document.createElement("button");
   addBtn.type = "button";
