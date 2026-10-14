@@ -5,16 +5,16 @@
     "name": "Orea",
     "name_ar": "أوريا",
     "tagline_fr": "L'élégance du style New Classique au cœur de Dely Brahim",
-    "tagline_ar": "أناقة الطراز الكلاسيكي الجديد في قلب الدالية إبراهيم",
+    "tagline_ar": "أناقة الطراز الكلاسيكي الجديد في قلب دالي إبراهيم",
     "location_fr": "Cité 11 Décembre, Dely Brahim",
-    "location_ar": "حي 11 ديسمبر، الدالية إبراهيم",
-    "google_maps": null,
-    "status_fr": "Vendu en totalité",
-    "status_ar": "بِيع بالكامل",
+    "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
+    "google_maps": "https://maps.app.goo.gl/5df3Jb9gAbz3n9KL7",
+    "status_fr": "Dernières opportunités — 4 appartements disponibles",
+    "status_ar": "آخر الفرص — 4 شقق متاحة",
     "description_fr": "Projet résidentiel haut standing de 43 appartements F3, F4, F5, F6 et Penthouse. Un emplacement d'exception à proximité de Dounia Parc, une qualité de matériaux et un soin architectural qui en font une référence du résidentiel haut standing.",
     "description_ar": "تُعدّ إقامة أوريا من المشاريع السكنية الراقية، ويتكوّن المشروع من 43 شقة من أنماط F3 وF4 وF5 وF6 والبنتهاوس. يتميّز بموقعه الاستثنائي بحي 11 ديسمبر بالدالية إبراهيم.",
     "why_location_fr": "Nous avons choisi la Cité 11 Décembre, à Dely Ibrahim, avec la même exigence qui guide chacun de nos projets. Ce quartier compte parmi les adresses les plus recherchées d'Alger : environnement calme et verdoyant, à proximité immédiate de Dounia Parc, des établissements scolaires et de l'ensemble des commodités essentielles.",
-    "why_location_ar": "اخترنا حي 11 ديسمبر بالدالية إبراهيم بالحرص نفسه الذي يوجّه كل مشاريعنا. محيط هادئ وغنّاء، على مقربة مباشرة من حديقة الدنيا والمؤسسات التعليمية.",
+    "why_location_ar": "اخترنا حي 11 ديسمبر بالدالي إبراهيم بالحرص نفسه الذي يوجّه كل مشاريعنا. محيط هادئ وغنّاء، على مقربة مباشرة من حديقة الدنيا والمؤسسات التعليمية.",
     "key_numbers": [
       {
         "value": "43",
@@ -107,13 +107,13 @@
         "asset": "residences/orea/diaporama/06.jpg"
       }
     ],
-    "progress_percent": null,
-    "availability_fr": "Vendu en totalité — 0 disponible",
-    "availability_ar": "بيع بالكامل — 0 متوفر",
+    "progress_percent": 60,
+    "availability_fr": "Dernières opportunités — 4 appartements disponibles",
+    "availability_ar": "آخر الفرص — 4 شقق متاحة",
     "avail_open": false,
     "services": [
       {
-        "icon": "wifi",
+        "icon": "lift",
         "text_fr": "Ascenseur italien",
         "text_ar": "مصعد إيطالي"
       },
@@ -128,12 +128,7 @@
         "text_ar": "موقف سيارات خاص"
       },
       {
-        "icon": "playground",
-        "text_fr": "Aire de jeux",
-        "text_ar": "مساحة ألعاب"
-      },
-      {
-        "icon": "snowflake",
+        "icon": "thermometer",
         "text_fr": "Climatisation et chauffage centralisés LG",
         "text_ar": "تكييف وتدفئة مركزيان من LG"
       }
@@ -150,7 +145,7 @@
         "text_ar": "تشطيبات راقية"
       },
       {
-        "icon": "package",
+        "icon": "award",
         "text_fr": "Matériaux de construction de haute qualité",
         "text_ar": "مواد بناء عالية الجودة"
       },
@@ -168,36 +163,49 @@
         "icon": "layers",
         "text_fr": "Façades élégantes et soignées",
         "text_ar": "واجهات أنيقة ومتقَنة"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Cuisine entièrement équipée",
+        "text_ar": "مطبخ مجهز بالكامل"
+      },
+      {
+        "icon": "closet",
+        "text_fr": "Dressing intégré",
+        "text_ar": "خزانة ملابس مدمجة"
       }
     ],
     "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
+      "intro_fr": "Découvrez les derniers appartements encore disponibles au sein de la résidence.",
+      "intro_ar": "اكتشفوا آخر الشقق التي لا تزال متاحة داخل الإقامة.",
       "typologies": [
         {
-          "name_fr": "F3",
+          "name_fr": "F3 ",
           "name_ar": "F3",
-          "count_fr": "6",
-          "count_ar": "6",
-          "confirmed": true,
-          "detail_text_fr": "Vendu",
-          "detail_text_ar": "تم البيع",
+          "count_fr": "3",
+          "count_ar": "3",
+          "confirmed": false,
+          "detail_text_fr": "Disponible",
+          "detail_text_ar": "متاح",
           "detail_images": []
         },
         {
-          "name_fr": "F4",
-          "name_ar": "f4",
-          "count_fr": "5",
-          "count_ar": "5",
+          "name_fr": "F4 -  135 m² attique",
+          "name_ar": "F4 - علية بمساحة 135 م²",
+          "count_fr": "1",
+          "count_ar": "1",
           "confirmed": false,
-          "detail_text_fr": "Vendu",
-          "detail_text_ar": "تم البيع",
-          "detail_images": []
+          "detail_text_fr": "Disponible",
+          "detail_text_ar": "متاح",
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/orea/dispo/1/1791990440540-whatsapp-image-2026-10-14-at-3.57.44-pm-lxJkbqh8EUxgnBRgt00KvaUThOZ9yF.jpg"
+          ]
         }
       ],
-      "note_fr": "",
-      "note_ar": ""
-    }
+      "note_fr": "Les disponibilités sont mises à jour régulièrement et peuvent évoluer sans préavis. Contactez notre équipe commerciale pour confirmer.",
+      "note_ar": "يتم تحديث الشقق المتاحة بشكل دوري، وقد تتغير دون إشعار مسبق. يرجى الاتصال بفريقنا التجاري للتأكيد."
+    },
+    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/orea/1791982525915-chatgpt-image-6-juil.-2026-09_17_33-1NQBLrU8prISDtBvgpoFtZYVcoXiOy.jpg"
   },
   {
     "id": "dahlia",
