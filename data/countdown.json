@@ -1,0 +1,23 @@
+{
+  "enabled": false,
+  "date": "",
+  "time": "10:00",
+  "eyebrow_fr": "Événement",
+  "eyebrow_ar": "حدث",
+  "title_fr": "",
+  "title_ar": "",
+  "tagline_fr": "",
+  "tagline_ar": "",
+  "poster_slide": "",
+  "poster_window": "",
+  "show_popup": true,
+  "show_slide": true,
+  "show_mini": true,
+  "button_enabled": true,
+  "button_label_fr": "Contactez-nous",
+  "button_label_ar": "اتصلوا بنا",
+  "button_link": "#contact",
+  "end_behavior": "hide",
+  "today_fr": "C'est aujourd'hui !",
+  "today_ar": "إنه اليوم!"
+}

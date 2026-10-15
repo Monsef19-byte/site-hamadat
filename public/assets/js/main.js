@@ -139,13 +139,20 @@
       dots.forEach(function (d, di) { d.classList.toggle("active", di === i); });
       idx = i;
     }
-    function next() { show((idx + 1) % slides.length); }
+    function next() { show((idx + 1) % slides.length); restart(); }
     function prev() { show((idx - 1 + slides.length) % slides.length); }
-    function restart() { clearInterval(timer); timer = setInterval(next, 6000); }
+    // Durée par diapositive : 6 s par défaut, data-duration pour en
+    // allonger une (la diapositive du compte à rebours reste 12 s).
+    function restart() {
+      clearTimeout(timer);
+      var cur = slides[idx];
+      var ms = (cur && parseInt(cur.getAttribute("data-duration"), 10)) || 6000;
+      timer = setTimeout(next, ms);
+    }
     dots.forEach(function (d, i) { d.addEventListener("click", function () { show(i); restart(); }); });
     var nextBtn = root.querySelector("[data-hero-next]");
     var prevBtn = root.querySelector("[data-hero-prev]");
-    if (nextBtn) nextBtn.addEventListener("click", function () { next(); restart(); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { next(); });
     if (prevBtn) prevBtn.addEventListener("click", function () { prev(); restart(); });
     show(0);
     restart();
@@ -564,4 +571,125 @@
       window.open("https://wa.me/?text=" + encodeURIComponent(waText), "_blank", "noopener");
     });
   });
+  /* ---------------- Compte à rebours d'événement ----------------
+     Rendu par lib/countdown.js quand il est activé dans le dashboard.
+     Heure cible en heure d'Algérie (UTC+1). À l'échéance : tout masquer,
+     ou afficher « C'est aujourd'hui ! » jusqu'à minuit puis masquer. */
+  (function () {
+    var C = window.HAMADAT_CD;
+    var nodes = document.querySelectorAll("[data-cd-units]");
+    if (!C || !C.target) return;
+    var t = Date.parse(C.target);
+    if (isNaN(t)) return;
+    var d = new Date(t + 3600000);
+    var endOfDay = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + 1) - 3600000;
+    function phase() {
+      var n = Date.now();
+      if (n < t) return "count";
+      if (C.end === "today" && n < endOfDay) return "today";
+      return "over";
+    }
+    var pop = document.getElementById("cdPop");
+    var mini = document.getElementById("cdMini");
+
+    // Diapositive du carrousel : retirée avant l'initialisation du carrousel
+    // si l'événement est passé (la page peut dater d'avant l'échéance).
+    function dropSlide() {
+      var root = document.querySelector("[data-hero-carousel]");
+      var s = root && root.querySelector(".hero__slide[data-cd-slide]");
+      if (!s) return;
+      var all = root.querySelectorAll(".hero__slide");
+      var i = Array.prototype.indexOf.call(all, s);
+      var dot = root.querySelectorAll(".hero__dot")[i];
+      var txt = root.querySelector(".hero__content-slide[data-cd-slide]");
+      s.parentNode.removeChild(s);
+      if (dot) dot.parentNode.removeChild(dot);
+      if (txt) txt.parentNode.removeChild(txt);
+      root.querySelectorAll(".hero__content-slide").forEach(function (c, k) { c.setAttribute("data-slide", k); });
+      var first = root.querySelector(".hero__slide");
+      if (first) first.classList.add("active");
+      var fd = root.querySelector(".hero__dot");
+      if (fd) fd.classList.add("active");
+    }
+    function dropAll() {
+      [pop, mini].forEach(function (n) { if (n && n.parentNode) n.parentNode.removeChild(n); });
+      pop = mini = null;
+    }
+    if (phase() === "over") { dropSlide(); dropAll(); return; }
+
+    var pad = function (n) { return (n < 10 ? "0" : "") + n; };
+    var timer;
+    function tick() {
+      var p = phase();
+      if (p === "over") { clearInterval(timer); dropAll(); closePop(); return; }
+      document.querySelectorAll("[data-cd-units]").forEach(function (u) {
+        var today = u.nextElementSibling;
+        if (p === "today") {
+          u.hidden = true;
+          if (today && today.classList.contains("cd-today")) today.hidden = false;
+          var live = u.parentNode.querySelector("[data-cd-live]");
+          if (live) live.hidden = true;
+          return;
+        }
+        var s = Math.max(0, Math.floor((t - Date.now()) / 1000));
+        var v = { d: Math.floor(s / 86400), h: Math.floor((s % 86400) / 3600), m: Math.floor((s % 3600) / 60), s: s % 60 };
+        u.querySelectorAll("[data-cd-u]").forEach(function (b) { b.textContent = pad(v[b.getAttribute("data-cd-u")]); });
+      });
+    }
+    tick();
+    timer = setInterval(tick, 1000);
+
+    // Fenêtre d'accueil : une fois par jour et par visiteur.
+    var dayKey = "hamadat_cd_seen_" + C.target;
+    var todayStr = new Date().toISOString().slice(0, 10);
+    var lastFocus = null;
+    function openPop() {
+      if (!pop) return;
+      lastFocus = document.activeElement;
+      pop.hidden = false;
+      if (mini) mini.classList.remove("is-on");
+      var x = pop.querySelector("[data-cd-close]");
+      if (x) x.focus();
+    }
+    function closePop() {
+      if (!pop || pop.hidden) return;
+      pop.hidden = true;
+      try { localStorage.setItem(dayKey, todayStr); } catch (e) {}
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+      onScroll();
+    }
+    if (pop) {
+      pop.addEventListener("click", function (e) {
+        if (e.target === pop || e.target.closest("[data-cd-close]")) closePop();
+      });
+      pop.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", closePop); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") closePop(); });
+      var seen = null;
+      try { seen = localStorage.getItem(dayKey); } catch (e) {}
+      if (C.popup && seen !== todayStr) setTimeout(openPop, 1200);
+    }
+
+    // Petite fenêtre : visible après le premier écran, fermable pour la visite.
+    var miniClosed = false;
+    try { miniClosed = sessionStorage.getItem("hamadat_cd_mini_closed") === C.target; } catch (e) {}
+    function onScroll() {
+      if (!mini) return;
+      var on = !miniClosed && window.scrollY > window.innerHeight * 0.6 && (!pop || pop.hidden);
+      if (on && mini.hidden) mini.hidden = false;
+      // Laisse le navigateur appliquer display avant la transition d'entrée.
+      requestAnimationFrame(function () { if (mini) mini.classList.toggle("is-on", on); });
+    }
+    if (mini) {
+      var mx = mini.querySelector("[data-cd-mini-close]");
+      if (mx) mx.addEventListener("click", function () {
+        miniClosed = true;
+        try { sessionStorage.setItem("hamadat_cd_mini_closed", C.target); } catch (e) {}
+        mini.classList.remove("is-on");
+      });
+      var mo = mini.querySelector("[data-cd-open]");
+      if (mo && pop) mo.addEventListener("click", openPop);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+  })();
 })();

@@ -142,7 +142,7 @@ $("#logout-btn").addEventListener("click", async () => {
 // Chargement / sauvegarde des données
 // ============================================================================
 async function loadAll() {
-  const [g, car, res, blog, links, videos, gallery, settings, opp, news] = await Promise.all([
+  const [g, car, res, blog, links, videos, gallery, settings, opp, news, cd] = await Promise.all([
     api("GET", "/api/admin/content/global.json"),
     api("GET", "/api/admin/content/home_carousel.json"),
     api("GET", "/api/admin/content/residences.json"),
@@ -153,6 +153,9 @@ async function loadAll() {
     api("GET", "/api/admin/content/settings.json"),
     api("GET", "/api/admin/content/opportunites.json"),
     api("GET", "/api/admin/content/actualites.json"),
+    // Absent d'un dépôt plus ancien : on part des valeurs par défaut plutôt
+    // que de bloquer tout le dashboard.
+    api("GET", "/api/admin/content/countdown.json").catch(() => ({ content: {}, sha: undefined })),
   ]);
   state.global = { data: g.content, sha: g.sha };
   state.carousel = { data: car.content, sha: car.sha };
@@ -164,6 +167,7 @@ async function loadAll() {
   state.settings = { data: settings.content, sha: settings.sha };
   state.opportunites = { data: opp.content, sha: opp.sha };
   state.actualites = { data: news.content, sha: news.sha };
+  state.countdown = { data: cd.content || {}, sha: cd.sha };
 }
 
 async function loadLeads() {
@@ -286,6 +290,7 @@ function renderView(view) {
   if (view === "settings") renderSettingsView();
   if (view === "opportunites") renderOpportunitesView();
   if (view === "actualites") renderActualitesView();
+  if (view === "countdown") renderCountdownView();
 }
 
 // ============================================================================
@@ -2286,6 +2291,168 @@ function renderActualitesView() {
   bilingualRow(card, "Texte", N, "tracker_text_fr", "tracker_text_ar", { multiline: true });
 
   saveToolbar(container, "Publier l'actualité", "actualites", "actualites.json");
+}
+
+// ============================================================================
+// Vue : Compte à rebours (événement annoncé sur le site)
+// Rendu : lib/countdown.js — 3 emplacements (carrousel, fenêtre d'accueil,
+// petite fenêtre au défilement), chacun activable.
+// ============================================================================
+const COUNTDOWN_DEFAULTS = {
+  enabled: false, date: "", time: "10:00",
+  eyebrow_fr: "Événement", eyebrow_ar: "حدث",
+  title_fr: "", title_ar: "", tagline_fr: "", tagline_ar: "",
+  poster_slide: "", poster_window: "",
+  show_popup: true, show_slide: true, show_mini: true,
+  button_enabled: true, button_label_fr: "Contactez-nous", button_label_ar: "اتصلوا بنا", button_link: "#contact",
+  end_behavior: "hide", today_fr: "C'est aujourd'hui !", today_ar: "إنه اليوم!",
+};
+
+function countdownToggle(card, CD, key, label, sub) {
+  const row = document.createElement("div");
+  row.className = "toggle-row";
+  row.innerHTML = `
+    <label class="toggle-switch">
+      <input type="checkbox" ${CD[key] ? "checked" : ""}>
+      <span class="track"></span>
+    </label>
+    <div>
+      <div class="toggle-label">${escapeHtml(label)}</div>
+      ${sub ? `<div class="toggle-sub">${escapeHtml(sub)}</div>` : ""}
+    </div>`;
+  card.appendChild(row);
+  $("input", row).addEventListener("change", (e) => {
+    CD[key] = e.target.checked;
+    refreshCountdownStatus();
+  });
+  return row;
+}
+
+function countdownPosterField(card, CD, key, { label, hint, w, h }) {
+  const wrap = document.createElement("div");
+  card.appendChild(wrap);
+  const render = () => {
+    wrap.innerHTML = "";
+    const url = imageDisplayUrl(CD[key]);
+    const pw = w > h ? 192 : 120;
+    const ph = Math.round((pw * h) / w);
+    const box = el(`<div class="slide-card">
+      ${url ? `<img src="${escapeHtml(url)}" style="width:${pw}px;height:${ph}px;object-fit:cover;border-radius:8px;">` : `<div class="img-picker-empty" style="width:${pw}px;height:${ph}px;">Aucun poster</div>`}
+      <div style="flex:1;min-width:0">
+        <div class="toggle-label">${escapeHtml(label)}</div>
+        <div class="toggle-sub" style="margin-bottom:10px">${escapeHtml(hint)}</div>
+        <div class="slide-actions"></div>
+      </div>
+    </div>`);
+    const actions = box.querySelector(".slide-actions");
+    const up = el(`<button type="button" class="btn btn-ghost btn-sm">${CD[key] ? "Changer le poster" : "Ajouter le poster"}</button>`);
+    up.onclick = async () => {
+      up.disabled = true;
+      try {
+        const u = await pickAndUploadImage("countdown", (st) => (up.textContent = st));
+        if (u) { CD[key] = u; render(); refreshCountdownStatus(); }
+      } catch (err) {
+        toast("Échec de l'upload : " + err.message, true);
+      } finally { up.disabled = false; }
+    };
+    actions.appendChild(up);
+    if (CD[key]) {
+      const rm = el(`<button type="button" class="btn btn-danger btn-sm">Retirer</button>`);
+      rm.onclick = () => { CD[key] = ""; render(); refreshCountdownStatus(); };
+      actions.appendChild(rm);
+    }
+    wrap.appendChild(box);
+  };
+  render();
+}
+
+// Résumé en tête de vue : ce que le visiteur verra, ou ce qui manque.
+function refreshCountdownStatus() {
+  const box = $("#cd-status");
+  if (!box) return;
+  const CD = state.countdown.data;
+  const missing = [];
+  if (!CD.date) missing.push("la date");
+  if (!CD.title_fr && !CD.title_ar) missing.push("le titre");
+  if (!CD.poster_window && !CD.poster_slide) missing.push("un poster");
+  if (!CD.show_popup && !CD.show_slide && !CD.show_mini) missing.push("au moins un emplacement");
+  let html;
+  if (!CD.enabled) {
+    html = `<span class="badge badge-grey">Désactivé</span> — rien n'apparaît sur le site.`;
+  } else if (missing.length) {
+    html = `<span class="badge badge-grey">Incomplet</span> — il manque ${escapeHtml(missing.join(", "))} : le compte à rebours ne s'affichera pas tant que ce n'est pas rempli.`;
+  } else {
+    const t = Date.parse(`${CD.date}T${CD.time || "00:00"}:00+01:00`);
+    const days = Math.ceil((t - Date.now()) / 86400000);
+    const when = isNaN(t) ? "" : t > Date.now() ? ` — échéance dans ${days} jour(s)` : " — échéance passée";
+    html = `<span class="badge badge-teal">Actif</span>${escapeHtml(when)}.`;
+  }
+  box.innerHTML = html;
+}
+
+function renderCountdownView() {
+  const container = $("#view-countdown");
+  container.innerHTML = "";
+  const CD = state.countdown.data;
+  Object.keys(COUNTDOWN_DEFAULTS).forEach((k) => {
+    if (CD[k] === undefined) CD[k] = COUNTDOWN_DEFAULTS[k];
+  });
+
+  container.appendChild(
+    el(`<div><h2>Compte à rebours</h2><p class="view-sub">Annonce un événement (portes ouvertes, lancement…) avec un compte à rebours, à trois endroits du site au choix. Enregistrez : le site se met à jour en une à deux minutes.</p></div>`)
+  );
+
+  let card = newCard(container, "Activation");
+  countdownToggle(card, CD, "enabled", "Afficher le compte à rebours sur le site", "Quand il est désactivé, tout disparaît du site sans rien perdre : les réglages restent en place pour la prochaine fois.");
+  card.appendChild(el(`<p class="card-sub" id="cd-status" style="margin-top:6px"></p>`));
+
+  card = newCard(container, "Emplacements", "Chacun s'active indépendamment.");
+  countdownToggle(card, CD, "show_popup", "Fenêtre à l'ouverture du site", "S'affiche à l'arrivée sur le site, une seule fois par jour et par visiteur. Se ferme d'un clic.");
+  countdownToggle(card, CD, "show_slide", "Diapositive du carrousel d'accueil", "Ajoutée en première position, au même style que les autres, avec le compte à rebours. Elle reste affichée deux fois plus longtemps.");
+  countdownToggle(card, CD, "show_mini", "Petite fenêtre au défilement", "Apparaît dans un coin quand le visiteur descend dans la page, sur toutes les pages. Un clic sur le poster ouvre la grande fenêtre.");
+
+  card = newCard(container, "Date et heure de l'événement", "Heure d'Algérie. Le décompte se met à jour tout seul chez le visiteur.");
+  {
+    const row = makeFieldRow(card);
+    makeField(row, { label: "Date", value: CD.date, type: "date", onInput: (v) => { CD.date = v; refreshCountdownStatus(); } });
+    makeField(row, { label: "Heure", value: CD.time, type: "time", onInput: (v) => { CD.time = v; refreshCountdownStatus(); } });
+  }
+
+  card = newCard(container, "Textes");
+  bilingualRow(card, "Petite étiquette (ex : Événement · Samedi 1er novembre)", CD, "eyebrow_fr", "eyebrow_ar");
+  bilingualRow(card, "Titre (ex : Journée Portes Ouvertes)", CD, "title_fr", "title_ar");
+  bilingualRow(card, "Phrase sous le titre (carrousel uniquement, facultative)", CD, "tagline_fr", "tagline_ar");
+  card.querySelectorAll("input").forEach((i) => i.addEventListener("input", refreshCountdownStatus));
+
+  card = newCard(container, "Posters", "Image de l'événement, déjà mise en forme. Si un seul poster est fourni, il sert aux deux usages.");
+  countdownPosterField(card, CD, "poster_window", { label: "Poster des fenêtres — format portrait 1080 × 1350", hint: "Utilisé par la fenêtre d'accueil et la petite fenêtre.", w: 4, h: 5 });
+  countdownPosterField(card, CD, "poster_slide", { label: "Poster du carrousel — format paysage 1920 × 1080", hint: "Fond de la diapositive. Le texte du site s'affiche à gauche : évitez d'y placer du texte important.", w: 16, h: 9 });
+
+  card = newCard(container, "Bouton");
+  countdownToggle(card, CD, "button_enabled", "Afficher un bouton", "Sous le compte à rebours, dans les trois emplacements.");
+  bilingualRow(card, "Texte du bouton", CD, "button_label_fr", "button_label_ar");
+  {
+    const row = makeFieldRow(card);
+    makeField(row, { label: "Lien (#contact = formulaire de la page d'accueil, ou adresse https://…)", value: CD.button_link, onInput: (v) => (CD.button_link = v.trim()) });
+    row.appendChild(document.createElement("div"));
+  }
+
+  card = newCard(container, "À la fin du compte à rebours");
+  {
+    const row = makeFieldRow(card);
+    const wrap = el(`<div class="field"><label>Comportement à l'échéance</label></div>`);
+    const sel = document.createElement("select");
+    sel.innerHTML = `<option value="hide">Tout masquer automatiquement</option><option value="today">Afficher « C'est aujourd'hui ! » jusqu'à minuit, puis masquer</option>`;
+    sel.value = CD.end_behavior === "today" ? "today" : "hide";
+    sel.addEventListener("change", () => (CD.end_behavior = sel.value));
+    wrap.appendChild(sel);
+    row.appendChild(wrap);
+    row.appendChild(document.createElement("div"));
+  }
+  bilingualRow(card, "Texte « C'est aujourd'hui ! »", CD, "today_fr", "today_ar");
+
+  saveToolbar(container, "Enregistrer le compte à rebours", "countdown", "countdown.json", () => renderCountdownView());
+  refreshCountdownStatus();
 }
 
 // ============================================================================
