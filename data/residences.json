@@ -510,8 +510,8 @@
           "count_fr": "4",
           "count_ar": "4",
           "confirmed": true,
-          "detail_text_fr": "",
-          "detail_text_ar": "",
+          "detail_text_fr": "Disponible maintenant",
+          "detail_text_ar": "متاح الآن",
           "detail_images": []
         },
         {
@@ -520,8 +520,8 @@
           "count_fr": "7",
           "count_ar": "7",
           "confirmed": true,
-          "detail_text_fr": "",
-          "detail_text_ar": "",
+          "detail_text_fr": "Disponible maintenant",
+          "detail_text_ar": "متاح الآن",
           "detail_images": []
         },
         {
@@ -530,8 +530,8 @@
           "count_fr": "3",
           "count_ar": "3",
           "confirmed": true,
-          "detail_text_fr": "",
-          "detail_text_ar": "",
+          "detail_text_fr": "Disponible maintenant",
+          "detail_text_ar": "متاح الآن",
           "detail_images": []
         }
       ],
