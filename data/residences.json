@@ -184,7 +184,7 @@
           "name_ar": "F3 بمساحة تتراوح بين 94 و115 م²",
           "count_fr": "3",
           "count_ar": "3",
-          "confirmed": false,
+          "confirmed": true,
           "detail_text_fr": "Disponible",
           "detail_text_ar": "متاح",
           "detail_images": [
@@ -197,7 +197,7 @@
           "name_ar": "F4 - علية بمساحة 135 م²",
           "count_fr": "1",
           "count_ar": "1",
-          "confirmed": false,
+          "confirmed": true,
           "detail_text_fr": "Disponible",
           "detail_text_ar": "متاح",
           "detail_images": [
