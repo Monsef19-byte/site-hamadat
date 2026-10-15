@@ -432,7 +432,7 @@
         "asset": "residences/dahlia/diaporama/06.jpg"
       }
     ],
-    "progress_percent": 0,
+    "progress_percent": 5,
     "availability_fr": "Plus que 14 appartements disponibles sur 20",
     "availability_ar": "14 شقة متاحة من أصل 20",
     "avail_open": true,
@@ -512,7 +512,12 @@
           "confirmed": true,
           "detail_text_fr": "Disponible maintenant",
           "detail_text_ar": "متاح الآن",
-          "detail_images": []
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/dispo/0/1792057641481-whatsapp-image-2026-10-15-at-10.25.50-am-P84OmzTFWnyG2kaSf9cdHshHpAQh07.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/dispo/0/1792058200589-whatsapp-image-2026-10-15-at-10.22.49-am-nygGQOMwuS7f9TjKYfJ0t07Pb0QFBk.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/dispo/0/1792058288073-whatsapp-image-2026-10-15-at-10.22.49-am-1-t8zIbaiaoaBd8wrKc9yDqCmmHnWN2L.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/dispo/0/1792058360163-whatsapp-image-2026-10-15-at-10.27.00-am-x9xzOhpU36MFYXa9Q8pRTrXIuFJg7a.jpg"
+          ]
         },
         {
           "name_fr": "F4 de 110m² à 136m²",
@@ -522,7 +527,12 @@
           "confirmed": true,
           "detail_text_fr": "Disponible maintenant",
           "detail_text_ar": "متاح الآن",
-          "detail_images": []
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/dispo/1/1792058425243-whatsapp-image-2026-10-15-at-10.22.49-am-2-EjjMG8R7CMvPhBf0oKDYtnYnkfjZ77.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/dispo/1/1792058452610-whatsapp-image-2026-10-15-at-10.27.20-am-utwMXTZ50BQJbbn02DbDvwITFFfvs3.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/dispo/1/1792058515533-whatsapp-image-2026-10-15-at-10.28.18-am-U8g4qMRDfjM6bpNxRdJBowt4AOGTx1.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/dispo/1/1792058541304-whatsapp-image-2026-10-15-at-10.27.32-am-Nz3L3mCVsF0044elNAG3BR4uwLdJ97.jpg"
+          ]
         },
         {
           "name_fr": "F5 166m²",
