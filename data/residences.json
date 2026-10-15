@@ -219,11 +219,11 @@
     "tagline_ar": "راحة عصرية وخدمات فاخرة في قلب دالي إبراهيم",
     "location_fr": "Cité 11 Décembre, Dely Brahim",
     "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
-    "google_maps": null,
-    "status_fr": "Disponible — 20 unités",
-    "status_ar": "متوفر — 20 وحدة",
-    "description_fr": "20 appartements F3, F4, F5 et Penthouse, conçus avec le même souci du détail qui caractérise l'ensemble des réalisations Hamadat. Un quartier calme et verdoyant, à proximité de Dounia Parc et des commodités essentielles.",
-    "description_ar": "إقامة داليا مشروع سكني فاخر يضم 20 شقة متنوعة بين أنماط F3 وF4 وF5، بالإضافة إلى شقق البنتهاوس، صُمِّم بعناية فائقة مع الالتزام بأعلى معايير الجودة.",
+    "google_maps": "https://maps.app.goo.gl/6F6hc6HwYppqjFyc8",
+    "status_fr": "Disponible — 14 unités",
+    "status_ar": "متوفر — 14 وحدة",
+    "description_fr": "20 appartements F3, F4, F5, conçus avec le même souci du détail qui caractérise l'ensemble des réalisations Hamadat. Un quartier calme et verdoyant, à proximité de Dounia Parc et des commodités essentielles.",
+    "description_ar": "إقامة داليا مشروع سكني فاخر يضم 20 شقة متنوعة بين أنماط F3 وF4 وF5،، صُمِّم بعناية فائقة مع الالتزام بأعلى معايير الجودة.",
     "why_location_fr": "Nous avons choisi la Cité 11 Décembre, à Dely Ibrahim, avec la même exigence qui guide chacun de nos projets — environnement calme et verdoyant, à proximité immédiate de Dounia Parc, des établissements scolaires et de l'ensemble des commodités essentielles.",
     "why_location_ar": "اخترنا حي 11 ديسمبر، دالي إبراهيم، بالعناية نفسها التي تميّز جميع مشاريعنا — بيئة هادئة ومحاطة بالمساحات الخضراء، قريبة من حديقة الدنيا.",
     "key_numbers": [
@@ -243,8 +243,8 @@
         "label_ar": "متوفرة (0 مباع) — 4×F3، 8×F4، 4×F5، 3×بنتهاوس"
       }
     ],
-    "typologies_fr": "F3 · F4 · F5 · Penthouse",
-    "typologies_ar": "F3 · F4 · F5 · بنتهاوس",
+    "typologies_fr": "F3 · F4 · F5 ",
+    "typologies_ar": "F3 · F4 · F5 ",
     "youtube": null,
     "images": {
       "principale": [
@@ -327,6 +327,83 @@
     },
     "diaporama": [
       {
+        "file": "fichier diaporama site hamadat/DAHLIA/Résidence haut standing.png",
+        "caption_fr": "Résidence haut standing",
+        "caption_ar": "إقامة راقية",
+        "caption_proposed": false,
+        "asset": "residences/dahlia/diaporama/05.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/DAHLIA/Une signature architecturale.png",
+        "caption_fr": "Une signature architecturale",
+        "caption_ar": "بصمة معمارية مميزة",
+        "caption_proposed": false,
+        "asset": "residences/dahlia/diaporama/07.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Entrée élégante, ambiance chaleureuse.",
+        "caption_ar": "مدخل أنيق يعكس رقي الإقامة",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/diaporama/1792051551635-3.entree-ErIeVlQ40wA2tQ2nErVH8Jf5PryOEV.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Accès sécurisé par digicode : votre sérénité au quotidien.",
+        "caption_ar": "مدخل آمن بنظام رمز رقمي (Digicode) لراحة بالك",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/diaporama/1792051758078-4.digicode-tVZ1VAWqXkKey0Ric1sj2tbbe1ng0p.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Un hall d’entrée soigné.",
+        "caption_ar": "بهو مدخل راقٍ",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/diaporama/1792052101350-hall-d-entree-NcgXT8Uisjb7fb21MmSBP30tDkH5HE.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Un ascenseur de qualité, pensé pour durer.",
+        "caption_ar": "مصعد عالي الجودة يضمن راحة وأمان السكان",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/diaporama/1792051862876-ascensseur-LyhOsqHOSDF7Yi4Hf6SG0cFcLgjs6Y.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/DAHLIA/Femme de ménage.png",
+        "caption_fr": "Service de femme de ménage",
+        "caption_ar": "خدمة عاملة ",
+        "caption_proposed": false,
+        "asset": "residences/dahlia/diaporama/03.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/DAHLIA/Vidéosurveillance 24h24.png",
+        "caption_fr": "Vidéosurveillance 24h/24",
+        "caption_ar": "مراقبة بالفيديو على مدار الساعة",
+        "caption_proposed": false,
+        "asset": "residences/dahlia/diaporama/08.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Un agent de sécurité à votre service.",
+        "caption_ar": "حارس أمن لراحة بالكم",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/diaporama/1792052585694-securite-VsBIoTUWlTAt7YSQqjjdDPoz9Zz5In.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Un parking privé, pour votre tranquillité.",
+        "caption_ar": "موقف سيارات خاص وآمن",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/diaporama/1792052794040-parking-bc1WdieRpkxmPcmmBrZN5mv01lP75q.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Une alimentation en eau assurée, sans coupure.",
+        "caption_ar": "خزان مياه لضمان توفر الماء باستمرار",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/diaporama/1792052877614-bache-a-eau-AlRNUFxyMSJEAe9dDJ5YuVtTTfaUL9.jpg"
+      },
+      {
         "file": "fichier diaporama site hamadat/DAHLIA/01 Cuisine ouverte sur séjour.png",
         "caption_fr": "Cuisine ouverte sur séjour",
         "caption_ar": "مطبخ مفتوح على الصالة",
@@ -341,13 +418,6 @@
         "asset": "residences/dahlia/diaporama/02.jpg"
       },
       {
-        "file": "fichier diaporama site hamadat/DAHLIA/Femme de ménage.png",
-        "caption_fr": "Service de femme de ménage",
-        "caption_ar": "خدمة عاملة منزلية",
-        "caption_proposed": false,
-        "asset": "residences/dahlia/diaporama/03.jpg"
-      },
-      {
         "file": "fichier diaporama site hamadat/DAHLIA/L'élégance du rangement.png",
         "caption_fr": "L'élégance du rangement",
         "caption_ar": "أناقة في تنظيم المساحة",
@@ -355,37 +425,16 @@
         "asset": "residences/dahlia/diaporama/04.jpg"
       },
       {
-        "file": "fichier diaporama site hamadat/DAHLIA/Résidence haut standing.png",
-        "caption_fr": "Résidence haut standing",
-        "caption_ar": "إقامة راقية",
-        "caption_proposed": false,
-        "asset": "residences/dahlia/diaporama/05.jpg"
-      },
-      {
         "file": "fichier diaporama site hamadat/DAHLIA/Un cocon de confort.png",
         "caption_fr": "Un cocon de confort",
         "caption_ar": "فضاء مفعم بالراحة",
         "caption_proposed": false,
         "asset": "residences/dahlia/diaporama/06.jpg"
-      },
-      {
-        "file": "fichier diaporama site hamadat/DAHLIA/Une signature architecturale.png",
-        "caption_fr": "Une signature architecturale",
-        "caption_ar": "بصمة معمارية مميزة",
-        "caption_proposed": false,
-        "asset": "residences/dahlia/diaporama/07.jpg"
-      },
-      {
-        "file": "fichier diaporama site hamadat/DAHLIA/Vidéosurveillance 24h24.png",
-        "caption_fr": "Vidéosurveillance 24h/24",
-        "caption_ar": "مراقبة بالفيديو على مدار الساعة",
-        "caption_proposed": false,
-        "asset": "residences/dahlia/diaporama/08.jpg"
       }
     ],
-    "progress_percent": null,
-    "availability_fr": "20 disponibles sur 20 (0 vendu)",
-    "availability_ar": "20 متوفرة من 20 (0 مباع)",
+    "progress_percent": 0,
+    "availability_fr": "Plus que 14 appartements disponibles sur 20",
+    "availability_ar": "14 شقة متاحة من أصل 20",
     "avail_open": true,
     "services": [
       {
@@ -444,8 +493,52 @@
         "icon": "layers",
         "text_fr": "Façades élégantes et soignées",
         "text_ar": "واجهات أنيقة ومتقَنة"
+      },
+      {
+        "icon": "window",
+        "text_fr": "Fenetres double vitrage ",
+        "text_ar": "نوافذ مزدوجة الزجاج"
       }
-    ]
+    ],
+    "dispo": {
+      "intro_fr": "Découvrez les derniers appartements encore disponibles au sein de la résidence.",
+      "intro_ar": "اكتشفوا آخر الشقق التي لا تزال متاحة داخل الإقامة.",
+      "typologies": [
+        {
+          "name_fr": "F3 de 78 à 100 m²",
+          "name_ar": "F3 من 78 م² إلى 100 م²",
+          "count_fr": "4",
+          "count_ar": "4",
+          "confirmed": true,
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": []
+        },
+        {
+          "name_fr": "F4 de 110m² à 136m²",
+          "name_ar": "F4 من 110 م² إلى 136 م²",
+          "count_fr": "7",
+          "count_ar": "7",
+          "confirmed": true,
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": []
+        },
+        {
+          "name_fr": "F5 166m²",
+          "name_ar": "F5 بمساحة 166 م²",
+          "count_fr": "3",
+          "count_ar": "3",
+          "confirmed": true,
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": []
+        }
+      ],
+      "note_fr": "Les disponibilités sont mises à jour régulièrement et peuvent évoluer sans préavis. Contactez notre équipe commerciale pour confirmer.",
+      "note_ar": "يتم تحديث الشقق المتاحة بشكل دوري، وقد تتغير دون إشعار مسبق. يرجى الاتصال بفريقنا التجاري للتأكيد."
+    },
+    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/dahlia/1792051177636-chatgpt-image-6-juil.-2026-13_26_56-t35cbP006hJMU1gqCHSBUN3RGD9IQ5.jpg"
   },
   {
     "id": "elysia",
