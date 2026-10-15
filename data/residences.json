@@ -562,11 +562,11 @@
     "category": "en_cours",
     "name": "Elysia",
     "name_ar": "إليزيا",
-    "tagline_fr": "L'architecture contemporaine face à la Méditerranée",
-    "tagline_ar": "تصميم معماري معاصر بإطلالة على البحر الأبيض المتوسط",
+    "tagline_fr": "Une architecture contemporaine, pieds dans l’eau",
+    "tagline_ar": "عمارة معاصرة على حافة البحر مباشرة",
     "location_fr": "Ouled Bounar, Jijel",
     "location_ar": "أولاد بونار، جيجل",
-    "google_maps": null,
+    "google_maps": "https://maps.app.goo.gl/JpcwTsbe2Em5trK78",
     "status_fr": "En cours — 26%",
     "status_ar": "قيد الإنجاز — 26%",
     "description_fr": "14 étages, 4 appartements F3 par niveau, face à la mer. Un accès direct à la Méditerranée dans un environnement préservé, pour une expérience de vie privilégiée sur le littoral algérien.",
@@ -788,8 +788,8 @@
       }
     ],
     "progress_percent": 26,
-    "availability_fr": "55 disponibles (1 vendu)",
-    "availability_ar": "55 متوفرة (1 مباع)",
+    "availability_fr": "Une résidence de 54 appartements",
+    "availability_ar": "إقامة من 54 شقة",
     "avail_open": true,
     "services": [
       {
@@ -799,8 +799,8 @@
       },
       {
         "icon": "droplet",
-        "text_fr": "Piscine & Jacuzzi",
-        "text_ar": "مسبح وجاكوزي"
+        "text_fr": "Hammam, Piscine (+ jaccuzi a la demande)",
+        "text_ar": "حمّام بخاري، مسبح (+ جاكوزي حسب الطلب)"
       },
       {
         "icon": "dumbbell",
@@ -825,7 +825,7 @@
       {
         "icon": "bell",
         "text_fr": "Interphone",
-        "text_ar": "إنتركوم"
+        "text_ar": "إنترفون"
       },
       {
         "icon": "droplet",
@@ -866,7 +866,8 @@
       "typologies": [],
       "note_fr": "",
       "note_ar": ""
-    }
+    },
+    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/elysia/1792077546101-chatgpt-image-4-juil.-2026-11_47_36-bnWxgvqVaIrFeO8cu2a01sQz1FruhT.jpg"
   },
   {
     "id": "lumalac",
@@ -1025,7 +1026,14 @@
         "text_fr": "Façades élégantes en harmonie avec le quartier",
         "text_ar": "واجهات أنيقة منسجمة مع الحي"
       }
-    ]
+    ],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    }
   },
   {
     "id": "les-3-princes",
@@ -1843,45 +1851,5 @@
     "avail_open": false,
     "services": [],
     "quality": []
-  },
-  {
-    "id": "nouvelle-residence-kfbvfq",
-    "category": "en_cours",
-    "name": "",
-    "name_ar": "",
-    "tagline_fr": "",
-    "tagline_ar": "",
-    "location_fr": "",
-    "location_ar": "",
-    "google_maps": null,
-    "status_fr": "",
-    "status_ar": "",
-    "description_fr": "",
-    "description_ar": "",
-    "why_location_fr": "",
-    "why_location_ar": "",
-    "key_numbers": [],
-    "typologies_fr": "",
-    "typologies_ar": "",
-    "services": [],
-    "quality": [],
-    "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
-      "typologies": [],
-      "note_fr": "",
-      "note_ar": ""
-    },
-    "youtube": null,
-    "images": {
-      "principale": [],
-      "interieur": []
-    },
-    "diaporama": [],
-    "progress_percent": null,
-    "availability_fr": "",
-    "availability_ar": "",
-    "avail_open": true,
-    "delivered_year": null
   }
 ]
