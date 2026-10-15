@@ -1424,14 +1424,6 @@ function renderDispoEditor(container, r) {
       bilingualRow(wrap, "Typologie", t, "name_fr", "name_ar");
       bilingualRow(wrap, "Nb. d'appartements", t, "count_fr", "count_ar");
 
-      const chkField = document.createElement("div");
-      chkField.className = "field";
-      chkField.innerHTML = `<div class="checkbox-row"><input type="checkbox" id="dispo-confirmed-${i}" ${t.confirmed ? "checked" : ""}> <label for="dispo-confirmed-${i}" style="margin:0;">Confirmé (sinon « à confirmer »)</label></div>`;
-      wrap.appendChild(chkField);
-      $(`#dispo-confirmed-${i}`, chkField).addEventListener("change", (e) => {
-        t.confirmed = e.target.checked;
-      });
-
       bilingualRow(wrap, "Détail (texte optionnel)", t, "detail_text_fr", "detail_text_ar", { multiline: true });
 
       if (!t.detail_images) t.detail_images = [];
@@ -1497,7 +1489,7 @@ function renderDispoEditor(container, r) {
   addBtn.className = "btn btn-ghost btn-sm list-add";
   addBtn.textContent = "+ Ajouter une typologie";
   addBtn.onclick = () => {
-    d.typologies.push({ name_fr: "", name_ar: "", count_fr: "à confirmer", count_ar: "للتأكيد", confirmed: false, detail_text_fr: "", detail_text_ar: "", detail_images: [] });
+    d.typologies.push({ name_fr: "", name_ar: "", count_fr: "à confirmer", count_ar: "للتأكيد", detail_text_fr: "", detail_text_ar: "", detail_images: [] });
     renderList();
   };
   card.appendChild(addBtn);
