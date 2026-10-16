@@ -863,7 +863,17 @@
     "dispo": {
       "intro_fr": "Découvrez les  appartements encore disponibles au sein de la résidence.",
       "intro_ar": "اكتشفوا  الشقق التي لا تزال متاحة داخل الإقامة.",
-      "typologies": [],
+      "typologies": [
+        {
+          "name_fr": "F3 (Côté mer )",
+          "name_ar": "F3 (جهة البحر)",
+          "count_fr": "F",
+          "count_ar": "",
+          "detail_text_fr": "F3 (Côté forêt)",
+          "detail_text_ar": "F3 (جهة الغابة)",
+          "detail_images": []
+        }
+      ],
       "note_fr": "Les disponibilités sont mises à jour régulièrement et peuvent évoluer sans préavis. Contactez notre équipe commerciale pour confirmer.",
       "note_ar": "يتم تحديث الشقق المتاحة بشكل دوري، وقد تتغير دون إشعار مسبق. يرجى الاتصال بفريقنا التجاري للتأكيد."
     },
