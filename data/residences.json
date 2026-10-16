@@ -1047,11 +1047,11 @@
       }
     ],
     "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
+      "intro_fr": "Nous vous informons que tous les appartements de cette résidence ont été vendus. Aucun logement n’est actuellement disponible à la vente.",
+      "intro_ar": "نعلمكم أن جميع شقق هذه الإقامة قد تم بيعها بالكامل، ولا تتوفر حاليًا أي شقق للبيع",
       "typologies": [],
-      "note_fr": "",
-      "note_ar": ""
+      "note_fr": "Les disponibilités sont mises à jour régulièrement et peuvent évoluer sans préavis. Contactez notre équipe commerciale pour confirmer.",
+      "note_ar": "يتم تحديث الشقق المتاحة بشكل دوري، وقد تتغير دون إشعار مسبق. يرجى الاتصال بفريقنا التجاري للتأكيد."
     }
   },
   {
