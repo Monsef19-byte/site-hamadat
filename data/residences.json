@@ -867,10 +867,19 @@
         {
           "name_fr": "F3 (Côté mer )",
           "name_ar": "F3 (جهة البحر)",
-          "count_fr": "F",
-          "count_ar": "",
-          "detail_text_fr": "F3 (Côté forêt)",
-          "detail_text_ar": "F3 (جهة الغابة)",
+          "count_fr": "23",
+          "count_ar": "23",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": []
+        },
+        {
+          "name_fr": "F3 (Côté forêt)",
+          "name_ar": "F3 (جهة الغابة)",
+          "count_fr": "25",
+          "count_ar": "25",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
           "detail_images": []
         }
       ],
