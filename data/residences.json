@@ -861,11 +861,11 @@
       }
     ],
     "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
+      "intro_fr": "Découvrez les  appartements encore disponibles au sein de la résidence.",
+      "intro_ar": "اكتشفوا  الشقق التي لا تزال متاحة داخل الإقامة.",
       "typologies": [],
-      "note_fr": "",
-      "note_ar": ""
+      "note_fr": "Les disponibilités sont mises à jour régulièrement et peuvent évoluer sans préavis. Contactez notre équipe commerciale pour confirmer.",
+      "note_ar": "يتم تحديث الشقق المتاحة بشكل دوري، وقد تتغير دون إشعار مسبق. يرجى الاتصال بفريقنا التجاري للتأكيد."
     },
     "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/elysia/1792077546101-chatgpt-image-4-juil.-2026-11_47_36-bnWxgvqVaIrFeO8cu2a01sQz1FruhT.jpg"
   },
