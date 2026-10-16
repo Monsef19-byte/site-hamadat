@@ -895,11 +895,11 @@
     "name_ar": "لومالاك",
     "tagline_fr": "En cours de finalisation — face à Dounia Parc, Dely Brahim",
     "tagline_ar": "إطلالة تنبض بجمال الطبيعة ورقيّ الحياة",
-    "location_fr": "Dely Brahim",
-    "location_ar": "دالي إبراهيم",
-    "google_maps": null,
-    "status_fr": "Quasi vendu — 80%",
-    "status_ar": "شبه مباع بالكامل — 80%",
+    "location_fr": "Cité 11 Décembre , Dely Brahim",
+    "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
+    "google_maps": "https://maps.app.goo.gl/e4mq6DiQJLqY2jH46",
+    "status_fr": "Vendu en totalité ",
+    "status_ar": "مباع بالكامل",
     "description_fr": "12 unités exclusives F3 et Triplex Loft, en phase de finalisation. Une situation exceptionnelle face à Dounia Parc, avec vues ouvertes sur les espaces verts dans un cadre calme et privilégié.",
     "description_ar": "تُعدّ إقامة لومالاك من أرقى المشاريع السكنية، في مراحلها الأخيرة من الإنجاز. تضمّ 12 وحدة سكنية حصرية من نمطي F3 والتريبلكس لوفت، بموقع استثنائي مقابل حديقة دنيا بارك.",
     "why_location_fr": "Nous avons choisi Dely Ibrahim avec la même exigence qui guide chacun de nos projets — environnement calme et verdoyant, avec une vue directe sur Dounia Parc.",
@@ -983,9 +983,9 @@
         "asset": "residences/lumalac/diaporama/05.jpg"
       }
     ],
-    "progress_percent": 80,
-    "availability_fr": "Quasi vendu",
-    "availability_ar": "شبه مباع بالكامل",
+    "progress_percent": 90,
+    "availability_fr": "Vendu en totalité ",
+    "availability_ar": " مباع بالكامل",
     "avail_open": false,
     "services": [
       {
