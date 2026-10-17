@@ -1182,19 +1182,34 @@
     "services": [],
     "quality": [
       {
-        "icon": "check-circle",
-        "text_fr": "",
-        "text_ar": ""
+        "icon": "lift",
+        "text_fr": "Ascenseur intelligent",
+        "text_ar": "مصعد ذكي"
       },
       {
-        "icon": "check-circle",
-        "text_fr": "",
-        "text_ar": ""
+        "icon": "shield",
+        "text_fr": "Sécurité 24h/24",
+        "text_ar": "أمن على مدار الساعة"
       },
       {
-        "icon": "check-circle",
-        "text_fr": "",
-        "text_ar": ""
+        "icon": "car",
+        "text_fr": "Parking privatif ",
+        "text_ar": "موقف سيارات خاص"
+      },
+      {
+        "icon": "award",
+        "text_fr": "Conception architecturale moderne",
+        "text_ar": "تصميم معماري عصري"
+      },
+      {
+        "icon": "sparkles",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": "تشطيبات راقية"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Cuisine équipée",
+        "text_ar": "مطبخ مجهّز"
       }
     ],
     "dispo": {
