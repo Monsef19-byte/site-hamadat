@@ -1744,6 +1744,13 @@
         "caption_ar": "إطلالة لا تُضاهى، خاصة بكم",
         "caption_proposed": true,
         "asset": "residences/vertdalya/diaporama/10.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Un espace cuisine moderne et lumineux, pensé pour allier élégance, fonctionnalité et confort au quotidien.",
+        "caption_ar": "مساحة مطبخ عصرية ومشرقة، صُممت لتجمع بين الأناقة والعملية والراحة اليومية.",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/vertdalya/diaporama/1792232664816-capture-d-ecran-2026-10-17-112409-il5xDzFkA0UgSbKfI3mN94vDz9KkT6.jpg"
       }
     ],
     "progress_percent": null,
