@@ -1179,38 +1179,7 @@
     "availability_fr": "Vendu en totalité",
     "availability_ar": "بيع بالكامل",
     "avail_open": false,
-    "services": [
-      {
-        "icon": "check-circle",
-        "text_fr": "",
-        "text_ar": ""
-      },
-      {
-        "icon": "check-circle",
-        "text_fr": "",
-        "text_ar": ""
-      },
-      {
-        "icon": "check-circle",
-        "text_fr": "",
-        "text_ar": ""
-      },
-      {
-        "icon": "check-circle",
-        "text_fr": "",
-        "text_ar": ""
-      },
-      {
-        "icon": "check-circle",
-        "text_fr": "",
-        "text_ar": ""
-      },
-      {
-        "icon": "check-circle",
-        "text_fr": "",
-        "text_ar": ""
-      }
-    ],
+    "services": [],
     "quality": [],
     "dispo": {
       "intro_fr": "",
