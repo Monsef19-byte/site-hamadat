@@ -567,8 +567,8 @@
     "location_fr": "Ouled Bounar, Jijel",
     "location_ar": "أولاد بونار، جيجل",
     "google_maps": "https://maps.app.goo.gl/JpcwTsbe2Em5trK78",
-    "status_fr": "En cours — 26%",
-    "status_ar": "قيد الإنجاز — 26%",
+    "status_fr": "En cours — 40%",
+    "status_ar": "قيد الإنجاز — 40%",
     "description_fr": "14 étages, 4 appartements F3 par niveau, face à la mer. Un accès direct à la Méditerranée dans un environnement préservé, pour une expérience de vie privilégiée sur le littoral algérien.",
     "description_ar": "تجسّد إقامة إليزيا توسّع حمادات نحو الساحل الجزائري، ترتفع على 14 طابقًا بأربع شقق من نمط F3 في كل طابق، في إطار يجمع بين الأناقة والخصوصية والقرب من البحر.",
     "why_location_fr": "Jijel est l'une des wilayas les plus prisées du littoral algérien. Ouled Bounar bénéficie d'un environnement préservé, en bord de mer, loin de l'agitation urbaine.",
@@ -787,7 +787,7 @@
         "asset": "residences/elysia/diaporama/14.jpg"
       }
     ],
-    "progress_percent": 26,
+    "progress_percent": 40,
     "availability_fr": "Une résidence de 54 appartements",
     "availability_ar": "إقامة من 54 شقة",
     "avail_open": true,
