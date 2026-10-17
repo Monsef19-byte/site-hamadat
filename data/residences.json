@@ -1069,7 +1069,7 @@
     "tagline_ar": "حيث يلتقي الرقيّ بأصالة التصميم",
     "location_fr": "Cité 11 Décembre, Dely Brahim",
     "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
-    "google_maps": "https://maps.app.goo.gl/3A1AQGoQLdhZY6wC7",
+    "google_maps": "https://maps.app.goo.gl/3S71JF4tcY3XVBLd9",
     "status_fr": "Vendu en totalité",
     "status_ar": "بِيع بالكامل",
     "delivered_year": 2019,
@@ -1179,7 +1179,38 @@
     "availability_fr": "Vendu en totalité",
     "availability_ar": "بيع بالكامل",
     "avail_open": false,
-    "services": [],
+    "services": [
+      {
+        "icon": "check-circle",
+        "text_fr": "",
+        "text_ar": ""
+      },
+      {
+        "icon": "check-circle",
+        "text_fr": "",
+        "text_ar": ""
+      },
+      {
+        "icon": "check-circle",
+        "text_fr": "",
+        "text_ar": ""
+      },
+      {
+        "icon": "check-circle",
+        "text_fr": "",
+        "text_ar": ""
+      },
+      {
+        "icon": "check-circle",
+        "text_fr": "",
+        "text_ar": ""
+      },
+      {
+        "icon": "check-circle",
+        "text_fr": "",
+        "text_ar": ""
+      }
+    ],
     "quality": [],
     "dispo": {
       "intro_fr": "",
@@ -1187,7 +1218,10 @@
       "typologies": [],
       "note_fr": "",
       "note_ar": ""
-    }
+    },
+    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/les-3-princes/1792224254926-chatgpt-image-18-juil.-2026-16_01_46-N3pmfuN8DpzjITkcT65kdDDOBVZjI2.jpg",
+    "why_location_fr": "Au cœur de Dély Brahim, la Cité 11 Décembre bénéficie d’un emplacement privilégié qui allie le dynamisme de la ville à la tranquillité d’un quartier résidentiel prisé.\n\nÀ l’écart de l’agitation urbaine, tout en restant proche des commodités du quotidien, cette adresse offre un cadre de vie paisible, où confort, intimité et accessibilité se rencontrent.\n\nUn emplacement d’exception, une tranquillité rare et un cadre de vie privilégié.",
+    "why_location_ar": "في قلب دالي إبراهيم، يتميز حي 11 ديسمبر بموقع يجمع بين حيوية المدينة وهدوء الأحياء السكنية الراقية.\n\nبعيدًا عن صخب المدينة، وقريبًا من كل ما تحتاجه في حياتك اليومية، يوفر هذا الموقع بيئة سكنية هادئة، تجمع بين الراحة والخصوصية وسهولة الوصول إلى مختلف المرافق والخدمات.\n\nموقع مميز، هدوء استثنائي، وحياة تجمع بين الراحة والرفاهية."
   },
   {
     "id": "les-hirondelles",
