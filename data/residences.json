@@ -1232,7 +1232,7 @@
     "tagline_ar": "عنوانٌ للرقي... ومساحاتٌ صُممت للتميز",
     "location_fr": "Cité 11 Décembre, Dely Brahim",
     "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
-    "google_maps": "https://maps.app.goo.gl/vjT9M1Rj3QV2kcPj7",
+    "google_maps": "https://maps.app.goo.gl/FLPHfv7cyxnJb6ie8",
     "status_fr": "Vendu en totalité",
     "status_ar": "بِيع بالكامل",
     "delivered_year": 2022,
@@ -1280,13 +1280,6 @@
     },
     "diaporama": [
       {
-        "file": "fichier diaporama site hamadat/Les hirondelles/Hammam raffiné, ambiance douce.png",
-        "caption_fr": "Hammam raffiné, ambiance douce",
-        "caption_ar": "حمّام راقٍ، أجواء هادئة",
-        "caption_proposed": false,
-        "asset": "residences/les-hirondelles/diaporama/01.jpg"
-      },
-      {
         "file": "fichier diaporama site hamadat/Les hirondelles/L'excellence architecturale à l'état pur.png",
         "caption_fr": "L'excellence architecturale à l'état pur",
         "caption_ar": "التميّز المعماري في أنقى صوره",
@@ -1315,6 +1308,13 @@
         "asset": "residences/les-hirondelles/diaporama/05.jpg"
       },
       {
+        "file": "fichier diaporama site hamadat/Les hirondelles/Terrasse aménagée, esprit outdoor.png",
+        "caption_fr": "Terrasse aménagée, esprit outdoor",
+        "caption_ar": "شرفة مهيأة بروح الهواء الطلق",
+        "caption_proposed": false,
+        "asset": "residences/les-hirondelles/diaporama/08.jpg"
+      },
+      {
         "file": "fichier diaporama site hamadat/Les hirondelles/Séjour aux volumes généreux.png",
         "caption_fr": "Séjour aux volumes généreux",
         "caption_ar": "صالة بمساحات رحبة",
@@ -1329,11 +1329,11 @@
         "asset": "residences/les-hirondelles/diaporama/07.jpg"
       },
       {
-        "file": "fichier diaporama site hamadat/Les hirondelles/Terrasse aménagée, esprit outdoor.png",
-        "caption_fr": "Terrasse aménagée, esprit outdoor",
-        "caption_ar": "شرفة مهيأة بروح الهواء الطلق",
+        "file": "fichier diaporama site hamadat/Les hirondelles/Hammam raffiné, ambiance douce.png",
+        "caption_fr": "Hammam raffiné, ambiance douce",
+        "caption_ar": "حمّام راقٍ، أجواء هادئة",
         "caption_proposed": false,
-        "asset": "residences/les-hirondelles/diaporama/08.jpg"
+        "asset": "residences/les-hirondelles/diaporama/01.jpg"
       },
       {
         "file": "fichier diaporama site hamadat/Les hirondelles/Un espace de vie chaleureux.png",
@@ -1355,7 +1355,47 @@
     "availability_ar": "بيع بالكامل",
     "avail_open": false,
     "services": [],
-    "quality": []
+    "quality": [
+      {
+        "icon": "lift",
+        "text_fr": "Ascenseur intelligent",
+        "text_ar": "مصعد ذكي"
+      },
+      {
+        "icon": "car",
+        "text_fr": "Parking privatif ",
+        "text_ar": "موقف سيارات خاص"
+      },
+      {
+        "icon": "award",
+        "text_fr": "Conception architecturale moderne",
+        "text_ar": "تصميم معماري عصري"
+      },
+      {
+        "icon": "sparkles",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": "تشطيبات راقية"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Cuisine équipée",
+        "text_ar": "مطبخ مجهّز"
+      },
+      {
+        "icon": "shield",
+        "text_fr": "Sécurité 24h/24",
+        "text_ar": "أمن على مدار الساعة"
+      }
+    ],
+    "dispo": {
+      "intro_fr": "Nous vous informons que tous les appartements de cette résidence ont été vendus. Aucun logement n’est actuellement disponible à la vente.",
+      "intro_ar": "نعلمكم أن جميع شقق هذه الإقامة قد تم بيعها بالكامل، ولا تتوفر حاليًا أي شقق للبيع",
+      "typologies": [],
+      "note_fr": "Détail des disponibilités à venir — revenez bientôt ou contactez-nous directement.",
+      "note_ar": "تفاصيل التوفر قريبًا — عودوا لاحقًا أو تواصلوا معنا مباشرة."
+    },
+    "why_location_fr": "**Un emplacement pensé pour votre bien-être**\n\nVivre dans un environnement paisible sans renoncer aux avantages de la vie urbaine, c’est tout le charme de cette adresse.\n\nImplantée dans un secteur résidentiel recherché, la résidence profite d’une situation idéale, à proximité des services essentiels et des principales commodités, tout en offrant un cadre intime et préservé.\n\n**Le privilège d’une vie sereine, à quelques pas de l’essentiel.**",
+    "why_location_ar": "**موقع يجمع بين الراحة وجودة الحياة**\n\nالاستمتاع بالهدوء دون الابتعاد عن حيوية المدينة، هو ما يمنح هذا الموقع طابعه المميز.\n\nتقع الإقامة في حي سكني مرغوب، يتميز بموقع استراتيجي يضمن القرب من مختلف المرافق والخدمات الضرورية، مع الحفاظ على أجواء هادئة وخصوصية تمنح السكان راحة يومية.\n\n**هدوء السكن، وراحة القرب من كل ما تحتاجه.**"
   },
   {
     "id": "la-lune",
