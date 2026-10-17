@@ -1625,9 +1625,9 @@
     "google_maps": "https://maps.app.goo.gl/VLKdzQo2kNWRb6b6A",
     "status_fr": "Vendu en totalité",
     "status_ar": "بِيع بالكامل",
-    "delivered_year": 2022,
-    "description_fr": "10 unités — 7 appartements F3, un appartement F4 et 2 lofts. Emplacement exceptionnel avec vue directe sur Dounia Parc, espaces baignés de lumière naturelle.",
-    "description_ar": "سُلِّمت سنة 2022. 10 وحدات — 7 شقق F3 وشقة واحدة F4 ولوفتين، بموقع استثنائي يطل مباشرة على حديقة دنيا بارك.",
+    "delivered_year": "2024",
+    "description_fr": "Une réalisation livrée en 2022 — Daly Ibrahim\nLivrée en 2022, la Résidence Vertdalya est l'une des réalisations les plus remarquables de Hamadat Promotion Immobilière. Composée de  7 appartements F3 un appartement F4 et 2 lofts ,elle se distingue par son emplacement exceptionnel avec vue directe sur Dounia Parc, offrant à ses résidents des espaces baignés de lumière naturelle, dans un cadre verdoyant au cœur de la capitale. Vendue dans sa totalité, elle illustre parfaitement la capacité de Hamadat Promotion Immobilière à valoriser des emplacements d'exception.",
+    "description_ar": "إطلالة استثنائية... وجودة تعيشها كل يوم.\nسُلِّمت إقامة فيرداليا سنة 2022، وتُعدّ من أبرز المشاريع السكنية التي تحمل توقيع حمادات للترقية العقارية. ويضم المشروع 7 شقق من نمط F3، وشقة واحدة من نمط F4، بالإضافة إلى لوفتين، صُمّمت جميعها لتوفر فضاءات رحبة تجمع بين الراحة والأناقة.\nويتميّز المشروع بموقع استثنائي يطل مباشرة على حديقة دنيا بارك، مما يمنح سكانه إطلالات مفتوحة، وإضاءة طبيعية وفيرة، وبيئة هادئة تحتضنها المساحات الخضراء في قلب دالي إبراهيم. وقد تم بيع جميع وحداته بالكامل، ليجسّد قدرة حمادات للترقية العقارية على اختيار المواقع المتميزة وتطوير مشاريع سكنية ترتقي بجودة الحياة.",
     "key_numbers": [
       {
         "value": "10",
@@ -1758,7 +1758,9 @@
       "typologies": [],
       "note_fr": "",
       "note_ar": ""
-    }
+    },
+    "why_location_fr": "Dély Brahim se distingue par son emplacement stratégique et son cadre résidentiel recherché, offrant un équilibre harmonieux entre dynamisme urbain et tranquillité.\n\nSa situation privilégiée, à proximité des commodités et des principaux axes de circulation, en fait une adresse idéale pour ceux qui privilégient confort, accessibilité et qualité de vie.\n\nUne adresse de choix, où l’emplacement devient un véritable art de vivre.",
+    "why_location_ar": "تتميز دالي إبراهيم بموقعها الاستراتيجي وطابعها السكني الراقي، حيث تتناغم حيوية المدينة مع هدوء الأحياء السكنية.\n\nكما يمنح موقعها المميز، بالقرب من مختلف المرافق والخدمات والمحاور الرئيسية، بيئة مثالية لمن يبحث عن الراحة وسهولة التنقل وجودة الحياة."
   },
   {
     "id": "marmo",
