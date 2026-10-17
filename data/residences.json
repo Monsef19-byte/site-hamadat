@@ -1112,6 +1112,27 @@
     },
     "diaporama": [
       {
+        "file": "fichier diaporama site hamadat/Les 3 princes/Résidence de prestige, emplacement recherché.png",
+        "caption_fr": "Résidence de prestige, emplacement recherché",
+        "caption_ar": "إقامة راقية، بموقع مطلوب",
+        "caption_proposed": false,
+        "asset": "residences/les-3-princes/diaporama/04.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les 3 princes/Une adresse qui se distingue.png",
+        "caption_fr": "Une adresse qui se distingue",
+        "caption_ar": "عنوانٌ يتميّز",
+        "caption_proposed": false,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/les-3-princes/diaporama/1792226938092-chatgpt-image-19-aout-2026-16_30_36-S1rlC16k5vvtoVbvaQmdbfQMIIK1VU.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les 3 princes/Résidence pensée pour l'excellence.png",
+        "caption_fr": "Résidence pensée pour l'excellence",
+        "caption_ar": "إقامة صُممت من أجل التميّز",
+        "caption_proposed": false,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/les-3-princes/diaporama/1792226904792-chatgpt-image-19-aout-2026-16_09_06-7KB4VG9jEixizaEaUeM07r66vvE710.jpg"
+      },
+      {
         "file": "fichier diaporama site hamadat/Les 3 princes/Chambre confortable et raffinée.png",
         "caption_fr": "Chambre confortable et raffinée",
         "caption_ar": "غرفة نوم مريحة وراقية",
@@ -1133,20 +1154,6 @@
         "asset": "residences/les-3-princes/diaporama/03.jpg"
       },
       {
-        "file": "fichier diaporama site hamadat/Les 3 princes/Résidence de prestige, emplacement recherché.png",
-        "caption_fr": "Résidence de prestige, emplacement recherché",
-        "caption_ar": "إقامة راقية، بموقع مطلوب",
-        "caption_proposed": false,
-        "asset": "residences/les-3-princes/diaporama/04.jpg"
-      },
-      {
-        "file": "fichier diaporama site hamadat/Les 3 princes/Résidence pensée pour l'excellence.png",
-        "caption_fr": "Résidence pensée pour l'excellence",
-        "caption_ar": "إقامة صُممت من أجل التميّز",
-        "caption_proposed": false,
-        "asset": "residences/les-3-princes/diaporama/05.jpg"
-      },
-      {
         "file": "fichier diaporama site hamadat/Les 3 princes/Salle de bain équipée, finitions premium.png",
         "caption_fr": "Salle de bain équipée, finitions premium",
         "caption_ar": "حمّام مجهّز بتشطيبات فاخرة",
@@ -1166,13 +1173,6 @@
         "caption_ar": "ممر أنيق يربط الفضاءات",
         "caption_proposed": false,
         "asset": "residences/les-3-princes/diaporama/08.jpg"
-      },
-      {
-        "file": "fichier diaporama site hamadat/Les 3 princes/Une adresse qui se distingue.png",
-        "caption_fr": "Une adresse qui se distingue",
-        "caption_ar": "عنوانٌ يتميّز",
-        "caption_proposed": false,
-        "asset": "residences/les-3-princes/diaporama/09.jpg"
       }
     ],
     "progress_percent": null,
@@ -1204,7 +1204,7 @@
       "note_fr": "Détail des disponibilités à venir — revenez bientôt ou contactez-nous directement.",
       "note_ar": "تفاصيل التوفر قريبًا — عودوا لاحقًا أو تواصلوا معنا مباشرة."
     },
-    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/les-3-princes/1792224254926-chatgpt-image-18-juil.-2026-16_01_46-N3pmfuN8DpzjITkcT65kdDDOBVZjI2.jpg",
+    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/les-3-princes/diaporama/1792226938092-chatgpt-image-19-aout-2026-16_30_36-S1rlC16k5vvtoVbvaQmdbfQMIIK1VU.jpg",
     "why_location_fr": "Au cœur de Dély Brahim, la Cité 11 Décembre bénéficie d’un emplacement privilégié qui allie le dynamisme de la ville à la tranquillité d’un quartier résidentiel prisé.\n\nÀ l’écart de l’agitation urbaine, tout en restant proche des commodités du quotidien, cette adresse offre un cadre de vie paisible, où confort, intimité et accessibilité se rencontrent.\n\nUn emplacement d’exception, une tranquillité rare et un cadre de vie privilégié.",
     "why_location_ar": "في قلب دالي إبراهيم، يتميز حي 11 ديسمبر بموقع يجمع بين حيوية المدينة وهدوء الأحياء السكنية الراقية.\n\nبعيدًا عن صخب المدينة، وقريبًا من كل ما تحتاجه في حياتك اليومية، يوفر هذا الموقع بيئة سكنية هادئة، تجمع بين الراحة والخصوصية وسهولة الوصول إلى مختلف المرافق والخدمات.\n\nموقع مميز، هدوء استثنائي، وحياة تجمع بين الراحة والرفاهية."
   },
