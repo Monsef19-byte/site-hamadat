@@ -1542,6 +1542,27 @@
         "caption_ar": "مساحات رحبة، أجواء هادئة",
         "caption_proposed": false,
         "asset": "residences/la-lune/diaporama/08.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Un espace de vie raffiné, alliant design contemporain et confort chaleureux.",
+        "caption_ar": "فضاء معيشة راقٍ يجمع بين التصميم العصري والراحة والأناقة.",
+        "caption_proposed": false,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/la-lune/diaporama/1792229959340-chatgpt-image-16-juil.-2026-12_08_53-mH2gvbPslc87Vz7LnmfMB6sqhJjCaT.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Une chambre élégante et lumineuse, pensée pour votre confort et votre sérénité.",
+        "caption_ar": "غرفة نوم أنيقة ومشرقة، صُممت لتمنحكم الراحة والسكينة.",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/la-lune/diaporama/1792230069786-chatgpt-image-16-juil.-2026-11_51_19-juaUi82VUZooQHvmDeDKzAG1RIa0K4.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Une buanderie fonctionnelle et bien aménagée, pensée pour faciliter votre quotidien.",
+        "caption_ar": "غرفة غسيل عملية ومجهزة بعناية، لتسهيل حياتكم اليومية.",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/la-lune/diaporama/1792230188294-chatgpt-image-16-juil.-2026-14_08_20-UyqvmelwucifUvT1kKofIx1i88F1Fy.jpg"
       }
     ],
     "progress_percent": null,
@@ -1582,11 +1603,11 @@
       }
     ],
     "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
+      "intro_fr": "Nous vous informons que tous les appartements de cette résidence ont été vendus. Aucun logement n’est actuellement disponible à la vente.",
+      "intro_ar": "نعلمكم أن جميع شقق هذه الإقامة قد تم بيعها بالكامل، ولا تتوفر حاليًا أي شقق للبيع",
       "typologies": [],
-      "note_fr": "",
-      "note_ar": ""
+      "note_fr": "Détail des disponibilités à venir — revenez bientôt ou contactez-nous directement.",
+      "note_ar": "نعلمكم أن جميع شقق هذه الإقامة قد تم بيعها بالكامل، ولا تتوفر حاليًا أي شقق للبيع"
     },
     "why_location_fr": "Le choix de Bouchbouk repose sur la volonté d’offrir un cadre de vie alliant sérénité, confort et proximité urbaine.\n\nApprécié pour son caractère résidentiel, ce secteur offre un environnement propice à une vie quotidienne paisible, tout en bénéficiant d’un accès pratique aux commodités et aux services essentiels.\n\nUne adresse soigneusement sélectionnée pour son équilibre entre qualité de vie, tranquillité et emplacement stratégique.",
     "why_location_ar": "يعكس اختيارنا لمنطقة بوشبوك حرصنا على توفير بيئة سكنية تجمع بين الهدوء والراحة والقرب من مختلف المرافق الحضرية.\n\nتتميز المنطقة بطابعها السكني الهادئ، مما يجعلها موقعًا مناسبًا لحياة يومية مريحة، مع سهولة الوصول إلى الخدمات والمرافق الأساسية.\n\nموقع تم اختياره بعناية ليجمع بين جودة الحياة والخصوصية والموقع الاستراتيجي.",
