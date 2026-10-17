@@ -1495,13 +1495,6 @@
         "asset": "residences/la-lune/diaporama/01.jpg"
       },
       {
-        "file": "fichier diaporama site hamadat/La lune/Hammam Détente et bien-être au quotidien.png",
-        "caption_fr": "Hammam — détente et bien-être au quotidien",
-        "caption_ar": "حمّام... استرخاء ورفاهية يومية",
-        "caption_proposed": false,
-        "asset": "residences/la-lune/diaporama/02.jpg"
-      },
-      {
         "file": "fichier diaporama site hamadat/La lune/Sanitaire moderne et fonctionnel (2).png",
         "caption_fr": "Sanitaire moderne et fonctionnel",
         "caption_ar": "دورة مياه عصرية وعملية",
@@ -1513,7 +1506,7 @@
         "caption_fr": "Sanitaire moderne et fonctionnel",
         "caption_ar": "دورة مياه عصرية وعملية",
         "caption_proposed": false,
-        "asset": "residences/la-lune/diaporama/04.jpg"
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/la-lune/diaporama/1792230333818-chatgpt-image-16-juil.-2026-14_14_31-JwUaZHKBLuM4l0ha6XjaoceXnLjG07.jpg"
       },
       {
         "file": "fichier diaporama site hamadat/La lune/Séjour spacieux et lumineux.png",
@@ -1521,6 +1514,13 @@
         "caption_ar": "صالة واسعة ومضيئة",
         "caption_proposed": false,
         "asset": "residences/la-lune/diaporama/05.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/La lune/Hammam Détente et bien-être au quotidien.png",
+        "caption_fr": "Hammam — détente et bien-être au quotidien",
+        "caption_ar": "حمّام... استرخاء ورفاهية يومية",
+        "caption_proposed": false,
+        "asset": "residences/la-lune/diaporama/02.jpg"
       },
       {
         "file": "fichier diaporama site hamadat/La lune/Terrasse avec vue dégagée.png",
