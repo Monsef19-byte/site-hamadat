@@ -1753,11 +1753,11 @@
     "services": [],
     "quality": [],
     "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
+      "intro_fr": "Nous vous informons que tous les appartements de cette résidence ont été vendus. Aucun logement n’est actuellement disponible à la vente.",
+      "intro_ar": "نعلمكم أن جميع شقق هذه الإقامة قد تم بيعها بالكامل، ولا تتوفر حاليًا أي شقق للبيع",
       "typologies": [],
-      "note_fr": "",
-      "note_ar": ""
+      "note_fr": "Détail des disponibilités à venir — revenez bientôt ou contactez-nous directement.",
+      "note_ar": "تفاصيل التوفر قريبًا — عودوا لاحقًا أو تواصلوا معنا مباشرة."
     },
     "why_location_fr": "Dély Brahim se distingue par son emplacement stratégique et son cadre résidentiel recherché, offrant un équilibre harmonieux entre dynamisme urbain et tranquillité.\n\nSa situation privilégiée, à proximité des commodités et des principaux axes de circulation, en fait une adresse idéale pour ceux qui privilégient confort, accessibilité et qualité de vie.\n\nUne adresse de choix, où l’emplacement devient un véritable art de vivre.",
     "why_location_ar": "تتميز دالي إبراهيم بموقعها الاستراتيجي وطابعها السكني الراقي، حيث تتناغم حيوية المدينة مع هدوء الأحياء السكنية.\n\nكما يمنح موقعها المميز، بالقرب من مختلف المرافق والخدمات والمحاور الرئيسية، بيئة مثالية لمن يبحث عن الراحة وسهولة التنقل وجودة الحياة."
