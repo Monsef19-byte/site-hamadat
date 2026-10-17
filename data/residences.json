@@ -1474,6 +1474,20 @@
     },
     "diaporama": [
       {
+        "file": "",
+        "caption_fr": "Une façade élégante aux lignes architecturales raffinées, où chaque détail reflète modernité et caractère.",
+        "caption_ar": "واجهة أنيقة بتفاصيل معمارية راقية، تجمع بين الحداثة والتميز في التصميم.",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/la-lune/diaporama/1792229716263-chatgpt-image-25-juil.-2026-16_07_03-RcVNws4YdzwenRKqZYCSq1sBsRF9Er.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Une oasis de détente alliant élégance et sérénité.",
+        "caption_ar": "واحة للاسترخاء تجمع بين الأناقة والهدوء.",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/la-lune/diaporama/1792229816929-chatgpt-image-16-juil.-2026-12_01_45-esTzxPyeVwjW47uXc0cCVDegCm0eTm.jpg"
+      },
+      {
         "file": "fichier diaporama site hamadat/La lune/Cuisine moderne et fonctionnelle.png",
         "caption_fr": "Cuisine moderne et fonctionnelle",
         "caption_ar": "مطبخ عصري وعملي",
@@ -1528,13 +1542,6 @@
         "caption_ar": "مساحات رحبة، أجواء هادئة",
         "caption_proposed": false,
         "asset": "residences/la-lune/diaporama/08.jpg"
-      },
-      {
-        "file": "",
-        "caption_fr": "",
-        "caption_ar": "",
-        "caption_proposed": true,
-        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/la-lune/diaporama/1792229716263-chatgpt-image-25-juil.-2026-16_07_03-RcVNws4YdzwenRKqZYCSq1sBsRF9Er.jpg"
       }
     ],
     "progress_percent": null,
@@ -1582,7 +1589,8 @@
       "note_ar": ""
     },
     "why_location_fr": "Le choix de Bouchbouk repose sur la volonté d’offrir un cadre de vie alliant sérénité, confort et proximité urbaine.\n\nApprécié pour son caractère résidentiel, ce secteur offre un environnement propice à une vie quotidienne paisible, tout en bénéficiant d’un accès pratique aux commodités et aux services essentiels.\n\nUne adresse soigneusement sélectionnée pour son équilibre entre qualité de vie, tranquillité et emplacement stratégique.",
-    "why_location_ar": "يعكس اختيارنا لمنطقة بوشبوك حرصنا على توفير بيئة سكنية تجمع بين الهدوء والراحة والقرب من مختلف المرافق الحضرية.\n\nتتميز المنطقة بطابعها السكني الهادئ، مما يجعلها موقعًا مناسبًا لحياة يومية مريحة، مع سهولة الوصول إلى الخدمات والمرافق الأساسية.\n\nموقع تم اختياره بعناية ليجمع بين جودة الحياة والخصوصية والموقع الاستراتيجي."
+    "why_location_ar": "يعكس اختيارنا لمنطقة بوشبوك حرصنا على توفير بيئة سكنية تجمع بين الهدوء والراحة والقرب من مختلف المرافق الحضرية.\n\nتتميز المنطقة بطابعها السكني الهادئ، مما يجعلها موقعًا مناسبًا لحياة يومية مريحة، مع سهولة الوصول إلى الخدمات والمرافق الأساسية.\n\nموقع تم اختياره بعناية ليجمع بين جودة الحياة والخصوصية والموقع الاستراتيجي.",
+    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/la-lune/diaporama/1792229816929-chatgpt-image-16-juil.-2026-12_01_45-esTzxPyeVwjW47uXc0cCVDegCm0eTm.jpg"
   },
   {
     "id": "vertdalya",
