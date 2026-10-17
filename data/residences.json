@@ -1180,13 +1180,29 @@
     "availability_ar": "بيع بالكامل",
     "avail_open": false,
     "services": [],
-    "quality": [],
+    "quality": [
+      {
+        "icon": "check-circle",
+        "text_fr": "",
+        "text_ar": ""
+      },
+      {
+        "icon": "check-circle",
+        "text_fr": "",
+        "text_ar": ""
+      },
+      {
+        "icon": "check-circle",
+        "text_fr": "",
+        "text_ar": ""
+      }
+    ],
     "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
+      "intro_fr": "Nous vous informons que tous les appartements de cette résidence ont été vendus. Aucun logement n’est actuellement disponible à la vente.",
+      "intro_ar": "نعلمكم أن جميع شقق هذه الإقامة قد تم بيعها بالكامل، ولا تتوفر حاليًا أي شقق للبيع.",
       "typologies": [],
-      "note_fr": "",
-      "note_ar": ""
+      "note_fr": "Détail des disponibilités à venir — revenez bientôt ou contactez-nous directement.",
+      "note_ar": "تفاصيل التوفر قريبًا — عودوا لاحقًا أو تواصلوا معنا مباشرة."
     },
     "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/les-3-princes/1792224254926-chatgpt-image-18-juil.-2026-16_01_46-N3pmfuN8DpzjITkcT65kdDDOBVZjI2.jpg",
     "why_location_fr": "Au cœur de Dély Brahim, la Cité 11 Décembre bénéficie d’un emplacement privilégié qui allie le dynamisme de la ville à la tranquillité d’un quartier résidentiel prisé.\n\nÀ l’écart de l’agitation urbaine, tout en restant proche des commodités du quotidien, cette adresse offre un cadre de vie paisible, où confort, intimité et accessibilité se rencontrent.\n\nUn emplacement d’exception, une tranquillité rare et un cadre de vie privilégié.",
