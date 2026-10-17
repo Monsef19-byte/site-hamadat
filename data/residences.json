@@ -871,16 +871,22 @@
           "count_ar": "23",
           "detail_text_fr": "",
           "detail_text_ar": "",
-          "detail_images": []
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/elysia/dispo/0/1792221978494-vsmgj-xP4B3d6xdQYUss0vdHU21kfWAuSZZB.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/elysia/dispo/0/1792221984408-vsmdb-Xdk9Pg9br4Ho8hqa6gOu71XY4CM7I4.jpg"
+          ]
         },
         {
           "name_fr": "F3 (Côté forêt)",
           "name_ar": "F3 (جهة الغابة)",
-          "count_fr": "25",
-          "count_ar": "25",
+          "count_fr": "26",
+          "count_ar": "26",
           "detail_text_fr": "",
           "detail_text_ar": "",
-          "detail_images": []
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/elysia/dispo/1/1792221988761-vsfgb-AQM39cKWB1Zoxg5tewuen1Ivywv5jG.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/elysia/dispo/1/1792221998462-vsfdj-Qb0cEV3Q7BffE5B4mYvnY5MNawRmbs.jpg"
+          ]
         }
       ],
       "note_fr": "Les disponibilités sont mises à jour régulièrement et peuvent évoluer sans préavis. Contactez notre équipe commerciale pour confirmer.",
