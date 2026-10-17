@@ -1844,7 +1844,7 @@
     "tagline_ar": "حيث تنطق التفاصيل بالفخامة",
     "location_fr": "Cité 11 Décembre, Dely Brahim",
     "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
-    "google_maps": "https://maps.app.goo.gl/vfQkQ8eJLdXfucJS8",
+    "google_maps": "https://maps.app.goo.gl/JE6cxrvDUfjacHtMA",
     "status_fr": "Vendu en totalité",
     "status_ar": "بِيع بالكامل",
     "delivered_year": 2025,
@@ -1956,7 +1956,16 @@
     "availability_ar": "بيع بالكامل",
     "avail_open": false,
     "services": [],
-    "quality": []
+    "quality": [],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    },
+    "why_location_fr": "Dély Brahim se distingue par son emplacement stratégique et son cadre résidentiel recherché, offrant un équilibre harmonieux entre dynamisme urbain et tranquillité.\n\nSa situation privilégiée, à proximité des commodités et des principaux axes de circulation, en fait une adresse idéale pour ceux qui privilégient confort, accessibilité et qualité de vie.\n\nUne adresse de choix, où l’emplacement devient un véritable art de vivre.",
+    "why_location_ar": "تتميز دالي إبراهيم بموقعها الاستراتيجي وطابعها السكني الراقي، حيث تتناغم حيوية المدينة مع هدوء الأحياء السكنية.\n\nكما يمنح موقعها المميز، بالقرب من مختلف المرافق والخدمات والمحاور الرئيسية، بيئة مثالية لمن يبحث عن الراحة وسهولة التنقل وجودة الحياة.\n\nعنوان مميز، حيث يصبح الموقع جزءًا من أسلوب حياة راقٍ."
   },
   {
     "id": "les-pyramides",
