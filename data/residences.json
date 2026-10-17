@@ -1976,7 +1976,7 @@
     "tagline_ar": "مشروعٌ رسّخ معايير الجودة",
     "location_fr": "Cité 11 Décembre, Dely Brahim",
     "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
-    "google_maps": "https://maps.app.goo.gl/8scU3zhKGeYDNEzf9",
+    "google_maps": "https://maps.app.goo.gl/n1VQKD9ioX4YY5bR6",
     "status_fr": "Vendu en totalité",
     "status_ar": "بِيع بالكامل",
     "delivered_year": 2016,
@@ -1989,8 +1989,8 @@
         "label_ar": "وحدة موزعة على ست عمارات"
       }
     ],
-    "typologies_fr": "F3 · F4 · F5 · Duplex · Penthouse",
-    "typologies_ar": "F3 · F4 · F5 · دوبلكس · بنتهاوس",
+    "typologies_fr": "F3 · F4 · F5 · Duplex",
+    "typologies_ar": "F3 · F4 · F5 · دوبلكس",
     "youtube": null,
     "images": {
       "principale": [
@@ -2110,6 +2110,15 @@
     "availability_ar": "بيع بالكامل",
     "avail_open": false,
     "services": [],
-    "quality": []
+    "quality": [],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    },
+    "why_location_fr": "Dély Brahim se distingue par son emplacement stratégique et son cadre résidentiel recherché, offrant un équilibre harmonieux entre dynamisme urbain et tranquillité.\n\nSa situation privilégiée, à proximité des commodités et des principaux axes de circulation, en fait une adresse idéale pour ceux qui privilégient confort, accessibilité et qualité de vie.\n\nUne adresse de choix, où l’emplacement devient un véritable art de vivre.",
+    "why_location_ar": "تتميز دالي إبراهيم بموقعها الاستراتيجي وطابعها السكني الراقي، حيث تتناغم حيوية المدينة مع هدوء الأحياء السكنية.\n\nكما يمنح موقعها المميز، بالقرب من مختلف المرافق والخدمات والمحاور الرئيسية، بيئة مثالية لمن يبحث عن الراحة وسهولة التنقل وجودة الحياة.\n\nعنوان مميز، حيث يصبح الموقع جزءًا من أسلوب حياة راقٍ."
   }
 ]
