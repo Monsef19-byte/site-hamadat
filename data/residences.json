@@ -1676,6 +1676,20 @@
     },
     "diaporama": [
       {
+        "file": "",
+        "caption_fr": "Une entrée accueillante, sublimée par une touche de verdure et d’élégance.",
+        "caption_ar": "مدخل أنيق تحيط به المساحات الخضراء، يجمع بين الجمال وحسن الاستقبال.",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/vertdalya/diaporama/1792233694049-chatgpt-image-11-aout-2026-09_52_13-Bcb4nqaBBUUNCxMBGcZOaar9DO6GxT.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 11 juil. 2026, 16_03_27.png",
+        "caption_fr": "Un balcon suspendu entre ciel et verdure",
+        "caption_ar": "شرفة معلّقة بين السماء والخضرة",
+        "caption_proposed": true,
+        "asset": "residences/vertdalya/diaporama/03.jpg"
+      },
+      {
         "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 11 juil. 2026, 15_30_01.png",
         "caption_fr": "Une chambre habillée de marbre",
         "caption_ar": "غرفة نوم تكتسي بالرخام",
@@ -1688,13 +1702,6 @@
         "caption_ar": "الرخام... توقيع خالد",
         "caption_proposed": true,
         "asset": "residences/vertdalya/diaporama/02.jpg"
-      },
-      {
-        "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 11 juil. 2026, 16_03_27.png",
-        "caption_fr": "Un balcon suspendu entre ciel et verdure",
-        "caption_ar": "شرفة معلّقة بين السماء والخضرة",
-        "caption_proposed": true,
-        "asset": "residences/vertdalya/diaporama/03.jpg"
       },
       {
         "file": "fichier diaporama site hamadat/Vertdalya/ChatGPT Image 13 juil. 2026, 08_11_40.png",
@@ -1765,6 +1772,20 @@
         "caption_ar": "مساحات مشرقة تجمع بين الأناقة والعصرية.",
         "caption_proposed": true,
         "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/vertdalya/diaporama/1792233428951-interieur-moderne-baigne-de-lumiere-KhqkKy2p835rjzyA1jUaEVcEx4hSOR.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Une terrasse paisible avec une vue dégagée, idéale pour vos moments de détente.",
+        "caption_ar": "شرفة هادئة بإطلالة مفتوحة، مثالية للحظات الاسترخاء.",
+        "caption_proposed": false,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/vertdalya/diaporama/1792233638628-chatgpt-image-11-aout-2026-09_32_58-4eTARDxEUyFMwPFgbedY46wYPVmnYK.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Une architecture contemporaine sublimée par de grandes baies vitrées et des lignes élégantes.",
+        "caption_ar": "هندسة معمارية عصرية تتميز بواجهات زجاجية واسعة وخطوط أنيقة.",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/vertdalya/diaporama/1792233781451-chatgpt-image-11-aout-2026-09_50_26-J092TIxX6UgnFoYxZzXkASOp49nVdW.jpg"
       }
     ],
     "progress_percent": null,
