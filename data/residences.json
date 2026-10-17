@@ -1395,7 +1395,8 @@
       "note_ar": "تفاصيل التوفر قريبًا — عودوا لاحقًا أو تواصلوا معنا مباشرة."
     },
     "why_location_fr": "Un emplacement pensé pour votre bien-être\n\nVivre dans un environnement paisible sans renoncer aux avantages de la vie urbaine, c’est tout le charme de cette adresse.\n\nImplantée dans un secteur résidentiel recherché, la résidence profite d’une situation idéale, à proximité des services essentiels et des principales commodités, tout en offrant un cadre intime et préservé.\n\n**Le privilège d’une vie sereine, à quelques pas de l’essentiel.**",
-    "why_location_ar": "موقع يجمع بين الراحة وجودة الحياة\n\nالاستمتاع بالهدوء دون الابتعاد عن حيوية المدينة، هو ما يمنح هذا الموقع طابعه المميز.\n\nتقع الإقامة في حي سكني مرغوب، يتميز بموقع استراتيجي يضمن القرب من مختلف المرافق والخدمات الضرورية، مع الحفاظ على أجواء هادئة وخصوصية تمنح السكان راحة يومية.\n\n**هدوء السكن، وراحة القرب من كل ما تحتاجه.**"
+    "why_location_ar": "موقع يجمع بين الراحة وجودة الحياة\n\nالاستمتاع بالهدوء دون الابتعاد عن حيوية المدينة، هو ما يمنح هذا الموقع طابعه المميز.\n\nتقع الإقامة في حي سكني مرغوب، يتميز بموقع استراتيجي يضمن القرب من مختلف المرافق والخدمات الضرورية، مع الحفاظ على أجواء هادئة وخصوصية تمنح السكان راحة يومية.\n\n**هدوء السكن، وراحة القرب من كل ما تحتاجه.**",
+    "cover": "residences/les-hirondelles/diaporama/08.jpg"
   },
   {
     "id": "la-lune",
@@ -1406,7 +1407,7 @@
     "tagline_ar": "حيث تبدأ الخصوصية... ويكتمل الرقي",
     "location_fr": "Cité Bouchbouk, Dely Brahim",
     "location_ar": "حي بوشبوك، دالي إبراهيم",
-    "google_maps": "https://maps.app.goo.gl/9AZBUjGLezzoQ7DK6",
+    "google_maps": "https://maps.app.goo.gl/Z9KWbgxoahKSWubL8",
     "status_fr": "Vendu en totalité",
     "status_ar": "بِيع بالكامل",
     "delivered_year": 2018,
@@ -1419,8 +1420,8 @@
         "label_ar": "شقق فقط — إقامة حصرية"
       }
     ],
-    "typologies_fr": "F5 · F6 · Penthouse",
-    "typologies_ar": "F5 · F6 · بنتهاوس",
+    "typologies_fr": "F5 · F6 · Duplex",
+    "typologies_ar": "F5 · F6 · دوبلكس",
     "youtube": null,
     "images": {
       "principale": [],
@@ -1534,7 +1535,47 @@
     "availability_ar": "بيع بالكامل",
     "avail_open": false,
     "services": [],
-    "quality": []
+    "quality": [
+      {
+        "icon": "car",
+        "text_fr": "Parking privatif ",
+        "text_ar": "موقف سيارات خاص"
+      },
+      {
+        "icon": "sparkles",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": "تشطيبات راقية"
+      },
+      {
+        "icon": "shield",
+        "text_fr": "Sécurité 24h/24",
+        "text_ar": "أمن على مدار الساعة"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Cuisine équipée",
+        "text_ar": "مطبخ مجهّز"
+      },
+      {
+        "icon": "award",
+        "text_fr": "Conception architecturale moderne",
+        "text_ar": "تصميم معماري عصري"
+      },
+      {
+        "icon": "lift",
+        "text_fr": "Ascenseur intelligent",
+        "text_ar": ""
+      }
+    ],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    },
+    "why_location_fr": "Le choix de Bouchbouk repose sur la volonté d’offrir un cadre de vie alliant sérénité, confort et proximité urbaine.\n\nApprécié pour son caractère résidentiel, ce secteur offre un environnement propice à une vie quotidienne paisible, tout en bénéficiant d’un accès pratique aux commodités et aux services essentiels.\n\nUne adresse soigneusement sélectionnée pour son équilibre entre qualité de vie, tranquillité et emplacement stratégique.",
+    "why_location_ar": "يعكس اختيارنا لمنطقة بوشبوك حرصنا على توفير بيئة سكنية تجمع بين الهدوء والراحة والقرب من مختلف المرافق الحضرية.\n\nتتميز المنطقة بطابعها السكني الهادئ، مما يجعلها موقعًا مناسبًا لحياة يومية مريحة، مع سهولة الوصول إلى الخدمات والمرافق الأساسية.\n\nموقع تم اختياره بعناية ليجمع بين جودة الحياة والخصوصية والموقع الاستراتيجي."
   },
   {
     "id": "vertdalya",
