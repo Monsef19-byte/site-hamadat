@@ -2066,11 +2066,11 @@
     },
     "diaporama": [
       {
-        "file": "fichier diaporama site hamadat/Les pyramides/Ambiance soignée, matériaux sélectionnés.png",
-        "caption_fr": "Ambiance soignée, matériaux sélectionnés",
-        "caption_ar": "أجواء أنيقة، مواد مختارة بعناية",
+        "file": "fichier diaporama site hamadat/Les pyramides/Résidence prestige, signature Hamadat.png",
+        "caption_fr": "Résidence prestige, signature Hamadat",
+        "caption_ar": "إقامة راقية، بتوقيع حمادات",
         "caption_proposed": false,
-        "asset": "residences/les-pyramides/diaporama/01.jpg"
+        "asset": "residences/les-pyramides/diaporama/08.jpg"
       },
       {
         "file": "fichier diaporama site hamadat/Les pyramides/Architecture d'exception, matériaux nobles.png",
@@ -2078,6 +2078,13 @@
         "caption_ar": "عمارة استثنائية، مواد نبيلة",
         "caption_proposed": false,
         "asset": "residences/les-pyramides/diaporama/02.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les pyramides/Ambiance soignée, matériaux sélectionnés.png",
+        "caption_fr": "Ambiance soignée, matériaux sélectionnés",
+        "caption_ar": "أجواء أنيقة، مواد مختارة بعناية",
+        "caption_proposed": false,
+        "asset": "residences/les-pyramides/diaporama/01.jpg"
       },
       {
         "file": "fichier diaporama site hamadat/Les pyramides/Calme, espace, élégance.png",
@@ -2092,6 +2099,13 @@
         "caption_ar": "مطبخ وصالة في انسجام تام",
         "caption_proposed": false,
         "asset": "residences/les-pyramides/diaporama/04.jpg"
+      },
+      {
+        "file": "fichier diaporama site hamadat/Les pyramides/Une résidence pensée pour ceux qui exigent le meilleur.png",
+        "caption_fr": "Une résidence pensée pour ceux qui exigent le meilleur",
+        "caption_ar": "إقامة صُممت لمن يطلبون الأفضل",
+        "caption_proposed": false,
+        "asset": "residences/les-pyramides/diaporama/10.jpg"
       },
       {
         "file": "fichier diaporama site hamadat/Les pyramides/Grand espace, petite touche de douceur.png",
@@ -2115,25 +2129,11 @@
         "asset": "residences/les-pyramides/diaporama/07.jpg"
       },
       {
-        "file": "fichier diaporama site hamadat/Les pyramides/Résidence prestige, signature Hamadat.png",
-        "caption_fr": "Résidence prestige, signature Hamadat",
-        "caption_ar": "إقامة راقية، بتوقيع حمادات",
-        "caption_proposed": false,
-        "asset": "residences/les-pyramides/diaporama/08.jpg"
-      },
-      {
         "file": "fichier diaporama site hamadat/Les pyramides/Terrasse aménagée avec soin, matériaux nobles.png",
         "caption_fr": "Terrasse aménagée avec soin, matériaux nobles",
         "caption_ar": "شرفة مهيأة بعناية، بمواد نبيلة",
         "caption_proposed": false,
         "asset": "residences/les-pyramides/diaporama/09.jpg"
-      },
-      {
-        "file": "fichier diaporama site hamadat/Les pyramides/Une résidence pensée pour ceux qui exigent le meilleur.png",
-        "caption_fr": "Une résidence pensée pour ceux qui exigent le meilleur",
-        "caption_ar": "إقامة صُممت لمن يطلبون الأفضل",
-        "caption_proposed": false,
-        "asset": "residences/les-pyramides/diaporama/10.jpg"
       }
     ],
     "progress_percent": null,
@@ -2150,6 +2150,7 @@
       "note_ar": "نعلمكم أن جميع شقق هذه الإقامة قد تم بيعها بالكامل، ولا تتوفر حاليًا أي شقق للبيع"
     },
     "why_location_fr": "Dély Brahim se distingue par son emplacement stratégique et son cadre résidentiel recherché, offrant un équilibre harmonieux entre dynamisme urbain et tranquillité.\n\nSa situation privilégiée, à proximité des commodités et des principaux axes de circulation, en fait une adresse idéale pour ceux qui privilégient confort, accessibilité et qualité de vie.\n\nUne adresse de choix, où l’emplacement devient un véritable art de vivre.",
-    "why_location_ar": "تتميز دالي إبراهيم بموقعها الاستراتيجي وطابعها السكني الراقي، حيث تتناغم حيوية المدينة مع هدوء الأحياء السكنية.\n\nكما يمنح موقعها المميز، بالقرب من مختلف المرافق والخدمات والمحاور الرئيسية، بيئة مثالية لمن يبحث عن الراحة وسهولة التنقل وجودة الحياة.\n\nعنوان مميز، حيث يصبح الموقع جزءًا من أسلوب حياة راقٍ."
+    "why_location_ar": "تتميز دالي إبراهيم بموقعها الاستراتيجي وطابعها السكني الراقي، حيث تتناغم حيوية المدينة مع هدوء الأحياء السكنية.\n\nكما يمنح موقعها المميز، بالقرب من مختلف المرافق والخدمات والمحاور الرئيسية، بيئة مثالية لمن يبحث عن الراحة وسهولة التنقل وجودة الحياة.\n\nعنوان مميز، حيث يصبح الموقع جزءًا من أسلوب حياة راقٍ.",
+    "cover": "residences/les-pyramides/diaporama/08.jpg"
   }
 ]
