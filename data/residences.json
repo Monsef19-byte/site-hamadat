@@ -9,8 +9,8 @@
     "location_fr": "Cité 11 Décembre, Dely Brahim",
     "location_ar": "حي 11 ديسمبر، دالي إبراهيم",
     "google_maps": "https://maps.app.goo.gl/5df3Jb9gAbz3n9KL7",
-    "status_fr": "Dernières opportunités — 4 appartements disponibles",
-    "status_ar": "آخر الفرص — 4 شقق متاحة",
+    "status_fr": "Dernières opportunités — 3 appartements disponibles",
+    "status_ar": "آخر الفرص — 3 شقق متاحة",
     "description_fr": "Projet résidentiel haut standing de 43 appartements F3, F4, F5, F6 et Penthouse. Un emplacement d'exception à proximité de Dounia Parc, une qualité de matériaux et un soin architectural qui en font une référence du résidentiel haut standing.",
     "description_ar": "تُعدّ إقامة أوريا من المشاريع السكنية الراقية، ويتكوّن المشروع من 43 شقة من أنماط F3 وF4 وF5 وF6 والبنتهاوس. يتميّز بموقعه الاستثنائي بحي 11 ديسمبر بالدالية إبراهيم.",
     "why_location_fr": "Nous avons choisi la Cité 11 Décembre, à Dely Ibrahim, avec la même exigence qui guide chacun de nos projets. Ce quartier compte parmi les adresses les plus recherchées d'Alger : environnement calme et verdoyant, à proximité immédiate de Dounia Parc, des établissements scolaires et de l'ensemble des commodités essentielles.",
@@ -108,8 +108,8 @@
       }
     ],
     "progress_percent": 60,
-    "availability_fr": "Dernières opportunités — 4 appartements disponibles",
-    "availability_ar": "آخر الفرص — 4 شقق متاحة",
+    "availability_fr": "Dernières opportunités — 3 appartements disponibles",
+    "availability_ar": "آخر الفرص — 3 شقق متاحة",
     "avail_open": false,
     "services": [
       {
