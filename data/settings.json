@@ -1,5 +1,5 @@
 {
-  "notify_enabled": false,
+  "notify_enabled": true,
   "lead_recipient": "contact@hamadat.dz",
   "smtp_host": "smtp.gmail.com",
   "smtp_port": 587,
