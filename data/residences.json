@@ -2482,29 +2482,29 @@
     ],
     "quality": [
       {
-        "icon": "check-circle",
+        "icon": "building",
         "text_fr": "Architecture néoclassique élégante",
-        "text_ar": ""
+        "text_ar": "\tهندسة معمارية نيوكلاسيكية أنيقة"
       },
       {
-        "icon": "check-circle",
+        "icon": "layers",
         "text_fr": "Marbre italien & parquet naturel",
-        "text_ar": ""
+        "text_ar": "\tرخام إيطالي وباركيه طبيعي"
       },
       {
-        "icon": "check-circle",
+        "icon": "award",
         "text_fr": "Matériaux de construction premium",
-        "text_ar": ""
+        "text_ar": "\tمواد بناء فاخرة"
       },
       {
-        "icon": "check-circle",
+        "icon": "window",
         "text_fr": "Fenetres tripple vitrage",
-        "text_ar": ""
+        "text_ar": "\tنوافذ بزجاج ثلاثي"
       },
       {
-        "icon": "check-circle",
+        "icon": "sparkles",
         "text_fr": "Finitions haut de gamme",
-        "text_ar": ""
+        "text_ar": "\tتشطيبات راقية"
       }
     ],
     "dispo": {
@@ -2519,7 +2519,50 @@
       "principale": [],
       "interieur": []
     },
-    "diaporama": [],
+    "diaporama": [
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698626828-villa-catrina-3dQ46m8v8mxcwxrj68VWLwhPR4f8dP.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698639679-entree-SRtmfkeJVufzx1utmUDBNOEgSFORVv.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698633674-digicode-CRCmumyPsy8Pm5cvk1C4M64n4EyPRn.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698651549-hall-d-entree-1Q3kOY8nz7CgWVFuSpEfYjneUL088Z.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698673902-femme-de-menage-2uFYOq0pyyxpjroWI9YUDKOjMS3YXa.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698656453-ascenseur-szDHtsGjR6N0Lf8akCTHsgRP4xKIar.jpg"
+      }
+    ],
     "progress_percent": 0,
     "availability_fr": "20 appartements disponibles",
     "availability_ar": "20 شقة متاحة",
