@@ -2724,5 +2724,46 @@
     "avail_open": true,
     "delivered_year": null,
     "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/1793694608407-villa-catrina-VJnNIJY5RthhuKvd0in6Vv9A7A9mGi.jpg"
+  },
+  {
+    "id": "veronica",
+    "category": "en_cours",
+    "name": "Veronica",
+    "name_ar": "فيرونيكا",
+    "tagline_fr": "L'art de vivre en toute exclusivité",
+    "tagline_ar": " فنّ العيش بكل تميّز",
+    "location_fr": "Hydra, Alger",
+    "location_ar": "حيدرة، الجزائر العاصمة",
+    "google_maps": "https://maps.app.goo.gl/gY7hA4KdE2TjmsqH6",
+    "status_fr": "Derniers appartements disponibles, ne tardez pas",
+    "status_ar": "آخر الشقق المتاحة، لا تفوّتوا الفرصة",
+    "description_fr": "Située au cœur d'Hydra, l'un des quartiers les plus prisés d'Alger, cette résidence exclusive allie architecture néoclassique, prestations haut de gamme et cadre de vie privilégié. Composée de seulement 7 appartements, elle offre à ses résidents intimité, confort et sécurité dans un environnement d'exception. Chaque détail a été pensé pour répondre aux plus hautes exigences en matière de qualité, d'élégance et de valeur patrimoniale.",
+    "description_ar": "تقع في قلب حيدرة، أحد أكثر الأحياء المرغوبة بالجزائر العاصمة، وهي مسكن حصري يجمع بين العمارة النيوكلاسيكية والخدمات الفاخرة وإطار الحياة المتميز. تتألف من 8 شقق فقط، وتمنح سكانها الخصوصية والراحة والأمن في بيئة استثنائية. كل تفصيل فيها مدروس لتلبية أعلى المتطلبات من حيث الجودة والأناقة والقيمة التراثية.",
+    "why_location_fr": "Le choix de Hydra s’est imposé naturellement. Quartier parmi les plus prisés d’Alger, il offre un cadre calme et verdoyant, une sécurité reconnue et un voisinage de standing. Sa position centrale donne un accès rapide aux pôles d’affaires, commerces et écoles. C’est un emplacement rare, gage de qualité de vie et de valeur durable.",
+    "why_location_ar": "جاء اختيار حيدرة عن قناعة. فهي من أرقى أحياء الجزائر العاصمة وأكثرها طلباً، تتميّز بهدوئها ومساحاتها الخضراء وأمنها ومحيطها الراقي. ويتيح موقعها المركزي وصولاً سريعاً إلى مراكز الأعمال والمحلات والمدارس. إنه موقع نادر يضمن جودة الحياة وقيمة عقارية مستدامة.",
+    "key_numbers": [],
+    "typologies_fr": "F3, F4, F5 & Penthouse",
+    "typologies_ar": "F3، F4، F5 وبنتهاوس",
+    "services": [],
+    "quality": [],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    },
+    "youtube": null,
+    "images": {
+      "principale": [],
+      "interieur": []
+    },
+    "diaporama": [],
+    "progress_percent": 50,
+    "availability_fr": "Derniers appartements disponibles, ne tardez pas",
+    "availability_ar": "آخر الشقق المتاحة، لا تفوّتوا الفرصة",
+    "avail_open": true,
+    "delivered_year": null,
+    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/1793701820903-chatgpt-image-22-juin-2026-13_20_13-c5vdVRmOthnjfsm1NCzI46qP36OTaJ.jpg"
   }
 ]
