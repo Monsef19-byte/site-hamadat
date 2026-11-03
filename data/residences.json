@@ -3310,7 +3310,71 @@
       "principale": [],
       "interieur": []
     },
-    "diaporama": [],
+    "diaporama": [
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/diaporama/1793713299883-chatgpt-image-23-juin-2026-08_31_55-pZqMp1TLf8AaONSEAekBYrt2OW1bre.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/diaporama/1793713304876-chatgpt-image-23-juin-2026-08_32_50-d4igF5DrzLxYtyQyXqHoGcJpkwvC4v.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/diaporama/1793713326416-3.entree-mAhWDolxlpyFhGGeArfjTvHuThvXln.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/diaporama/1793713333149-4.digicode-00mIGv3cPO3kHqWAHfZiLjpXCbO9Dy.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/diaporama/1793713338868-5.-hall-d-entree-3EqPYGlhX6dJgacxdWyNW8dVcCbk1S.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/diaporama/1793713346667-9.femme-de-menage-xBvbBlfBwWR6otDOKr41eUbKnMguzZ.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/diaporama/1793713350621-6.ascenseur-KT2kjRqEa4ER7HKxZ704GMWzLFrifc.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/diaporama/1793714050501-11.cameras-de-surveillence-LuGSEUFk6dWv0R8rNvSNQKQe8S59pN.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/diaporama/1793714066394-10.agent-de-securite-36Fhy0sZYhSeuQcHi5g8yWgz05OaGM.jpg"
+      }
+    ],
     "progress_percent": 2,
     "availability_fr": "8 appartements disponibles",
     "availability_ar": "8 شقق متاحة",
