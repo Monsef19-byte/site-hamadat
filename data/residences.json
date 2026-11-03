@@ -3273,11 +3273,37 @@
     "services": [],
     "quality": [],
     "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
-      "typologies": [],
-      "note_fr": "",
-      "note_ar": ""
+      "intro_fr": "3 typologies — cliquez sur « voir détails » pour les plans disponibles",
+      "intro_ar": "3 أنماط — انقروا على «عرض التفاصيل» للاطلاع على المخططات المتوفرة",
+      "typologies": [
+        {
+          "name_fr": "F3",
+          "name_ar": "F3",
+          "count_fr": "3",
+          "count_ar": "3",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/dispo/0/1793712996785-whatsapp-image-2026-10-19-at-3.47.20-pm-1-oAG3FGQEWpjrkmScIHOLovKRRZoQ3N.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/dispo/0/1793713037598-whatsapp-image-2026-10-19-at-3.47.20-pm-59YiG71NbquKywMqXkp649b3dINMF8.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/dispo/0/1793713064209-whatsapp-image-2026-10-19-at-3.47.19-pm-3-t65Ef1SK9E3DTz4xGWdDE934sHtxOD.jpg"
+          ]
+        },
+        {
+          "name_fr": "F4",
+          "name_ar": "F4",
+          "count_fr": "5",
+          "count_ar": "5",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/dispo/1/1793713103849-whatsapp-image-2026-10-19-at-3.47.19-pm-4-Hc3vaxuamhTwn07tldQzWWZRK3WzDY.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/dispo/1/1793713202635-whatsapp-image-2026-10-19-at-4.07.58-pm-9tFcl2AkYrVxQ9gc4HC3IZpNWZret2.jpg"
+          ]
+        }
+      ],
+      "note_fr": "Notre équipe commerciale vous renseigne sur les biens actuellement disponibles. Contactez-nous.",
+      "note_ar": "فريقنا التجاري في خدمتكم لإطلاعكم على العقارات المتاحة حالياً. تواصلوا معنا."
     },
     "youtube": null,
     "images": {
