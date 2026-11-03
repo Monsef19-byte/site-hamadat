@@ -3022,8 +3022,70 @@
     "key_numbers": [],
     "typologies_fr": "F4, Duplex",
     "typologies_ar": "F4, دوبلكس",
-    "services": [],
-    "quality": [],
+    "services": [
+      {
+        "icon": "shield",
+        "text_fr": "Sécurité 24 h/24",
+        "text_ar": "أمن على مدار الساعة"
+      },
+      {
+        "icon": "lift",
+        "text_fr": "Ascenseurs",
+        "text_ar": "مصاعد"
+      },
+      {
+        "icon": "car",
+        "text_fr": "Parking en sous-sol",
+        "text_ar": "موقف سيارات تحت أرضي"
+      },
+      {
+        "icon": "thermometer",
+        "text_fr": "Climatisation & chauffage centralisés",
+        "text_ar": "تكييف وتدفئة مركزيان"
+      },
+      {
+        "icon": "soundwave",
+        "text_fr": "Isolation thermique & acoustique performante",
+        "text_ar": "عزل حراري وصوتي عالي الأداء"
+      },
+      {
+        "icon": "home",
+        "text_fr": "Domotique personnalisable",
+        "text_ar": "نظام منزل ذكي قابل للتخصيص"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Cuisine entièrement équipée",
+        "text_ar": "مطبخ مجهّز بالكامل"
+      }
+    ],
+    "quality": [
+      {
+        "icon": "sparkles",
+        "text_fr": "Architecture néoclassique élégante",
+        "text_ar": "هندسة معمارية نيوكلاسيكية أنيقة"
+      },
+      {
+        "icon": "award",
+        "text_fr": "Matériaux de construction premium",
+        "text_ar": "مواد بناء فاخرة"
+      },
+      {
+        "icon": "snowflake",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": "تشطيبات راقية"
+      },
+      {
+        "icon": "window",
+        "text_fr": "Fenetres tripple vitrage",
+        "text_ar": "نوافذ بزجاج ثلاثي"
+      },
+      {
+        "icon": "layers",
+        "text_fr": "Marbre italien & parquet naturel",
+        "text_ar": "رخام إيطالي وباركيه طبيعي"
+      }
+    ],
     "dispo": {
       "intro_fr": " cliquez sur « voir détails » pour la fiche technique de chaque typologie",
       "intro_ar": " انقروا على «عرض التفاصيل» للاطلاع على البطاقة التقنية لكل نمط",
