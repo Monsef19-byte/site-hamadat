@@ -2508,11 +2508,32 @@
       }
     ],
     "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
-      "typologies": [],
-      "note_fr": "",
-      "note_ar": ""
+      "intro_fr": "3 typologies — cliquez sur « voir détails » pour la fiche technique de chaque typologie",
+      "intro_ar": "3 أنماط — انقروا على «عرض التفاصيل» للاطلاع على البطاقة التقنية لكل نمط",
+      "typologies": [
+        {
+          "name_fr": "F3",
+          "name_ar": "F3",
+          "count_fr": "5",
+          "count_ar": "5",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/dispo/0/1793700022827-whatsapp-image-2026-10-19-at-1.49.29-pm-1-AVmsGVVDWuH8713OeynozvGO3gR9J2.jpg"
+          ]
+        },
+        {
+          "name_fr": "F4",
+          "name_ar": "F4",
+          "count_fr": "11",
+          "count_ar": "11",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": []
+        }
+      ],
+      "note_fr": "Notre équipe commerciale vous renseigne sur les biens actuellement disponibles. Contactez-nous.",
+      "note_ar": "فريقنا التجاري في خدمتكم لإطلاعكم على العقارات المتاحة حالياً. تواصلوا معنا."
     },
     "youtube": null,
     "images": {
@@ -2522,45 +2543,164 @@
     "diaporama": [
       {
         "file": "",
-        "caption_fr": "",
-        "caption_ar": "",
+        "caption_fr": "Villa Catrina, une résidence haut standing aux Sources\t",
+        "caption_ar": "فيلا كاترينا — إقامة راقية في حي لي سورس",
         "caption_proposed": true,
         "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698626828-villa-catrina-3dQ46m8v8mxcwxrj68VWLwhPR4f8dP.jpg"
       },
       {
         "file": "",
-        "caption_fr": "",
-        "caption_ar": "",
+        "caption_fr": "Une entrée élégante au cachet néoclassique",
+        "caption_ar": "مدخل أنيق بطابع نيوكلاسيكي",
         "caption_proposed": true,
         "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698639679-entree-SRtmfkeJVufzx1utmUDBNOEgSFORVv.jpg"
       },
       {
         "file": "",
-        "caption_fr": "",
-        "caption_ar": "",
+        "caption_fr": "Accès sécurisé par digicode",
+        "caption_ar": "مدخل آمن برمز رقمي",
         "caption_proposed": true,
         "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698633674-digicode-CRCmumyPsy8Pm5cvk1C4M64n4EyPRn.jpg"
       },
       {
         "file": "",
-        "caption_fr": "",
-        "caption_ar": "",
+        "caption_fr": "Hall d’entrée raffiné aux finitions premium",
+        "caption_ar": "بهو مدخل راقٍ بتشطيبات فاخرة",
         "caption_proposed": true,
         "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698651549-hall-d-entree-1Q3kOY8nz7CgWVFuSpEfYjneUL088Z.jpg"
       },
       {
         "file": "",
-        "caption_fr": "",
-        "caption_ar": "",
+        "caption_fr": "Entretien régulier des parties communes",
+        "caption_ar": "صيانة وتنظيف منتظم للأجزاء المشتركة",
         "caption_proposed": true,
         "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698673902-femme-de-menage-2uFYOq0pyyxpjroWI9YUDKOjMS3YXa.jpg"
       },
       {
         "file": "",
-        "caption_fr": "",
-        "caption_ar": "",
+        "caption_fr": "Ascenseur moderne desservant tous les étages",
+        "caption_ar": "مصعد عصري يخدم جميع الطوابق",
         "caption_proposed": true,
         "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698656453-ascenseur-szDHtsGjR6N0Lf8akCTHsgRP4xKIar.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Résidence sécurisée par vidéosurveillance",
+        "caption_ar": "إقامة مؤمَّنة بكاميرات المراقبة",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698723983-cameras-de-surveillance-kbJd9POUnJt4oprEaxiSnVXzWE1fPl.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Agent de sécurité présent sur place",
+        "caption_ar": "حارس أمن متواجد في عين المكان",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698734420-agent-de-securite-12xAcSi1k3MVWjTmWovPnGxEIUDkAP.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Bâche à eau assurant une alimentation continue",
+        "caption_ar": "خزان مياه يضمن تزويداً متواصلاً بالمياه",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698742928-bache-a-eau-TNNyR2BD8N63lEOzIzkHFIHfHnNsVi.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Parking privatif en sous sol",
+        "caption_ar": "موقف سيارات خاص تحت أرضي",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793698748354-parking-wIWh16cOsEcgWYzD3ONzSnXcVm2GWL.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Façade néoclassique",
+        "caption_ar": "واجهة نيوكلاسيكية",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699078510-chatgpt-image-4-juil.-2026-13_52_45-jCjQvIh14CV5IiVXeu92p1zf8KTjA8.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Entrée spacieuse et lumineuse",
+        "caption_ar": "مدخل فسيح ومضيء",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699094767-chatgpt-image-29-sept.-2026-13_56_24-7IUifOcxawqNiAb5SoNiO0h7Q5TfN8.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Séjour lumineux aux volumes généreux",
+        "caption_ar": "صالون مضيء بمساحات فسيحة",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699107336-chatgpt-image-28-sept.-2026-14_39_13-ZHS1JukMhtVLbnkfKZ2CmoNrIKsfC1.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Cuisine entièrement équipée",
+        "caption_ar": "مطبخ مجهّز بالكامل",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699127376-chatgpt-image-28-sept.-2026-14_35_18-Up1WYgYG7m9n56njA0v9rBG68OyPHV.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Balcon aménagé pour profiter de l’extérieur",
+        "caption_ar": "شرفة مهيّأة للاستمتاع بالهواء الطلق",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699139131-chatgpt-image-28-sept.-2026-14_53_29-LuJSpcsZZ1Cam0zj7P4PqQWbMFgYJu.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Chambre raffinée, baignée de lumière naturelle",
+        "caption_ar": "غرفة نوم راقية تغمرها الإضاءة الطبيعية",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699150074-capture-d-ecran-2026-09-29-110832-SyJWOs47d3HBFU8X3PnN6Q6b7AXwdA.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Chambre aux moulures décoratives élégantes",
+        "caption_ar": "غرفة نوم بقوالب زخرفية أنيقة",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699156167-chatgpt-image-29-sept.-2026-14_27_52-Dcfp8FD7t6zJW9VL66ETHxeiKIts4T.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Chambre parentale spacieuse et raffinée",
+        "caption_ar": "غرفة نوم رئيسية فسيحة وراقية",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699164662-chatgpt-image-29-sept.-2026-08_29_41-qaqf7joU7TuSpjBG5jCd2V53iCGI8F.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Chambre parentale avec dressing intégré",
+        "caption_ar": "غرفة نوم رئيسية مع خزانة ملابس مدمجة",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699176940-chatgpt-image-29-sept.-2026-09_23_31-Ieq8zyznOvFQ6AO8COuLLXeBFzS0LO.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Chambre lumineuse et confortable",
+        "caption_ar": "غرفة نوم مضيئة ومريحة",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699187166-chatgpt-image-29-sept.-2026-10_40_53-GqCnxHtFGBTsqmRhLvFARNjYnpUG6n.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "صالون أنيق بمساحات فسيحة",
+        "caption_ar": "صالون أنيق بمساحات فسيحة",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699195122-chatgpt-image-26-sept.-2026-09_31_34-AvxnEAakbtAojqEumsAjZkPdrqdqCM.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Sanitaires aux finitions soignées",
+        "caption_ar": "مرحاض بتشطيبات متقنة",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699199858-chatgpt-image-29-sept.-2026-16_07_29-PIdQKr30XVyTXDkS7SgDBSGEXZ4BpI.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "Salle de bain aux finitions raffinées",
+        "caption_ar": "حمّام بتشطيبات راقية",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/diaporama/1793699203479-chatgpt-image-29-sept.-2026-15_51_11-X0QftfMPI5sGjTd9IGIWNGZawQE9a0.jpg"
       }
     ],
     "progress_percent": 0,
