@@ -3270,8 +3270,65 @@
     "key_numbers": [],
     "typologies_fr": "F3, F4 & Penthouse",
     "typologies_ar": " F3، F4 وبنتهاوس",
-    "services": [],
-    "quality": [],
+    "services": [
+      {
+        "icon": "shield",
+        "text_fr": "Sécurité 24 h/24 & contrôle d'accès",
+        "text_ar": " أمن على مدار الساعة والتحكم في الدخول"
+      },
+      {
+        "icon": "soundwave",
+        "text_fr": "Isolation thermique & acoustique performante",
+        "text_ar": "عزل حراري وصوتي عالي الأداء"
+      },
+      {
+        "icon": "lift",
+        "text_fr": "Ascenseurs",
+        "text_ar": "مصاعد"
+      },
+      {
+        "icon": "home",
+        "text_fr": "Domotique personnalisable",
+        "text_ar": "نظام منزل ذكي قابل للتخصيص"
+      },
+      {
+        "icon": "thermometer",
+        "text_fr": "Climatisation & chauffage centralisés",
+        "text_ar": "تكييف وتدفئة مركزيان"
+      },
+      {
+        "icon": "car",
+        "text_fr": "Parking en sous-sol",
+        "text_ar": "مواقف سيارات في الطابق السفلي"
+      }
+    ],
+    "quality": [
+      {
+        "icon": "window",
+        "text_fr": "Fenetres tripple vitrage",
+        "text_ar": "نوافذ بزجاج ثلاثي"
+      },
+      {
+        "icon": "layers",
+        "text_fr": "Marbre italien & parquet naturel",
+        "text_ar": "رخام إيطالي وباركيه طبيعي"
+      },
+      {
+        "icon": "award",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": "تشطيبات راقية"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Cuisine entièrement équipée",
+        "text_ar": "مطبخ مجهّز بالكامل"
+      },
+      {
+        "icon": "sparkles",
+        "text_fr": "Architecture néoclassique élégante",
+        "text_ar": "عمارة نيوكلاسيكية أنيقة"
+      }
+    ],
     "dispo": {
       "intro_fr": "3 typologies — cliquez sur « voir détails » pour les plans disponibles",
       "intro_ar": "3 أنماط — انقروا على «عرض التفاصيل» للاطلاع على المخططات المتوفرة",
