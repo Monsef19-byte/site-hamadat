@@ -2247,7 +2247,38 @@
         "text_ar": "نظام منزل ذكي قابل للتخصيص"
       }
     ],
-    "quality": [],
+    "quality": [
+      {
+        "icon": "badge",
+        "text_fr": "Conception architecturale contemporaine",
+        "text_ar": "تصميم معماري عصري"
+      },
+      {
+        "icon": "sparkles",
+        "text_fr": "Matériaux de construction premium",
+        "text_ar": ""
+      },
+      {
+        "icon": "building",
+        "text_fr": "Façades néoclassiques élégantes et soignées",
+        "text_ar": ""
+      },
+      {
+        "icon": "window",
+        "text_fr": "Fenetres tripple vitrage",
+        "text_ar": ""
+      },
+      {
+        "icon": "star",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": ""
+      },
+      {
+        "icon": "soundwave",
+        "text_fr": "Isolation thermique et acoustique renforcée",
+        "text_ar": ""
+      }
+    ],
     "dispo": {
       "intro_fr": "",
       "intro_ar": "",
