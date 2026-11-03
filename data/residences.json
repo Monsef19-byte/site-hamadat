@@ -3013,15 +3013,15 @@
     "location_fr": "Said Hamdine, Alger",
     "location_ar": "سعيد حمدين، الجزائر العاصمة",
     "google_maps": "https://maps.app.goo.gl/auuf4RfsT5djsTgw9",
-    "status_fr": "",
-    "status_ar": "",
-    "description_fr": "",
-    "description_ar": "",
-    "why_location_fr": "",
-    "why_location_ar": "",
+    "status_fr": "8 appartements disponibles",
+    "status_ar": "8 شقق متاحة",
+    "description_fr": "Au cœur de Saïd Hamdine, Villa OLIVIA séduit par sa façade néoclassique d'une grande noblesse. Cette résidence confidentielle réunit huit appartements : six F4 et deux duplex aux volumes soignés, où chaque détail a été pensé pour allier raffinement et confort. Le marbre naturel Crema Marfil et le parquet naturel y composent des intérieurs chaleureux et intemporels, au sein d'une adresse qui conjugue prestige et art de vivre à Alger.",
+    "description_ar": "في قلب سعيد حمدين، في حي بئر مراد رايس الراقي، تأسر فيلا أوليفيا الأنظار بواجهتها النيوكلاسيكية الشامخة. تضم هذه الإقامة الحصرية ثماني شقق: ست شقق من نوع F4 وشقتان دوبلكس، بمساحات مدروسة صُمم فيها كل تفصيل ليجمع بين الرقي والراحة. ويمنح الرخام الطبيعي كريما مارفيل والباركيه الطبيعي المكان أجواءً دافئة وخالدة، في عنوان يجمع بين الهيبة وفن العيش في الجزائر العاصمة.",
+    "why_location_fr": "Le choix de Saïd Hamdine s’est imposé naturellement. Situé sur les hauteurs de Bir Mourad Raïs, à deux pas de Hydra, ce quartier résidentiel recherché offre un cadre calme, sécurisé et verdoyant. Sa position centrale permet un accès rapide aux grands axes routiers, aux pôles d’affaires, aux commerces et aux écoles. C’est une adresse discrète et prisée, gage de qualité de vie et de valeur durable.",
+    "why_location_ar": "جاء اختيار سعيد حمدين عن قناعة. فهذا الحي السكني المرغوب، الواقع على مرتفعات بئر مراد رايس وعلى بُعد خطوات من حيدرة، يوفّر إطاراً هادئاً وآمناً وأخضر. ويتيح موقعه المركزي وصولاً سريعاً إلى الطرق الرئيسية ومراكز الأعمال والمحلات والمدارس. إنه عنوان راقٍ ومميّز يضمن جودة الحياة وقيمة عقارية مستدامة.",
     "key_numbers": [],
-    "typologies_fr": "",
-    "typologies_ar": "",
+    "typologies_fr": "F4, Duplex",
+    "typologies_ar": "F4, دوبلكس",
     "services": [],
     "quality": [],
     "dispo": {
@@ -3037,11 +3037,11 @@
       "interieur": []
     },
     "diaporama": [],
-    "progress_percent": null,
-    "availability_fr": "",
-    "availability_ar": "",
+    "progress_percent": 0,
+    "availability_fr": "Cliquez sur « voir détails » pour la fiche technique de chaque typologie",
+    "availability_ar": " انقروا على «عرض التفاصيل» للاطلاع على البطاقة التقنية لكل نمط",
     "avail_open": true,
     "delivered_year": null,
-    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/1793709168710-elegance-parisienne-a-l-angle-de-rue-gRwfvxjmlFA8pTqZpmpy8l1qqeGp2c.jpg"
+    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/1793709516608-elegante-facade-haussmannienne-au-soleil-8UGzBUBlpRwTKZWveaMbWb75KYnOnh.jpg"
   }
 ]
