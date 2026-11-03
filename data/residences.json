@@ -2815,17 +2815,21 @@
           "detail_text_fr": "",
           "detail_text_ar": "",
           "detail_images": [
-            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/dispo/0/1793708566208-whatsapp-image-2026-10-26-at-8.49.51-am-CXy5tlH2iNWtBgaF2raK268qLC0sHt.jpg"
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/dispo/0/1793708566208-whatsapp-image-2026-10-26-at-8.49.51-am-CXy5tlH2iNWtBgaF2raK268qLC0sHt.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/dispo/0/1793708672204-whatsapp-image-2026-10-18-at-2.38.29-pm-OJGcVk9V4Ei4ZLes0TvRR3ixwIMNMU.jpg"
           ]
         },
         {
-          "name_fr": "",
-          "name_ar": "",
-          "count_fr": "à confirmer",
-          "count_ar": "للتأكيد",
+          "name_fr": "F4",
+          "name_ar": "F4",
+          "count_fr": "2",
+          "count_ar": "2",
           "detail_text_fr": "",
           "detail_text_ar": "",
-          "detail_images": []
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/dispo/1/1793708709108-whatsapp-image-2026-10-18-at-2.38.28-pm-C45NrllY1ChMFsVLQ4rEmYK2EoKFzK.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/dispo/1/1793708735694-whatsapp-image-2026-10-18-at-2.40.29-pm-Df8fFuTZzSRT5Z0N42RxRLB1m0USAO.jpg"
+          ]
         }
       ],
       "note_fr": "Notre équipe commerciale vous renseigne sur les biens actuellement disponibles. Contactez-nous.",
