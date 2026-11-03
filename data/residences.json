@@ -2180,5 +2180,92 @@
     "why_location_fr": "Dély Brahim se distingue par son emplacement stratégique et son cadre résidentiel recherché, offrant un équilibre harmonieux entre dynamisme urbain et tranquillité.\n\nSa situation privilégiée, à proximité des commodités et des principaux axes de circulation, en fait une adresse idéale pour ceux qui privilégient confort, accessibilité et qualité de vie.\n\nUne adresse de choix, où l’emplacement devient un véritable art de vivre.",
     "why_location_ar": "تتميز دالي إبراهيم بموقعها الاستراتيجي وطابعها السكني الراقي، حيث تتناغم حيوية المدينة مع هدوء الأحياء السكنية.\n\nكما يمنح موقعها المميز، بالقرب من مختلف المرافق والخدمات والمحاور الرئيسية، بيئة مثالية لمن يبحث عن الراحة وسهولة التنقل وجودة الحياة.\n\nعنوان مميز، حيث يصبح الموقع جزءًا من أسلوب حياة راقٍ.",
     "cover": "residences/les-pyramides/diaporama/08.jpg"
+  },
+  {
+    "id": "agata",
+    "category": "en_cours",
+    "name": "Agata",
+    "name_ar": "أغاتا",
+    "tagline_fr": "L'art de vivre en toute exclusivité",
+    "tagline_ar": "الرقي النيوكلاسيكي في قلب حيدرة",
+    "location_fr": "Hydra, Alger",
+    "location_ar": "حيدرة، الجزائر العاصمة",
+    "google_maps": "https://maps.app.goo.gl/G1DtfTxhhbtaCsQU7",
+    "status_fr": "la résidence est entièrement vendue",
+    "status_ar": "الإقامة مباعة بالكامل",
+    "description_fr": "Située à Hydra, Villa Agata est une résidence ha  néoclassique. Composée de seulement 14 appartements aux finitions premium, elle offre un cadre de vie prestigieux alliant élégance, confort moderne et sécurité, dans l'un des quartiers les plus recherchés d'Alger.",
+    "description_ar": "تقع فيلا أغاتا في حيدرة، وهي مسكن راقٍ مستلهَم من العمارة النيوكلاسيكية. تتألف من 14 شقة فقط بتشطيبات فاخرة، وتوفر إطار حياة مرموقاً يجمع بين الأناقة والراحة العصرية والأمن، في أحد أكثر الأحياء المرغوبة بالجزائر العاصمة.",
+    "why_location_fr": "Le choix de Hydra s’est imposé naturellement. Quartier parmi les plus prisés d’Alger, il offre un cadre calme et verdoyant, une sécurité reconnue et un voisinage de standing. Sa position centrale donne un accès rapide aux pôles d’affaires, commerces et écoles. C’est un emplacement rare, gage de qualité de vie et de valeur durable.",
+    "why_location_ar": "جاء اختيار حيدرة عن قناعة. فهي من أرقى أحياء الجزائر العاصمة وأكثرها طلباً، تتميّز بهدوئها ومساحاتها الخضراء وأمنها ومحيطها الراقي. ويتيح موقعها المركزي وصولاً سريعاً إلى مراكز الأعمال والمحلات والمدارس. إنه موقع نادر يضمن جودة الحياة وقيمة عقارية مستدامة.",
+    "key_numbers": [],
+    "typologies_fr": "F4 ,Duplex, Loft",
+    "typologies_ar": " F4, دوبلكس, لوفت",
+    "services": [
+      {
+        "icon": "award",
+        "text_fr": "Architecture néoclassique élégante",
+        "text_ar": "عمارة نيوكلاسيكية أنيقة"
+      },
+      {
+        "icon": "shield",
+        "text_fr": "Sécurité 24h/24",
+        "text_ar": "أمن على مدار الساعة"
+      },
+      {
+        "icon": "car",
+        "text_fr": "Parking privatif",
+        "text_ar": "موقف سيارات خاص"
+      },
+      {
+        "icon": "closet",
+        "text_fr": "Dressing intégré",
+        "text_ar": "خزانة ملابس مدمجة"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Cuisine entièrement équipée",
+        "text_ar": "مطبخ مجهّز بالكامل"
+      },
+      {
+        "icon": "thermometer",
+        "text_fr": "Climatisation et chauffage centralisés",
+        "text_ar": "تكييف وتدفئة مركزيان"
+      },
+      {
+        "icon": "layers",
+        "text_fr": "Parquet naturel",
+        "text_ar": "باركيه طبيعي"
+      },
+      {
+        "icon": "lift",
+        "text_fr": "Ascenseur",
+        "text_ar": "مصعد"
+      },
+      {
+        "icon": "home",
+        "text_fr": "Domotique personnalisable",
+        "text_ar": "نظام منزل ذكي قابل للتخصيص"
+      }
+    ],
+    "quality": [],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    },
+    "youtube": null,
+    "images": {
+      "principale": [],
+      "interieur": []
+    },
+    "diaporama": [],
+    "progress_percent": 0,
+    "availability_fr": "la résidence est entièrement vendue",
+    "availability_ar": "الإقامة مباعة بالكامل",
+    "avail_open": false,
+    "delivered_year": null,
+    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/agata/1793691519277-chatgpt-image-22-juin-2026-09_09_09-KSeUToCuh6Z3YXaFCownpO7CG2Fk6v.jpg"
   }
 ]
