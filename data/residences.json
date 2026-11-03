@@ -3288,8 +3288,8 @@
       },
       {
         "icon": "home",
-        "text_fr": "Domotique personnalisable",
-        "text_ar": "نظام منزل ذكي قابل للتخصيص"
+        "text_fr": "Jardin & aire de jeux",
+        "text_ar": "حديقة ومساحة ألعاب"
       },
       {
         "icon": "thermometer",
@@ -3327,6 +3327,11 @@
         "icon": "sparkles",
         "text_fr": "Architecture néoclassique élégante",
         "text_ar": "عمارة نيوكلاسيكية أنيقة"
+      },
+      {
+        "icon": "home",
+        "text_fr": "Domotique personnalisable",
+        "text_ar": "نظام منزل ذكي قابل للتخصيص"
       }
     ],
     "dispo": {
