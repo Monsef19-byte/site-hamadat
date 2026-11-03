@@ -3002,5 +3002,46 @@
     "avail_open": true,
     "delivered_year": null,
     "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/1793701820903-chatgpt-image-22-juin-2026-13_20_13-c5vdVRmOthnjfsm1NCzI46qP36OTaJ.jpg"
+  },
+  {
+    "id": "olivia",
+    "category": "en_cours",
+    "name": "Olivia",
+    "name_ar": "أوليفيا",
+    "tagline_fr": "L'art de vivre en toute exclusivité",
+    "tagline_ar": "فن العيش لمن يختار التميّز",
+    "location_fr": "Said Hamdine, Alger",
+    "location_ar": "سعيد حمدين، الجزائر العاصمة",
+    "google_maps": "https://maps.app.goo.gl/auuf4RfsT5djsTgw9",
+    "status_fr": "",
+    "status_ar": "",
+    "description_fr": "",
+    "description_ar": "",
+    "why_location_fr": "",
+    "why_location_ar": "",
+    "key_numbers": [],
+    "typologies_fr": "",
+    "typologies_ar": "",
+    "services": [],
+    "quality": [],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    },
+    "youtube": null,
+    "images": {
+      "principale": [],
+      "interieur": []
+    },
+    "diaporama": [],
+    "progress_percent": null,
+    "availability_fr": "",
+    "availability_ar": "",
+    "avail_open": true,
+    "delivered_year": null,
+    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/1793709168710-elegance-parisienne-a-l-angle-de-rue-gRwfvxjmlFA8pTqZpmpy8l1qqeGp2c.jpg"
   }
 ]
