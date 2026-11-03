@@ -2280,11 +2280,39 @@
       }
     ],
     "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
-      "typologies": [],
-      "note_fr": "",
-      "note_ar": ""
+      "intro_fr": "Nos disponibilités sont actualisées régulièrement. Contactez notre équipe commerciale pour connaître les biens disponibles et obtenir tous les détails.",
+      "intro_ar": "يتم تحديث التوفّر بشكل منتظم. تواصلوا مع فريقنا التجاري لمعرفة العقارات المتاحة والحصول على كل التفاصيل.",
+      "typologies": [
+        {
+          "name_fr": "F4",
+          "name_ar": "F4",
+          "count_fr": "0",
+          "count_ar": "0",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": []
+        },
+        {
+          "name_fr": "Duplex",
+          "name_ar": "دوبلكس\t",
+          "count_fr": "0",
+          "count_ar": "0",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": []
+        },
+        {
+          "name_fr": "Loft",
+          "name_ar": "لوفت",
+          "count_fr": "0",
+          "count_ar": "0",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": []
+        }
+      ],
+      "note_fr": "Nous vous informons que tous les appartements de cette résidence ont été vendus. Aucun logement n’est actuellement disponible à la vente.",
+      "note_ar": "نعلمكم أن جميع شقق هذه الإقامة قد تم بيعها بالكامل، ولا تتوفر حاليًا أي شقق للبيع"
     },
     "youtube": null,
     "images": {
