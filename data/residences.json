@@ -2806,7 +2806,17 @@
     "dispo": {
       "intro_fr": "4 typologies — cliquez sur « voir détails » pour la fiche technique de chaque typologie",
       "intro_ar": "4 أنماط — انقروا على «عرض التفاصيل» للاطلاع على البطاقة التقنية لكل نمط",
-      "typologies": [],
+      "typologies": [
+        {
+          "name_fr": "F3",
+          "name_ar": "F3",
+          "count_fr": "2",
+          "count_ar": "2",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": []
+        }
+      ],
       "note_fr": "Notre équipe commerciale vous renseigne sur les biens actuellement disponibles. Contactez-nous.",
       "note_ar": "فريقنا التجاري في خدمتكم لإطلاعكم على العقارات المتاحة حالياً. تواصلوا معنا."
     },
