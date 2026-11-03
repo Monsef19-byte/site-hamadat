@@ -2418,5 +2418,45 @@
     "avail_open": false,
     "delivered_year": null,
     "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/agata/1793691519277-chatgpt-image-22-juin-2026-09_09_09-KSeUToCuh6Z3YXaFCownpO7CG2Fk6v.jpg"
+  },
+  {
+    "id": "catrina",
+    "category": "en_cours",
+    "name": "Catrina",
+    "name_ar": "كاترينا",
+    "tagline_fr": "L'art de vivre en toute exclusivité",
+    "tagline_ar": "عنوان استثنائي ببئر مراد رايس",
+    "location_fr": "Bir Mourad Raïs, Alger",
+    "location_ar": "بئر مراد رايس، الجزائر العاصمة",
+    "google_maps": "https://maps.app.goo.gl/UwkdYU6tK5ntmAAK6",
+    "status_fr": "",
+    "status_ar": "",
+    "description_fr": "",
+    "description_ar": "",
+    "why_location_fr": "",
+    "why_location_ar": "",
+    "key_numbers": [],
+    "typologies_fr": "",
+    "typologies_ar": "",
+    "services": [],
+    "quality": [],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    },
+    "youtube": null,
+    "images": {
+      "principale": [],
+      "interieur": []
+    },
+    "diaporama": [],
+    "progress_percent": null,
+    "availability_fr": "",
+    "availability_ar": "",
+    "avail_open": true,
+    "delivered_year": null
   }
 ]
