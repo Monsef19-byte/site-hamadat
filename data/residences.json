@@ -3025,18 +3025,170 @@
     "services": [],
     "quality": [],
     "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
-      "typologies": [],
-      "note_fr": "",
-      "note_ar": ""
+      "intro_fr": " cliquez sur « voir détails » pour la fiche technique de chaque typologie",
+      "intro_ar": " انقروا على «عرض التفاصيل» للاطلاع على البطاقة التقنية لكل نمط",
+      "typologies": [
+        {
+          "name_fr": "F4",
+          "name_ar": "F4",
+          "count_fr": "6",
+          "count_ar": "6",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/dispo/0/1793710723911-whatsapp-image-2026-10-19-at-3.47.19-pm-2-ZeFyItbkS5yDxam34xzdCjdwpsUUYF.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/dispo/0/1793710734864-whatsapp-image-2026-10-19-at-3.47.18-pm-bdzss8U3WyYOcWuk4TLwZjHlQedFZx.jpg"
+          ]
+        },
+        {
+          "name_fr": "Duplex : F5",
+          "name_ar": "دوبلكس : F5",
+          "count_fr": "2",
+          "count_ar": "2",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/dispo/1/1793710806909-whatsapp-image-2026-10-19-at-3.47.19-pm-1-Q1V4bkwUDu6ew8wMTWKqhENtUxLKjw.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/dispo/1/1793710817445-whatsapp-image-2026-10-19-at-3.47.19-pm-RvFFLtE4KzrYU6fHiqjzQj3Dg8zvUz.jpg"
+          ]
+        }
+      ],
+      "note_fr": "Notre équipe commerciale vous renseigne sur les biens actuellement disponibles. Contactez-nous.",
+      "note_ar": "فريقنا التجاري في خدمتكم لإطلاعكم على العقارات المتاحة حالياً. تواصلوا معنا."
     },
     "youtube": null,
     "images": {
       "principale": [],
       "interieur": []
     },
-    "diaporama": [],
+    "diaporama": [
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710426387-elegance-parisienne-sous-lumiere-doree_le_upscale_prime_x4-zxVHfRtx5iK1TWTHyoGJo8JDpQe70A.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710431336-elegance-neoclassique-au-coin-de-rue-6goR0g7yP6tjWUzSbH4HrZIzUgjwnU.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710437399-residence-olivia-elegance-parisienne-6vt99ZlLiWCB4kwkT4Df7TCMLtqGUL.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710448643-entree-XG4RH3KSnXrljidsF9mhI5jCneFnKt.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710453933-digicode-OoDCzkD59s5FZGDNErpdI32awagofW.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710461503-hall-d-entree-1nak2SeK7qr1IcoBihQWmgRk9cEMQB.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710468995-femme-de-menage-2-XJg4Ha1OH4AJ470elR7u18RPsIedgs.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710477792-ascenseur-6iTAc0lQ260oLwVA0oV59xC3GhgCWV.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710490255-cameras-de-surveillance-fwewtRehvAuD0qsr5h3HrFpz8gBjxI.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710499295-agent-de-securite-HZHlw1OzyVtJM1cvz4R4yPfUkhXIOv.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710507469-bache-a-eau-mntOk3WijhGz952DwUnxbkax9ZYyEh.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710513575-parking-r1h5pj6sJoQ1vLwaX0ezepTIyO5mzs.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710529573-salon-beige-chaleureux-et-elegant-PYOYbqqeOjT0xwzSYLmxAJhS3QdaWv.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710533534-salon-ouvert-beige-et-lumiere-mediterraneenne-AY5ODRnkMkfN0B2qT8YzLoEPWTT2PE.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710543067-master-bedroom-2-uSiq03kn7p39tPUzNxLlj1FyhTpkLp.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710548523-chatgpt-image-19-aout-2026-09_40_12-IcVT6XVCLVd3h1zunFrblDBvZULPi6.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710566898-suite-parentalae-3-nDO7j4q2V0RkjsX3BC8DsboGv0RKHX.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/diaporama/1793710574055-chambre-elegante-aux-tons-chaleureux-YUUJ6kJzsLUZsGpL2zsO0PICeWPFJm.jpg"
+      }
+    ],
     "progress_percent": 0,
     "availability_fr": "Cliquez sur « voir détails » pour la fiche technique de chaque typologie",
     "availability_ar": " انقروا على «عرض التفاصيل» للاطلاع على البطاقة التقنية لكل نمط",
