@@ -2438,8 +2438,75 @@
     "key_numbers": [],
     "typologies_fr": "F3، F4، F5",
     "typologies_ar": "F3, F4, F5",
-    "services": [],
-    "quality": [],
+    "services": [
+      {
+        "icon": "building",
+        "text_fr": "Galerie commerciale",
+        "text_ar": "رواق تجاري"
+      },
+      {
+        "icon": "thermometer",
+        "text_fr": "Climatisation & chauffage centralisés",
+        "text_ar": "\tتكييف وتدفئة مركزيان"
+      },
+      {
+        "icon": "lift",
+        "text_fr": "Ascenseurs",
+        "text_ar": "مصاعد"
+      },
+      {
+        "icon": "soundwave",
+        "text_fr": "Isolation thermique & acoustique performante",
+        "text_ar": "عزل حراري وصوتي عالي الأداء"
+      },
+      {
+        "icon": "car",
+        "text_fr": "Parking en sous-sol",
+        "text_ar": "\tموقف سيارات تحت أرضي"
+      },
+      {
+        "icon": "shield",
+        "text_fr": "Sécurité 24 h/24",
+        "text_ar": "أمن على مدار الساعة"
+      },
+      {
+        "icon": "home",
+        "text_fr": "Domotique personnalisable",
+        "text_ar": "\tنظام منزل ذكي قابل للتخصيص"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Cuisine entièrement équipée",
+        "text_ar": "مطبخ مجهّز بالكامل"
+      }
+    ],
+    "quality": [
+      {
+        "icon": "check-circle",
+        "text_fr": "Architecture néoclassique élégante",
+        "text_ar": ""
+      },
+      {
+        "icon": "check-circle",
+        "text_fr": "Marbre italien & parquet naturel",
+        "text_ar": ""
+      },
+      {
+        "icon": "check-circle",
+        "text_fr": "Matériaux de construction premium",
+        "text_ar": ""
+      },
+      {
+        "icon": "check-circle",
+        "text_fr": "Fenetres tripple vitrage",
+        "text_ar": ""
+      },
+      {
+        "icon": "check-circle",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": ""
+      }
+    ],
     "dispo": {
       "intro_fr": "",
       "intro_ar": "",
