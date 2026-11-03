@@ -2814,6 +2814,17 @@
           "count_ar": "2",
           "detail_text_fr": "",
           "detail_text_ar": "",
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/dispo/0/1793708566208-whatsapp-image-2026-10-26-at-8.49.51-am-CXy5tlH2iNWtBgaF2raK268qLC0sHt.jpg"
+          ]
+        },
+        {
+          "name_fr": "",
+          "name_ar": "",
+          "count_fr": "à confirmer",
+          "count_ar": "للتأكيد",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
           "detail_images": []
         }
       ],
