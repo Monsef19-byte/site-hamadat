@@ -3250,5 +3250,46 @@
     "avail_open": true,
     "delivered_year": null,
     "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/olivia/1793709516608-elegante-facade-haussmannienne-au-soleil-8UGzBUBlpRwTKZWveaMbWb75KYnOnh.jpg"
+  },
+  {
+    "id": "christina",
+    "category": "en_cours",
+    "name": "Christina",
+    "name_ar": "كريستينا",
+    "tagline_fr": "L'art de vivre en toute exclusivité",
+    "tagline_ar": "التوازن المثالي بين الأناقة والراحة والتراث",
+    "location_fr": "Hydra, Alger",
+    "location_ar": "حيدرة، الجزائر العاصمة",
+    "google_maps": "https://maps.app.goo.gl/MHLaiEBaEvB2WaM76",
+    "status_fr": "8 appartements disponibles",
+    "status_ar": "8 شقق متاحة",
+    "description_fr": "Villa Christina est une résidence haut standing située au cœur d'Hydra, l'une des adresses les plus prisées d'Alger. Composée de deux blocs résidentiels et de seulement 22 appartements, elle offre un cadre de vie harmonieux alliant élégance architecturale, confort moderne et prestations premium. Pensée pour répondre aux exigences des familles comme des investisseurs, Villa Christina propose des espaces de vie raffinés dans un environnement sécurisé et valorisant.",
+    "description_ar": "فيلا كريستينا مسكن راقٍ يقع في قلب حيدرة، إحدى أرقى عناوين الجزائر العاصمة. تتألف من كتلتين سكنيتين و22 شقة فقط، وتوفر إطار حياة منسجماً يجمع بين الأناقة المعمارية والراحة العصرية والخدمات الفاخرة. مصمَّمة لتلبية متطلبات العائلات والمستثمرين على حد سواء، تقترح فيلا كريستينا فضاءات معيشية راقية في بيئة آمنة تُثمّن استثماركم.",
+    "why_location_fr": "Hydra s’est imposé comme une évidence pour Villa Christina. Quartier résidentiel parmi les plus prestigieux d’Alger, il offre un environnement calme, sûr et verdoyant, entouré d’ambassades et de belles demeures. Sa situation centrale met à portée de main écoles, commerces et pôles d’affaires, un atout précieux pour les familles. Pour les investisseurs, c’est une adresse rare dont la valeur ne cesse de s’affirmer.",
+    "why_location_ar": "فرضت حيدرة نفسها كخيار بديهي لفيلا كريستينا. فهي من أرقى الأحياء السكنية في الجزائر العاصمة، تتميّز بمحيط هادئ وآمن وأخضر، تحيط به السفارات والإقامات الراقية. ويضع موقعها المركزي المدارس والمحلات ومراكز الأعمال في متناول اليد، وهي ميزة ثمينة للعائلات. أما بالنسبة للمستثمرين، فهي عنوان نادر تتعزّز قيمته باستمرار.",
+    "key_numbers": [],
+    "typologies_fr": "F3, F4 & Penthouse",
+    "typologies_ar": " F3، F4 وبنتهاوس",
+    "services": [],
+    "quality": [],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    },
+    "youtube": null,
+    "images": {
+      "principale": [],
+      "interieur": []
+    },
+    "diaporama": [],
+    "progress_percent": 2,
+    "availability_fr": "8 appartements disponibles",
+    "availability_ar": "8 شقق متاحة",
+    "avail_open": true,
+    "delivered_year": null,
+    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/1793712291398-chatgpt-image-23-juin-2026-08_32_43-fHEh4Dt419UpTgl0m0J2xLnAN7LWRm.jpg"
   }
 ]
