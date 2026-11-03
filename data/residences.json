@@ -2744,8 +2744,65 @@
     "key_numbers": [],
     "typologies_fr": "F3, F4, F5 & Penthouse",
     "typologies_ar": "F3، F4، F5 وبنتهاوس",
-    "services": [],
-    "quality": [],
+    "services": [
+      {
+        "icon": "car",
+        "text_fr": "Parking en sous-sol",
+        "text_ar": "مواقف سيارات في الطابق السفلي"
+      },
+      {
+        "icon": "shield",
+        "text_fr": "Sécurité 24 h/24 & contrôle d'accès",
+        "text_ar": "أمن على مدار الساعة والتحكم في الدخول"
+      },
+      {
+        "icon": "soundwave",
+        "text_fr": "Isolation thermique & acoustique performante",
+        "text_ar": "عزل حراري وصوتي عالي الأداء"
+      },
+      {
+        "icon": "thermometer",
+        "text_fr": "Climatisation & chauffage centralisés",
+        "text_ar": "تكييف وتدفئة مركزيان"
+      },
+      {
+        "icon": "lift",
+        "text_fr": "Ascenseurs",
+        "text_ar": "مصاعد"
+      },
+      {
+        "icon": "home",
+        "text_fr": "Domotique personnalisable",
+        "text_ar": "نظام منزل ذكي قابل للتخصيص"
+      }
+    ],
+    "quality": [
+      {
+        "icon": "sparkles",
+        "text_fr": "Architecture néoclassique élégante",
+        "text_ar": "عمارة نيوكلاسيكية أنيقة"
+      },
+      {
+        "icon": "award",
+        "text_fr": "Marbre italien & parquet naturel",
+        "text_ar": "رخام إيطالي وباركيه طبيعي"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Cuisine entièrement équipée",
+        "text_ar": "مطبخ مجهّز بالكامل"
+      },
+      {
+        "icon": "window",
+        "text_fr": "Fenetres tripple vitrage",
+        "text_ar": "نوافذ بزجاج ثلاثي"
+      },
+      {
+        "icon": "snowflake",
+        "text_fr": "Finitions haut de gamme",
+        "text_ar": "تشطيبات راقية"
+      }
+    ],
     "dispo": {
       "intro_fr": "",
       "intro_ar": "",
@@ -2758,7 +2815,162 @@
       "principale": [],
       "interieur": []
     },
-    "diaporama": [],
+    "diaporama": [
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793707937709-chatgpt-image-4-juil.-2026-09_43_53-CaNYmq05BCTHJaFqGhAe4ERK2GuHuf.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793707951460-entree-IyDiXXjTpaPdsPH4gmiV8Zk8D9MttH.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793707956956-digicode-JExRKIxiGK1O7FFXOcICtEPUId2JM7.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793707965378-hall-d-entree-pLTIegSAoDFxP9jL5bfdeSkMLdUaeP.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793707972022-femme-de-menage-6E8KJmYPG6WyNL4gBG6B5uXPYVP1Wz.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793707977362-ascenseur-AaOctU9sw2lRHmrf0mwSlEBe9U3Awt.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793707982257-camera-de-surveillence-w5GBuJnZQIGl8zRqOQjjpN2Wup4aNX.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793707990146-agent-de-securite-AvVPFaYRl7tfjKyzJnhKprzVdDtLPH.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708014286-bache-a-eau-yivnR0eLr4O5tjUK8LtdHIV2rFJXHI.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708021386-parking-iYIvNOY060JXJGA38PfhqGoQYUZIBg.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708076981-hall-d-entree-cuisine-Jr0TBR3VXDBlSg8CUR7l9CBCOLcgWH.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708083453-chatgpt-image-12-sept.-2026-16_13_59-tPnx7t1GSPDVsJL943X0MRY3L5swiF.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708093096-sejour-cuisine-cHXN1XkVHXcVIoyDYIzPS2PuRFlN61.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708102520-cuisine-vvgsiJ6LZJlH0ZyFWLtrVBbrDSyCtq.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708115154-chambre-2-.1-0GVtNEOyDhVADPVymZhKf1kTYu8bnc.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708144465-chatgpt-image-10-sept.-2026-15_26_01-gHOBv1cUPCPx5pH1QaQrekDhrheVPe.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708159393-balcon-02-yjIqWTeGqFsGUztdJu1xJ6KTVHMypU.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708168914-balcon-7ByQEpbpixC1zPVlrP9lDwVtjEJj5Z.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708229380-chatgpt-image-5-sept.-2026-09_32_56-mosK9NcL2m6Qj0hw2h6u4CKHNJiAhe.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708236636-chatgpt-image-5-sept.-2026-09_09_57-mKceYbFTt7M56rET6TM7yzxXGwObvx.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708250750-suite-parentale-3-27EZ68R7nLrZaJCyvetdE7K4iOvLTh.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/veronica/diaporama/1793708272953-wc-jhFpjiHX2DS8m1jVW4Lo4Ad68uEBOS.jpg"
+      }
+    ],
     "progress_percent": 50,
     "availability_fr": "Derniers appartements disponibles, ne tardez pas",
     "availability_ar": "آخر الشقق المتاحة، لا تفوّتوا الفرصة",
