@@ -2529,6 +2529,19 @@
           "count_ar": "11",
           "detail_text_fr": "",
           "detail_text_ar": "",
+          "detail_images": [
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/dispo/1/1793700143742-whatsapp-image-2026-10-19-at-1.49.30-pm-FUqDc5PG6TXD0WhJmZ2MQVZXFHAIPb.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/dispo/1/1793700154427-whatsapp-image-2026-10-19-at-1.49.29-pm-2-epC5VNBrxwpgX5rnByAc7HdWKxOVk9.jpg",
+            "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/catrina/dispo/1/1793700169411-whatsapp-image-2026-10-19-at-1.49.29-pm-ZBukwWaloFmoXUcrjgPj8Ichj4b6M5.jpg"
+          ]
+        },
+        {
+          "name_fr": "F5",
+          "name_ar": "F5",
+          "count_fr": "4",
+          "count_ar": "4",
+          "detail_text_fr": "",
+          "detail_text_ar": "",
           "detail_images": []
         }
       ],
