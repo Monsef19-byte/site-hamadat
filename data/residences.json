@@ -2804,11 +2804,11 @@
       }
     ],
     "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
+      "intro_fr": "4 typologies — cliquez sur « voir détails » pour la fiche technique de chaque typologie",
+      "intro_ar": "4 أنماط — انقروا على «عرض التفاصيل» للاطلاع على البطاقة التقنية لكل نمط",
       "typologies": [],
-      "note_fr": "",
-      "note_ar": ""
+      "note_fr": "Notre équipe commerciale vous renseigne sur les biens actuellement disponibles. Contactez-nous.",
+      "note_ar": "فريقنا التجاري في خدمتكم لإطلاعكم على العقارات المتاحة حالياً. تواصلوا معنا."
     },
     "youtube": null,
     "images": {
