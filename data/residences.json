@@ -3566,13 +3566,33 @@
     "quality": [
       {
         "icon": "check-circle",
-        "text_fr": "",
-        "text_ar": ""
+        "text_fr": "Espace prêt à l’exploitation",
+        "text_ar": "مساحة جاهزة للاستغلال"
       },
       {
         "icon": "check-circle",
-        "text_fr": "",
-        "text_ar": ""
+        "text_fr": "Acte notarié & livret foncier",
+        "text_ar": "عقد موثق ودفتر عقاري"
+      },
+      {
+        "icon": "droplet",
+        "text_fr": "Sanitaires",
+        "text_ar": "دورة مياه"
+      },
+      {
+        "icon": "utensils",
+        "text_fr": "Kitchenette aménagée",
+        "text_ar": "مطبخ صغير مهيّأ"
+      },
+      {
+        "icon": "grid",
+        "text_fr": "Deux bureaux indépendants",
+        "text_ar": "مكتبان مستقلان"
+      },
+      {
+        "icon": "users",
+        "text_fr": "Réception & salle d’attente",
+        "text_ar": "مكتب استقبال وقاعة انتظار"
       }
     ],
     "dispo": {
