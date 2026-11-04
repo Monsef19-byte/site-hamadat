@@ -3506,5 +3506,46 @@
     "avail_open": true,
     "delivered_year": null,
     "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/christina/1793712291398-chatgpt-image-23-juin-2026-08_32_43-fHEh4Dt419UpTgl0m0J2xLnAN7LWRm.jpg"
+  },
+  {
+    "id": "locaux-commerciaux-",
+    "category": "livre",
+    "name": "Locaux commerciaux",
+    "name_ar": "مكاتب ومحلات مهنية",
+    "tagline_fr": "Bureaux et locaux professionnels à Saïd Hamdine, Alger : un emplacement central et prestigieux pour développer votre activité.",
+    "tagline_ar": "مكاتب وفضاءات مهنية في سعيد حمدين بالجزائر العاصمة: موقع مركزي ومرموق لتطوير نشاطكم.",
+    "location_fr": "Saïd Hamdine, Bir Mourad Raïs, Alger",
+    "location_ar": "سعيد حمدين، بئر مراد رايس، الجزائر العاصمة",
+    "google_maps": "https://maps.app.goo.gl/hVWPfCggCvL2L2688",
+    "status_fr": "Plus que 5 espaces professionnels disponibles",
+    "status_ar": "5 مساحات مهنية متبقية فقط",
+    "description_fr": "Hamadat Promotion Immobilière vous propose des espaces professionnels de 60 m², prêts à l’exploitation, situés directement en face du tribunal de Saïd Hamdine. Pensés pour les professions libérales, ils comprennent une réception, une salle d’attente, deux bureaux, une kitchenette et des sanitaires. Ascenseur, climatisation intégrée, internet et téléphone, vidéosurveillance, détection incendie et gardiennage assurent confort et sécurité au quotidien. Biens vendus avec acte notarié et livret foncier.",
+    "description_ar": "تقدم لكم Hamadat Promotion Immobilière مساحات مهنية بمساحة 60 م²، جاهزة للاستغلال، تقع مقابل محكمة سعيد حمدين مباشرة. صُممت خصيصاً للمهن الحرة، وتضم مكتب استقبال وقاعة انتظار ومكتبين ومطبخاً صغيراً ودورة مياه. ويضمن المصعد والتكييف المدمج والإنترنت والهاتف وكاميرات المراقبة ونظام كشف الحرائق والحراسة الراحة والأمان يومياً. عقارات بعقد موثق ودفتر عقاري.",
+    "why_location_fr": "Situés face au tribunal de Saïd Hamdine, ces bureaux offrent une visibilité et une proximité idéales pour les avocats, notaires et autres professions libérales. Le quartier bénéficie d’un accès rapide à l’autoroute, de la proximité immédiate des administrations, d’un parking public et de l’Université d’Alger 1 – Faculté de Droit. Un emplacement stratégique pour recevoir vos clients et développer votre activité.",
+    "why_location_ar": "تقع هذه المكاتب مقابل محكمة سعيد حمدين، ما يمنحها حضوراً وقرباً مثاليين للمحامين والموثقين وأصحاب المهن الحرة. ويستفيد الحي من سهولة الوصول إلى الطريق السريع، والقرب المباشر من الإدارات وموقف عمومي للسيارات وجامعة الجزائر 1 – كلية الحقوق. موقع استراتيجي لاستقبال زبائنكم وتطوير نشاطكم.",
+    "key_numbers": [],
+    "typologies_fr": "Bureau 60 m²",
+    "typologies_ar": "مكتب 60 م²",
+    "services": [],
+    "quality": [],
+    "dispo": {
+      "intro_fr": "",
+      "intro_ar": "",
+      "typologies": [],
+      "note_fr": "",
+      "note_ar": ""
+    },
+    "youtube": null,
+    "images": {
+      "principale": [],
+      "interieur": []
+    },
+    "diaporama": [],
+    "progress_percent": null,
+    "availability_fr": "Plus que 5 espaces professionnels disponibles",
+    "availability_ar": "5 مساحات مهنية متبقية فقط",
+    "avail_open": true,
+    "delivered_year": null,
+    "cover": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/locaux-commerciaux/1793780630697-image-chatgpt-27-sept.-2026-10_15_03-gfOh19ePIZJf3sfOsQ50tFzSg59tft.jpg"
   }
 ]
