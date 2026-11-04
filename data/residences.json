@@ -3526,8 +3526,55 @@
     "key_numbers": [],
     "typologies_fr": "Bureau 60 m²",
     "typologies_ar": "مكتب 60 م²",
-    "services": [],
-    "quality": [],
+    "services": [
+      {
+        "icon": "droplet",
+        "text_fr": "Eau et électricité",
+        "text_ar": "ماء وكهرباء"
+      },
+      {
+        "icon": "shield",
+        "text_fr": "Gardiennage",
+        "text_ar": "حراسة"
+      },
+      {
+        "icon": "zap",
+        "text_fr": "Système de détection incendie",
+        "text_ar": "نظام كشف وإنذار ضد الحرائق"
+      },
+      {
+        "icon": "video",
+        "text_fr": "Vidéosurveillance",
+        "text_ar": "كاميرات مراقبة"
+      },
+      {
+        "icon": "globe",
+        "text_fr": "Internet et téléphone",
+        "text_ar": "إنترنت وهاتف"
+      },
+      {
+        "icon": "thermometer",
+        "text_fr": "Climatisation intégrée",
+        "text_ar": "تكييف مدمج"
+      },
+      {
+        "icon": "lift",
+        "text_fr": "Ascenseur",
+        "text_ar": "مصعد"
+      }
+    ],
+    "quality": [
+      {
+        "icon": "check-circle",
+        "text_fr": "",
+        "text_ar": ""
+      },
+      {
+        "icon": "check-circle",
+        "text_fr": "",
+        "text_ar": ""
+      }
+    ],
     "dispo": {
       "intro_fr": "Plus que 5 espaces professionnels de 60 m² disponibles face au tribunal de Saïd Hamdine. Consultez le détail ci-dessous et réservez votre visite.",
       "intro_ar": "5 مساحات مهنية فقط بمساحة 60 م² متبقية مقابل محكمة سعيد حمدين. اطّلعوا على التفاصيل أدناه واحجزوا موعد زيارتكم.",
