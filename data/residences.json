@@ -3529,18 +3529,99 @@
     "services": [],
     "quality": [],
     "dispo": {
-      "intro_fr": "",
-      "intro_ar": "",
-      "typologies": [],
-      "note_fr": "",
-      "note_ar": ""
+      "intro_fr": "Plus que 5 espaces professionnels de 60 m² disponibles face au tribunal de Saïd Hamdine. Consultez le détail ci-dessous et réservez votre visite.",
+      "intro_ar": "5 مساحات مهنية فقط بمساحة 60 م² متبقية مقابل محكمة سعيد حمدين. اطّلعوا على التفاصيل أدناه واحجزوا موعد زيارتكم.",
+      "typologies": [
+        {
+          "name_fr": "Bureau 60 m²",
+          "name_ar": "مكتب 60 م²",
+          "count_fr": "5",
+          "count_ar": "5",
+          "detail_text_fr": "Espace prêt à l’exploitation comprenant une réception, une salle d’attente, deux bureaux, une kitchenette et des sanitaires. Climatisation intégrée, internet et téléphone. Acte notarié et livret foncier.",
+          "detail_text_ar": "مساحة جاهزة للاستغلال تضم مكتب استقبال وقاعة انتظار ومكتبين ومطبخاً صغيراً ودورة مياه. تكييف مدمج، إنترنت وهاتف. عقد موثق ودفتر",
+          "detail_images": []
+        }
+      ],
+      "note_fr": "Disponibilité limitée. Réservez votre visite dès maintenant.",
+      "note_ar": "عدد محدود. احجزوا موعد زيارتكم الآن."
     },
     "youtube": null,
     "images": {
       "principale": [],
       "interieur": []
     },
-    "diaporama": [],
+    "diaporama": [
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/locaux-commerciaux/diaporama/1793784396750-image-chatgpt-27-sept.-2026-10_15_03-i5JzhXYMyxlyaUg7Vj5oFr5PGamRbD.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/locaux-commerciaux/diaporama/1793784403867-img_0708-vCO0cyJpQJDQZ7KmXRgLnPgEaPAbKe.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/locaux-commerciaux/diaporama/1793784411282-image-chatgpt-27-sept.-2026-10_24_12-XZ6bvTmz7WPjt99BUv5EHSARx2lDcp.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/locaux-commerciaux/diaporama/1793784429798-image-chatgpt-27-sept.-2026-10_15_23-pu6T9ePwr0aSSIjDP0JWbETC7D1c0S.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/locaux-commerciaux/diaporama/1793784436237-image-chatgpt-27-sept.-2026-10_15_46-U6V83h9QoFB1xpix21liWoPTPPhoyL.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/locaux-commerciaux/diaporama/1793784445970-image-chatgpt-27-sept.-2026-10_16_03-TcYKt0QCR5omcQwXtaMRUx3uTDuAXv.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/locaux-commerciaux/diaporama/1793784453708-image-chatgpt-27-sept.-2026-10_16_55-odRUveYV6K6bksBkKb0Z2vyDYMG8wT.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/locaux-commerciaux/diaporama/1793784466076-image-chatgpt-27-sept.-2026-10_16_34-MdjcfiDqYWlwsxXW1zDmdJGafnuqYl.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/locaux-commerciaux/diaporama/1793784474566-image-chatgpt-27-sept.-2026-10_19_48-5fma3kvqOsbL2dw8BBxoy0xE6Ru0j1.jpg"
+      },
+      {
+        "file": "",
+        "caption_fr": "",
+        "caption_ar": "",
+        "caption_proposed": true,
+        "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/residences/locaux-commerciaux/diaporama/1793784481565-image-chatgpt-27-sept.-2026-10_15_36-ZJ27jor8Fz2mgHbfNqQx3aGcO3dYCo.jpg"
+      }
+    ],
     "progress_percent": null,
     "availability_fr": "Plus que 5 espaces professionnels disponibles",
     "availability_ar": "5 مساحات مهنية متبقية فقط",
