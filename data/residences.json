@@ -110,7 +110,7 @@
     "progress_percent": 60,
     "availability_fr": "Dernières opportunités — 3 appartements disponibles",
     "availability_ar": "آخر الفرص — 3 شقق متاحة",
-    "avail_open": false,
+    "avail_open": true,
     "services": [
       {
         "icon": "lift",
