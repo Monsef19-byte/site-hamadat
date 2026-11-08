@@ -194,9 +194,22 @@
         "label_ar": "الإقامة المرغوبة",
         "type": "select",
         "options": [
+          "Orea",
           "Dahlia",
           "Elysia",
-          "Orea"
+          "Lumalac",
+          "Les Trois Princes",
+          "Les Hirondelles",
+          "La Lune",
+          "Vertdalya",
+          "Marmo",
+          "Les Pyramides",
+          "Agata",
+          "Catrina",
+          "Veronica",
+          "Olivia",
+          "Christina",
+          "Locaux commerciaux"
         ],
         "required": true
       }
