@@ -173,5 +173,29 @@
     "tagline_ar": "جناحٌ صُمّم ليمنحكم السكينة.",
     "badges": [],
     "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/libre-8q5o13/1791107701062-chatgpt-image-14-juil.-2026-13_28_52-2hTSqfngP6IHodAYzKKj4EHKHy8rzO.jpg"
+  },
+  {
+    "residence_id": null,
+    "free_id": "libre-bnto6o",
+    "name": "Résidence Agata",
+    "name_ar": "إقامة أغاتا",
+    "location_fr": "Hydra, Alger",
+    "location_ar": "حيدرة، الجزائر العاصمة    ",
+    "tagline_fr": "L'art de vivre néoclassique",
+    "tagline_ar": "فنّ العيش النيوكلاسيكي",
+    "badges": [],
+    "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/libre-bnto6o/1794228338019-chatgpt-image-13-aout-2026-13_47_36-F9VHhsLFulpHqEo91359xLR7LBfSwz.jpg"
+  },
+  {
+    "residence_id": null,
+    "free_id": "libre-01c5i7",
+    "name": "Résidence Catrina",
+    "name_ar": "إقامة كاترينا",
+    "location_fr": "Les Sources, Bir Mourad Raïs",
+    "location_ar": "لي سورس، بئر مراد رايس",
+    "tagline_fr": "Noblesse des matériaux, élégance intemporelle",
+    "tagline_ar": "نُبل المواد وأناقة خالدة",
+    "badges": [],
+    "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/libre-01c5i7/1794229554796-photo-principale-3PVL9kBjeC2bmULhkgEdW1xeWvEYV4.jpg"
   }
 ]
