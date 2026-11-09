@@ -1,6 +1,6 @@
 {
   "notify_enabled": true,
-  "lead_recipient": "contact@hamadat.dz",
+  "lead_recipient": "Contact@hamadat-promotion.com",
   "smtp_host": "smtp.gmail.com",
   "smtp_port": 587,
   "smtp_user": "",
