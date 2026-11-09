@@ -233,5 +233,17 @@
     "tagline_ar": "واجهة استثنائية، وفنّ عيش راقٍ",
     "badges": [],
     "asset": "https://ayybkdted2frwzq1.public.blob.vercel-storage.com/hamadat/home-carousel/libre-8jze0n/1794230498329-residence-olivia-elegance-parisienne-lh5gU4RxKqyaswnC8Ts087KZ46bHBl.jpg"
+  },
+  {
+    "residence_id": null,
+    "free_id": "libre-jzje4y",
+    "name": "Salle de bain – Résidence Olivia",
+    "name_ar": "حمّام – إقامة أوليفيا",
+    "location_fr": "Saïd Hamdine, Alger",
+    "location_ar": "سعيد حمدين، الجزائر العاصمة",
+    "tagline_fr": "Marbre naturel et douche à l’italienne",
+    "tagline_ar": "رخام طبيعي ودُش على الطريقة الإيطالية",
+    "badges": [],
+    "asset": ""
   }
 ]
